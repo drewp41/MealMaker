@@ -1,0 +1,16 @@
+{
+    "team.showWelcomeMessage": false,
+    "python.pipenvPath": "${workspaceFolder}/backend/env/bin/python",
+    "python.linting.pycodestyleArgs": [
+        "--ignore=E501"
+    ],
+    "git.ignoreLimitWarning": true
+    /*"editor.formatOnSave": true,
+    "python.linting.pycodestyleEnabled": true,
+    "python.linting.pylintPath": "/path/to/pylint",
+    "python.linting.pylintArgs": [
+        "--load-plugins",
+        "pylint_django"
+    ],
+    "python.linting.pylintEnabled": true */
+}
