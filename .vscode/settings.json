@@ -1,6 +1,6 @@
 {
     "team.showWelcomeMessage": false,
-    "python.pipenvPath": "${workspaceFolder}/backend/env/bin/python",
+    "python.pipenvPath": "${workspaceFolder}/backend/env/bin/python3.8",
     "python.linting.pycodestyleArgs": [
         "--ignore=E501"
     ],

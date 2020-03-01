@@ -8,4 +8,4 @@ class Food(models.Model):
     fat = models.PositiveSmallIntegerField(default=0, blank=True)
 
     def __str__(self):
-        return self.calories
+        return f'Calories: {self.calories}, Carbs: {self.carb}'
