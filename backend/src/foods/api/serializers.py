@@ -6,4 +6,4 @@ from foods.models import Food
 class FoodSerializer(serializers.ModelSerializer):
     class Meta:
         model = Food
-        fields = ('calories', 'carb', 'protein', 'fat')
+        fields = ('id', 'calories', 'carb', 'protein', 'fat')
