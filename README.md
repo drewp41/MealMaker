@@ -1,4 +1,4 @@
-# MealMaker
+# Macro Meal Maker
 
 ![](https://img.shields.io/badge/python-3.8.1-blue)
 ![](https://img.shields.io/badge/django-3.03-blue) 
