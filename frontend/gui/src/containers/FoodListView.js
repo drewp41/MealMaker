@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import Foods from '../components/Food';
+import CustomForm from '../components/Form';
 
 /*
 const listData = [];
@@ -36,7 +37,12 @@ class FoodList extends React.Component {
 
     render() {
         return (
-            <Foods data={this.state.foods} />
+            <div>
+                <Foods data={this.state.foods} />
+                <br />
+                <h2>Create a meal plan</h2>
+                <CustomForm />
+            </div>
         )
     }
 }
