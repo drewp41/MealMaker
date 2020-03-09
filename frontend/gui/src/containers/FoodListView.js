@@ -37,11 +37,16 @@ class FoodList extends React.Component {
 
     render() {
         return (
+            // since we're in the list view, it's a post requestType.  
+            // we're giving the customform props
             <div>
                 <Foods data={this.state.foods} />
                 <br />
                 <h2>Create a meal plan</h2>
-                <CustomForm />
+                <CustomForm
+                    requestType="post"
+                    foodID={null}
+                    btnText="Create" />
             </div>
         )
     }
