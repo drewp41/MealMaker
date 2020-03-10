@@ -10,8 +10,8 @@ export interface PlacementsConfig {
     arrowPointAtCenter?: boolean;
     autoAdjustOverflow?: boolean | AdjustOverflow;
 }
-export declare function getOverflowOptions(autoAdjustOverflow: boolean | AdjustOverflow): {
+export declare function getOverflowOptions(autoAdjustOverflow?: boolean | AdjustOverflow): {
     adjustX: number;
     adjustY: number;
 };
-export default function getPlacements(config?: PlacementsConfig): BuildInPlacements;
+export default function getPlacements(config: PlacementsConfig): BuildInPlacements;
