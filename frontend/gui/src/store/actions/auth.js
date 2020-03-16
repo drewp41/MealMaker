@@ -46,7 +46,7 @@ export const authLogin = (username, password) => {
     // alert us that the auth start has taken place
     return dispatch => {
         dispatch(authStart());
-        axios.post('http://localhost:8000', {
+        axios.post('http://localhost:8000/rest-auth/login/', {
             username: username,
             password: password
         })
@@ -61,5 +61,54 @@ export const authLogin = (username, password) => {
                 dispatch(authSuccess(token));
                 dispatch(checkAuthTimeout(3600));
             })
+            .catch(err => {
+                dispatch(authFail(err));
+            })
+    }
+}
+
+export const authSignup = (username, email, password1, password2) => {
+    // alert us that the auth start has taken place
+    return dispatch => {
+        dispatch(authStart());
+        axios.post('http://localhost:8000/rest-auth/registration/', {
+            username: username,
+            email: email,
+            password1: password1,
+            password2: password2
+        })
+            // see what the response to this post request is
+            .then(res => {
+                const token = res.data.key;
+                const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
+                // need to store this data in a persistant storage
+                // (not redux bc when refreshed, the data would be lost)
+                localStorage.setItem('token', token);
+                localStorage.setItem('expirationDate', expirationDate);
+                dispatch(authSuccess(token));
+                dispatch(checkAuthTimeout(3600));
+            })
+            .catch(err => {
+                dispatch(authFail(err));
+            })
+    }
+}
+
+export const authCheckState = () => {
+    // check if the token is in our local storage
+    // if it's not, log out
+    // if it is, "update" how much time is left
+    return dispatch => {
+        const token = localStorage.getItem('token');
+        if (token === undefined) {
+            dispatch(logout());
+        } else {
+            const expirationDate = new Date(localStorage.getItem('expirationDate'));
+            // if the expiration date is in the past
+            if (expirationDate <= new Date()) {
+                dispatch(authSuccess(token));
+                dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000));
+            }
+        }
     }
 }
