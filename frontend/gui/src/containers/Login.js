@@ -12,7 +12,7 @@ const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 class NormalLoginForm extends React.Component {
     onFinish = values => {
-        //console.log('Received values of form: ', values);
+        console.log('Received values of form: ', values);
         this.props.onAuth(values.username, values.password);
         // navigates us to the home page after logging in
         this.props.history.push('/');
