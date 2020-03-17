@@ -40,7 +40,7 @@ const Foods = (props) => {
                 >
                     <List.Item.Meta
                         avatar={<Avatar src={item.avatar} />}
-                        title={<a href={`/${item.id}`}>{'Calories: ' + item.calories}</a>}
+                        title={<a href={`/foods/${item.id}`}>{'Calories: ' + item.calories}</a>}
                         //title={'Calories: ' + item.calories}
                         description={'Protein: ' + item.protein
                             + ' Carbs: ' + item.carb + ' Fats: ' + item.fat}
