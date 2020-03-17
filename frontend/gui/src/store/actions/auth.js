@@ -19,12 +19,13 @@ export const authSuccess = token => {
 export const authFail = error => {
     return {
         type: actionTypes.AUTH_FAIL,
+        token: null,
         error: error
     }
 }
 
 export const logout = () => {
-    localStorage.removeItem('user');
+    localStorage.removeItem('token');
     localStorage.removeItem('expirationDate');
     return {
         type: actionTypes.AUTH_LOGOUT
@@ -46,7 +47,7 @@ export const authLogin = (username, password) => {
     // alert us that the auth start has taken place
     return dispatch => {
         dispatch(authStart());
-        axios.post('http://localhost:8000/rest-auth/login/', {
+        axios.post('http://127.0.0.1:8000/rest-auth/login/', {
             username: username,
             password: password
         })
@@ -71,7 +72,7 @@ export const authSignup = (username, email, password1, password2) => {
     // alert us that the auth start has taken place
     return dispatch => {
         dispatch(authStart());
-        axios.post('http://localhost:8000/rest-auth/registration/', {
+        axios.post('http://127.0.0.1:8000/rest-auth/registration/', {
             username: username,
             email: email,
             password1: password1,
@@ -106,6 +107,8 @@ export const authCheckState = () => {
             const expirationDate = new Date(localStorage.getItem('expirationDate'));
             // if the expiration date is in the past
             if (expirationDate <= new Date()) {
+                dispatch(logout());
+            } else {
                 dispatch(authSuccess(token));
                 dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000));
             }

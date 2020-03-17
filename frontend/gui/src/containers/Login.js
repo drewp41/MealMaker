@@ -12,7 +12,7 @@ const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 class NormalLoginForm extends React.Component {
     onFinish = values => {
-        console.log('Received values of form: ', values);
+        console.log('Received values of form: ', values.type);
         this.props.onAuth(values.username, values.password);
         // navigates us to the home page after logging in
         this.props.history.push('/');
@@ -21,16 +21,16 @@ class NormalLoginForm extends React.Component {
     onFinishFailed = errorInfo => {
         console.log('Failed:', errorInfo);
     };
-    /*
-        handleSubmit = (e) => {
-            //e.preventDefault();
-            console.log("hi");
-            this.props.form.validateFields((err, values) => {
-                if (!err) {
-                    console.log('Received values of form: ', values);
-                }
-            });
-        } */
+
+    /*handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.form.validateFields((err, values) => {
+            if (!err) {
+                this.props.onAuth(values.userName, values.password);
+                this.props.history.push('/');
+            }
+        });
+    }*/
 
     render() {
         // if auth_fail is dispatched

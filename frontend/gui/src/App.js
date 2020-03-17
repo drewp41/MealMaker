@@ -27,7 +27,7 @@ class App extends Component {
 }
 
 // turns the state into a prop so we can use it in our application
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     isAuthenticated: state.token !== null
   }
@@ -35,7 +35,7 @@ const mapStateToProps = (state) => {
 
 // automatic authentication check 
 // every time the app is rendered, the app will check if we are authenticated
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     onTryAutoSignup: () => dispatch(actions.authCheckState())
   }
