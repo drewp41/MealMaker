@@ -15,9 +15,12 @@ class CustomLayout extends React.Component {
                     <Menu
                         theme="dark"
                         mode="horizontal"
-                        defaultSelectedKeys={['2']}
+                        defaultSelectedKeys={['1']}
                         style={{ lineHeight: '64px' }}
                     >
+                        <Menu.Item key="1">
+                            <Link to="/">Home</Link>
+                        </Menu.Item>
                         {
                             this.props.isAuthenticated
                                 ?
@@ -29,9 +32,7 @@ class CustomLayout extends React.Component {
                                     <Link to="/login">Log in</Link>
                                 </Menu.Item>
                         }
-                        <Menu.Item key="1">
-                            <Link to="/">Home</Link>
-                        </Menu.Item>
+
 
                     </Menu>
                 </Header>
