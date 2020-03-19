@@ -1,18 +1,55 @@
 @import url("font.css");
 
-#header{ 
+/* Camphor font weight: 300-600 */
+
+/* .ant-menu{background-color: red} */
+
+.headerText{ 
     font-size: 17px;
     font-family: 'Camphor';
     font-weight: 300;
-    /* sets the default sizing to make sure nothing is actually 10px */
     color: white 
 }
+.headerItem:hover .headerText, .headerItem:hover .logoText{ 
+    color: grey 
+}
 
-#logo{
+#logoText{
     font-size: 22px;
-    
     font-family: 'Camphor';
     font-weight: 600;
-    /* sets the default sizing to make sure nothing is actually 10px */
     color: white
+}
+
+#captionText{
+    font-size: 25px;
+    font-family: 'Camphor';
+    font-weight: 300;
+    color: black
+}
+
+.main {
+    display: flex;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+}
+
+.divider{
+    position:absolute;
+    left:50%;
+    top:22%;
+    bottom:10%;
+    border-left:1px solid #989898
+}
+
+.leftColumnText{
+    font-size: 18px;
+    font-family: 'Camphor';
+    font-weight: 300;
+    color: black
 }

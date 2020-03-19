@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Menu, Divider } from 'antd';
+import { Layout, Menu, Divider, Input, InputNumber } from 'antd';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/auth';
@@ -29,10 +29,12 @@ padding: 5px 1em 0 2em;
 
 
 class NewLayout extends React.Component {
+    onChange(value) {
+        console.log('changed', value);
+    }
     render() {
-        return (
+        return (            
             <Layout>
-
                 <Header style={{ height: '100px' }}>
                     <div className="logo" />
                     <Menu
@@ -41,16 +43,37 @@ class NewLayout extends React.Component {
                         selectable={false}
                     >
                         <Menu.Item key="1" style={{ margin: '0 0 0 10%' }}><img src={logo} alt="logo" style={{ width: 66, height: 100 }} /></Menu.Item>
-                        <Menu.Item key="2" style={{ padding: '0 0 25px 0', margin: '0 0 0 0' }}><b id="logo">Macro Meal Maker</b></Menu.Item>
-                        <Menu.Item key="3" style={{ padding: '0 0 25px 0', margin: '0 0 0 20%' }}><b id="header">How it works</b></Menu.Item>
-                        <Menu.Item key="4" style={{ padding: '0 0 25px 0', margin: '0 0 0 3%' }}><b id="header">About</b></Menu.Item>
-                        <Menu.Item key="4" style={{ padding: '0 0 25px 2%', margin: '0 0 0 22%' }}><b id="header">Sign in →</b></Menu.Item>
+                        <Menu.Item key="2" className="headerItem" style={{ padding: '0 0 26px 0', margin: '0 0 0 0' }}><b id="logoText">Macro Meal Maker</b></Menu.Item>
+                        <Menu.Item key="3" className="headerItem" style={{ padding: '0 0 26px 0', margin: '0 0 0 17%' }}><b className="headerText">How it works</b></Menu.Item>
+                        <Menu.Item key="4" className="headerItem" style={{ padding: '0 0 26px 0', margin: '0 0 0 3%' }}><b className="headerText">About</b></Menu.Item>
+                        <Menu.Item key="4" className="headerItem" style={{ padding: '0 0 26px 2%', margin: '0 0 0 25%' }}><b className="headerText">Sign in →</b></Menu.Item>
                     </Menu>
                 </Header>
                 <Content style={{ padding: '0 50px' }}>
-                    <div className="site-layout-content" style={{ minHeight: 1200 }}>
-                        Content
+                    <div className="site-layout-content">
+                        <div style={{ margin: '3% 0', textAlign: 'center' }}>
+                            <b id="captionText">Create a customized meal plan in seconds.</b>
+                        </div>
                     </div>
+
+                    <div className="site-layout-content" className="main" style={{ minHeight: 1000 }}>
+                        <div class="column" style={{margin: '3% 5% '}}>
+                            <p className="leftColumnText">I want to eat  
+                            <InputNumber min={1000} max={10000} defaultValue={2000} step = {100} onChange={this.onChange} />
+                            calories today.</p>
+                        </div>
+                        <div className="divider"/>
+                        <div class="column" style={{margin: '3% 5%'}}>
+                            Blind would equal while oh mr do style. Lain led and fact none. One preferred sportsmen resolving the happiness continued. High at of in loud rich true. Oh conveying do immediate acuteness in he. Equally welcome her set nothing has gravity whether parties. Fertile suppose shyness mr up pointed in staying on respect.
+
+                            Behind sooner dining so window excuse he summer. Breakfast met certainty and fulfilled propriety led. Waited get either are wooded little her. Contrasted unreserved as mr particular collecting it everything as indulgence. Seems ask meant merry could put. Age old begin had boy noisy table front whole given.
+
+                            Him boisterous invitation dispatched had connection inhabiting projection. By mutual an mr danger garret edward an. Diverted as strictly exertion addition no disposal by stanhill. This call wife do so sigh no gate felt. You and abode spite order get. Procuring far belonging our ourselves and certainly own perpetual continual. It elsewhere of sometimes or my certainty. Lain no as five or at high. Everything travelling set how law literature.
+                            
+                        </div>
+
+                    </div>
+
                 </Content>
                 <Footer style={{ textAlign: 'center' }}></Footer>
             </Layout >
