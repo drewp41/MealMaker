@@ -1,0 +1,18 @@
+@import url("font.css");
+
+#header{ 
+    font-size: 17px;
+    font-family: 'Camphor';
+    font-weight: 300;
+    /* sets the default sizing to make sure nothing is actually 10px */
+    color: white 
+}
+
+#logo{
+    font-size: 22px;
+    
+    font-family: 'Camphor';
+    font-weight: 600;
+    /* sets the default sizing to make sure nothing is actually 10px */
+    color: white
+}

@@ -1,0 +1,46 @@
+
+@font-face {
+    font-family: "Camphor";
+  
+    src: url("../fonts/camphorLight.woff2") format("woff2"), /* Modern Browsers */
+           url("../fonts/camphorLight.woff") format("woff"), /* Modern Browsers */
+           url("../fonts/camphorLight.ttf") format("truetype"); /* Safari, Android, iOS */
+      
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Camphor";
+  
+    src: url("../fonts/camphorMedium.woff2") format("woff2"), /* Modern Browsers */
+           url("../fonts/camphorMedium.woff") format("woff"), /* Modern Browsers */
+           url("../fonts/camphorMedium.ttf") format("truetype"); /* Safari, Android, iOS */
+      
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Camphor";
+  
+    src: url("../fonts/camphorRegular.woff2") format("woff2"), /* Modern Browsers */
+           url("../fonts/camphorRegular.woff") format("woff"), /* Modern Browsers */
+           url("../fonts/camphorRegular.ttf") format("truetype"); /* Safari, Android, iOS */
+      
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Camphor";
+  
+    src: url("../fonts/camphorBold.woff2") format("woff2"), /* Modern Browsers */
+           url("../fonts/camphorBold.woff") format("woff"), /* Modern Browsers */
+           url("../fonts/camphorBold.ttf") format("truetype"); /* Safari, Android, iOS */
+      
+    font-weight: 600;
+    font-style: normal;
+}
+
+
