@@ -39,17 +39,16 @@
     flex: 1;
 }
 
-.divider{
-    position:absolute;
-    left:50%;
-    top:22%;
-    bottom:10%;
-    border-left:1px solid #989898
-}
-
 .leftColumnText{
-    font-size: 18px;
+    font-size: 20px;
     font-family: 'Camphor';
     font-weight: 300;
+    color: black
+}
+
+.cardText{
+    font-size: 16px;
+    font-family: 'Camphor';
+    font-weight: 600;
     color: black
 }
