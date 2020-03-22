@@ -69,7 +69,7 @@ export interface StickyOffsets {
 }
 export declare type GetComponentProps<DataType> = (data: DataType, index?: number) => React.HTMLAttributes<HTMLElement>;
 declare type Component<P> = React.ComponentType<P> | React.ForwardRefExoticComponent<P> | React.FC<P> | keyof React.ReactHTML;
-export declare type CustomizeComponent<P extends React.HTMLAttributes<HTMLElement> = React.HTMLAttributes<HTMLElement>> = Component<P>;
+export declare type CustomizeComponent = Component<any>;
 export declare type CustomizeScrollBody<RecordType> = (data: RecordType[], info: {
     scrollbarSize: number;
     ref: React.Ref<{
