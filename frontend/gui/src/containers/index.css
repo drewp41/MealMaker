@@ -10,11 +10,20 @@
     font-weight: 300;
     color: white 
 }
+
+#signInArrow{ 
+    transition: padding 0.3s;
+}
+
 .headerItem:hover .headerText, .headerItem:hover .logoText{ 
     color: grey 
 }
 
-#logoText{
+.headerItem:hover #signInArrow{
+    padding: 6px;
+}
+
+.logoText{
     font-size: 22px;
     font-family: 'Camphor';
     font-weight: 600;

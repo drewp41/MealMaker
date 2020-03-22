@@ -2,7 +2,7 @@ import React from 'react';
 import {
     Layout, Menu, Divider, Input, InputNumber,
     Skeleton, Card, SkeletonParagraphProps, Button,
-    Select, Alert, message
+    Select, Alert, message, Switch, Collapse
 } from 'antd';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -10,6 +10,7 @@ import * as actions from '../store/actions/auth';
 import 'antd/dist/antd.css';
 import './index.css';
 import { Pie } from '@antv/g2plot';
+//import { Pie } from '@opd/g2plot-react'
 import ReactG2Plot from 'react-g2plot';
 import NumberFormat from 'react-number-format';
 
@@ -17,6 +18,7 @@ import logo from '../MMM.png';
 
 const { Header, Content, Footer } = Layout;
 const { Option } = Select;
+const { Panel } = Collapse;
 // padding is on the inside, margin is on the outside
 /* 
 Apply to all four sides 
@@ -39,7 +41,6 @@ class NewLayout extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
         }
         this.textInput = React.createRef();
     }
@@ -74,10 +75,12 @@ class NewLayout extends React.Component {
                         selectable={false}
                     >
                         <Menu.Item key="1" style={{ margin: '0 0 0 10%' }}><img src={logo} alt="logo" style={{ width: 66, height: 100 }} /></Menu.Item>
-                        <Menu.Item key="2" className="headerItem" style={{ padding: '0 0 26px 0', margin: '0 0 0 0' }}><b id="logoText">Macro Meal Maker</b></Menu.Item>
+                        <Menu.Item key="2" className="headerItem" style={{ padding: '0 0 26px 0', margin: '0 0 0 0' }}><b className="logoText">Macro Meal Maker</b></Menu.Item>
                         <Menu.Item key="3" className="headerItem" style={{ padding: '0 0 26px 0', margin: '0 0 0 17%' }}><b className="headerText">How it works</b></Menu.Item>
                         <Menu.Item key="4" className="headerItem" style={{ padding: '0 0 26px 0', margin: '0 0 0 3.5%' }}><b className="headerText">About</b></Menu.Item>
-                        <Menu.Item key="4" className="headerItem" style={{ padding: '0 0 26px 2%', margin: '0 0 0 25%' }}><b className="headerText">Sign in →</b></Menu.Item>
+                        <Menu.Item key="4" className="headerItem" style={{ padding: '0 0 26px 2%', margin: '0 0 0 25%' }}>
+                            <b className="headerText">Sign in</b> <b className="headerText" id="signInArrow"> →</b>
+                        </Menu.Item>
                     </Menu>
                 </Header>
                 <Content style={{ padding: '0 50px' }}>
@@ -110,7 +113,7 @@ class NewLayout extends React.Component {
                             </p>
                             <p className="leftColumnText"> in &nbsp;
                             {/* <InputNumber min={1} max={8} defaultValue={3} onChange={this.onChange} /> */}
-                                <Select defaultValue="3" style={{ width: 120 }} style={{ width: '130px' }} onChange={this.handleChange}>
+                                <Select defaultValue="3" style={{ width: '130px' }} onChange={this.handleChange}>
                                     <Option value="1">1 meal</Option>
                                     <Option value="2">2 meals</Option>
                                     <Option value="3">3 meals</Option>
@@ -125,44 +128,75 @@ class NewLayout extends React.Component {
                             <div>
                                 <Button type="primary" loading={false} >Generate</Button>
                             </div>
+                            <br />
+                            <div>
+                                <Switch defaultChecked onChange={this.onChange} />
+                            </div>
+                            <div style={{ margin: '1% 5% 0 35%', width: 250 }}>
+                                <Collapse expandIconPosition='right'>
+                                    <Panel header="Macros" key="1" disabled={false}>
+                                        {/* <p>hi</p> */}
+                                        <b>Carbohydrates</b>
+                                        <Input></Input>
+                                        <b>Protein</b>
+                                        <Input></Input>
+                                        <b>Fat</b>
+                                        <Input></Input>
+                                    </Panel>
+                                </Collapse>
+                            </div>
+
+
                             <ReactG2Plot
                                 className="pie"
                                 Ctor={Pie}
                                 config={{
-                                    forceFit: true,
+                                    //forceFit: true,
+                                    pixelRatio: 2,
                                     title: {
                                         visible: true,
                                         text: 'Macro Breakdown',
+                                        position: 'left',
                                     },
                                     description: {
-                                        visible: true,
+                                        visible: false,
                                         //text:
                                         //    '指定颜色映射字段(colorField)，饼图切片将根据该字段数据显示为不同的颜色。指定颜色需要将color配置为一个数组。\n当把饼图label的类型设置为inner时，标签会显示在切片内部。设置offset控制标签的偏移值。',
                                     },
-                                    radius: 0.9,
+                                    radius: 0.7,
+                                    colorField: 'type',
+                                    color: ['#5B8FF9', '#E15554', '#3BB273'], //#3BB273, #7768AE
                                     data: [
                                         {
                                             type: 'Carbohydrates',
-                                            value: 1,
+                                            value: 34,
                                         },
                                         {
                                             type: 'Protein',
-                                            value: 1,
+                                            value: 33,
                                         },
                                         {
                                             type: 'Fat',
-                                            value: 1,
+                                            value: 33,
                                         },
                                     ],
                                     angleField: 'value',
-                                    colorField: 'type',
                                     label: {
                                         visible: true,
-                                        type: 'inner',
+                                        type: 'outer',
+                                        formatter: (val) => {
+                                            return val + '%';
+                                        },
                                     },
+                                    legend: {
+                                        visible: true,
+                                        position: 'bottom-center',
+                                        //offsetY: -285
+                                    },
+                                    //padding: [0, 0, 0, 0],
+                                    //responsive: true
                                 }}
                             />
-
 
                         </div>
                         <div style={{ 'border-left': '1px solid silver' }} />
