@@ -40,10 +40,13 @@ padding: 5px 1em 0 2em;
 class NewLayout extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-        }
+        this.enableMacros = false
         this.textInput = React.createRef();
     }
+
+    state = {
+        enableMacros: false,
+    };
 
     onChange(value) {
         console.log('changed', value);
@@ -53,6 +56,11 @@ class NewLayout extends React.Component {
         this.setState({ value: event.target.value });
     }
 
+    macroSwitch = () => {
+        this.setState({
+            enableMacros: !this.state.enableMacros
+        })
+    }
     calError = () => {
         // message.config({
         //     duration: 3,
@@ -130,18 +138,33 @@ class NewLayout extends React.Component {
                             </div>
                             <br />
                             <div>
-                                <Switch defaultChecked onChange={this.onChange} />
+                                <Switch onChange={this.macroSwitch} />
                             </div>
-                            <div style={{ margin: '1% 5% 0 35%', width: 250 }}>
+                            <div destroyInactivePanel={true} style={{ margin: '1% 5% 0 35%', width: 250 }}>
                                 <Collapse expandIconPosition='right'>
-                                    <Panel header="Macros" key="1" disabled={false}>
+                                    <Panel header="Macro Prefrences" key="1" disabled={!this.state.enableMacros}>
                                         {/* <p>hi</p> */}
-                                        <b>Carbohydrates</b>
-                                        <Input></Input>
-                                        <b>Protein</b>
-                                        <Input></Input>
-                                        <b>Fat</b>
-                                        <Input></Input>
+                                        <p>Carbohydrates:&nbsp;
+                                        <NumberFormat className='ant-input' suffix=' g' defaultValue={200} allowEmptyFormatting={true}
+                                                //onChange={this.calError()}
+                                                //onChange={value => value.target.value < 10000 ? this.calError : this.onChange(value.target.value)}
+                                                style={{ width: '80px' }}
+                                            />
+                                        </p>
+                                        <p>Protein:&nbsp;
+                                        <NumberFormat className='ant-input' suffix=' g' defaultValue={150} allowEmptyFormatting={true}
+                                                //onChange={this.calError()}
+                                                //onChange={value => value.target.value < 10000 ? this.calError : this.onChange(value.target.value)}
+                                                style={{ width: '80px' }}
+                                            />
+                                        </p>
+                                        <p>Fat:&nbsp;
+                                        <NumberFormat className='ant-input' suffix=' g' defaultValue={65} allowEmptyFormatting={true}
+                                                //onChange={this.calError()}
+                                                //onChange={value => value.target.value < 10000 ? this.calError : this.onChange(value.target.value)}
+                                                style={{ width: '80px' }}
+                                            />
+                                        </p>
                                     </Panel>
                                 </Collapse>
                             </div>
