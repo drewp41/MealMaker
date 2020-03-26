@@ -45,7 +45,7 @@ class NewLayout extends React.Component {
     }
 
     state = {
-        enableMacros: false,
+        enableMacros: 0,
     };
 
     onChange(value) {
@@ -58,7 +58,7 @@ class NewLayout extends React.Component {
 
     macroSwitch = () => {
         this.setState({
-            enableMacros: !this.state.enableMacros
+            enableMacros: (this.state.enableMacros === 1) ? 0 : 1
         })
     }
     calError = () => {
@@ -140,9 +140,11 @@ class NewLayout extends React.Component {
                             <div>
                                 <Switch onChange={this.macroSwitch} />
                             </div>
-                            <div destroyInactivePanel={true} style={{ margin: '1% 5% 0 35%', width: 250 }}>
-                                <Collapse expandIconPosition='right'>
-                                    <Panel header="Macro Prefrences" key="1" disabled={!this.state.enableMacros}>
+                            <br />
+                            <div style={{ margin: '1% 5% 0 40%', width: 250 }}>
+                                <Collapse expandIconPosition='right' activeKey={this.state.enableMacros} destroyInactivePanel={true}>
+                                    {/* disabled={!this.state.enableMacros} */}
+                                    <Panel header="Macro Prefrences" key="1" >
                                         {/* <p>hi</p> */}
                                         <p>Carbohydrates:&nbsp;
                                         <NumberFormat className='ant-input' suffix=' g' defaultValue={200} allowEmptyFormatting={true}
