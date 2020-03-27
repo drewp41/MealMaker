@@ -43,13 +43,12 @@ padding: 5px 1em 0 2em;
 class NewLayout extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            enableMacros: false,
+            generateLoading: false
+        };
         this.textInput = React.createRef();
     }
-
-    state = {
-        enableMacros: false,
-        generateLoading: false
-    };
 
     onChange(value) {
         console.log('changed', value);
@@ -65,11 +64,15 @@ class NewLayout extends React.Component {
         })
     }
 
-    enterGenerateLoading = () => {
-        this.setState({
-            generateLoading: !this.state.generateLoading
-        })
-    }
+    onClickGenerateButton = () => {
+        this.setState({ generateLoading: true });
+        setTimeout(() => {
+            this.setState({
+                generateLoading: false
+            });
+        }, 3000);
+    };
+
     calError = () => {
         // message.config({
         //     duration: 3,
@@ -118,10 +121,10 @@ class NewLayout extends React.Component {
                                     //onChange={this.handleChange}
                                     style={{ width: '130px' }}
                                 /> */}
-                                <NumberFormat className='ant-input' suffix={' calories'} defaultValue={2000} allowEmptyFormatting={true}
+                                <NumberFormat className='ant-input' id='calorieInput' suffix={' calories'} defaultValue={2000} allowEmptyFormatting={true}
                                     //onChange={this.calError()}
                                     //onChange={value => value.target.value < 10000 ? this.calError : this.onChange(value.target.value)}
-                                    style={{ width: '130px' }}
+                                    style={{ width: '126px' }}
                                 />
                                 {/* <NumberFormat defaultValue={2000} value={this.myTextInput} customInput={InputNumber}
                                     suffix={' calories'} ref={ref => this.myTextInput = ref}
@@ -130,7 +133,7 @@ class NewLayout extends React.Component {
                             </p>
                             <p className="leftColumnText"> in &nbsp;
                             {/* <InputNumber min={1} max={8} defaultValue={3} onChange={this.onChange} /> */}
-                                <Select defaultValue="3" style={{ width: '130px' }} onChange={this.onChange}>
+                                <Select className="mealInput" defaultValue="3" style={{ width: '126px' }} onChange={this.onChange}>
                                     <Option value="1">1 meal</Option>
                                     <Option value="2">2 meals</Option>
                                     <Option value="3">3 meals</Option>
@@ -144,23 +147,21 @@ class NewLayout extends React.Component {
                             </p>
                             <div style={{ margin: '1% 5% 0 37.5%', width: 265 }}>
                                 <Collapse expandIconPosition='right' activeKey={this.state.enableMacros}>
-                                    <Panel className="macroSwitchText" header='Macro Preferences' showArrow={true} key="1" extra={
-                                        <b>&nbsp; &nbsp;
+                                    <Panel id="macroSwitchText" header='Macro Preferences &nbsp;&nbsp;' showArrow={true} key="1" extra={
                                         <Switch defaultChecked={this.state.enableMacros} onChange={this.macroSwitch} />
-                                        </b>
                                     } >
-                                        <p>Carbohydrates:&nbsp;
-                                        <NumberFormat className='ant-input' suffix=' g' defaultValue={200}
+                                        <p id="macroText">Carbohydrates:&nbsp;
+                                        <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={200}
                                                 allowEmptyFormatting={true} style={{ width: '80px' }}
                                             />
                                         </p>
-                                        <p>Protein:&nbsp;
-                                        <NumberFormat className='ant-input' suffix=' g' defaultValue={150}
+                                        <p id="macroText">Protein:&nbsp;
+                                        <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={150}
                                                 allowEmptyFormatting={true} style={{ width: '80px' }}
                                             />
                                         </p>
-                                        <p>Fat:&nbsp;
-                                        <NumberFormat className='ant-input' suffix=' g' defaultValue={65}
+                                        <p id="macroText">Fat:&nbsp;
+                                        <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={65}
                                                 allowEmptyFormatting={true} style={{ width: '80px' }}
                                             />
                                         </p>
@@ -169,13 +170,15 @@ class NewLayout extends React.Component {
                             </div>
 
                             <br />
+
                             <div>
-                                <Button type="primary" loading={this.state.generateLoading}
-                                    icon={<SyncOutlined />} onClick={this.enterGenerateLoading}>
+                                <Button type="primary" id='generateButton' loading={this.state.generateLoading}
+                                    icon={<SyncOutlined />} onClick={this.onClickGenerateButton}>
                                     Generate
                                     </Button>
                             </div>
 
+                            <br />
 
                             <ReactG2Plot
                                 className="pie"
@@ -185,15 +188,19 @@ class NewLayout extends React.Component {
                                     pixelRatio: 2,
                                     title: {
                                         visible: true,
-                                        text: 'Macro Breakdown',
-                                        position: 'left',
+                                        text: '                  Macro Breakdown',
+                                        position: 'middle',
+                                        style: {
+                                            fontSize: 22,
+                                            fontFamily: 'Camphor',
+                                            fontWeight: 300,
+                                        },
                                     },
                                     description: {
                                         visible: false,
                                         //text:
-                                        //    '指定颜色映射字段(colorField)，饼图切片将根据该字段数据显示为不同的颜色。指定颜色需要将color配置为一个数组。\n当把饼图label的类型设置为inner时，标签会显示在切片内部。设置offset控制标签的偏移值。',
                                     },
-                                    radius: 0.7,
+                                    radius: 0.65,
                                     colorField: 'type',
                                     color: ['#5B8FF9', '#E15554', '#3BB273'], //#3BB273, #7768AE
                                     data: [
@@ -217,11 +224,14 @@ class NewLayout extends React.Component {
                                         formatter: (val) => {
                                             return val + '%';
                                         },
+                                        style: {
+                                            fontFamily: 'Camphor',
+                                        },
                                     },
                                     legend: {
                                         visible: true,
                                         position: 'bottom-center',
-                                        //offsetY: -285
+                                        offsetY: -15
                                     },
                                     //padding: [0, 0, 0, 0],
                                     //responsive: true
@@ -229,7 +239,11 @@ class NewLayout extends React.Component {
                             />
 
                         </div>
+
+
                         <div style={{ 'border-left': '1px solid silver' }} />
+
+
                         <div class="column" style={{ margin: '1% 20% 0 5%' }}>
                             <Card title="Breakfast" id="mealCard" extra="0 calories" style={{ width: 350 }}>
                                 <Skeleton loading={true} title={false} paragraph={{ rows: 3, width: [250] }} />

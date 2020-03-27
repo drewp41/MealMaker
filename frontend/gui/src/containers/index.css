@@ -55,15 +55,43 @@
     color: black
 }
 
-.macroSwitchText{
+#calorieInput{
+    font-size: 16px;
+    font-family: 'Camphor';
+    font-weight: 300;
+    text-align: left;
+}
+
+.mealInput{
+    font-size: 16px;
+    font-family: 'Camphor';
+    font-weight: 300;
+    text-align: left; 
+}
+
+#macroSwitchText{
     font-size: 18px;
     font-family: 'Camphor';
     font-weight: 300;
-    color: black
+    color: black;
 }
 
-#macroCard{
+#macroText{
+    font-size: 16px;
     font-family: 'Camphor';
+    font-weight: 300;
+    color: black;
+}
+
+#macroNumbers{
+    font-size: 15px;
+    font-family: 'Camphor';
+    font-weight: 300;
+}
+
+#generateButton{
+    font-family: 'Camphor';
+    font-weight: 400;
 }
 
 /* #mealCard{
