@@ -2,8 +2,9 @@ import React from 'react';
 import {
     Layout, Menu, Divider, Input, InputNumber,
     Skeleton, Card, SkeletonParagraphProps, Button,
-    Select, Alert, message, Switch, Collapse
+    Select, Alert, message, Switch, Collapse, Spin
 } from 'antd';
+import { SyncOutlined } from '@ant-design/icons';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/auth';
@@ -19,6 +20,8 @@ import logo from '../MMM.png';
 const { Header, Content, Footer } = Layout;
 const { Option } = Select;
 const { Panel } = Collapse;
+
+const antIcon = <SyncOutlined style={{ fontSize: 24 }} spin />;
 // padding is on the inside, margin is on the outside
 /* 
 Apply to all four sides 
@@ -40,12 +43,12 @@ padding: 5px 1em 0 2em;
 class NewLayout extends React.Component {
     constructor(props) {
         super(props);
-        this.enableMacros = false
         this.textInput = React.createRef();
     }
 
     state = {
-        enableMacros: 0,
+        enableMacros: false,
+        generateLoading: false
     };
 
     onChange(value) {
@@ -59,6 +62,12 @@ class NewLayout extends React.Component {
     macroSwitch = () => {
         this.setState({
             enableMacros: (this.state.enableMacros === 1) ? 0 : 1
+        })
+    }
+
+    enterGenerateLoading = () => {
+        this.setState({
+            generateLoading: !this.state.generateLoading
         })
     }
     calError = () => {
@@ -121,7 +130,7 @@ class NewLayout extends React.Component {
                             </p>
                             <p className="leftColumnText"> in &nbsp;
                             {/* <InputNumber min={1} max={8} defaultValue={3} onChange={this.onChange} /> */}
-                                <Select defaultValue="3" style={{ width: '130px' }} onChange={this.handleChange}>
+                                <Select defaultValue="3" style={{ width: '130px' }} onChange={this.onChange}>
                                     <Option value="1">1 meal</Option>
                                     <Option value="2">2 meals</Option>
                                     <Option value="3">3 meals</Option>
@@ -133,42 +142,38 @@ class NewLayout extends React.Component {
                                     <Option value="9">9 meals</Option>
                                 </Select>
                             </p>
-                            <div>
-                                <Button type="primary" loading={false} >Generate</Button>
-                            </div>
-                            <br />
-                            <div>
-                                <Switch onChange={this.macroSwitch} />
-                            </div>
-                            <br />
-                            <div style={{ margin: '1% 5% 0 40%', width: 250 }}>
-                                <Collapse expandIconPosition='right' activeKey={this.state.enableMacros} destroyInactivePanel={true}>
-                                    {/* disabled={!this.state.enableMacros} */}
-                                    <Panel header="Macro Prefrences" key="1" >
-                                        {/* <p>hi</p> */}
+                            <div style={{ margin: '1% 5% 0 37.5%', width: 265 }}>
+                                <Collapse expandIconPosition='right' activeKey={this.state.enableMacros}>
+                                    <Panel className="macroSwitchText" header='Macro Preferences' showArrow={true} key="1" extra={
+                                        <b>&nbsp; &nbsp;
+                                        <Switch defaultChecked={this.state.enableMacros} onChange={this.macroSwitch} />
+                                        </b>
+                                    } >
                                         <p>Carbohydrates:&nbsp;
-                                        <NumberFormat className='ant-input' suffix=' g' defaultValue={200} allowEmptyFormatting={true}
-                                                //onChange={this.calError()}
-                                                //onChange={value => value.target.value < 10000 ? this.calError : this.onChange(value.target.value)}
-                                                style={{ width: '80px' }}
+                                        <NumberFormat className='ant-input' suffix=' g' defaultValue={200}
+                                                allowEmptyFormatting={true} style={{ width: '80px' }}
                                             />
                                         </p>
                                         <p>Protein:&nbsp;
-                                        <NumberFormat className='ant-input' suffix=' g' defaultValue={150} allowEmptyFormatting={true}
-                                                //onChange={this.calError()}
-                                                //onChange={value => value.target.value < 10000 ? this.calError : this.onChange(value.target.value)}
-                                                style={{ width: '80px' }}
+                                        <NumberFormat className='ant-input' suffix=' g' defaultValue={150}
+                                                allowEmptyFormatting={true} style={{ width: '80px' }}
                                             />
                                         </p>
                                         <p>Fat:&nbsp;
-                                        <NumberFormat className='ant-input' suffix=' g' defaultValue={65} allowEmptyFormatting={true}
-                                                //onChange={this.calError()}
-                                                //onChange={value => value.target.value < 10000 ? this.calError : this.onChange(value.target.value)}
-                                                style={{ width: '80px' }}
+                                        <NumberFormat className='ant-input' suffix=' g' defaultValue={65}
+                                                allowEmptyFormatting={true} style={{ width: '80px' }}
                                             />
                                         </p>
                                     </Panel>
                                 </Collapse>
+                            </div>
+
+                            <br />
+                            <div>
+                                <Button type="primary" loading={this.state.generateLoading}
+                                    icon={<SyncOutlined />} onClick={this.enterGenerateLoading}>
+                                    Generate
+                                    </Button>
                             </div>
 
 
@@ -226,7 +231,7 @@ class NewLayout extends React.Component {
                         </div>
                         <div style={{ 'border-left': '1px solid silver' }} />
                         <div class="column" style={{ margin: '1% 20% 0 5%' }}>
-                            <Card title="Breakfast" extra="0 calories" style={{ width: 350 }}>
+                            <Card title="Breakfast" id="mealCard" extra="0 calories" style={{ width: 350 }}>
                                 <Skeleton loading={true} title={false} paragraph={{ rows: 3, width: [250] }} />
                             </Card>
                             <br />

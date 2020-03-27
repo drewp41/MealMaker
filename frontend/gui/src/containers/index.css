@@ -55,6 +55,22 @@
     color: black
 }
 
+.macroSwitchText{
+    font-size: 18px;
+    font-family: 'Camphor';
+    font-weight: 300;
+    color: black
+}
+
+#macroCard{
+    font-family: 'Camphor';
+}
+
+/* #mealCard{
+    font-family: 'Camphor';
+    font-weight: 600;
+} */
+
 .cardText{
     font-size: 16px;
     font-family: 'Camphor';
