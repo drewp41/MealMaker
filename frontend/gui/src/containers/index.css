@@ -4,6 +4,9 @@
 
 /* .ant-menu{background-color: red} */
 
+/*  stripe's backgroundColor: 'rgb(247,249,252)', 
+    regular blackText: rgb(84,95,125) or for more emphasized: rgb(50,51,90) */
+
 .headerText{ 
     font-size: 17px;
     font-family: 'Camphor';
@@ -94,14 +97,25 @@
     font-weight: 400;
 }
 
-/* #mealCard{
+#mealCard{
     font-family: 'Camphor';
     font-weight: 600;
-} */
+}
+
+.camphorFont{
+    font-family: 'Camphor';
+}
 
 .cardText{
     font-size: 16px;
     font-family: 'Camphor';
     font-weight: 600;
     color: black
+}
+
+a:link, a:visited{
+    color:rgb(139,152,169);
+}
+a:hover, a:active{
+    color:rgb(50,51,90);
 }
