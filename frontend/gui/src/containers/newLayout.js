@@ -23,8 +23,8 @@ import logo from '../MMM.png';
 const { Header, Content, Footer } = Layout;
 const { Option } = Select;
 const { Panel } = Collapse;
+const mainTextColor = '#32323c'
 
-const antIcon = <SyncOutlined style={{ fontSize: 24 }} spin />;
 // padding is on the inside, margin is on the outside
 /* 
 Apply to all four sides 
@@ -114,15 +114,15 @@ class NewLayout extends React.Component {
                 </Header>
 
                 <div >
-                    <div style={{ margin: '3% 0', textAlign: 'center' }}>
-                        <b id="captionText" style={{ color: '#32323c' }}>Create a customized meal plan in seconds.</b>
+                    <div style={{ margin: '55px 0', textAlign: 'center' }}>
+                        <b id="captionText" style={{ color: mainTextColor }}>Create a customized meal plan in seconds.</b>
                         {/* <b id="captionText" style={{ color: 'black' }}>Create a customized meal plan in seconds.</b> */}
                     </div>
                 </div>
 
                 <div className="main" style={{ minHeight: 680 }}>
-                    <div class="column" style={{ margin: '1% 5% 0 20%', 'text-align': 'right' }}  >
-                        <p className="leftColumnText" style={{ color: '#32323c' }}>I want to eat &nbsp;
+                    <div class="column" style={{ margin: '1% 5% 0 20%', 'text-align': 'right', float: 'right' }}  >
+                        <p className="leftColumnText" style={{ color: mainTextColor }}>I want to eat &nbsp;
                                 {/* <InputNumber
                                     min={1000} max={10000} defaultValue={2000} step={100}
                                     formatter={value => `${value} calories`}
@@ -141,7 +141,7 @@ class NewLayout extends React.Component {
                                     onValueChange={value => this.myTextInput = value}
                                 /> */}
                         </p>
-                        <p className="leftColumnText" style={{ color: '#32323c' }}> in &nbsp;
+                        <p className="leftColumnText" style={{ color: mainTextColor }}> in &nbsp;
                             {/* <InputNumber min={1} max={8} defaultValue={3} onChange={this.onChange} /> */}
                             <Select className="mealInput" defaultValue="3" style={{ width: '126px' }} onChange={this.onChange}>
                                 <Option className='camphorFont' value="1">1 meal</Option>
@@ -155,9 +155,9 @@ class NewLayout extends React.Component {
                                 <Option className='camphorFont' value="9">9 meals</Option>
                             </Select>
                         </p>
-                        <div style={{ margin: '1% 5% 0 37.5%', width: 265 }}>
-                            <Collapse expandIconPosition='right' activeKey={this.state.enableMacros}>
-                                <Panel id="macroSwitchText" header='Macro Preferences &nbsp;&nbsp;' showArrow={true} key="1" extra={
+                        <p>
+                            <Collapse expandIconPosition='right' activeKey={this.state.enableMacros} style={{ margin: '0 0 0 190px' }}>
+                                <Panel header={<text id="macroSwitchText">Macro Preferences&nbsp;&nbsp;</text>} showArrow={true} key="1" extra={
                                     <Switch defaultChecked={this.state.enableMacros} onChange={this.macroSwitch} />
                                 } >
                                     <p id="macroText">Carbohydrates:&nbsp;
@@ -177,7 +177,7 @@ class NewLayout extends React.Component {
                                     </p>
                                 </Panel>
                             </Collapse>
-                        </div>
+                        </p>
 
                         <br />
 
@@ -204,7 +204,7 @@ class NewLayout extends React.Component {
                                         fontSize: 22,
                                         fontFamily: 'Camphor',
                                         fontWeight: 300,
-                                        fill: '#32323c',
+                                        fill: mainTextColor,
                                     },
                                 },
                                 description: {
@@ -256,17 +256,20 @@ class NewLayout extends React.Component {
 
 
                     <div class="column" style={{ margin: '1% 20% 0 5%' }}>
-                        <Card title="Breakfast" extra="0 calories" style={{ width: 350 }} headStyle={{ fontFamily: 'Camphor', fontWeight: 400 }}>
+                        <Card title="Breakfast" extra="0 calories" style={{ width: 350 }}
+                            headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                             <Skeleton loading={true} title={false} active={this.state.generateLoading}
                                 paragraph={{ rows: 3, width: [250] }} />
                         </Card>
                         <br />
-                        <Card title="Lunch" extra="0 calories" style={{ width: 350 }} headStyle={{ fontFamily: 'Camphor', fontWeight: 400 }}>
+                        <Card title="Lunch" extra="0 calories" style={{ width: 350 }}
+                            headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                             <Skeleton loading={true} title={false} active={this.state.generateLoading}
                                 paragraph={{ rows: 3, width: [250] }} />
                         </Card>
                         <br />
-                        <Card title="Dinner" extra="0 calories" style={{ width: 350 }} headStyle={{ fontFamily: 'Camphor', fontWeight: 400 }}>
+                        <Card title="Dinner" extra="0 calories" style={{ width: 350 }}
+                            headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                             <Skeleton loading={true} title={false} active={this.state.generateLoading}
                                 paragraph={{ rows: 3, width: [250] }} />
                         </Card>
@@ -296,7 +299,7 @@ class NewLayout extends React.Component {
                             </ul>
                         </div>
                         <div class="column" style={{ margin: '0% 35% 0 0%' }}>
-                            <a href='#'>Contact</a>
+                            <a href='#'>Feedback</a>
                             <p></p>
                             <p>
                                 <a href='#'><GithubOutlined style={{ fontSize: '26px' }} /></a>
