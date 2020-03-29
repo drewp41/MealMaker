@@ -89,7 +89,13 @@ class NewLayout extends React.Component {
 
     render() {
         return (
-            <Layout>
+            //stripes's 'rgb(247,249,252)'
+            // ant's 'rgb(241, 242, 245)'
+            //me:
+            // for darker text: #32323c
+            // for regular text: #
+
+            <div style={{ backgroundColor: 'rgb(241, 242, 245)' }}>
                 <Header style={{ height: '100px' }}>
                     <div className="logo" />
                     <Menu
@@ -107,15 +113,16 @@ class NewLayout extends React.Component {
                     </Menu>
                 </Header>
 
-                <div className="site-layout-content">
+                <div >
                     <div style={{ margin: '3% 0', textAlign: 'center' }}>
-                        <b id="captionText">Create a customized meal plan in seconds.</b>
+                        <b id="captionText" style={{ color: '#32323c' }}>Create a customized meal plan in seconds.</b>
+                        {/* <b id="captionText" style={{ color: 'black' }}>Create a customized meal plan in seconds.</b> */}
                     </div>
                 </div>
 
-                <div className="site-layout-content" className="main" style={{ minHeight: 680 }}>
+                <div className="main" style={{ minHeight: 680 }}>
                     <div class="column" style={{ margin: '1% 5% 0 20%', 'text-align': 'right' }}  >
-                        <p className="leftColumnText">I want to eat &nbsp;
+                        <p className="leftColumnText" style={{ color: '#32323c' }}>I want to eat &nbsp;
                                 {/* <InputNumber
                                     min={1000} max={10000} defaultValue={2000} step={100}
                                     formatter={value => `${value} calories`}
@@ -134,7 +141,7 @@ class NewLayout extends React.Component {
                                     onValueChange={value => this.myTextInput = value}
                                 /> */}
                         </p>
-                        <p className="leftColumnText"> in &nbsp;
+                        <p className="leftColumnText" style={{ color: '#32323c' }}> in &nbsp;
                             {/* <InputNumber min={1} max={8} defaultValue={3} onChange={this.onChange} /> */}
                             <Select className="mealInput" defaultValue="3" style={{ width: '126px' }} onChange={this.onChange}>
                                 <Option className='camphorFont' value="1">1 meal</Option>
@@ -197,6 +204,7 @@ class NewLayout extends React.Component {
                                         fontSize: 22,
                                         fontFamily: 'Camphor',
                                         fontWeight: 300,
+                                        fill: '#32323c',
                                     },
                                 },
                                 description: {
@@ -263,13 +271,14 @@ class NewLayout extends React.Component {
                                 paragraph={{ rows: 3, width: [250] }} />
                         </Card>
                     </div>
-
                 </div>
 
-                <div className="site-layout-content" className="main" style={{ minHeight: 200 }}>
+                <div className="main" style={{ minHeight: 200 }}>
                 </div>
+
                 <div style={{ 'border-top': '1px solid silver', width: '90%', margin: '0 3%' }} />
-                <Footer style={{ margin: '0 0 0 30%', textAlign: 'left' }}>
+
+                <div style={{ padding: '25px 0', margin: '0% 0 0% 30%', textAlign: 'left' }}>
                     <div className="main" style={{ fontFamily: 'Camphor', fontSize: '15px' }}>
                         <div class="column" style={{ margin: '0% 0% 0 8%' }}>
                             <ul style={{ 'list-style-type': 'none' }}>
@@ -298,10 +307,9 @@ class NewLayout extends React.Component {
                             </p>
                         </div>
                     </div>
+                </div>
 
-                </Footer>
-            </Layout >
-            //mountNode,
+            </div >
         )
     }
 }

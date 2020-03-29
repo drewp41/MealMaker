@@ -7,6 +7,7 @@
 /*  stripe's backgroundColor: 'rgb(247,249,252)', 
     regular blackText: rgb(84,95,125) or for more emphasized: rgb(50,51,90) */
 
+
 .headerText{ 
     font-size: 17px;
     font-family: 'Camphor';
@@ -76,7 +77,7 @@
     font-size: 18px;
     font-family: 'Camphor';
     font-weight: 300;
-    color: black;
+    color: #32323c;
 }
 
 #macroText{
