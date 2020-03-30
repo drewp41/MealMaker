@@ -19,7 +19,7 @@
 }
 
 #signInArrow{ 
-    transition: padding 0.3s;
+    transition: padding 0.25s;
 }
 
 .headerItem:hover .headerText, .headerItem:hover .logoText{ 
@@ -41,7 +41,7 @@
     font-size: 25px;
     font-family: 'Camphor';
     font-weight: 300;
-    color: black
+    color: var(--mainTextColor)
 }
 
 .main {
@@ -111,8 +111,8 @@
 }
 
 a:link, a:visited{
-    color:rgb(139,152,169);
+    color:#707078;
 }
 a:hover, a:active{
-    color:rgb(50,51,90);
+    color: var(--mainTextColor);
 }

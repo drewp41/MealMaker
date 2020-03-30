@@ -77,11 +77,6 @@ class NewLayout extends React.Component {
     };
 
     calError = () => {
-        // message.config({
-        //     duration: 3,
-        //     maxCount: 1
-        // });
-        // message.error({ content: 'Enter between 1000 and 10,000 calories' });
         return (
             <Alert>message="Error" type="error" showIcon</Alert>
         )
@@ -97,52 +92,32 @@ class NewLayout extends React.Component {
 
             <div style={{ backgroundColor: 'rgb(241, 242, 245)' }}>
                 <Header style={{ height: '100px' }}>
-                    <div className="logo" />
-                    <Menu
-                        theme="dark"
-                        mode="horizontal"
-                        selectable={false}
-                    >
+                    <Menu theme="dark" mode="horizontal" selectable={false}>
                         <Menu.Item key="1" style={{ margin: '0 0 0 10%' }}><img src={logo} alt="logo" style={{ width: 66, height: 100 }} /></Menu.Item>
-                        <Menu.Item key="2" className="headerItem" style={{ padding: '0 0 26px 0', margin: '0 0 0 0' }}><b className="logoText">Macro Meal Maker</b></Menu.Item>
+                        <Menu.Item key="2" className="headerItem" style={{ padding: '0 0 26px 0', margin: '0 0 0 0%' }}><b className="logoText">Macro Meal Maker</b></Menu.Item>
                         <Menu.Item key="3" className="headerItem" style={{ padding: '0 0 26px 0', margin: '0 0 0 17%' }}><b className="headerText">How it works</b></Menu.Item>
                         <Menu.Item key="4" className="headerItem" style={{ padding: '0 0 26px 0', margin: '0 0 0 3.5%' }}><b className="headerText">About</b></Menu.Item>
-                        <Menu.Item key="4" className="headerItem" style={{ padding: '0 0 26px 2%', margin: '0 0 0 25%' }}>
+                        <Menu.Item key="4" className="headerItem" style={{ padding: '0 0 26px 0', margin: '0 0 0 26%' }}>
                             <b className="headerText">Sign in</b> <b className="headerText" id="signInArrow"> →</b>
                         </Menu.Item>
                     </Menu>
                 </Header>
 
-                <div >
+                <div>
                     <div style={{ margin: '55px 0', textAlign: 'center' }}>
-                        <b id="captionText" style={{ color: mainTextColor }}>Create a customized meal plan in seconds.</b>
-                        {/* <b id="captionText" style={{ color: 'black' }}>Create a customized meal plan in seconds.</b> */}
+                        <b id="captionText">Create a customized meal plan in seconds.</b>
                     </div>
                 </div>
 
                 <div className="main" style={{ minHeight: 680 }}>
                     <div class="column" style={{ margin: '1% 5% 0 20%', 'text-align': 'right', float: 'right' }}  >
                         <p className="leftColumnText" style={{ color: mainTextColor }}>I want to eat &nbsp;
-                                {/* <InputNumber
-                                    min={1000} max={10000} defaultValue={2000} step={100}
-                                    formatter={value => `${value} calories`}
-                                    parser={value => value.replace(' calories', '')}
-                                    //value={this.state.val}
-                                    //onChange={this.handleChange}
-                                    style={{ width: '130px' }}
-                                /> */}
                             <NumberFormat className='ant-input' id='calorieInput' suffix={' calories'} defaultValue={2000} allowEmptyFormatting={true}
                                 //onChange={this.calError()}
-                                //onChange={value => value.target.value < 10000 ? this.calError : this.onChange(value.target.value)}
                                 style={{ width: '126px' }}
                             />
-                            {/* <NumberFormat defaultValue={2000} value={this.myTextInput} customInput={InputNumber}
-                                    suffix={' calories'} ref={ref => this.myTextInput = ref}
-                                    onValueChange={value => this.myTextInput = value}
-                                /> */}
                         </p>
                         <p className="leftColumnText" style={{ color: mainTextColor }}> in &nbsp;
-                            {/* <InputNumber min={1} max={8} defaultValue={3} onChange={this.onChange} /> */}
                             <Select className="mealInput" defaultValue="3" style={{ width: '126px' }} onChange={this.onChange}>
                                 <Option className='camphorFont' value="1">1 meal</Option>
                                 <Option className='camphorFont' value="2">2 meals</Option>
@@ -155,29 +130,28 @@ class NewLayout extends React.Component {
                                 <Option className='camphorFont' value="9">9 meals</Option>
                             </Select>
                         </p>
-                        <p>
-                            <Collapse expandIconPosition='right' activeKey={this.state.enableMacros} style={{ margin: '0 0 0 190px' }}>
-                                <Panel header={<text id="macroSwitchText">Macro Preferences&nbsp;&nbsp;</text>} showArrow={true} key="1" extra={
-                                    <Switch defaultChecked={this.state.enableMacros} onChange={this.macroSwitch} />
-                                } >
-                                    <p id="macroText">Carbohydrates:&nbsp;
+
+                        <Collapse expandIconPosition='right' activeKey={this.state.enableMacros} style={{ margin: '0 0 0 190px' }}>
+                            <Panel header={<text id="macroSwitchText">Macro Preferences&nbsp;&nbsp;</text>} showArrow={true} key="1" extra={
+                                <Switch defaultChecked={this.state.enableMacros} onChange={this.macroSwitch} />
+                            } >
+                                <p id="macroText">Carbohydrates:&nbsp;
                                         <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={200}
-                                            allowEmptyFormatting={true} style={{ width: '80px' }}
-                                        />
-                                    </p>
-                                    <p id="macroText">Protein:&nbsp;
+                                        allowEmptyFormatting={true} style={{ width: '80px' }}
+                                    />
+                                </p>
+                                <p id="macroText">Protein:&nbsp;
                                         <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={150}
-                                            allowEmptyFormatting={true} style={{ width: '80px' }}
-                                        />
-                                    </p>
-                                    <p id="macroText">Fat:&nbsp;
+                                        allowEmptyFormatting={true} style={{ width: '80px' }}
+                                    />
+                                </p>
+                                <p id="macroText">Fat:&nbsp;
                                         <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={65}
-                                            allowEmptyFormatting={true} style={{ width: '80px' }}
-                                        />
-                                    </p>
-                                </Panel>
-                            </Collapse>
-                        </p>
+                                        allowEmptyFormatting={true} style={{ width: '80px' }}
+                                    />
+                                </p>
+                            </Panel>
+                        </Collapse>
 
                         <br />
 
@@ -185,7 +159,7 @@ class NewLayout extends React.Component {
                             <Button type="primary" id='generateButton' loading={this.state.generateLoading}
                                 icon={<SyncOutlined />} onClick={this.onClickGenerateButton}>
                                 Generate
-                                    </Button>
+                            </Button>
                         </div>
 
                         <br />
