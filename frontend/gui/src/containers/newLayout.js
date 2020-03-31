@@ -1,8 +1,8 @@
 import React from 'react';
 import {
     Layout, Menu, Divider, Input, InputNumber,
-    Skeleton, Card, SkeletonParagraphProps, Button,
-    Select, Alert, Switch, Collapse, Spin
+    Skeleton, Card, Button,
+    Select, Alert, Switch, Collapse,
 } from 'antd';
 import {
     SyncOutlined, GithubOutlined,
@@ -103,133 +103,141 @@ class NewLayout extends React.Component {
                     </Menu>
                 </Header>
 
-                <div>
-                    <div style={{ margin: '55px 0', textAlign: 'center' }}>
-                        <b id="captionText">Create a customized meal plan in seconds.</b>
-                    </div>
+
+                <div style={{ margin: '55px 0', textAlign: 'center' }}>
+                    <b id="captionText">Create a customized meal plan in seconds.</b>
                 </div>
 
-                <div className="main" style={{ minHeight: 680 }}>
-                    <div class="column" style={{ margin: '1% 5% 0 20%', 'text-align': 'right', float: 'right' }}  >
-                        <p className="leftColumnText" style={{ color: mainTextColor }}>I want to eat &nbsp;
+                <div className="row" style={{ minHeight: 680 }}>
+                    <div className="column" style={{ margin: '15px 0 0 0', 'text-align': 'right', float: 'right' }}>
+                        <div className="inputArea" style={{ margin: '0 90px 0 0' }}>
+                            <p className="leftColumnText">I want to eat &nbsp;
                             <NumberFormat className='ant-input' id='calorieInput' suffix={' calories'} defaultValue={2000} allowEmptyFormatting={true}
-                                //onChange={this.calError()}
-                                style={{ width: '126px' }}
-                            />
-                        </p>
-                        <p className="leftColumnText" style={{ color: mainTextColor }}> in &nbsp;
+                                    //onChange={this.calError()}
+                                    style={{ width: '126px' }}
+                                />
+                            </p>
+                            <p className="leftColumnText"> in &nbsp;
                             <Select className="mealInput" defaultValue="3" style={{ width: '126px' }} onChange={this.onChange}>
-                                <Option className='camphorFont' value="1">1 meal</Option>
-                                <Option className='camphorFont' value="2">2 meals</Option>
-                                <Option className='camphorFont' value="3">3 meals</Option>
-                                <Option className='camphorFont' value="4">4 meals</Option>
-                                <Option className='camphorFont' value="5">5 meals</Option>
-                                <Option className='camphorFont' value="6">6 meals</Option>
-                                <Option className='camphorFont' value="7">7 meals</Option>
-                                <Option className='camphorFont' value="8">8 meals</Option>
-                                <Option className='camphorFont' value="9">9 meals</Option>
-                            </Select>
-                        </p>
+                                    <Option className='camphorFont' value="1">1 meal</Option>
+                                    <Option className='camphorFont' value="2">2 meals</Option>
+                                    <Option className='camphorFont' value="3">3 meals</Option>
+                                    <Option className='camphorFont' value="4">4 meals</Option>
+                                    <Option className='camphorFont' value="5">5 meals</Option>
+                                    <Option className='camphorFont' value="6">6 meals</Option>
+                                    <Option className='camphorFont' value="7">7 meals</Option>
+                                    <Option className='camphorFont' value="8">8 meals</Option>
+                                    <Option className='camphorFont' value="9">9 meals</Option>
+                                </Select>
+                            </p>
 
-                        <Collapse expandIconPosition='right' activeKey={this.state.enableMacros} style={{ margin: '0 0 0 190px' }}>
-                            <Panel header={<text id="macroSwitchText">Macro Preferences&nbsp;&nbsp;</text>} showArrow={true} key="1" extra={
-                                <Switch defaultChecked={this.state.enableMacros} onChange={this.macroSwitch} />
-                            } >
-                                <p id="macroText">Carbohydrates:&nbsp;
+                            <Collapse expandIconPosition='right' activeKey={this.state.enableMacros} style={{ 'margin-left': 'auto', width: '257px' }}>
+                                <Panel header={<text id="macroSwitchText">Macro Preferences&nbsp;&nbsp;</text>} showArrow={true} key="1" extra={
+                                    <Switch defaultChecked={this.state.enableMacros} onChange={this.macroSwitch} />
+                                } >
+                                    <p id="macroText">Carbohydrates:&nbsp;
                                         <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={200}
-                                        allowEmptyFormatting={true} style={{ width: '80px' }}
-                                    />
-                                </p>
-                                <p id="macroText">Protein:&nbsp;
+                                            allowEmptyFormatting={true} style={{ width: '80px' }}
+                                        />
+                                    </p>
+                                    <p id="macroText">Protein:&nbsp;
                                         <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={150}
-                                        allowEmptyFormatting={true} style={{ width: '80px' }}
-                                    />
-                                </p>
-                                <p id="macroText">Fat:&nbsp;
+                                            allowEmptyFormatting={true} style={{ width: '80px' }}
+                                        />
+                                    </p>
+                                    <p id="macroText">Fat:&nbsp;
                                         <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={65}
-                                        allowEmptyFormatting={true} style={{ width: '80px' }}
-                                    />
-                                </p>
-                            </Panel>
-                        </Collapse>
+                                            allowEmptyFormatting={true} style={{ width: '80px' }}
+                                        />
+                                    </p>
+                                </Panel>
+                            </Collapse>
 
-                        <br />
+                            <br />
 
-                        <div>
-                            <Button type="primary" id='generateButton' loading={this.state.generateLoading}
-                                icon={<SyncOutlined />} onClick={this.onClickGenerateButton}>
-                                Generate
+                            <div>
+                                <Button type="primary" id='generateButton' loading={this.state.generateLoading}
+                                    icon={<SyncOutlined />} onClick={this.onClickGenerateButton}>
+                                    Generate
                             </Button>
+                            </div>
                         </div>
 
                         <br />
+                        <br />
 
-                        <ReactG2Plot
-                            className="pie"
-                            Ctor={Pie}
-                            config={{
-                                //forceFit: true,
-                                pixelRatio: 2,
-                                title: {
-                                    visible: true,
-                                    text: '                  Macro Breakdown',
-                                    position: 'middle',
-                                    style: {
-                                        fontSize: 22,
-                                        fontFamily: 'Camphor',
-                                        fontWeight: 300,
-                                        fill: mainTextColor,
+                        <div style={{ width: '400px', height: '406px', 'margin': '0 25px 0 auto' }}>
+                            <ReactG2Plot
+                                className="pie"
+                                Ctor={Pie}
+                                config={{
+                                    width: 400,
+                                    height: 400,
+
+                                    //forceFit: true,
+                                    pixelRatio: 2,
+                                    title: {
+                                        visible: true,
+                                        text: '                 Macro Breakdown',
+                                        //position: 'middle',
+                                        style: {
+                                            fontSize: 22,
+                                            fontFamily: 'Camphor',
+                                            fontWeight: 300,
+                                            fill: mainTextColor,
+                                        },
                                     },
-                                },
-                                description: {
-                                    visible: false,
-                                    //text:
-                                },
-                                radius: 0.65,
-                                colorField: 'type',
-                                color: ['#5B8FF9', '#E15554', '#3BB273'], //#3BB273, #7768AE
-                                data: [
-                                    {
-                                        type: 'Carbohydrates',
-                                        value: 34,
+                                    description: {
+                                        visible: false,
+                                        //text:
                                     },
-                                    {
-                                        type: 'Protein',
-                                        value: 33,
+                                    radius: 0.65,
+                                    colorField: 'type',
+                                    color: ['#5B8FF9', '#E15554', '#3BB273'], //#3BB273, #7768AE
+                                    data: [
+                                        {
+                                            type: 'Carbohydrates',
+                                            value: 34,
+                                        },
+                                        {
+                                            type: 'Protein',
+                                            value: 33,
+                                        },
+                                        {
+                                            type: 'Fat',
+                                            value: 33,
+                                        },
+                                    ],
+                                    angleField: 'value',
+                                    label: {
+                                        visible: true,
+                                        type: 'outer',
+                                        formatter: (val) => {
+                                            return val + '%';
+                                        },
+                                        style: {
+                                            fontFamily: 'Camphor',
+                                        },
                                     },
-                                    {
-                                        type: 'Fat',
-                                        value: 33,
+                                    legend: {
+                                        visible: true,
+                                        position: 'bottom-center',
+                                        offsetY: -15
                                     },
-                                ],
-                                angleField: 'value',
-                                label: {
-                                    visible: true,
-                                    type: 'outer',
-                                    formatter: (val) => {
-                                        return val + '%';
-                                    },
-                                    style: {
-                                        fontFamily: 'Camphor',
-                                    },
-                                },
-                                legend: {
-                                    visible: true,
-                                    position: 'bottom-center',
-                                    offsetY: -15
-                                },
-                                //padding: [0, 0, 0, 0],
-                                //responsive: true
-                            }}
-                        />
+                                    tooltip: {
+                                        //offset: 100,
+                                    }
+                                }}
+                            />
+                        </div>
+
 
                     </div>
 
 
                     <div style={{ 'border-left': '1px solid silver' }} />
 
-
-                    <div class="column" style={{ margin: '1% 20% 0 5%' }}>
+                    <div className="column" style={{ margin: '15px 0 0 90px' }}>
                         <Card title="Breakfast" extra="0 calories" style={{ width: 350 }}
                             headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                             <Skeleton loading={true} title={false} active={this.state.generateLoading}
@@ -256,8 +264,8 @@ class NewLayout extends React.Component {
                 <div style={{ 'border-top': '1px solid silver', width: '90%', margin: '0 3%' }} />
 
                 <div style={{ padding: '25px 0', margin: '0% 0 0% 30%', textAlign: 'left' }}>
-                    <div className="main" style={{ fontFamily: 'Camphor', fontSize: '15px' }}>
-                        <div class="column" style={{ margin: '0% 0% 0 8%' }}>
+                    <div className="row" style={{ fontFamily: 'Camphor', fontSize: '15px' }}>
+                        <div className="column" style={{ margin: '0% 0% 0 8%' }}>
                             <ul style={{ 'list-style-type': 'none' }}>
                                 <li>
                                     <a href='#'>How it works</a>
@@ -272,7 +280,7 @@ class NewLayout extends React.Component {
                                 </li>
                             </ul>
                         </div>
-                        <div class="column" style={{ margin: '0% 35% 0 0%' }}>
+                        <div className="column" style={{ margin: '0% 35% 0 0%' }}>
                             <a href='#'>Feedback</a>
                             <p></p>
                             <p>
@@ -299,4 +307,6 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default withRouter(connect(null, mapDispatchToProps)(NewLayout));
+
+
 

@@ -2,7 +2,7 @@
 
 /* Camphor font weight: 300-600 */
 
-/* .ant-menu{background-color: red} */
+/* .ant-menu{background-color: #262130}  */
 
 /*  stripe's backgroundColor: 'rgb(247,249,252)', 
     regular blackText: rgb(84,95,125) or for more emphasized: rgb(50,51,90) */
@@ -44,22 +44,19 @@
     color: var(--mainTextColor)
 }
 
-.main {
+.row {
     display: flex;
 }
 
 .column {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-    flex: 1;
+    flex: 50%;
 }
 
 .leftColumnText{
     font-size: 20px;
     font-family: 'Camphor';
     font-weight: 300;
-    color: black
+    color: var(--mainTextColor);
 }
 
 #calorieInput{
