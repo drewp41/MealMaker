@@ -264,34 +264,34 @@ class NewLayout extends React.Component {
 
                 <div style={{ 'border-top': '1px solid silver', width: '92%', margin: '0 auto' }} />
 
-                <div style={{ padding: '25px 0', margin: '0% 0 0% 30%', textAlign: 'left' }}>
-                    <div className="row" style={{ fontFamily: 'Camphor', fontSize: '15px' }}>
-                        <div className="column" style={{ margin: '0% 0% 0 8%' }}>
-                            <ul style={{ 'list-style-type': 'none' }}>
-                                <li>
-                                    <a href='#'>How it works</a>
-                                </li>
-                                <p></p>
-                                <li>
-                                    <a href='#'>Code</a>
-                                </li>
-                                <p></p>
-                                <li>
-                                    <a href='#'>About</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div className="column" style={{ margin: '0% 35% 0 0%' }}>
-                            <a href='#'>Feedback</a>
+
+                <div className="rowFooter" style={{ margin: '25px 0 0 0', fontFamily: 'Camphor', fontSize: '15px' }}>
+                    <div className="rowColumn" style={{ padding: '0 60px 0 0', 'textAlign': 'right' }}>
+                        <ul style={{ 'list-style-type': 'none' }}>
+                            <li>
+                                <a href='#'>How it works</a>
+                            </li>
                             <p></p>
-                            <p>
-                                <a href='#'><GithubOutlined style={{ fontSize: '26px' }} /></a>
+                            <li>
+                                <a href='#'>Code</a>
+                            </li>
+                            <p></p>
+                            <li>
+                                <a href='#'>About</a>
+                            </li>
+                        </ul>
+                    </div>
+                    {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
+                    <div className="rowColumn" style={{ padding: '0 0 0 60px' }}>
+                        <a href='#'>Feedback</a>
+                        <p></p>
+                        <p>
+                            <a href='#'><GithubOutlined style={{ fontSize: '26px' }} /></a>
                                 &nbsp;&nbsp;
                                 <a href='#'><LinkedinOutlined style={{ fontSize: '26px' }} /></a>
                                 &nbsp;&nbsp;
                                 <a href='#'><MailOutlined style={{ fontSize: '26px' }} /></a>
-                            </p>
-                        </div>
+                        </p>
                     </div>
                 </div>
 
