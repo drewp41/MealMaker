@@ -103,14 +103,15 @@ class NewLayout extends React.Component {
                     </Menu>
                 </Header>
 
-
-                <div style={{ margin: '55px 0', textAlign: 'center' }}>
+                {/* bc it's off center */}
+                <div style={{ margin: '55px 65px 55px 0', textAlign: 'center' }}>
                     <b id="captionText">Create a customized meal plan in seconds.</b>
                 </div>
 
                 <div className="row" style={{ minHeight: 680 }}>
-                    <div className="column" style={{ margin: '15px 0 0 0', 'text-align': 'right', float: 'right' }}>
-                        <div className="inputArea" style={{ margin: '0 90px 0 0' }}>
+                    <div className="leftColumn">
+                        {/* has a margin of 90 on the right so that the pie chart is alligned with it */}
+                        <div className="inputArea" >
                             <p className="leftColumnText">I want to eat &nbsp;
                             <NumberFormat className='ant-input' id='calorieInput' suffix={' calories'} defaultValue={2000} allowEmptyFormatting={true}
                                     //onChange={this.calError()}
@@ -237,7 +238,7 @@ class NewLayout extends React.Component {
 
                     <div style={{ 'border-left': '1px solid silver' }} />
 
-                    <div className="column" style={{ margin: '15px 0 0 90px' }}>
+                    <div className="rightColumn">
                         <Card title="Breakfast" extra="0 calories" style={{ width: 350 }}
                             headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                             <Skeleton loading={true} title={false} active={this.state.generateLoading}
@@ -261,7 +262,7 @@ class NewLayout extends React.Component {
                 <div className="main" style={{ minHeight: 200 }}>
                 </div>
 
-                <div style={{ 'border-top': '1px solid silver', width: '90%', margin: '0 3%' }} />
+                <div style={{ 'border-top': '1px solid silver', width: '92%', margin: '0 auto' }} />
 
                 <div style={{ padding: '25px 0', margin: '0% 0 0% 30%', textAlign: 'left' }}>
                     <div className="row" style={{ fontFamily: 'Camphor', fontSize: '15px' }}>

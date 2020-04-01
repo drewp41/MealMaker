@@ -7,6 +7,8 @@
 /*  stripe's backgroundColor: 'rgb(247,249,252)', 
     regular blackText: rgb(84,95,125) or for more emphasized: rgb(50,51,90) */
 
+/* <meta name="viewport" content="width=device-width, initial-scale=1.0"> */
+
 :root{
     --mainTextColor: #32323c;
 }
@@ -41,7 +43,7 @@
     font-size: 25px;
     font-family: 'Camphor';
     font-weight: 300;
-    color: var(--mainTextColor)
+    color: var(--mainTextColor);
 }
 
 .row {
@@ -51,6 +53,51 @@
 .column {
     flex: 50%;
 }
+
+.inputArea {
+    margin: 0 90px 0 0;
+}
+
+.leftColumn {
+    flex: 50%;
+    margin: 15px 0 0 0;
+    text-align: right;
+}
+
+.rightColumn {
+    flex: 50%;
+    margin: 15px 0 0 90px;
+}
+
+/* when screen width is small enough, columns are stacked on top of each other */
+/* ----------- 0px - 937px ----------- */
+@media screen and (max-width: 937px) {
+    .row {
+        flex-direction: column;
+    }
+  
+    .leftColumn {
+        order: 1;
+        margin: 0 auto;
+    }
+  
+    .rightColumn {
+        order: 2;
+        margin: 30px auto 0 auto;
+    }
+
+    .inputArea {
+        /* centers it a little better */
+        margin: 0 70px 0 0;
+    }
+}
+
+/* ----------- 701px - 937px ----------- */
+/* @media screen and (min-width: 701px) and (max-width: 937px){
+    .row{
+        margin: 200px 0 0 0;
+    }
+} */
 
 .leftColumnText{
     font-size: 20px;
