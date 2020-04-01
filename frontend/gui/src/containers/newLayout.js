@@ -103,8 +103,7 @@ class NewLayout extends React.Component {
                     </Menu>
                 </Header>
 
-                {/* bc it's off center */}
-                <div style={{ margin: '55px 65px 55px 0', textAlign: 'center' }}>
+                <div style={{ margin: '55px 0 55px 0', textAlign: 'center' }}>
                     <b id="captionText">Create a customized meal plan in seconds.</b>
                 </div>
 

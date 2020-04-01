@@ -62,13 +62,13 @@
 
 .leftColumn {
     flex: 50%;
-    margin: 15px 0 0 0;
+    padding: 15px 0 0 0;
     text-align: right;
 }
 
 .rightColumn {
     flex: 50%;
-    margin: 15px 0 0 90px;
+    padding: 15px 0 0 90px;
 }
 
 /* when screen width is small enough, columns are stacked on top of each other */
@@ -81,11 +81,13 @@
     .leftColumn {
         order: 1;
         margin: 0 auto;
+        padding: 0;
     }
   
     .rightColumn {
         order: 2;
         margin: 30px auto 0 auto;
+        padding: 0;
     }
 
     .inputArea {
