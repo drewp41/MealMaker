@@ -121,6 +121,11 @@ button{
     }
 } */
 
+/* Condense menu to hamburger?? */
+@media screen and (max-width: 690px) {
+    
+}
+
 
 .rowFooter {
     display: flex;
@@ -134,14 +139,24 @@ button{
     display: flex;
 }
 
-.colHeaderLR {
-    flex: 1;
+.colHeaderL {
+    flex-basis: 50%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 286px;
 }
 
 .colHeaderMid {
-    width: 400px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 250px;
 }
 
+.colHeaderR {
+    flex-basis: 50%;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
 
 .leftColumnText{
     font-size: 20px;

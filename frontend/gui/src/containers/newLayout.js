@@ -103,15 +103,19 @@ class NewLayout extends React.Component {
                         </Menu.Item>
                     </Menu>
                 </Header> */}
-                <Header style={{ height: '100px' }}>
+                {/* Header */}
+                <div style={{ backgroundColor: 'rgb(4, 21, 40)', height: '100px', padding: '0 20px' }}>
                     <div className='rowHeader'>
-                        <div className='colHeaderLR' style={{ textAlign: 'right' }}>
+                        <div style={{ 'flex-basis': '15%', 'flex-shrink': '2', 'flex-grow': '2' }}></div>
+                        {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
+                        <div className='colHeaderL' style={{ textAlign: 'center' }}>
                             <img src={logo} alt="logo" style={{ width: 66, height: 100 }} />
                             <button className="logoText" id="logo" style={{ height: '60px', width: '220px', verticalAlign: 'middle', lineHeight: '35px', textIndent: '-20px' }}>
                                 Macro Meal Maker
                             </button>
                         </div>
-                        <div className='colHeaderMid' style={{ padding: '19px 0', textAlign: 'right' }}>
+                        {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
+                        <div className='colHeaderMid' style={{ padding: '19px 0' }}>
                             <button className="headerText" style={{ height: '60px', width: '150px', lineHeight: '30px' }}>
                                 How it works
                             </button>
@@ -119,14 +123,18 @@ class NewLayout extends React.Component {
                                 About
                             </button>
                         </div>
-                        <div className='colHeaderLR' style={{ padding: '19px 0', textIndent: '200px' }}>
+                        {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
+                        <div className='colHeaderR' style={{ padding: '19px 0px 19px 0', textAlign: 'center' }}>
                             <button className="headerText" style={{ height: '60px', width: '130px', lineHeight: '30px' }}>
                                 <text id="signInArrow">Sign in</text> <text > →</text>
                             </button>
                         </div>
+                        {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
+                        <div style={{ 'flex-basis': '10%', 'flex-shrink': '2', 'flex-grow': '2' }}></div>
+
 
                     </div>
-                </Header>
+                </div>
 
                 <div style={{ margin: '55px 0 55px 0', textAlign: 'center' }}>
                     <b id="captionText">Create a customized meal plan in seconds.</b>
