@@ -26,11 +26,29 @@
     transition: padding 0.25s;
 }
 
-.headerItem:hover .headerText, .headerItem:hover .logoText{ 
+/* .headerItem:hover .headerText, .headerItem:hover .logoText{ 
     color: grey 
 }
 
 .headerItem:hover #signInArrow{
+    padding: 6px;
+} */
+
+button{
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.headerText:hover, .logoText:hover{ 
+    color: grey 
+}
+
+.headerText:hover #signInArrow{
     padding: 6px;
 }
 
@@ -108,8 +126,20 @@
     display: flex;
 }
 
-.rowColumn {
+.colFooter {
     flex: 50%;
+}
+
+.rowHeader {
+    display: flex;
+}
+
+.colHeaderLR {
+    flex: 1;
+}
+
+.colHeaderMid {
+    width: 400px;
 }
 
 

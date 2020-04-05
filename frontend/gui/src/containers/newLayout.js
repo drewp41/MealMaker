@@ -91,7 +91,8 @@ class NewLayout extends React.Component {
             // for regular text: #
 
             <div style={{ backgroundColor: 'rgb(241, 242, 245)' }}>
-                <Header style={{ height: '100px' }}>
+
+                {/* <Header style={{ height: '100px' }}>
                     <Menu theme="dark" mode="horizontal" selectable={false}>
                         <Menu.Item key="1" style={{ margin: '0 0 0 10%' }}><img src={logo} alt="logo" style={{ width: 66, height: 100 }} /></Menu.Item>
                         <Menu.Item key="2" className="headerItem" style={{ padding: '0 0 26px 0', margin: '0 0 0 0%' }}><b className="logoText">Macro Meal Maker</b></Menu.Item>
@@ -101,6 +102,30 @@ class NewLayout extends React.Component {
                             <b className="headerText">Sign in</b> <b className="headerText" id="signInArrow"> →</b>
                         </Menu.Item>
                     </Menu>
+                </Header> */}
+                <Header style={{ height: '100px' }}>
+                    <div className='rowHeader'>
+                        <div className='colHeaderLR' style={{ textAlign: 'right' }}>
+                            <img src={logo} alt="logo" style={{ width: 66, height: 100 }} />
+                            <button className="logoText" id="logo" style={{ height: '60px', width: '220px', verticalAlign: 'middle', lineHeight: '35px', textIndent: '-20px' }}>
+                                Macro Meal Maker
+                            </button>
+                        </div>
+                        <div className='colHeaderMid' style={{ padding: '19px 0', textAlign: 'right' }}>
+                            <button className="headerText" style={{ height: '60px', width: '150px', lineHeight: '30px' }}>
+                                How it works
+                            </button>
+                            <button className="headerText" style={{ height: '60px', width: '100px', lineHeight: '30px' }}>
+                                About
+                            </button>
+                        </div>
+                        <div className='colHeaderLR' style={{ padding: '19px 0', textIndent: '200px' }}>
+                            <button className="headerText" style={{ height: '60px', width: '130px', lineHeight: '30px' }}>
+                                <text id="signInArrow">Sign in</text> <text > →</text>
+                            </button>
+                        </div>
+
+                    </div>
                 </Header>
 
                 <div style={{ margin: '55px 0 55px 0', textAlign: 'center' }}>
@@ -263,34 +288,38 @@ class NewLayout extends React.Component {
 
                 <div style={{ 'border-top': '1px solid silver', width: '92%', margin: '0 auto' }} />
 
-
                 <div className="rowFooter" style={{ margin: '25px 0 0 0', fontFamily: 'Camphor', fontSize: '15px' }}>
-                    <div className="rowColumn" style={{ padding: '0 60px 0 0', 'textAlign': 'right' }}>
-                        <ul style={{ 'list-style-type': 'none' }}>
-                            <li>
-                                <a href='#'>How it works</a>
-                            </li>
-                            <p></p>
-                            <li>
-                                <a href='#'>Code</a>
-                            </li>
-                            <p></p>
-                            <li>
-                                <a href='#'>About</a>
-                            </li>
-                        </ul>
+                    <div className="colFooter" style={{ padding: '0 50px 0 0', 'textAlign': 'left' }}>
+                        <div style={{ float: 'right' }}>
+                            <ul style={{ 'list-style-type': 'none' }}>
+                                <li>
+                                    <a href='#'>How it works</a>
+                                </li>
+                                <p></p>
+                                <li>
+                                    <a href='#'>Code</a>
+                                </li>
+                                <p></p>
+                                <li>
+                                    <a href='#'>About</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
-                    <div className="rowColumn" style={{ padding: '0 0 0 60px' }}>
-                        <a href='#'>Feedback</a>
-                        <p></p>
-                        <p>
-                            <a href='#'><GithubOutlined style={{ fontSize: '26px' }} /></a>
+                    <div className="colFooter" style={{ padding: '0 0 0 50px' }}>
+                        <ul style={{ 'list-style-type': 'none', }}>
+                            <li>
+                                <a href='#'>Feedback</a>
+                            </li>
+                            <p></p>
+                            <li>
+                                <a href='#'><GithubOutlined style={{ fontSize: '26px' }} /></a>
                                 &nbsp;&nbsp;
                                 <a href='#'><LinkedinOutlined style={{ fontSize: '26px' }} /></a>
                                 &nbsp;&nbsp;
                                 <a href='#'><MailOutlined style={{ fontSize: '26px' }} /></a>
-                        </p>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
