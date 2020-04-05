@@ -130,7 +130,7 @@ class NewLayout extends React.Component {
                             </button>
                         </div>
                         {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
-                        <div style={{ 'flex-basis': '10%', 'flex-shrink': '2', 'flex-grow': '2' }}></div>
+                        <div style={{ 'flex-basis': '8%', 'flex-shrink': '2', 'flex-grow': '2' }}></div>
 
 
                     </div>
