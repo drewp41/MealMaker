@@ -114,16 +114,12 @@ button{
     }
 }
 
-/* ----------- 701px - 937px ----------- */
-/* @media screen and (min-width: 701px) and (max-width: 937px){
-    .row{
-        margin: 200px 0 0 0;
-    }
-} */
-
 /* Condense menu to hamburger?? */
-@media screen and (max-width: 690px) {
-    
+@media screen and (max-width: 750px) {
+    .rowHeader div:not(.colHeaderL) {display: none;}
+    .colHeaderL {
+        
+    }
 }
 
 
@@ -140,23 +136,25 @@ button{
 }
 
 .colHeaderL {
-    flex-basis: 50%;
-    flex-grow: 1;
-    flex-shrink: 1;
-    min-width: 286px;
+    min-width: 306px; 
 }
 
 .colHeaderMid {
-    flex-grow: 0;
-    flex-shrink: 0;
-    width: 250px;
+    min-width: 250px;
 }
 
 .colHeaderR {
-    flex-basis: 50%;
-    flex-grow: 1;
-    flex-shrink: 1;
+    min-width: 130px; 
 }
+
+.headerLRSpace {
+    flex: 1 1 auto;
+}
+
+.headerCenterSpace {
+    flex: 0 1 220px;
+}
+
 
 .leftColumnText{
     font-size: 20px;

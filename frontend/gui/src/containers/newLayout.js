@@ -6,7 +6,7 @@ import {
 } from 'antd';
 import {
     SyncOutlined, GithubOutlined,
-    LinkedinOutlined, MailOutlined
+    LinkedinOutlined, MailOutlined, MenuOutlined
 } from '@ant-design/icons';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -104,16 +104,18 @@ class NewLayout extends React.Component {
                     </Menu>
                 </Header> */}
                 {/* Header */}
-                <div style={{ backgroundColor: 'rgb(4, 21, 40)', height: '100px', padding: '0 20px' }}>
+                <div style={{ backgroundColor: 'rgb(4, 21, 40)', height: '100px' }}>
                     <div className='rowHeader'>
-                        <div style={{ 'flex-basis': '15%', 'flex-shrink': '2', 'flex-grow': '2' }}></div>
+                        <div className='headerLRSpace'></div>
                         {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
-                        <div className='colHeaderL' style={{ textAlign: 'center' }}>
+                        <div className='colHeaderL' style={{ 'padding-left': '20px' }}>
                             <img src={logo} alt="logo" style={{ width: 66, height: 100 }} />
                             <button className="logoText" id="logo" style={{ height: '60px', width: '220px', verticalAlign: 'middle', lineHeight: '35px', textIndent: '-20px' }}>
                                 Macro Meal Maker
                             </button>
                         </div>
+                        {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
+                        <div className='headerCenterSpace'></div>
                         {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
                         <div className='colHeaderMid' style={{ padding: '19px 0' }}>
                             <button className="headerText" style={{ height: '60px', width: '150px', lineHeight: '30px' }}>
@@ -124,15 +126,15 @@ class NewLayout extends React.Component {
                             </button>
                         </div>
                         {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
-                        <div className='colHeaderR' style={{ padding: '19px 0px 19px 0', textAlign: 'center' }}>
+                        <div className='headerCenterSpace'></div>
+                        {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
+                        <div className='colHeaderR' style={{ padding: '19px 0px 19px 0' }}>
                             <button className="headerText" style={{ height: '60px', width: '130px', lineHeight: '30px' }}>
                                 <text id="signInArrow">Sign in</text> <text > →</text>
                             </button>
                         </div>
                         {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
-                        <div style={{ 'flex-basis': '8%', 'flex-shrink': '2', 'flex-grow': '2' }}></div>
-
-
+                        <div className='headerLRSpace'></div>
                     </div>
                 </div>
 
