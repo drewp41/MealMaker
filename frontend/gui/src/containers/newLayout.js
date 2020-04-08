@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     Layout, Menu, Divider, Input, InputNumber,
-    Skeleton, Card, Button,
+    Skeleton, Card, Button, Dropdown,
     Select, Alert, Switch, Collapse,
 } from 'antd';
 import {
@@ -91,51 +91,49 @@ class NewLayout extends React.Component {
             // for regular text: #
 
             <div style={{ backgroundColor: 'rgb(241, 242, 245)' }}>
-
-                {/* <Header style={{ height: '100px' }}>
-                    <Menu theme="dark" mode="horizontal" selectable={false}>
-                        <Menu.Item key="1" style={{ margin: '0 0 0 10%' }}><img src={logo} alt="logo" style={{ width: 66, height: 100 }} /></Menu.Item>
-                        <Menu.Item key="2" className="headerItem" style={{ padding: '0 0 26px 0', margin: '0 0 0 0%' }}><b className="logoText">Macro Meal Maker</b></Menu.Item>
-                        <Menu.Item key="3" className="headerItem" style={{ padding: '0 0 26px 0', margin: '0 0 0 17%' }}><b className="headerText">How it works</b></Menu.Item>
-                        <Menu.Item key="4" className="headerItem" style={{ padding: '0 0 26px 0', margin: '0 0 0 3.5%' }}><b className="headerText">About</b></Menu.Item>
-                        <Menu.Item key="4" className="headerItem" style={{ padding: '0 0 26px 0', margin: '0 0 0 26%' }}>
-                            <b className="headerText">Sign in</b> <b className="headerText" id="signInArrow"> →</b>
-                        </Menu.Item>
-                    </Menu>
-                </Header> */}
                 {/* Header */}
-                <div style={{ backgroundColor: 'rgb(4, 21, 40)', height: '100px' }}>
-                    <div className='rowHeader'>
-                        <div className='headerLRSpace'></div>
-                        {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
-                        <div className='colHeaderL' style={{ 'padding-left': '20px' }}>
-                            <img src={logo} alt="logo" style={{ width: 66, height: 100 }} />
-                            <button className="logoText" id="logo" style={{ height: '60px', width: '220px', verticalAlign: 'middle', lineHeight: '35px', textIndent: '-20px' }}>
-                                Macro Meal Maker
+                <div className='rowHeader' style={{ backgroundColor: 'rgb(4, 21, 40)', height: '100px' }}>
+                    <div className='headerLRSpace'></div>
+                    {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
+                    <div className='colHeaderL' style={{ 'padding-left': '20px' }}>
+                        <img src={logo} alt="logo" style={{ width: 66, height: 100 }} />
+                        <button className="logoText" id="logo" style={{ height: '60px', width: '220px', verticalAlign: 'middle', lineHeight: '35px', textIndent: '-20px' }}>
+                            Macro Meal Maker
                             </button>
-                        </div>
-                        {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
-                        <div className='headerCenterSpace'></div>
-                        {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
-                        <div className='colHeaderMid' style={{ padding: '19px 0' }}>
-                            <button className="headerText" style={{ height: '60px', width: '150px', lineHeight: '30px' }}>
-                                How it works
-                            </button>
-                            <button className="headerText" style={{ height: '60px', width: '100px', lineHeight: '30px' }}>
-                                About
-                            </button>
-                        </div>
-                        {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
-                        <div className='headerCenterSpace'></div>
-                        {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
-                        <div className='colHeaderR' style={{ padding: '19px 0px 19px 0' }}>
-                            <button className="headerText" style={{ height: '60px', width: '130px', lineHeight: '30px' }}>
-                                <text id="signInArrow">Sign in</text> <text > →</text>
-                            </button>
-                        </div>
-                        {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
-                        <div className='headerLRSpace'></div>
                     </div>
+                    {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
+                    <div className='headerCenterLeftSpace'></div>
+                    {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
+                    <div className='colHeaderMid' style={{ padding: '19px 0' }}>
+                        <button className="headerText" style={{ height: '60px', width: '150px', lineHeight: '30px' }}>
+                            How it works
+                            </button>
+                        <button className="headerText" style={{ height: '60px', width: '100px', lineHeight: '30px' }}>
+                            About
+                            </button>
+                    </div>
+                    {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
+                    <div className='headerCenterRightSpace'></div>
+                    {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
+                    <div className='colHeaderR' style={{ padding: '19px 0px 19px 0' }}>
+                        <button className="headerText" style={{ height: '60px', width: '130px', lineHeight: '30px' }}>
+                            <text id="signInArrow">Sign in</text> <text > →</text>
+                        </button>
+                    </div>
+                    <div className='hamburger' style={{ padding: '36px 30px 0 0', margin: '0 0 0 auto' }}>
+                        <Dropdown overlay={<Menu>
+                            <Menu.Item key="1"><a href="#">How it works</a></Menu.Item>
+                            <Menu.Item key="2"><a href="#">About</a></Menu.Item>
+                            <Menu.Divider />
+                            <Menu.Item key="3"><a href="#">Sign in →</a></Menu.Item>
+                        </Menu>} trigger={['click']}>
+                            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                                <MenuOutlined style={{ fontSize: '22px', color: 'white' }} />
+                            </a>
+                        </Dropdown>
+                    </div>
+                    {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
+                    <div className='headerLRSpace'></div>
                 </div>
 
                 <div style={{ margin: '55px 0 55px 0', textAlign: 'center' }}>

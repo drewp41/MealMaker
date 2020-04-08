@@ -26,14 +26,6 @@
     transition: padding 0.25s;
 }
 
-/* .headerItem:hover .headerText, .headerItem:hover .logoText{ 
-    color: grey 
-}
-
-.headerItem:hover #signInArrow{
-    padding: 6px;
-} */
-
 button{
     background: none;
 	color: inherit;
@@ -115,10 +107,10 @@ button{
 }
 
 /* Condense menu to hamburger?? */
-@media screen and (max-width: 750px) {
-    .rowHeader div:not(.colHeaderL) {display: none;}
-    .colHeaderL {
-        
+@media screen and (max-width: 700px) {
+    .rowHeader div:not(.colHeaderL):not(.hamburger) {display: none;}
+    .hamburger {
+        display: block !important;
     }
 }
 
@@ -151,10 +143,16 @@ button{
     flex: 1 1 auto;
 }
 
-.headerCenterSpace {
-    flex: 0 1 220px;
+.headerCenterLeftSpace {
+    flex: 0 1 190px;
+}
+.headerCenterRightSpace {
+    flex: 0 1 290px;
 }
 
+.hamburger {
+    display: none;
+}
 
 .leftColumnText{
     font-size: 20px;
