@@ -200,19 +200,23 @@ class NewLayout extends React.Component {
 
                         <br />
                         <br />
+                        <br />
 
-                        <div style={{ width: '350px', height: '350px', 'margin': '0 25px 0 auto' }}>
+                        <b className='pieTitle' style={{ fontSize: '22px', fontFamily: 'Camphor', fontWeight: '300', color: mainTextColor }}>
+                            Macro Breakdown
+                        </b>
+                        <div className='pieDiv' style={{ width: '325px', height: '325px' }}>
                             <ReactG2Plot
                                 className="pie"
                                 Ctor={Pie}
                                 config={{
-                                    width: 350,
-                                    height: 350,
+                                    width: 325,
+                                    height: 325,
 
                                     //forceFit: true,
                                     pixelRatio: 2,
                                     title: {
-                                        visible: true,
+                                        visible: false,
                                         text: '            Macro Breakdown',
                                         //position: 'middle',
                                         style: {
@@ -226,7 +230,7 @@ class NewLayout extends React.Component {
                                         visible: false,
                                         //text:
                                     },
-                                    radius: 0.7,
+                                    radius: 1,
                                     colorField: 'type',
                                     color: ['#5B8FF9', '#E15554', '#3BB273'], //#3BB273, #7768AE
                                     data: [
@@ -257,7 +261,7 @@ class NewLayout extends React.Component {
                                     legend: {
                                         visible: true,
                                         position: 'bottom-center',
-                                        offsetY: -15
+                                        offsetY: -5
                                     },
                                     tooltip: {
                                         //offset: 100,

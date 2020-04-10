@@ -81,6 +81,15 @@ button{
     padding: 15px 0 0 90px;
 }
 
+.pieTitle {
+    padding: 0 125px 0 0;
+}
+
+.pieDiv {
+    margin: 0 50px 0 auto;
+}
+
+
 /* when screen width is small enough, columns are stacked on top of each other */
 /* ----------- 0px - 937px ----------- */
 @media screen and (max-width: 937px) {
@@ -102,7 +111,19 @@ button{
 
     .inputArea {
         /* centers it a little better */
-        margin: 0 70px 0 0;
+        margin: 0 45px 0 0;
+    }
+
+    .pieTitle {
+        /* padding: 0 73px 0 0px; */
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .pieDiv {
+        margin: 0 auto;
     }
 }
 
@@ -216,3 +237,5 @@ a:link, a:visited{
 a:hover, a:active{
     color: var(--mainTextColor);
 }
+
+
