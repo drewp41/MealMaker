@@ -125,10 +125,11 @@ button{
 
 .rowHeader {
     display: flex;
+    align-items:center;
 }
 
 .colHeaderL {
-    min-width: 306px; 
+    min-width: 210px; 
 }
 
 .colHeaderMid {

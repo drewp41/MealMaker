@@ -95,32 +95,34 @@ class NewLayout extends React.Component {
                 <div className='rowHeader' style={{ backgroundColor: 'rgb(4, 21, 40)', height: '100px' }}>
                     <div className='headerLRSpace'></div>
                     {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
-                    <div className='colHeaderL' style={{ 'padding-left': '20px' }}>
-                        <img src={logo} alt="logo" style={{ width: 66, height: 100 }} />
-                        <button className="logoText" id="logo" style={{ height: '60px', width: '220px', verticalAlign: 'middle', lineHeight: '35px', textIndent: '-20px' }}>
+                    <a href='#'>
+                        <img src={logo} alt="logo" style={{ width: 66, height: 100, margin: '0 0 0 15px' }} />
+                    </a>
+                    <div className='colHeaderL'>
+                        <button className="logoText" id="logo" style={{ height: '60px', width: '210px', textIndent: '-20px' }}>
                             Macro Meal Maker
-                            </button>
+                        </button>
                     </div>
                     {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
                     <div className='headerCenterLeftSpace'></div>
                     {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
-                    <div className='colHeaderMid' style={{ padding: '19px 0' }}>
-                        <button className="headerText" style={{ height: '60px', width: '150px', lineHeight: '30px' }}>
+                    <div className='colHeaderMid'>
+                        <button className="headerText" style={{ height: '60px', width: '150px' }}>
                             How it works
                             </button>
-                        <button className="headerText" style={{ height: '60px', width: '100px', lineHeight: '30px' }}>
+                        <button className="headerText" style={{ height: '60px', width: '100px' }}>
                             About
                             </button>
                     </div>
                     {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
                     <div className='headerCenterRightSpace'></div>
                     {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
-                    <div className='colHeaderR' style={{ padding: '19px 0px 19px 0' }}>
-                        <button className="headerText" style={{ height: '60px', width: '130px', lineHeight: '30px' }}>
+                    <div className='colHeaderR'>
+                        <button className="headerText" style={{ height: '60px', width: '130px' }}>
                             <text id="signInArrow">Sign in</text> <text > →</text>
                         </button>
                     </div>
-                    <div className='hamburger' style={{ padding: '36px 30px 0 0', margin: '0 0 0 auto' }}>
+                    <div className='hamburger' style={{ padding: '0 30px 0 0', margin: '0 0 0 auto' }}>
                         <Dropdown overlay={<Menu>
                             <Menu.Item key="1"><a href="#">How it works</a></Menu.Item>
                             <Menu.Item key="2"><a href="#">About</a></Menu.Item>
@@ -199,19 +201,19 @@ class NewLayout extends React.Component {
                         <br />
                         <br />
 
-                        <div style={{ width: '400px', height: '406px', 'margin': '0 25px 0 auto' }}>
+                        <div style={{ width: '350px', height: '350px', 'margin': '0 25px 0 auto' }}>
                             <ReactG2Plot
                                 className="pie"
                                 Ctor={Pie}
                                 config={{
-                                    width: 400,
-                                    height: 400,
+                                    width: 350,
+                                    height: 350,
 
                                     //forceFit: true,
                                     pixelRatio: 2,
                                     title: {
                                         visible: true,
-                                        text: '                 Macro Breakdown',
+                                        text: '            Macro Breakdown',
                                         //position: 'middle',
                                         style: {
                                             fontSize: 22,
@@ -224,7 +226,7 @@ class NewLayout extends React.Component {
                                         visible: false,
                                         //text:
                                     },
-                                    radius: 0.65,
+                                    radius: 0.7,
                                     colorField: 'type',
                                     color: ['#5B8FF9', '#E15554', '#3BB273'], //#3BB273, #7768AE
                                     data: [
@@ -305,7 +307,7 @@ class NewLayout extends React.Component {
                                 </li>
                                 <p></p>
                                 <li>
-                                    <a href='#'>Code</a>
+                                    <a href='#'>Source code</a>
                                 </li>
                                 <p></p>
                                 <li>
