@@ -8,6 +8,7 @@ import {
     SyncOutlined, GithubOutlined,
     LinkedinOutlined, MailOutlined, MenuOutlined
 } from '@ant-design/icons';
+import { BetterInputNumber } from './betterInput';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/auth';
@@ -19,6 +20,7 @@ import ReactG2Plot from 'react-g2plot';
 import NumberFormat from 'react-number-format';
 
 import logo from '../MMM.png';
+import { hello } from './FoodGenerator.js';
 
 const { Header, Content, Footer } = Layout;
 const { Option } = Select;
@@ -48,14 +50,28 @@ class NewLayout extends React.Component {
         super(props);
         this.state = {
             enableMacros: false,
-            generateLoading: false
+            loadingMeals: false,
+            displayMeals: false,
+            calories: 2000,
+            numMeals: 3,
+            meals: [],
+            hide: 'none',
         };
-        this.textInput = React.createRef();
     }
 
     onChange(value) {
         console.log('changed', value);
     }
+
+    onCalChange(value) {
+        // formattedValue, value, floatValue
+        console.log('changed', value.floatValue);
+    }
+
+    onMealChange(value) {
+        console.log('changed', value);
+    }
+
 
     handleChange(event) {
         this.setState({ value: event.target.value });
@@ -68,12 +84,21 @@ class NewLayout extends React.Component {
     }
 
     onClickGenerateButton = () => {
-        this.setState({ generateLoading: true });
+        this.setState({
+            displayMeals: false,
+            loadingMeals: true,
+            hide: 'none',
+            meals: hello(this.state.calories, this.state.numMeals),
+        });
         setTimeout(() => {
             this.setState({
-                generateLoading: false
+                loadingMeals: false,
+                displayMeals: true,
+                hide: 'block',
             });
         }, 3000);
+        console.log(this.state.calories);
+        console.log(this.state.numMeals);
     };
 
     calError = () => {
@@ -147,13 +172,14 @@ class NewLayout extends React.Component {
                         {/* has a margin of 90 on the right so that the pie chart is alligned with it */}
                         <div className="inputArea" >
                             <p className="leftColumnText">I want to eat &nbsp;
-                            <NumberFormat className='ant-input' id='calorieInput' suffix={' calories'} defaultValue={2000} allowEmptyFormatting={true}
-                                    //onChange={this.calError()}
-                                    style={{ width: '126px' }}
+                                <NumberFormat className='ant-input' id='calorieInput' style={{ width: '126px' }} suffix={' calories'}
+                                    defaultValue={2000} allowEmptyFormatting={true} onValueChange={(value) => { this.setState({ calories: Math.floor(value.floatValue) }) }}
                                 />
+                                {/* <BetterInputNumber addonAfter="calories" /> */}
                             </p>
                             <p className="leftColumnText"> in &nbsp;
-                            <Select className="mealInput" defaultValue="3" style={{ width: '126px' }} onChange={this.onChange}>
+                                <Select className="mealInput" defaultValue="3" style={{ width: '126px' }}
+                                    onChange={this.onMealChange} onChange={(value) => { this.setState({ numMeals: parseInt(value) }) }}>
                                     <Option className='camphorFont' value="1">1 meal</Option>
                                     <Option className='camphorFont' value="2">2 meals</Option>
                                     <Option className='camphorFont' value="3">3 meals</Option>
@@ -166,10 +192,10 @@ class NewLayout extends React.Component {
                                 </Select>
                             </p>
 
-                            <Collapse expandIconPosition='right' activeKey={this.state.enableMacros} style={{ 'margin-left': 'auto', width: '257px' }}>
-                                <Panel header={<text id="macroSwitchText">Macro Preferences&nbsp;&nbsp;</text>} showArrow={true} key="1" extra={
-                                    <Switch defaultChecked={this.state.enableMacros} onChange={this.macroSwitch} />
-                                } >
+                            <Collapse expandIconPosition='right' activeKey={this.state.enableMacros} style={{ marginLeft: 'auto', width: '257px' }}>
+                                <Panel header={<text id="macroSwitchText">Macro Preferences&nbsp;&nbsp;</text>} showArrow={true} key="1"
+                                    extra={<Switch defaultChecked={this.state.enableMacros} onChange={this.macroSwitch} />}
+                                >
                                     <p id="macroText">Carbohydrates:&nbsp;
                                         <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={200}
                                             allowEmptyFormatting={true} style={{ width: '80px' }}
@@ -191,7 +217,7 @@ class NewLayout extends React.Component {
                             <br />
 
                             <div>
-                                <Button type="primary" id='generateButton' loading={this.state.generateLoading}
+                                <Button type="primary" id='generateButton' loading={this.state.loadingMeals}
                                     icon={<SyncOutlined />} onClick={this.onClickGenerateButton}>
                                     Generate
                             </Button>
@@ -274,25 +300,34 @@ class NewLayout extends React.Component {
                     </div>
 
 
-                    <div style={{ 'border-left': '1px solid silver' }} />
+                    <div style={{ borderLeft: '1px solid silver' }} />
 
                     <div className="rightColumn">
-                        <Card title="Breakfast" extra="0 calories" style={{ width: 350 }}
+                        <Card title="Breakfast" extra="0 calories" style={{ width: 350, height: 200 }}
                             headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                            <Skeleton loading={true} title={false} active={this.state.generateLoading}
+                            <Skeleton loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
                                 paragraph={{ rows: 3, width: [250] }} />
+                            <div style={{ display: this.state.hide }}>
+                                <p>{this.state.meals[0]}</p>
+                            </div>
                         </Card>
                         <br />
-                        <Card title="Lunch" extra="0 calories" style={{ width: 350 }}
+                        <Card title="Lunch" extra="0 calories" style={{ width: 350, height: 200 }}
                             headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                            <Skeleton loading={true} title={false} active={this.state.generateLoading}
+                            <Skeleton loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
                                 paragraph={{ rows: 3, width: [250] }} />
+                            <div style={{ display: this.state.hide }}>
+                                <p>{this.state.meals[1]}</p>
+                            </div>
                         </Card>
                         <br />
-                        <Card title="Dinner" extra="0 calories" style={{ width: 350 }}
+                        <Card title="Dinner" extra="0 calories" style={{ width: 350, height: 200 }}
                             headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                            <Skeleton loading={true} title={false} active={this.state.generateLoading}
+                            <Skeleton loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
                                 paragraph={{ rows: 3, width: [250] }} />
+                            <div style={{ display: this.state.hide }}>
+                                <p>{this.state.meals[2]}</p>
+                            </div>
                         </Card>
                     </div>
                 </div>
@@ -300,12 +335,12 @@ class NewLayout extends React.Component {
                 <div className="main" style={{ minHeight: 200 }}>
                 </div>
 
-                <div style={{ 'border-top': '1px solid silver', width: '92%', margin: '0 auto' }} />
+                <div style={{ borderTop: '1px solid silver', width: '92%', margin: '0 auto' }} />
 
                 <div className="rowFooter" style={{ margin: '25px 0 0 0', fontFamily: 'Camphor', fontSize: '15px' }}>
                     <div className="colFooter" style={{ padding: '0 50px 0 0', 'textAlign': 'left' }}>
                         <div style={{ float: 'right' }}>
-                            <ul style={{ 'list-style-type': 'none' }}>
+                            <ul style={{ listStyleType: 'none' }}>
                                 <li>
                                     <a href='#'>How it works</a>
                                 </li>
@@ -321,7 +356,7 @@ class NewLayout extends React.Component {
                         </div>
                     </div>
                     <div className="colFooter" style={{ padding: '0 0 0 50px' }}>
-                        <ul style={{ 'list-style-type': 'none', }}>
+                        <ul style={{ listStyleType: 'none', }}>
                             <li>
                                 <a href='#'>Feedback</a>
                             </li>
