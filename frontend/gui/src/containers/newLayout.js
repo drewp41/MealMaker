@@ -95,7 +95,9 @@ class NewLayout extends React.Component {
     }
 
     onClickGenerateButton = () => {
-        const data = fetchMeals("meatball")
+        // get the meal data with the given preferences
+        // and once that data is recieved, update the states of the variables
+        const data = fetchMeals(this.state.calories)
             .then(res => {
                 console.log(res);
                 this.setState({
