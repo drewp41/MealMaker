@@ -9,30 +9,49 @@ const apiId = "&app_id=" + Creds.id;
 const maxTime = "&time=30";
 const maxIngreds = `&ingr=10`;
 
-async function fetchMeals(food) {
+async function fetchData(food) {
     try {
         const url = `${apiURL}${food}${maxIngreds}${maxTime}${apiId}${apiKey}`;
-        const data = await axios.get(url);
+        const data = await axios.get(url)
         return data;
     } catch (error) {
         console.log(error, "error");
     }
 }
 
-let recipes;
-let rec = fetchMeals("chicken")
-    .then((res) => {
-        // console.log(res.data)
-        recipes = res.data;
-    })
-
-export {
-    recipes
+export async function fetchMeals(food) {
+    return fetchData(food)
+        .then(d => {
+            const data = d.data.hits.slice(0, 3);
+            // return a list of meals
+            // with each meal of the form
+            // [name of food, calories, carbs, protein, fat, ingredients]
+            let res = []
+            data.forEach(elem => {
+                let name = elem.recipe.label;
+                let calories = Math.floor(elem.recipe.calories);
+                let carbs = Math.floor(elem.recipe.totalNutrients.CHOCDF.quantity);
+                let protein = Math.floor(elem.recipe.totalNutrients.PROCNT.quantity);
+                let fat = Math.floor(elem.recipe.totalNutrients.FAT.quantity);
+                let ingredients = elem.recipe.ingredients;
+                let obj = {
+                    name: name, calories: calories, carbs: carbs,
+                    protein: protein, fat: fat, ingredients: ingredients
+                };
+                res.push(obj);
+            });
+            return res;
+        });
 }
 
-// console.log(recipes);
+// (async function() {
+//     await yourFunction();
+//   })();
 
-// export function hello(calories, numMeals) {
-//     // return [calories, numMeals, 'hi'];
-//     return res;
-// }
+//   Or resolve the promise :
+
+//   yourFunction().then(result => {
+//     // ...
+//   }).catch(error => {
+//     // if you have an error
+//   })

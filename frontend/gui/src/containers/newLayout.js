@@ -20,7 +20,7 @@ import ReactG2Plot from 'react-g2plot';
 import NumberFormat from 'react-number-format';
 
 import logo from '../MMM.png';
-import { recipes } from './FoodGenerator.js';
+import { fetchMeals } from './FoodGenerator.js';
 
 const { Header, Content, Footer } = Layout;
 const { Option } = Select;
@@ -54,9 +54,20 @@ class NewLayout extends React.Component {
             displayMeals: false,
             calories: 2000,
             numMeals: 3,
-            meals: [],
+            meals: this.fillArr({
+                name: '', calories: 0, carbs: 0,
+                protein: 0, fat: 0, ingredients: []
+            }),
             hide: 'none',
         };
+    }
+
+    fillArr(obj) {
+        let arr = [];
+        for (let i = 0; i <= 7; i++) {
+            arr.push(obj);
+        }
+        return arr;
     }
 
     onChange(value) {
@@ -84,22 +95,31 @@ class NewLayout extends React.Component {
     }
 
     onClickGenerateButton = () => {
+        const data = fetchMeals("meatball")
+            .then(res => {
+                console.log(res);
+                this.setState({
+                    meals: res,
+                    // originally from setTimeout
+                    loadingMeals: false,
+                    displayMeals: true,
+                    hide: 'block',
+                })
+            });
         this.setState({
+            meals: this.fillArr({
+                name: '', calories: 0, carbs: 0,
+                protein: 0, fat: 0, ingredients: []
+            }),
             displayMeals: false,
             loadingMeals: true,
             hide: 'none',
-            // meals: hello(this.state.calories, this.state.numMeals),
         });
-        console.log(recipes);
-        setTimeout(() => {
-            this.setState({
-                loadingMeals: false,
-                displayMeals: true,
-                hide: 'block',
-            });
-        }, 3000);
-        console.log(this.state.calories);
-        console.log(this.state.numMeals);
+        // setTimeout(() => {
+        //     this.setState({
+
+        //     });
+        // }, 3000);
     };
 
     calError = () => {
@@ -304,30 +324,36 @@ class NewLayout extends React.Component {
                     <div style={{ borderLeft: '1px solid silver' }} />
 
                     <div className="rightColumn">
-                        <Card title="Breakfast" extra="0 calories" style={{ width: 350, height: 200 }}
+                        <Card title="Breakfast" extra={this.state.meals[0].calories + " calories"} style={{ width: 350, height: 200 }}
                             headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                             <Skeleton loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
                                 paragraph={{ rows: 3, width: [250] }} />
                             <div style={{ display: this.state.hide }}>
-                                <p>{this.state.meals[0]}</p>
+                                <p>
+                                    {this.state.meals[0].name}
+                                </p>
                             </div>
                         </Card>
                         <br />
-                        <Card title="Lunch" extra="0 calories" style={{ width: 350, height: 200 }}
+                        <Card title="Lunch" extra={this.state.meals[1].calories + " calories"} style={{ width: 350, height: 200 }}
                             headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                             <Skeleton loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
                                 paragraph={{ rows: 3, width: [250] }} />
                             <div style={{ display: this.state.hide }}>
-                                <p>{this.state.meals[1]}</p>
+                                <p>
+                                    {this.state.meals[1].name}
+                                </p>
                             </div>
                         </Card>
                         <br />
-                        <Card title="Dinner" extra="0 calories" style={{ width: 350, height: 200 }}
+                        <Card title="Dinner" extra={this.state.meals[2].calories + " calories"} style={{ width: 350, height: 200 }}
                             headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                             <Skeleton loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
                                 paragraph={{ rows: 3, width: [250] }} />
                             <div style={{ display: this.state.hide }}>
-                                <p>{this.state.meals[2]}</p>
+                                <p>
+                                    {this.state.meals[2].name}
+                                </p>
                             </div>
                         </Card>
                     </div>
