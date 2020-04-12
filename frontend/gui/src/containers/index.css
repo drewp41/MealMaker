@@ -204,7 +204,7 @@ button{
     color: var(--mainTextColor);
 }
 
-#macroText{
+.macroText{
     font-size: 16px;
     font-family: 'Camphor';
     font-weight: 300;

@@ -1,5 +1,5 @@
 env/
-frontend/gui/src/containers/credentials.js
+frontend/gui/src/containers/Credentials.js
 ### Django ###
 *.log
 *.pot

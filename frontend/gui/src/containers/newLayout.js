@@ -20,7 +20,7 @@ import ReactG2Plot from 'react-g2plot';
 import NumberFormat from 'react-number-format';
 
 import logo from '../MMM.png';
-import { hello } from './FoodGenerator.js';
+import { recipes } from './FoodGenerator.js';
 
 const { Header, Content, Footer } = Layout;
 const { Option } = Select;
@@ -88,8 +88,9 @@ class NewLayout extends React.Component {
             displayMeals: false,
             loadingMeals: true,
             hide: 'none',
-            meals: hello(this.state.calories, this.state.numMeals),
+            // meals: hello(this.state.calories, this.state.numMeals),
         });
+        console.log(recipes);
         setTimeout(() => {
             this.setState({
                 loadingMeals: false,
@@ -194,19 +195,19 @@ class NewLayout extends React.Component {
 
                             <Collapse expandIconPosition='right' activeKey={this.state.enableMacros} style={{ marginLeft: 'auto', width: '257px' }}>
                                 <Panel header={<text id="macroSwitchText">Macro Preferences&nbsp;&nbsp;</text>} showArrow={true} key="1"
-                                    extra={<Switch defaultChecked={this.state.enableMacros} onChange={this.macroSwitch} />}
+                                    extra={<Switch defaultChecked={false} onChange={this.macroSwitch} />}
                                 >
-                                    <p id="macroText">Carbohydrates:&nbsp;
+                                    <p className="macroText">Carbohydrates:&nbsp;
                                         <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={200}
                                             allowEmptyFormatting={true} style={{ width: '80px' }}
                                         />
                                     </p>
-                                    <p id="macroText">Protein:&nbsp;
+                                    <p className="macroText">Protein:&nbsp;
                                         <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={150}
                                             allowEmptyFormatting={true} style={{ width: '80px' }}
                                         />
                                     </p>
-                                    <p id="macroText">Fat:&nbsp;
+                                    <p className="macroText">Fat:&nbsp;
                                         <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={65}
                                             allowEmptyFormatting={true} style={{ width: '80px' }}
                                         />
@@ -338,7 +339,7 @@ class NewLayout extends React.Component {
                 <div style={{ borderTop: '1px solid silver', width: '92%', margin: '0 auto' }} />
 
                 <div className="rowFooter" style={{ margin: '25px 0 0 0', fontFamily: 'Camphor', fontSize: '15px' }}>
-                    <div className="colFooter" style={{ padding: '0 50px 0 0', 'textAlign': 'left' }}>
+                    <div className="colFooter" style={{ padding: '0 50px 0 0' }}>
                         <div style={{ float: 'right' }}>
                             <ul style={{ listStyleType: 'none' }}>
                                 <li>
