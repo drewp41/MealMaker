@@ -144,7 +144,7 @@ class NewLayout extends React.Component {
                     <div className='headerLRSpace'></div>
                     {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
                     <a href='#'>
-                        <img src={logo} alt="logo" style={{ width: 66, height: 100, margin: '0 0 0 15px' }} />
+                        <img src={logo} alt="logo" style={{ width: 66, height: 100, margin: '0 0 0 15px' }} draggable='false' />
                     </a>
                     <div className='colHeaderL'>
                         <button className="logoText" id="logo" style={{ height: '60px', width: '210px', textIndent: '-20px' }}>
@@ -263,7 +263,7 @@ class NewLayout extends React.Component {
                                     height: 325,
 
                                     //forceFit: true,
-                                    pixelRatio: 2,
+                                    pixelRatio: 4,
                                     title: {
                                         visible: false,
                                         text: '            Macro Breakdown',
@@ -299,12 +299,14 @@ class NewLayout extends React.Component {
                                     angleField: 'value',
                                     label: {
                                         visible: true,
-                                        type: 'outer',
+                                        type: 'inner',
                                         formatter: (val) => {
                                             return val + '%';
                                         },
                                         style: {
                                             fontFamily: 'Camphor',
+                                            fill: 'white',
+                                            lineWidth: 0,
                                         },
                                     },
                                     legend: {
@@ -328,7 +330,7 @@ class NewLayout extends React.Component {
                     <div className="rightColumn">
                         <Card title="Breakfast" extra={this.state.meals[0].calories + " calories"} style={{ width: 350, height: 200 }}
                             headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                            <Skeleton loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
+                            <Skeleton avatar={{ src: logo }} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
                                 paragraph={{ rows: 3, width: [250] }} />
                             <div style={{ display: this.state.hide }}>
                                 <p>
@@ -339,7 +341,7 @@ class NewLayout extends React.Component {
                         <br />
                         <Card title="Lunch" extra={this.state.meals[1].calories + " calories"} style={{ width: 350, height: 200 }}
                             headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                            <Skeleton loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
+                            <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
                                 paragraph={{ rows: 3, width: [250] }} />
                             <div style={{ display: this.state.hide }}>
                                 <p>
@@ -350,7 +352,7 @@ class NewLayout extends React.Component {
                         <br />
                         <Card title="Dinner" extra={this.state.meals[2].calories + " calories"} style={{ width: 350, height: 200 }}
                             headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                            <Skeleton loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
+                            <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
                                 paragraph={{ rows: 3, width: [250] }} />
                             <div style={{ display: this.state.hide }}>
                                 <p>
