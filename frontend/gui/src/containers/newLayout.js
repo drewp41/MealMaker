@@ -2,7 +2,7 @@ import React from 'react';
 import {
     Layout, Menu, Divider, Input, InputNumber,
     Skeleton, Card, Button, Dropdown,
-    Select, Alert, Switch, Collapse,
+    Select, Alert, Switch, Collapse, Avatar
 } from 'antd';
 import {
     SyncOutlined, GithubOutlined,
@@ -20,11 +20,15 @@ import ReactG2Plot from 'react-g2plot';
 import NumberFormat from 'react-number-format';
 
 import logo from '../MMM.png';
+import groceries from '../FoodIcons/groceries.svg';
+
 import { fetchMeals } from './FoodGenerator.js';
+import { SVG } from '@antv/g2plot/lib/dependents';
 
 const { Header, Content, Footer } = Layout;
 const { Option } = Select;
 const { Panel } = Collapse;
+const { Meta } = Card;
 const mainTextColor = '#32323c'
 
 // padding is on the inside, margin is on the outside
@@ -54,20 +58,13 @@ class NewLayout extends React.Component {
             displayMeals: false,
             calories: 2000,
             numMeals: 3,
-            meals: this.fillArr({
+            meals: Array(6).fill({
                 name: '', calories: 0, carbs: 0,
                 protein: 0, fat: 0, ingredients: []
             }),
+            showMeals: Array(6).fill(true),
             hide: 'none',
         };
-    }
-
-    fillArr(obj) {
-        let arr = [];
-        for (let i = 0; i <= 7; i++) {
-            arr.push(obj);
-        }
-        return arr;
     }
 
     onChange(value) {
@@ -75,14 +72,12 @@ class NewLayout extends React.Component {
     }
 
     onCalChange(value) {
-        // formattedValue, value, floatValue
         console.log('changed', value.floatValue);
     }
 
     onMealChange(value) {
         console.log('changed', value);
     }
-
 
     handleChange(event) {
         this.setState({ value: event.target.value });
@@ -94,10 +89,22 @@ class NewLayout extends React.Component {
         })
     }
 
+    toggleShowMeals = (value) => {
+        const n = parseInt(value);
+        const len = this.state.showMeals.length;
+
+        let trueArr = Array(n).fill(true);
+        let falseArr = Array(len - n).fill(false);
+        this.setState({
+            showMeals: trueArr.concat(falseArr),
+            numMeals: n
+        }, () => { console.log(this.state.showMeals) })
+    }
+
     onClickGenerateButton = () => {
         // get the meal data with the given preferences
-        // and once that data is recieved, update the states of the variables
-        const data = fetchMeals(this.state.calories)
+        // and once that data is recieved (.then), update the state
+        const data = fetchMeals(this.state.calories, this.state.numMeals)
             .then(res => {
                 console.log(res);
                 this.setState({
@@ -108,8 +115,9 @@ class NewLayout extends React.Component {
                     hide: 'block',
                 })
             });
+        // set the loading and temp values while the meal data is laoding
         this.setState({
-            meals: this.fillArr({
+            meals: Array(6).fill({
                 name: '', calories: 0, carbs: 0,
                 protein: 0, fat: 0, ingredients: []
             }),
@@ -202,20 +210,17 @@ class NewLayout extends React.Component {
                             </p>
                             <p className="leftColumnText"> in &nbsp;
                                 <Select className="mealInput" defaultValue="3" style={{ width: '126px' }}
-                                    onChange={this.onMealChange} onChange={(value) => { this.setState({ numMeals: parseInt(value) }) }}>
+                                    onChange={(value) => this.toggleShowMeals(value)}>
                                     <Option className='camphorFont' value="1">1 meal</Option>
                                     <Option className='camphorFont' value="2">2 meals</Option>
                                     <Option className='camphorFont' value="3">3 meals</Option>
                                     <Option className='camphorFont' value="4">4 meals</Option>
                                     <Option className='camphorFont' value="5">5 meals</Option>
                                     <Option className='camphorFont' value="6">6 meals</Option>
-                                    <Option className='camphorFont' value="7">7 meals</Option>
-                                    <Option className='camphorFont' value="8">8 meals</Option>
-                                    <Option className='camphorFont' value="9">9 meals</Option>
                                 </Select>
                             </p>
 
-                            <Collapse expandIconPosition='right' activeKey={this.state.enableMacros} style={{ marginLeft: 'auto', width: '257px' }}>
+                            <Collapse bordered={true} expandIconPosition='right' activeKey={this.state.enableMacros} style={{ marginLeft: 'auto', width: '257px' }}>
                                 <Panel header={<text id="macroSwitchText">Macro Preferences&nbsp;&nbsp;</text>} showArrow={true} key="1"
                                     extra={<Switch defaultChecked={false} onChange={this.macroSwitch} />}
                                 >
@@ -261,9 +266,9 @@ class NewLayout extends React.Component {
                                 config={{
                                     width: 325,
                                     height: 325,
-
                                     //forceFit: true,
                                     pixelRatio: 4,
+                                    renderer: 'canvas',
                                     title: {
                                         visible: false,
                                         text: '            Macro Breakdown',
@@ -285,7 +290,7 @@ class NewLayout extends React.Component {
                                     data: [
                                         {
                                             type: 'Carbohydrates',
-                                            value: 34,
+                                            value: 33,
                                         },
                                         {
                                             type: 'Protein',
@@ -305,7 +310,7 @@ class NewLayout extends React.Component {
                                         },
                                         style: {
                                             fontFamily: 'Camphor',
-                                            fill: 'white',
+                                            fill: '#fcfcfc',
                                             lineWidth: 0,
                                         },
                                     },
@@ -328,38 +333,95 @@ class NewLayout extends React.Component {
                     <div style={{ borderLeft: '1px solid silver' }} />
 
                     <div className="rightColumn">
-                        <Card title="Breakfast" extra={this.state.meals[0].calories + " calories"} style={{ width: 350, height: 200 }}
+                        <Card title={this.state.numMeals == 1 ? "Feast" :
+                            (this.state.numMeals == 2 ? "Brunch" : "Breakfast")}
+                            extra={this.state.meals[0].calories + " calories"}
+                            style={{ width: 350, height: 200 }} hoverable={true}
                             headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                            <Skeleton avatar={{ src: logo }} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
+                            {/* <Meta
+                                avatar={
+                                    <Avatar src={groceries} />
+                                }
+                            /> */}
+                            <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
                                 paragraph={{ rows: 3, width: [250] }} />
-                            <div style={{ display: this.state.hide }}>
+                            <div className='mealCard' style={{ display: this.state.hide }}>
                                 <p>
                                     {this.state.meals[0].name}
                                 </p>
                             </div>
                         </Card>
-                        <br />
-                        <Card title="Lunch" extra={this.state.meals[1].calories + " calories"} style={{ width: 350, height: 200 }}
-                            headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                            <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
-                                paragraph={{ rows: 3, width: [250] }} />
-                            <div style={{ display: this.state.hide }}>
-                                <p>
-                                    {this.state.meals[1].name}
-                                </p>
-                            </div>
-                        </Card>
-                        <br />
-                        <Card title="Dinner" extra={this.state.meals[2].calories + " calories"} style={{ width: 350, height: 200 }}
-                            headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                            <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
-                                paragraph={{ rows: 3, width: [250] }} />
-                            <div style={{ display: this.state.hide }}>
-                                <p>
-                                    {this.state.meals[2].name}
-                                </p>
-                            </div>
-                        </Card>
+                        <div className={this.state.numMeals < 2 ? 'hidden' : ''}>
+                            <br />
+                            <Card title={this.state.numMeals == 2 ? "Dinner" : "Lunch"}
+                                extra={this.state.meals[1].calories + " calories"}
+                                style={{ width: 350, height: 200 }} hoverable={true}
+                                headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
+                                <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
+                                    paragraph={{ rows: 3, width: [250] }} />
+                                <div className='mealCard' style={{ display: this.state.hide }}>
+                                    <p>
+                                        {this.state.meals[1].name}
+                                    </p>
+                                </div>
+                            </Card>
+                        </div>
+                        <div className={this.state.numMeals < 3 ? 'hidden' : ''}>
+                            <br />
+                            <Card title="Dinner" extra={this.state.meals[2].calories + " calories"}
+                                style={{ width: 350, height: 200 }} hoverable={true}
+                                headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
+                                <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
+                                    paragraph={{ rows: 3, width: [250] }} />
+                                <div className='mealCard' style={{ display: this.state.hide }}>
+                                    <p>
+                                        {this.state.meals[2].name}
+                                    </p>
+                                </div>
+                            </Card>
+                        </div>
+                        <div className={this.state.numMeals < 4 ? 'hidden' : ''}>
+                            <br />
+                            <Card title="Snack" extra={this.state.meals[3].calories + " calories"}
+                                style={{ width: 350, height: 200 }} hoverable={true}
+                                headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
+                                <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
+                                    paragraph={{ rows: 3, width: [250] }} />
+                                <div className='mealCard' style={{ display: this.state.hide }}>
+                                    <p>
+                                        {this.state.meals[3].name}
+                                    </p>
+                                </div>
+                            </Card>
+                        </div>
+                        <div className={this.state.numMeals < 5 ? 'hidden' : ''}>
+                            <br />
+                            <Card title="Snack" extra={this.state.meals[4].calories + " calories"}
+                                style={{ width: 350, height: 200 }} hoverable={true}
+                                headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
+                                <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
+                                    paragraph={{ rows: 3, width: [250] }} />
+                                <div className='mealCard' style={{ display: this.state.hide }}>
+                                    <p>
+                                        {this.state.meals[4].name}
+                                    </p>
+                                </div>
+                            </Card>
+                        </div>
+                        <div className={this.state.numMeals < 6 ? 'hidden' : ''}>
+                            <br />
+                            <Card title="Snack" extra={this.state.meals[5].calories + " calories"}
+                                style={{ width: 350, height: 200 }} hoverable={true}
+                                headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
+                                <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
+                                    paragraph={{ rows: 3, width: [250] }} />
+                                <div className='mealCard' style={{ display: this.state.hide }}>
+                                    <p>
+                                        {this.state.meals[5].name}
+                                    </p>
+                                </div>
+                            </Card>
+                        </div>
                     </div>
                 </div>
 

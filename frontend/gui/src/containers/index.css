@@ -238,4 +238,14 @@ a:hover, a:active{
     color: var(--mainTextColor);
 }
 
+.hidden {
+    display: none;
+}
+
+.mealCard{
+    font-size: 15px;
+    font-family: 'Camphor';
+    font-weight: 300;
+    color: var(--mainTextColor);
+}
 
