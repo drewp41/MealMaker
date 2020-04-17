@@ -52,16 +52,18 @@ padding: 5px 1em 0 2em;
 class NewLayout extends React.Component {
     constructor(props) {
         super(props);
+        this.emptyMeals = Array(6).fill({
+            name: '', calories: 0, carbs: 0,
+            protein: 0, fat: 0, ingredients: [],
+            type: [], instructions: []
+        });
         this.state = {
             enableMacros: false,
             loadingMeals: false,
             displayMeals: false,
             calories: 2000,
             numMeals: 3,
-            meals: Array(6).fill({
-                name: '', calories: 0, carbs: 0,
-                protein: 0, fat: 0, ingredients: []
-            }),
+            meals: this.emptyMeals,
             showMeals: Array(6).fill(true),
             hide: 'none',
         };
@@ -117,10 +119,7 @@ class NewLayout extends React.Component {
             });
         // set the loading and temp values while the meal data is laoding
         this.setState({
-            meals: Array(6).fill({
-                name: '', calories: 0, carbs: 0,
-                protein: 0, fat: 0, ingredients: []
-            }),
+            meals: this.emptyMeals,
             displayMeals: false,
             loadingMeals: true,
             hide: 'none',
