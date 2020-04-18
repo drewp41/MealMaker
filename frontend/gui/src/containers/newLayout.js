@@ -59,6 +59,9 @@ class NewLayout extends React.Component {
         });
         this.state = {
             calories: 2000,
+            carbs: 220,
+            protein: 130,
+            fat: 65,
             numMeals: 3,
             // actual data of the meals.  First 6 = breakfast, last 18 = main course
             meals: this.emptyMeals,
@@ -92,15 +95,13 @@ class NewLayout extends React.Component {
 
     macroSwitch = () => {
         this.setState({
-            enableMacros: (this.state.enableMacros === 1) ? 0 : 1
+            enableMacros: !this.state.enableMacros,
+            changedPrefs: true,
         })
     }
 
     onClickGenerateButton = () => {
-        console.log('bfast count: ' + this.state.breakfastCount);
-        console.log('main count: ' + this.state.mainCount);
         if (this.state.breakfastCount == 5 || this.state.mainCount >= 14) {
-            console.log("in the if statement")
             // give it a half second delay so the if statement under this runs
             setTimeout(() => {
                 this.setState({
@@ -112,11 +113,21 @@ class NewLayout extends React.Component {
             }, 500);
         }
 
+
+
         if (this.state.changedPrefs) {
-            console.log('inside the second if statement');
             // get the meal data with the given preferences
             // and once that data is recieved (.then), update the state
-            const data = fetchMeals(this.state.calories, this.state.numMeals)
+            let carbVar = 0;
+            let proteinVar = 0;
+            let fatVar = 0;
+            if (this.state.enableMacros) {
+                carbVar = this.state.carbs;
+                proteinVar = this.state.protein;
+                fatVar = this.state.fat;
+            }
+            const data = fetchMeals(this.state.calories, this.state.numMeals,
+                carbVar, proteinVar, fatVar)
                 .then(res => {
                     console.log(res);
                     this.setState({
@@ -130,6 +141,7 @@ class NewLayout extends React.Component {
                         changedPrefs: false,
                     })
                 });
+
             // set the loading and temp values while the meal data is laoding
             this.setState({
                 meals: this.emptyMeals,
@@ -154,11 +166,6 @@ class NewLayout extends React.Component {
 
     render() {
         return (
-            //stripes's 'rgb(247,249,252)'
-            // ant's 'rgb(241, 242, 245)'
-            //me:
-            // for darker text: #32323c
-            // for regular text: #
 
             <div style={{ backgroundColor: 'rgb(241, 242, 245)' }}>
                 {/* Header */}
@@ -241,23 +248,32 @@ class NewLayout extends React.Component {
                                 </Select>
                             </p>
 
-                            <Collapse bordered={true} expandIconPosition='right' activeKey={this.state.enableMacros} style={{ marginLeft: 'auto', width: '257px' }}>
+                            <Collapse bordered={true} expandIconPosition='right' activeKey={this.state.enableMacros ? 1 : 0} style={{ marginLeft: 'auto', width: '257px' }}>
                                 <Panel header={<text id="macroSwitchText">Macro Preferences&nbsp;&nbsp;</text>} showArrow={true} key="1"
                                     extra={<Switch defaultChecked={false} onChange={this.macroSwitch} />}
                                 >
                                     <p className="macroText">Carbohydrates:&nbsp;
-                                        <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={200}
+                                        <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={220}
                                             allowEmptyFormatting={true} style={{ width: '80px' }}
+                                            onValueChange={(values) => this.setState({
+                                                carbs: Math.floor(values.floatValue),
+                                            })}
                                         />
                                     </p>
                                     <p className="macroText">Protein:&nbsp;
-                                        <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={150}
+                                        <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={130}
                                             allowEmptyFormatting={true} style={{ width: '80px' }}
+                                            onValueChange={(values) => this.setState({
+                                                protein: Math.floor(values.floatValue),
+                                            })}
                                         />
                                     </p>
                                     <p className="macroText">Fat:&nbsp;
                                         <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={65}
                                             allowEmptyFormatting={true} style={{ width: '80px' }}
+                                            onValueChange={(values) => this.setState({
+                                                fat: Math.floor(values.floatValue),
+                                            })}
                                         />
                                     </p>
                                 </Panel>

@@ -10,17 +10,47 @@ async function fetchData(cals, numMeals, carbs, protein, fat) {
     const approxCals = Math.floor(cals / numMeals);
     const minCals = approxCals - 100;
     const maxCals = approxCals + 100;
-    const breakfastUrl = `${apiURL}${apiKey}`
-        + `&minCalories=${minCals}&maxCalories=${maxCals}&number=6&minCarbs=0&minProtein=0&minFat=0&type=breakfast,brunch,morning%20meal,`
-        + `&instructionsRequired=true&addRecipeInformation=true&maxReadyTime=60&fillIngredients=true&sort=random`
-    const mainUrl = `${apiURL}${apiKey}`
-        + `&minCalories=${minCals}&maxCalories=${maxCals}&number=12&minCarbs=0&minProtein=0&minFat=0&type=main%20course`
-        + `&instructionsRequired=true&addRecipeInformation=true&maxReadyTime=60&fillIngredients=true&sort=random`
+
+    const approxCarbs = Math.floor(carbs / numMeals);
+    const minCarbs = Math.max(0, approxCarbs - 15);
+    const maxCarbs = approxCarbs + 15;
+
+    const approxProtein = Math.floor(protein / numMeals);
+    const minProtein = Math.max(0, approxProtein - 15);
+    const maxProtein = approxProtein + 15;
+
+    const approxFat = Math.floor(fat / numMeals);
+    const minFat = Math.max(0, approxFat - 15);
+    const maxFat = approxFat + 15;
+
+    let breakfastUrl = '';
+    let mainUrl = '';
+
+    // macro prefs are turned off
+    if (carbs == 0 && protein == 0 && fat == 0) {
+        breakfastUrl = `${apiURL}${apiKey}&number=6`
+            + `&minCalories=${minCals}&maxCalories=${maxCals}&minCarbs=0&minProtein=0&minFat=0&type=breakfast,brunch,morning+meal,`
+            + `&instructionsRequired=true&addRecipeInformation=true&maxReadyTime=60&fillIngredients=true&sort=random`;
+        mainUrl = `${apiURL}${apiKey}&number=12`
+            + `&minCalories=${minCals}&maxCalories=${maxCals}&minCarbs=0&minProtein=0&minFat=0&type=main+course`
+            + `&instructionsRequired=true&addRecipeInformation=true&maxReadyTime=60&fillIngredients=true&sort=random`;
+    } else {
+        breakfastUrl = `${apiURL}${apiKey}&number=6`
+            + `&minCalories=${minCals}&maxCalories=${maxCals}&minCarbs=${minCarbs}&maxCarbs=${maxCarbs}`
+            + `&minProtein=${minProtein}&maxProtein=${maxProtein}&minFat=${minFat}&maxFat=${maxFat}&type=breakfast,brunch,morning+meal,`
+            + `&instructionsRequired=true&addRecipeInformation=true&maxReadyTime=60&fillIngredients=true&sort=random`;
+        mainUrl = `${apiURL}${apiKey}&number=12`
+            + `&minCalories=${minCals}&maxCalories=${maxCals}&minCarbs=${minCarbs}&maxCarbs=${maxCarbs}`
+            + `&minProtein=${minProtein}&maxProtein=${maxProtein}&minFat=${minFat}&maxFat=${maxFat}&type=main+course,`
+            + `&instructionsRequired=true&addRecipeInformation=true&maxReadyTime=60&fillIngredients=true&sort=random`;
+    }
     try {
         const [breakfastData, mainData] = await Promise.all([
             axios.get(breakfastUrl),
             axios.get(mainUrl),
         ]);
+        console.log(breakfastUrl);
+        console.log(mainUrl);
         return [breakfastData, mainData];
     } catch (error) {
         console.log(error, "error");
