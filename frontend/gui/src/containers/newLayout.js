@@ -52,32 +52,37 @@ padding: 5px 1em 0 2em;
 class NewLayout extends React.Component {
     constructor(props) {
         super(props);
-        this.emptyMeals = Array(6).fill({
+        this.emptyMeals = Array(18).fill({
             name: '', calories: 0, carbs: 0,
             protein: 0, fat: 0, ingredients: [],
-            type: [], instructions: []
+            instructions: []
         });
         this.state = {
-            enableMacros: false,
-            loadingMeals: false,
-            displayMeals: false,
             calories: 2000,
             numMeals: 3,
+            // actual data of the meals.  First 6 = breakfast, last 18 = main course
             meals: this.emptyMeals,
-            showMeals: Array(6).fill(true),
+            // what index of breakfat meal youre on.  0 through 5.
+            breakfastCount: 0,
+            // what index of the main meal youre on.  6 though 17
+            mainCount: 6,
+            // whether user wants macros factored into their preferences
+            enableMacros: false,
+            // when true, the load animations go off
+            loadingMeals: false,
+            // when true, the meals are displayed 
+            displayMeals: false,
+            // when true, the meal information div is hidden
             hide: 'none',
+            // when the generate button is hit, this is set to true
+            // but onces any mal preference changes, it's set to false
+            // when its false, don't call the database, and just spit out
+            // one of the cached meals
+            changedPrefs: true,
         };
     }
 
     onChange(value) {
-        console.log('changed', value);
-    }
-
-    onCalChange(value) {
-        console.log('changed', value.floatValue);
-    }
-
-    onMealChange(value) {
         console.log('changed', value);
     }
 
@@ -91,51 +96,61 @@ class NewLayout extends React.Component {
         })
     }
 
-    toggleShowMeals = (value) => {
-        const n = parseInt(value);
-        const len = this.state.showMeals.length;
-
-        let trueArr = Array(n).fill(true);
-        let falseArr = Array(len - n).fill(false);
-        this.setState({
-            showMeals: trueArr.concat(falseArr),
-            numMeals: n
-        }, () => { console.log(this.state.showMeals) })
-    }
-
     onClickGenerateButton = () => {
-        // get the meal data with the given preferences
-        // and once that data is recieved (.then), update the state
-        const data = fetchMeals(this.state.calories, this.state.numMeals)
-            .then(res => {
-                console.log(res);
+        console.log('bfast count: ' + this.state.breakfastCount);
+        console.log('main count: ' + this.state.mainCount);
+        if (this.state.breakfastCount == 5 || this.state.mainCount >= 14) {
+            console.log("in the if statement")
+            // give it a half second delay so the if statement under this runs
+            setTimeout(() => {
                 this.setState({
-                    meals: res,
-                    // originally from setTimeout
-                    loadingMeals: false,
-                    displayMeals: true,
-                    hide: 'block',
-                })
+                    changedPrefs: true,
+                    // 2 lines might be unnecessary
+                    breakfastCount: 0,
+                    mainCount: 6,
+                });
+            }, 500);
+        }
+
+        if (this.state.changedPrefs) {
+            console.log('inside the second if statement');
+            // get the meal data with the given preferences
+            // and once that data is recieved (.then), update the state
+            const data = fetchMeals(this.state.calories, this.state.numMeals)
+                .then(res => {
+                    console.log(res);
+                    this.setState({
+                        breakfastCount: 0,
+                        mainCount: 6,
+                        meals: res,
+                        // originally from setTimeout
+                        loadingMeals: false,
+                        displayMeals: true,
+                        hide: 'block',
+                        changedPrefs: false,
+                    })
+                });
+            // set the loading and temp values while the meal data is laoding
+            this.setState({
+                meals: this.emptyMeals,
+                displayMeals: false,
+                loadingMeals: true,
+                hide: 'none',
             });
-        // set the loading and temp values while the meal data is laoding
-        this.setState({
-            meals: this.emptyMeals,
-            displayMeals: false,
-            loadingMeals: true,
-            hide: 'none',
-        });
-        // setTimeout(() => {
-        //     this.setState({
+            // setTimeout(() => {
+            //     this.setState({
 
-        //     });
-        // }, 3000);
+            //     });
+            // }, 3000);
+        } else {
+            // preferences haven't changed, use cached meals
+            this.setState({
+                breakfastCount: this.state.breakfastCount + 1,
+                // -1 to account for the breakfast
+                mainCount: this.state.mainCount + this.state.numMeals - 1,
+            })
+        }
     };
-
-    calError = () => {
-        return (
-            <Alert>message="Error" type="error" showIcon</Alert>
-        )
-    }
 
     render() {
         return (
@@ -203,13 +218,20 @@ class NewLayout extends React.Component {
                         <div className="inputArea" >
                             <p className="leftColumnText">I want to eat &nbsp;
                                 <NumberFormat className='ant-input' id='calorieInput' style={{ width: '126px' }} suffix={' calories'}
-                                    defaultValue={2000} allowEmptyFormatting={true} onValueChange={(value) => { this.setState({ calories: Math.floor(value.floatValue) }) }}
+                                    defaultValue={2000} allowEmptyFormatting={true}
+                                    onValueChange={(value) => this.setState({
+                                        calories: Math.floor(value.floatValue),
+                                        changedPrefs: true,
+                                    })}
                                 />
                                 {/* <BetterInputNumber addonAfter="calories" /> */}
                             </p>
                             <p className="leftColumnText"> in &nbsp;
                                 <Select className="mealInput" defaultValue="3" style={{ width: '126px' }}
-                                    onChange={(value) => this.toggleShowMeals(value)}>
+                                    onChange={(value) => this.setState({
+                                        numMeals: parseInt(value),
+                                        changedPrefs: true,
+                                    })}>
                                     <Option className='camphorFont' value="1">1 meal</Option>
                                     <Option className='camphorFont' value="2">2 meals</Option>
                                     <Option className='camphorFont' value="3">3 meals</Option>
@@ -346,7 +368,7 @@ class NewLayout extends React.Component {
                                 paragraph={{ rows: 3, width: [250] }} />
                             <div className='mealCard' style={{ display: this.state.hide }}>
                                 <p>
-                                    {this.state.meals[0].name}
+                                    {this.state.meals[this.state.breakfastCount].name}
                                 </p>
                             </div>
                         </Card>
@@ -360,7 +382,7 @@ class NewLayout extends React.Component {
                                     paragraph={{ rows: 3, width: [250] }} />
                                 <div className='mealCard' style={{ display: this.state.hide }}>
                                     <p>
-                                        {this.state.meals[1].name}
+                                        {this.state.numMeals > 1 ? this.state.meals[this.state.mainCount].name : ''}
                                     </p>
                                 </div>
                             </Card>
@@ -374,7 +396,7 @@ class NewLayout extends React.Component {
                                     paragraph={{ rows: 3, width: [250] }} />
                                 <div className='mealCard' style={{ display: this.state.hide }}>
                                     <p>
-                                        {this.state.meals[2].name}
+                                        {this.state.numMeals > 2 ? this.state.meals[this.state.mainCount + 1].name : ''}
                                     </p>
                                 </div>
                             </Card>
@@ -388,7 +410,7 @@ class NewLayout extends React.Component {
                                     paragraph={{ rows: 3, width: [250] }} />
                                 <div className='mealCard' style={{ display: this.state.hide }}>
                                     <p>
-                                        {this.state.meals[3].name}
+                                        {this.state.numMeals > 3 ? this.state.meals[this.state.mainCount + 2].name : ''}
                                     </p>
                                 </div>
                             </Card>
@@ -402,7 +424,7 @@ class NewLayout extends React.Component {
                                     paragraph={{ rows: 3, width: [250] }} />
                                 <div className='mealCard' style={{ display: this.state.hide }}>
                                     <p>
-                                        {this.state.meals[4].name}
+                                        {this.state.numMeals > 4 ? this.state.meals[this.state.mainCount + 3].name : ''}
                                     </p>
                                 </div>
                             </Card>
@@ -416,7 +438,7 @@ class NewLayout extends React.Component {
                                     paragraph={{ rows: 3, width: [250] }} />
                                 <div className='mealCard' style={{ display: this.state.hide }}>
                                     <p>
-                                        {this.state.meals[5].name}
+                                        {this.state.numMeals > 5 ? this.state.meals[this.state.mainCount + 4].name : ''}
                                     </p>
                                 </div>
                             </Card>
