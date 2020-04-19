@@ -4,7 +4,7 @@ import BaseRouter from './routes';
 import { connect } from 'react-redux';
 
 import 'antd/dist/antd.css';
-import CustomLayout from './containers/Layout';
+// import CustomLayout from './containers/Layout';
 import NewLayout from './containers/newLayout';
 import * as actions from './store/actions/auth';
 

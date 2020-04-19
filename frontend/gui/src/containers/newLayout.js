@@ -113,8 +113,6 @@ class NewLayout extends React.Component {
             }, 500);
         }
 
-
-
         if (this.state.changedPrefs) {
             // get the meal data with the given preferences
             // and once that data is recieved (.then), update the state
@@ -200,12 +198,14 @@ class NewLayout extends React.Component {
                         </button>
                     </div>
                     <div className='hamburger' style={{ padding: '0 30px 0 0', margin: '0 0 0 auto' }}>
-                        <Dropdown overlay={<Menu>
-                            <Menu.Item key="1"><a href="#">How it works</a></Menu.Item>
-                            <Menu.Item key="2"><a href="#">About</a></Menu.Item>
-                            <Menu.Divider />
-                            <Menu.Item key="3"><a href="#">Sign in →</a></Menu.Item>
-                        </Menu>} trigger={['click']}>
+                        <Dropdown overlay={
+                            <Menu>
+                                <Menu.Item key="1"><a href="#">How it works</a></Menu.Item>
+                                <Menu.Item key="2"><a href="#">About</a></Menu.Item>
+                                <Menu.Divider />
+                                <Menu.Item key="3"><a href="#">Sign in →</a></Menu.Item>
+                            </Menu>
+                        } trigger={['click']}>
                             <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
                                 <MenuOutlined style={{ fontSize: '22px', color: 'white' }} />
                             </a>
@@ -281,11 +281,17 @@ class NewLayout extends React.Component {
 
                             <br />
 
-                            <div>
+                            {/* <div>
                                 <Button type="primary" id='generateButton' loading={this.state.loadingMeals}
                                     icon={<SyncOutlined />} onClick={this.onClickGenerateButton}>
                                     Generate
-                            </Button>
+                                </Button>
+                            </div> */}
+
+                            <div>
+                                <a className='genButton' onClick={this.onClickGenerateButton} style={{ color: 'white' }}>
+                                    {this.state.loadingMeals ? <SyncOutlined spin /> : <SyncOutlined />}&nbsp; GENERATE
+                                </a>
                             </div>
                         </div>
 
@@ -373,7 +379,7 @@ class NewLayout extends React.Component {
                         <Card title={this.state.numMeals == 1 ? "Feast" :
                             (this.state.numMeals == 2 ? "Brunch" : "Breakfast")}
                             extra={this.state.meals[0].calories + " calories"}
-                            style={{ width: 350, height: 200 }} hoverable={true}
+                            style={{ width: 350, height: 200, }} hoverable={true}
                             headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                             {/* <Meta
                                 avatar={

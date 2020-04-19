@@ -11,6 +11,10 @@
 
 /* ant design dark mode header: rgb(4, 20, 40 */
 
+/* card-shadow:  4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06)!important */
+
+@card-head-color: red !important;
+
 :root{
     --mainTextColor: #32323c;
 }
@@ -220,6 +224,37 @@ button{
 #generateButton{
     font-family: 'Camphor';
     font-weight: 400;
+}
+
+.genButton {
+    white-space: nowrap;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 14px;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    background: rgb(70,182,121);/*#3ecf8e; */
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    color: #fff;
+    text-decoration: none;
+    transition:all .15s ease
+}
+
+.genButton:hover, .genButton:focus {
+    /* color: #7795f8; */
+    transform: translateY(-1px);
+    box-shadow: 0 13px 27px -5px rgba(50, 50, 93, .25), 0 8px 16px -8px rgba(0, 0, 0, .3), 0 -6px 16px -6px rgba(0, 0, 0, .025);
+    box-shadow:0 7px 14px rgba(50, 50, 93, .1), 0 3px 6px rgba(0, 0, 0, .08)
+}
+
+.genButton:active {
+    /* color: #555abf; */
+    /* background-color: #f6f9fc; */
+    transform: translateY(1px);
+    box-shadow:0 6px 12px -2px rgba(50, 50, 93, .25), 0 3px 7px -3px rgba(0, 0, 0, .3)
 }
 
 #mealCard{
