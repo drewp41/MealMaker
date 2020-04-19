@@ -147,18 +147,24 @@ class NewLayout extends React.Component {
                 loadingMeals: true,
                 hide: 'none',
             });
-            // setTimeout(() => {
-            //     this.setState({
-
-            //     });
-            // }, 3000);
         } else {
             // preferences haven't changed, use cached meals
+            // load the meals for a second, to make it seem more real
             this.setState({
-                breakfastCount: this.state.breakfastCount + 1,
-                // -1 to account for the breakfast
-                mainCount: this.state.mainCount + this.state.numMeals - 1,
+                displayMeals: false,
+                loadingMeals: true,
+                hide: 'none',
             })
+            setTimeout(() => {
+                this.setState({
+                    loadingMeals: false,
+                    displayMeals: true,
+                    hide: 'block',
+                    breakfastCount: this.state.breakfastCount + 1,
+                    // -1 to account for the breakfast
+                    mainCount: this.state.mainCount + this.state.numMeals - 1,
+                });
+            }, 1000);
         }
     };
 
@@ -248,7 +254,7 @@ class NewLayout extends React.Component {
                                 </Select>
                             </p>
 
-                            <Collapse bordered={true} expandIconPosition='right' activeKey={this.state.enableMacros ? 1 : 0} style={{ marginLeft: 'auto', width: '257px' }}>
+                            <Collapse bordered={false} expandIconPosition='right' activeKey={this.state.enableMacros ? 1 : 0} style={{ marginLeft: 'auto', width: '257px' }}>
                                 <Panel header={<text id="macroSwitchText">Macro Preferences&nbsp;&nbsp;</text>} showArrow={true} key="1"
                                     extra={<Switch defaultChecked={false} onChange={this.macroSwitch} />}
                                 >

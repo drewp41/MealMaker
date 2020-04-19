@@ -49,8 +49,6 @@ async function fetchData(cals, numMeals, carbs, protein, fat) {
             axios.get(breakfastUrl),
             axios.get(mainUrl),
         ]);
-        console.log(breakfastUrl);
-        console.log(mainUrl);
         return [breakfastData, mainData];
     } catch (error) {
         console.log(error, "error");
@@ -62,6 +60,8 @@ export async function fetchMeals(cals, numMeals, carbs = 0, protein = 0, fat = 0
         .then(d => {
             const breakfastData = d[0].data.results;
             const mainData = d[1].data.results;
+            console.log(breakfastData);
+            console.log(mainData);
             // return an array of meals
             // with each meal of the form
             // [name of food, calories, carbs, protein, 
@@ -76,9 +76,12 @@ export async function fetchMeals(cals, numMeals, carbs = 0, protein = 0, fat = 0
                 const protein = Math.floor(elem.nutrition[1].amount);
                 const fat = Math.floor(elem.nutrition[2].amount);
                 let instructions = [];
-                elem.analyzedInstructions[0].steps.forEach((inst) => {
-                    instructions.push(inst.step);
-                })
+                let instArr = elem.analyzedInstructions;
+                if (instArr && instArr.length) {
+                    instArr[0].steps.forEach((inst) => {
+                        instructions.push(inst.step);
+                    })
+                }
                 let ingredients = [];
                 elem.missedIngredients.forEach((ing) => {
                     ingredients.push(ing.original);
@@ -100,9 +103,12 @@ export async function fetchMeals(cals, numMeals, carbs = 0, protein = 0, fat = 0
                 const protein = Math.floor(elem.nutrition[1].amount);
                 const fat = Math.floor(elem.nutrition[2].amount);
                 let instructions = [];
-                elem.analyzedInstructions[0].steps.forEach((inst) => {
-                    instructions.push(inst.step);
-                })
+                let instArr = elem.analyzedInstructions;
+                if (instArr && instArr.length) {
+                    instArr[0].steps.forEach((inst) => {
+                        instructions.push(inst.step);
+                    })
+                }
                 let ingredients = [];
                 elem.missedIngredients.forEach((ing) => {
                     ingredients.push(ing.original);
