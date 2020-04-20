@@ -14,7 +14,9 @@
 
 /* card-shadow:  4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06)!important */
 
-@card-head-color: red !important;
+.ant-collapse-header{
+    background-color:white !important;
+ }
 
 :root{
     --mainTextColor: #32323c;
@@ -59,16 +61,16 @@
 	        transform-style: preserve-3d;
 }
 
-#pt::afterr {
+#pt::after {
 	position: absolute;
 	content: '';
 	border-radius: 1px;
 	width: 100%;
 	height: 5px;
-	bottom: 5px;
+	bottom: 2px;
     left: 0;
-    background: #42af2a;
-    /* background:rgb(71,181,122); */
+    /* background: #42af2a; */
+    background:rgb(71,181,122);
 	/* background: -webkit-gradient(linear, right top, left top, from(#f8416c), color-stop(#f1e319), color-stop(#3bef17), color-stop(#02bafe), color-stop(#3bef17), color-stop(#f1e319), to(#f8416c));
 	background: -webkit-linear-gradient(right, #f8416c, #f1e319, #3bef17, #02bafe, #3bef17, #f1e319, #f8416c);
 	background: -o-linear-gradient(right, #f8416c, #f1e319, #3bef17, #02bafe, #3bef17, #f1e319, #f8416c); */
@@ -84,8 +86,8 @@
 	z-index: 2;
 	width: 100%;
     height: .35em;
-    background: #42af2a;
-    /* background:rgb(71,181,122); */
+    /* background: #42af2a; */
+    background:rgb(71,181,122);
 	/* background: -webkit-gradient(linear, right top, left top, from(#f8416c), color-stop(#f1e319), color-stop(#3bef17), color-stop(#02bafe), color-stop(#3bef17), color-stop(#f1e319), to(#f8416c));
 	background: -webkit-linear-gradient(right, #f8416c, #f1e319, #3bef17, #02bafe, #3bef17, #f1e319, #f8416c);
 	background: -o-linear-gradient(right, #f8416c, #f1e319, #3bef17, #02bafe, #3bef17, #f1e319, #f8416c); */
@@ -208,10 +210,13 @@ button{
     }
 }
 
-/* Condense menu to hamburger?? */
-@media screen and (max-width: 700px) {
+/* Condense menu to hamburger */
+@media screen and (max-width: 650px) {
     .rowHeader div:not(.colHeaderL):not(.hamburger) {display: none;}
     .hamburger {
+        display: block !important;
+    }
+    #pt {
         display: block !important;
     }
 }
@@ -231,7 +236,7 @@ button{
 }
 
 .colHeaderL {
-    min-width: 210px; 
+    min-width: 180px; 
 }
 
 .colHeaderMid {

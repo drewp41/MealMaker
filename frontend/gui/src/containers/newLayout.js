@@ -24,7 +24,6 @@ import blueLogo from '../blueMMM.png';
 import greenLogo from '../greenMMM.png';
 import whiteLogo from '../whiteMMM.png';
 import recoloredLogo from '../recoloredMMM.png';
-import darkerRecoloredLogo from '../darkerRecoloredMMM.png'
 
 import groceries from '../FoodIcons/groceries.svg';
 
@@ -178,28 +177,28 @@ class NewLayout extends React.Component {
     render() {
         return (
 
-            // backgroundColor: 'rgb(241, 242, 245)' , borderTop: '6px solid #348a20'
+            // was backgroundColor: 'rgb(241, 242, 245)'
             <div style={{ backgroundColor: 'rgb(242, 242, 242)' }}>
                 <div id="topLine"></div>
                 {/* Header */}
-                {/* backgroundColor: 'rgb(4, 21, 40)' */}
                 <div className='rowHeader' style={{
                     backgroundColor: 'rgb(242, 242, 242)', height: '80px',
-                    // borderBottom: '2px solid rgb(233, 234, 237)',
                     boxShadow: '0px 2px 20px 0px rgba(0, 0, 0, 0.08)'
                 }}>
-                    <div className='headerLRSpace' style={{ borderBottom: 'none' }}></div>
-                    {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
+                    <div className='headerLRSpace'></div>
+                    {/* <div style={{ 'border-left': '1px solid black' }} /> */}
                     {/* <a href='#'>
                         <img src={recoloredLogo} alt="logo" style={{ width: 66, height: 100, margin: '0 0 0 15px' }} draggable='false' />
                     </a> */}
-                    <div className='colHeaderL'>
+                    <div className='colHeaderL' style={{ padding: '0 0 0 25px' }}>
                         {/* <button className="logoText" id="logo" style={{ height: '60px', width: '210px', textIndent: '-20px', }}>
                             &nbsp;Macro Meal Maker
                         </button> */}
-                        <div id="pt">
-                            mealmaker.io
-                        </div>
+                        <a style={{ color: 'inherit' }}>
+                            <div id="pt">
+                                mealmaker.io
+                            </div>
+                        </a>
                     </div>
                     {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
                     <div className='headerCenterLeftSpace'></div>
@@ -230,7 +229,7 @@ class NewLayout extends React.Component {
                             </Menu>
                         } trigger={['click']}>
                             <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                                <MenuOutlined style={{ fontSize: '22px', color: 'white' }} />
+                                <MenuOutlined style={{ fontSize: '22px', color: '#404040' }} />
                             </a>
                         </Dropdown>
                     </div>
@@ -262,12 +261,12 @@ class NewLayout extends React.Component {
                                         numMeals: parseInt(value),
                                         changedPrefs: true,
                                     })}>
-                                    <Option className='camphorFont' value="1">1 meal</Option>
-                                    <Option className='camphorFont' value="2">2 meals</Option>
-                                    <Option className='camphorFont' value="3">3 meals</Option>
-                                    <Option className='camphorFont' value="4">4 meals</Option>
-                                    <Option className='camphorFont' value="5">5 meals</Option>
-                                    <Option className='camphorFont' value="6">6 meals</Option>
+                                    <Option className='camphorFont' value="1" style={{ fontSize: '15px' }}>1 meal</Option>
+                                    <Option className='camphorFont' value="2" style={{ fontSize: '15px' }}>2 meals</Option>
+                                    <Option className='camphorFont' value="3" style={{ fontSize: '15px' }}>3 meals</Option>
+                                    <Option className='camphorFont' value="4" style={{ fontSize: '15px' }}>4 meals</Option>
+                                    <Option className='camphorFont' value="5" style={{ fontSize: '15px' }}>5 meals</Option>
+                                    <Option className='camphorFont' value="6" style={{ fontSize: '15px' }}>6 meals</Option>
                                 </Select>
                             </p>
 
@@ -275,30 +274,34 @@ class NewLayout extends React.Component {
                                 <Panel header={<text id="macroSwitchText">Macro Preferences&nbsp;&nbsp;</text>} showArrow={true} key="1"
                                     extra={<Switch defaultChecked={false} onChange={this.macroSwitch} />}
                                 >
-                                    <p className="macroText">Carbohydrates:&nbsp;
+                                    <p />
+                                    <div className="macroText">Carbohydrates:&nbsp;
                                         <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={220}
                                             allowEmptyFormatting={true} style={{ width: '80px' }}
                                             onValueChange={(values) => this.setState({
                                                 carbs: Math.floor(values.floatValue),
                                             })}
                                         />
-                                    </p>
-                                    <p className="macroText">Protein:&nbsp;
+                                    </div>
+                                    <p />
+                                    <div className="macroText">Protein:&nbsp;
                                         <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={130}
                                             allowEmptyFormatting={true} style={{ width: '80px' }}
                                             onValueChange={(values) => this.setState({
                                                 protein: Math.floor(values.floatValue),
                                             })}
                                         />
-                                    </p>
-                                    <p className="macroText">Fat:&nbsp;
+                                    </div>
+                                    <p />
+                                    <div className="macroText">Fat:&nbsp;
                                         <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={65}
                                             allowEmptyFormatting={true} style={{ width: '80px' }}
                                             onValueChange={(values) => this.setState({
                                                 fat: Math.floor(values.floatValue),
                                             })}
                                         />
-                                    </p>
+                                    </div>
+
                                 </Panel>
                             </Collapse>
 
