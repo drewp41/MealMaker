@@ -404,7 +404,7 @@ class NewLayout extends React.Component {
                     <div className="rightColumn">
                         <Card title={this.state.numMeals == 1 ? "Feast" :
                             (this.state.numMeals == 2 ? "Brunch" : "Breakfast")}
-                            extra={this.state.meals[0].calories + " calories"}
+                            extra={this.state.meals[this.state.breakfastCount].calories + " calories"}
                             style={{ width: 350, height: 200, }} hoverable={true}
                             headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                             {/* <Meta
@@ -423,7 +423,7 @@ class NewLayout extends React.Component {
                         <div className={this.state.numMeals < 2 ? 'hidden' : ''}>
                             <br />
                             <Card title={this.state.numMeals == 2 ? "Dinner" : "Lunch"}
-                                extra={this.state.meals[1].calories + " calories"}
+                                extra={(this.state.numMeals > 1 ? this.state.meals[this.state.mainCount].calories : '0') + " calories"}
                                 style={{ width: 350, height: 200 }} hoverable={true}
                                 headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                                 <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
@@ -437,7 +437,8 @@ class NewLayout extends React.Component {
                         </div>
                         <div className={this.state.numMeals < 3 ? 'hidden' : ''}>
                             <br />
-                            <Card title="Dinner" extra={this.state.meals[2].calories + " calories"}
+                            <Card title="Dinner"
+                                extra={(this.state.numMeals > 2 ? this.state.meals[this.state.mainCount + 1].calories : '0') + " calories"}
                                 style={{ width: 350, height: 200 }} hoverable={true}
                                 headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                                 <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
@@ -451,7 +452,8 @@ class NewLayout extends React.Component {
                         </div>
                         <div className={this.state.numMeals < 4 ? 'hidden' : ''}>
                             <br />
-                            <Card title="Snack" extra={this.state.meals[3].calories + " calories"}
+                            <Card title="Snack"
+                                extra={(this.state.numMeals > 3 ? this.state.meals[this.state.mainCount + 2].calories : '0') + " calories"}
                                 style={{ width: 350, height: 200 }} hoverable={true}
                                 headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                                 <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
@@ -465,7 +467,8 @@ class NewLayout extends React.Component {
                         </div>
                         <div className={this.state.numMeals < 5 ? 'hidden' : ''}>
                             <br />
-                            <Card title="Snack" extra={this.state.meals[4].calories + " calories"}
+                            <Card title="Snack"
+                                extra={(this.state.numMeals > 4 ? this.state.meals[this.state.mainCount + 3].calories : '0') + " calories"}
                                 style={{ width: 350, height: 200 }} hoverable={true}
                                 headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                                 <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
@@ -479,7 +482,8 @@ class NewLayout extends React.Component {
                         </div>
                         <div className={this.state.numMeals < 6 ? 'hidden' : ''}>
                             <br />
-                            <Card title="Snack" extra={this.state.meals[5].calories + " calories"}
+                            <Card title="Snack"
+                                extra={(this.state.numMeals > 5 ? this.state.meals[this.state.mainCount + 4].calories : '0') + " calories"}
                                 style={{ width: 350, height: 200 }} hoverable={true}
                                 headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                                 <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
