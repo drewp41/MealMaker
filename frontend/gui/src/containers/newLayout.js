@@ -20,6 +20,12 @@ import ReactG2Plot from 'react-g2plot';
 import NumberFormat from 'react-number-format';
 
 import logo from '../MMM.png';
+import blueLogo from '../blueMMM.png';
+import greenLogo from '../greenMMM.png';
+import whiteLogo from '../whiteMMM.png';
+import recoloredLogo from '../recoloredMMM.png';
+import darkerRecoloredLogo from '../darkerRecoloredMMM.png'
+
 import groceries from '../FoodIcons/groceries.svg';
 
 import { fetchMeals } from './FoodGenerator.js';
@@ -47,6 +53,7 @@ padding: 5px 1em 0 2em;
 */
 
 //"background-color": "#383838"
+
 
 
 class NewLayout extends React.Component {
@@ -171,18 +178,28 @@ class NewLayout extends React.Component {
     render() {
         return (
 
-            <div style={{ backgroundColor: 'rgb(241, 242, 245)' }}>
+            // backgroundColor: 'rgb(241, 242, 245)' , borderTop: '6px solid #348a20'
+            <div style={{ backgroundColor: 'rgb(242, 242, 242)' }}>
+                <div id="topLine"></div>
                 {/* Header */}
-                <div className='rowHeader' style={{ backgroundColor: 'rgb(4, 21, 40)', height: '100px' }}>
-                    <div className='headerLRSpace'></div>
+                {/* backgroundColor: 'rgb(4, 21, 40)' */}
+                <div className='rowHeader' style={{
+                    backgroundColor: 'rgb(242, 242, 242)', height: '80px',
+                    // borderBottom: '2px solid rgb(233, 234, 237)',
+                    boxShadow: '0px 2px 20px 0px rgba(0, 0, 0, 0.08)'
+                }}>
+                    <div className='headerLRSpace' style={{ borderBottom: 'none' }}></div>
                     {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
-                    <a href='#'>
-                        <img src={logo} alt="logo" style={{ width: 66, height: 100, margin: '0 0 0 15px' }} draggable='false' />
-                    </a>
+                    {/* <a href='#'>
+                        <img src={recoloredLogo} alt="logo" style={{ width: 66, height: 100, margin: '0 0 0 15px' }} draggable='false' />
+                    </a> */}
                     <div className='colHeaderL'>
-                        <button className="logoText" id="logo" style={{ height: '60px', width: '210px', textIndent: '-20px' }}>
-                            Macro Meal Maker
-                        </button>
+                        {/* <button className="logoText" id="logo" style={{ height: '60px', width: '210px', textIndent: '-20px', }}>
+                            &nbsp;Macro Meal Maker
+                        </button> */}
+                        <div id="pt">
+                            mealmaker.io
+                        </div>
                     </div>
                     {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
                     <div className='headerCenterLeftSpace'></div>
