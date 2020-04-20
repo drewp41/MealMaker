@@ -188,11 +188,12 @@ class NewLayout extends React.Component {
                     <div className='headerLRSpace'></div>
                     {/* <div style={{ 'border-left': '1px solid black' }} /> */}
                     {/* <a href='#'>
-                        <img src={recoloredLogo} alt="logo" style={{ width: 66, height: 100, margin: '0 0 0 15px' }} draggable='false' />
+                        <img src={recoloredLogo} alt="logo" style={{ width: 53, height: 80, margin: '0 0 0 15px' }} draggable='false' />
                     </a> */}
+                    {/* 25px padding for using the .io text without the logo */}
                     <div className='colHeaderL' style={{ padding: '0 0 0 25px' }}>
                         {/* <button className="logoText" id="logo" style={{ height: '60px', width: '210px', textIndent: '-20px', }}>
-                            &nbsp;Macro Meal Maker
+                            Macro Meal Maker
                         </button> */}
                         <a style={{ color: 'inherit' }}>
                             <div id="pt">

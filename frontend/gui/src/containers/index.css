@@ -32,7 +32,7 @@
     font-family: 'Camphor';
     font-weight: 600;
     /* color: var(--mainTextColor); */
-    color:#484848;
+    /* color:#484848; */
     /* color:rgb(72,90,122); */
     /* color: rgb(57,71,105); */
     /* color: #2f7e1e; */
@@ -43,6 +43,8 @@
     font-size: 24px;
     font-family: 'Camphor';
     font-weight: 700;
+    /* color:#484848; */
+    /* color:red; */
 	width: -webkit-fit-content;
 	width: -moz-fit-content;
 	width: fit-content;
@@ -61,7 +63,7 @@
 	        transform-style: preserve-3d;
 }
 
-#pt::after {
+#pt::afterr {
 	position: absolute;
 	content: '';
 	border-radius: 1px;
