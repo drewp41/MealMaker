@@ -20,10 +20,8 @@ import ReactG2Plot from 'react-g2plot';
 import NumberFormat from 'react-number-format';
 
 import logo from '../MMM.png';
-import blueLogo from '../blueMMM.png';
-import greenLogo from '../greenMMM.png';
-import whiteLogo from '../whiteMMM.png';
 import recoloredLogo from '../recoloredMMM.png';
+import otherLogo from '../otherLogo.png';
 
 import groceries from '../FoodIcons/groceries.svg';
 
@@ -188,10 +186,13 @@ class NewLayout extends React.Component {
                     <div className='headerLRSpace'></div>
                     {/* <div style={{ 'border-left': '1px solid black' }} /> */}
                     {/* <a href='#'>
+                        <img src={otherLogo} alt="logo" style={{ width: 60, height: 60, margin: '0 0 0 15px' }} draggable='false' />
+                    </a> */}
+                    {/* <a href='#'>
                         <img src={recoloredLogo} alt="logo" style={{ width: 53, height: 80, margin: '0 0 0 15px' }} draggable='false' />
                     </a> */}
                     {/* 25px padding for using the .io text without the logo */}
-                    <div className='colHeaderL' style={{ padding: '0 0 0 25px' }}>
+                    <div className='colHeaderL' style={{ padding: '0 0 0 10px' }}>
                         {/* <button className="logoText" id="logo" style={{ height: '60px', width: '210px', textIndent: '-20px', }}>
                             Macro Meal Maker
                         </button> */}
@@ -403,17 +404,23 @@ class NewLayout extends React.Component {
                     <div style={{ borderLeft: '1px solid silver' }} />
 
                     <div className="rightColumn">
-                        <Card title={this.state.numMeals == 1 ? "Feast" :
+
+                        <a className='globalFooterCard'>
+                            {/* <p>hi</p> */}
+                        </a>
+
+                        <Card className="cardShadow2" title={this.state.numMeals == 1 ? "Feast" :
                             (this.state.numMeals == 2 ? "Brunch" : "Breakfast")}
                             extra={this.state.meals[this.state.breakfastCount].calories + " calories"}
-                            style={{ width: 350, height: 200, }} hoverable={true}
+                            style={{ width: 350, height: 200 }} bordered={false}
                             headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                             {/* <Meta
                                 avatar={
                                     <Avatar src={groceries} />
                                 }
                             /> */}
-                            <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
+                            <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
+                                active={this.state.loadingMeals}
                                 paragraph={{ rows: 3, width: [250] }} />
                             <div className='mealCard' style={{ display: this.state.hide }}>
                                 <p>
@@ -423,9 +430,9 @@ class NewLayout extends React.Component {
                         </Card>
                         <div className={this.state.numMeals < 2 ? 'hidden' : ''}>
                             <br />
-                            <Card title={this.state.numMeals == 2 ? "Dinner" : "Lunch"}
+                            <Card className="cardShadow2" title={this.state.numMeals == 2 ? "Dinner" : "Lunch"}
                                 extra={(this.state.numMeals > 1 ? this.state.meals[this.state.mainCount].calories : '0') + " calories"}
-                                style={{ width: 350, height: 200 }} hoverable={true}
+                                style={{ width: 350, height: 200 }} bordered={false}
                                 headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                                 <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
                                     paragraph={{ rows: 3, width: [250] }} />
@@ -438,9 +445,9 @@ class NewLayout extends React.Component {
                         </div>
                         <div className={this.state.numMeals < 3 ? 'hidden' : ''}>
                             <br />
-                            <Card title="Dinner"
+                            <Card className="cardShadow2" title="Dinner"
                                 extra={(this.state.numMeals > 2 ? this.state.meals[this.state.mainCount + 1].calories : '0') + " calories"}
-                                style={{ width: 350, height: 200 }} hoverable={true}
+                                style={{ width: 350, height: 200 }} bordered={false}
                                 headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                                 <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
                                     paragraph={{ rows: 3, width: [250] }} />
@@ -453,9 +460,9 @@ class NewLayout extends React.Component {
                         </div>
                         <div className={this.state.numMeals < 4 ? 'hidden' : ''}>
                             <br />
-                            <Card title="Snack"
+                            <Card className="cardShadow2" title="Snack"
                                 extra={(this.state.numMeals > 3 ? this.state.meals[this.state.mainCount + 2].calories : '0') + " calories"}
-                                style={{ width: 350, height: 200 }} hoverable={true}
+                                style={{ width: 350, height: 200 }} bordered={false}
                                 headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                                 <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
                                     paragraph={{ rows: 3, width: [250] }} />
@@ -468,9 +475,9 @@ class NewLayout extends React.Component {
                         </div>
                         <div className={this.state.numMeals < 5 ? 'hidden' : ''}>
                             <br />
-                            <Card title="Snack"
+                            <Card className="cardShadow2" title="Snack"
                                 extra={(this.state.numMeals > 4 ? this.state.meals[this.state.mainCount + 3].calories : '0') + " calories"}
-                                style={{ width: 350, height: 200 }} hoverable={true}
+                                style={{ width: 350, height: 200 }} bordered={false}
                                 headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                                 <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
                                     paragraph={{ rows: 3, width: [250] }} />
@@ -483,9 +490,9 @@ class NewLayout extends React.Component {
                         </div>
                         <div className={this.state.numMeals < 6 ? 'hidden' : ''}>
                             <br />
-                            <Card title="Snack"
+                            <Card className="cardShadow2" title="Snack"
                                 extra={(this.state.numMeals > 5 ? this.state.meals[this.state.mainCount + 4].calories : '0') + " calories"}
-                                style={{ width: 350, height: 200 }} hoverable={true}
+                                style={{ width: 350, height: 200 }} bordered={false}
                                 headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                                 <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
                                     paragraph={{ rows: 3, width: [250] }} />

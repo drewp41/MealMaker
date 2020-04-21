@@ -370,3 +370,34 @@ a:hover, a:active{
     color: var(--mainTextColor);
 }
 
+/* more shadow, same hover */
+.cardShadow1 {
+    box-shadow:0 7px 14px 0 rgba(50, 50, 93, .1), 0 3px 6px 0 rgba(0, 0, 0, .07);
+    transition-property: color, background-color, box-shadow, transform;
+    transition-duration:.15s
+}
+.cardShadow1:hover{
+    transform:translateY(-2px)
+}
+.cardShadow1:active, .cardShadow1:hover{
+    box-shadow:0 15px 30px -6px rgba(50, 50, 93, .25), 0 9px 18px -9px rgba(0, 0, 0, .3), 0 -6px 18px -4px rgba(0, 0, 0, .025)
+}
+.cardShadow1:active {
+    transform:translateY(2px)
+}
+
+/* less shadow, same hover.  This one is in use */
+.cardShadow2 {
+    box-shadow:0 5px 10px 0 rgba(50, 50, 93, .1), 0 2px 4px 0 rgba(0, 0, 0, .07);
+    transition-property: color, background-color, box-shadow, transform;
+    transition-duration:.15s
+}
+.cardShadow2:hover{
+    transform:translateY(-2px)
+}
+.cardShadow2:active, .cardShadow2:hover{
+    box-shadow:0 15px 30px -6px rgba(50, 50, 93, .25), 0 9px 18px -9px rgba(0, 0, 0, .3), 0 -6px 18px -4px rgba(0, 0, 0, .025)
+}
+.cardShadow2:active {
+    transform:translateY(2px)
+}
