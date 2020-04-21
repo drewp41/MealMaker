@@ -272,11 +272,10 @@ class NewLayout extends React.Component {
                                 </Select>
                             </p>
 
-                            <Collapse bordered={false} expandIconPosition='right' activeKey={this.state.enableMacros ? 1 : 0} style={{ marginLeft: 'auto', width: '257px' }}>
-                                <Panel header={<text id="macroSwitchText">Macro Preferences&nbsp;&nbsp;</text>} showArrow={true} key="1"
+                            <Collapse bordered={true} expandIconPosition='right' activeKey={this.state.enableMacros ? 1 : 0} style={{ marginLeft: 'auto', width: '257px' }}>
+                                <Panel header={<b id="macroSwitchText">Macro Preferences&nbsp;&nbsp;</b>} showArrow={true} key="1"
                                     extra={<Switch defaultChecked={false} onChange={this.macroSwitch} />}
                                 >
-                                    <p />
                                     <div className="macroText">Carbohydrates:&nbsp;
                                         <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={220}
                                             allowEmptyFormatting={true} style={{ width: '80px' }}
