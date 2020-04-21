@@ -192,7 +192,7 @@ class NewLayout extends React.Component {
                         <img src={recoloredLogo} alt="logo" style={{ width: 53, height: 80, margin: '0 0 0 15px' }} draggable='false' />
                     </a> */}
                     {/* 25px padding for using the .io text without the logo */}
-                    <div className='colHeaderL' style={{ padding: '0 0 0 10px' }}>
+                    <div className='colHeaderL' style={{ padding: '0 0 0 20px' }}>
                         {/* <button className="logoText" id="logo" style={{ height: '60px', width: '210px', textIndent: '-20px', }}>
                             Macro Meal Maker
                         </button> */}
@@ -390,7 +390,8 @@ class NewLayout extends React.Component {
                                     },
                                     tooltip: {
                                         //offset: 100,
-                                    }
+                                    },
+                                    responsive: true
                                 }}
                             />
                         </div>
