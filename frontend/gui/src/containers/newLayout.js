@@ -315,11 +315,10 @@ class NewLayout extends React.Component {
                                 </Button>
                             </div> */}
 
-                            <div>
-                                <a className='genButton' onClick={this.onClickGenerateButton} style={{ color: 'white' }}>
-                                    {this.state.loadingMeals ? <SyncOutlined spin /> : <SyncOutlined />}&nbsp; GENERATE
-                                </a>
-                            </div>
+                            {/* GENERATE BUTTON */}
+                            <a className='genButton' onClick={this.onClickGenerateButton} style={{ color: 'white' }}>
+                                {this.state.loadingMeals ? <SyncOutlined spin /> : <SyncOutlined />}&nbsp; GENERATE
+                            </a>
                         </div>
 
                         <br />
@@ -396,11 +395,10 @@ class NewLayout extends React.Component {
                             />
                         </div>
 
-
                     </div>
 
 
-                    <div style={{ borderLeft: '1px solid silver' }} />
+                    <div style={{ borderLeft: '2px solid #e0e0e0' }} />
 
                     <div className="rightColumn">
 
@@ -503,12 +501,12 @@ class NewLayout extends React.Component {
                             </Card>
                         </div>
                     </div>
-                </div>
+                </div >
 
                 <div className="main" style={{ minHeight: 200 }}>
                 </div>
 
-                <div style={{ borderTop: '1px solid silver', width: '92%', margin: '0 auto' }} />
+                <div style={{ borderTop: '2px solid #e0e0e0', width: '92%', margin: '0 auto' }} />
 
                 <div className="rowFooter" style={{ margin: '25px 0 0 0', fontFamily: 'Camphor', fontSize: '15px' }}>
                     <div className="colFooter" style={{ padding: '0 50px 0 0' }}>
