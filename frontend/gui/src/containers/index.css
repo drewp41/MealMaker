@@ -1,33 +1,56 @@
 @import url("font.css");
 
-/* Camphor font weight: 300-600 */
-
-/* .ant-menu{background-color: #262130}  */
-
-/*  stripe's backgroundColor: 'rgb(247,249,252)', 
-    regular blackText: rgb(84,95,125) or for more emphasized: rgb(50,51,90) */
-
-/* <meta name="viewport" content="width=device-width, initial-scale=1.0"> */
-
-/* ant design dark mode header: rgb(4, 20, 40 */
-
-/* card-shadow:  4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06)!important */
-
-.ant-collapse-header{
-    background-color:white !important;
- }
+/* Camphor font weight: 300-700, 500 is bugged */
 
 :root{
     --mainTextColor: #32323c;
 }
 
-/* green = #348a20
-    orange = #FF8200 */
+.hidden {
+    display: none;
+}
+
+
+.camphorFont{
+    font-family: 'Camphor';
+}
+
+
+/*
+=======================================================
+                        HEADER
+=======================================================
+*/
+
+
+#topLine {
+	z-index: 2;
+	width: 100%;
+    height: .35em;
+    /* background: #42af2a; */
+    background:rgb(71,181,122);
+	/* background: -webkit-gradient(linear, right top, left top, from(#f8416c), color-stop(#f1e319), color-stop(#3bef17), color-stop(#02bafe), color-stop(#3bef17), color-stop(#f1e319), to(#f8416c));
+	background: -webkit-linear-gradient(right, #f8416c, #f1e319, #3bef17, #02bafe, #3bef17, #f1e319, #f8416c);
+	background: -o-linear-gradient(right, #f8416c, #f1e319, #3bef17, #02bafe, #3bef17, #f1e319, #f8416c); */
+	/* background: linear-gradient(270deg, #f8416c, #f1e319, #3bef17, #02bafe, #3bef17, #f1e319, #f8416c); */
+	background-size: 1500% 1500%;
+	-webkit-animation: header_slide 25s linear infinite;
+	        animation: header_slide 25s linear infinite;
+}
+
+.rowHeader {
+    display: flex;
+    /* align-items:center; */
+    background-color: rgb(242, 242, 242);
+    box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.08);
+    transition-duration: .15s;
+    overflow: hidden;
+    /* flex-wrap: wrap; */
+    /* flex-direction: column; */
+}
 
 .logoText{
     font-size: 24px;
-    /* font-family: 'Poppins'; */
-    /* font-weight: 900; */
     font-family: 'Camphor';
     font-weight: 600;
     /* color: var(--mainTextColor); */
@@ -57,9 +80,9 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
-    animation: header_slide 25s linear infinite; */
+    animation: header_slide 25s linear infinite; 
 	-webkit-transform-style: preserve-3d;
-	        transform-style: preserve-3d;
+	        transform-style: preserve-3d;*/
 }
 
 #pt::afterr {
@@ -83,28 +106,12 @@
 	        transform: translateZ(-1px);
 }
 
-#topLine {
-	z-index: 2;
-	width: 100%;
-    height: .35em;
-    /* background: #42af2a; */
-    background:rgb(71,181,122);
-	/* background: -webkit-gradient(linear, right top, left top, from(#f8416c), color-stop(#f1e319), color-stop(#3bef17), color-stop(#02bafe), color-stop(#3bef17), color-stop(#f1e319), to(#f8416c));
-	background: -webkit-linear-gradient(right, #f8416c, #f1e319, #3bef17, #02bafe, #3bef17, #f1e319, #f8416c);
-	background: -o-linear-gradient(right, #f8416c, #f1e319, #3bef17, #02bafe, #3bef17, #f1e319, #f8416c); */
-	/* background: linear-gradient(270deg, #f8416c, #f1e319, #3bef17, #02bafe, #3bef17, #f1e319, #f8416c); */
-	background-size: 1500% 1500%;
-	-webkit-animation: header_slide 25s linear infinite;
-	        animation: header_slide 25s linear infinite;
-}
- 
 .headerText{ 
     font-size: 17px;
     font-family: 'Camphor';
     font-weight: 300;
     color: var(--mainTextColor);
     /* color: rgb(57,71,105); */
-    /* color: #369122; */
     /* color:white; */
 }
 
@@ -112,6 +119,7 @@
     transition: padding 0.25s;
 }
 
+/* change to header buttons only */
 button{
     background: none;
 	color: inherit;
@@ -130,110 +138,8 @@ button{
     padding: 6px;
 }
 
-.headerBorderBottom {
-    border-bottom: '2px solid rgb(233, 234, 237)';
-    /* bottom: 50%; */
-}
-
-#captionText{
-    font-size: 25px;
-    font-family: 'Camphor';
-    font-weight: 300;
-    color: var(--mainTextColor);
-}
-
-.row {
-    display: flex;
-}
-
-.column {
-    flex: 50%;
-}
-
-.inputArea {
-    margin: 0 90px 0 0;
-}
-
-.leftColumn {
-    flex: 50%;
-    padding: 15px 0 0 0;
-    text-align: right;
-}
-
-.rightColumn {
-    flex: 50%;
-    padding: 15px 0 0 90px;
-}
-
-.pieTitle {
-    padding: 0 125px 0 0;
-}
-
-.pieDiv {
-    margin: 0 50px 0 auto;
-}
-
-
-/* when screen width is small enough, columns are stacked on top of each other */
-/* ----------- 0px - 937px ----------- */
-@media screen and (max-width: 937px) {
-    .row {
-        flex-direction: column;
-    }
-  
-    .leftColumn {
-        order: 1;
-        margin: 0 auto;
-        padding: 0;
-    }
-  
-    .rightColumn {
-        order: 2;
-        margin: 30px auto 0 auto;
-        padding: 0;
-    }
-
-    .inputArea {
-        /* centers it a little better */
-        margin: 0 45px 0 0;
-    }
-
-    .pieTitle {
-        /* padding: 0 73px 0 0px; */
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .pieDiv {
-        margin: 0 auto;
-    }
-}
-
-/* Condense menu to hamburger */
-@media screen and (max-width: 650px) {
-    .rowHeader div:not(.colHeaderL):not(.hamburgerMenu) {display: none;}
-    .hamburgerMenu {
-        display: block !important;
-    }
-    #pt {
-        display: block !important;
-    }
-}
-
-
-.rowFooter {
-    display: flex;
-}
-
-.colFooter {
-    flex: 50%;
-}
-
-.rowHeader {
-    display: flex;
-    /* align-items:center; */
+.hamburgerMenu {
+    display: none;
 }
 
 .colHeaderL {
@@ -259,9 +165,67 @@ button{
     flex: 0 1 290px;
 }
 
-.hamburgerMenu {
-    display: none;
+/* Condense menu to hamburger */
+@media screen and (max-width: 650px) {
+    .rowHeader div:not(.colHeaderL):not(.hamburgerMenu) {display: none;}
+    .hamburgerMenu {
+        display: block !important;
+    }
+    #pt {
+        display: block !important;
+    }
 }
+
+
+/*
+=======================================================
+                  MAIN TWO COLUMN BODY
+=======================================================
+*/
+
+
+#captionText{
+    font-size: 25px;
+    font-family: 'Camphor';
+    font-weight: 300;
+    color: var(--mainTextColor);
+}
+
+.mainBodyRow {
+    display: flex;
+}
+
+.column {
+    flex: 50%;
+}
+
+.leftColumn {
+    flex: 50%;
+    padding: 15px 0 0 0;
+    text-align: right;
+}
+
+.rightColumn {
+    flex: 50%;
+    padding: 15px 0 0 90px;
+}
+
+.inputArea {
+    margin: 0 90px 0 0;
+}
+
+.pieTitle {
+    padding: 0 125px 0 0;
+}
+
+.pieDiv {
+    margin: 0 50px 0 auto;
+}
+
+/* override collape component color */
+.ant-collapse-header{
+    background-color:white !important;
+ }
 
 .leftColumnText{
     font-size: 20px;
@@ -347,19 +311,11 @@ button{
     font-weight: 600;
 }
 
-.camphorFont{
-    font-family: 'Camphor';
-}
-
 a:link, a:visited{
     color:#707078;
 }
 a:hover, a:active{
     color: var(--mainTextColor);
-}
-
-.hidden {
-    display: none;
 }
 
 .mealCard{
@@ -400,3 +356,67 @@ a:hover, a:active{
 .cardShadow2:active {
     transform:translateY(2px)
 }
+
+/* when screen width is small enough, columns are stacked on top of each other */
+/* ----------- 0px - 937px ----------- */
+@media screen and (max-width: 937px) {
+    .mainBodyRow {
+        flex-direction: column;
+    }
+  
+    .leftColumn {
+        order: 1;
+        margin: 0 auto;
+        padding: 0;
+    }
+  
+    .rightColumn {
+        order: 2;
+        margin: 30px auto 0 auto;
+        padding: 0;
+    }
+
+    .inputArea {
+        /* centers it a little better */
+        margin: 0 45px 0 0;
+    }
+
+    .pieTitle {
+        /* padding: 0 73px 0 0px; */
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .pieDiv {
+        margin: 0 auto;
+    }
+}
+
+
+/*
+=======================================================
+                        FOOTER
+=======================================================
+*/
+
+
+.rowFooter {
+    display: flex;
+}
+
+.colFooter {
+    flex: 50%;
+}
+
+
+
+
+/* Inserting this collapsed row between two flex items will make 
+ * the flex item that comes after it break to a new row */
+ .break {
+    /* flex-basis: 100%; */
+    /* height: 0; */
+    width: 100%;
+  }

@@ -169,8 +169,7 @@ class NewLayout extends React.Component {
                 <div id="topLine"></div>
                 {/* Header */}
                 <div className='rowHeader' style={{
-                    backgroundColor: 'rgb(242, 242, 242)', height: this.state.headerHeight,
-                    boxShadow: '0px 2px 20px 0px rgba(0, 0, 0, 0.08)', transitionDuration: '.15s'
+                    height: this.state.headerHeight
                 }}>
                     <div className='headerLRSpace'></div>
                     {/* <a href='#'>
@@ -212,26 +211,9 @@ class NewLayout extends React.Component {
                             <text id="signInArrow">Sign in</text> <text > →</text>
                         </button>
                     </div>
-                    {/* <div className='hamburger' style={{ padding: '0 30px 0 0', margin: '0 0 0 auto' }}>
-                        <Dropdown overlay={
-                            <Menu>
-                                <Menu.Item key="1"><a href="#">How it works</a></Menu.Item>
-                                <Menu.Item key="2"><a href="#">About</a></Menu.Item>
-                                <Menu.Divider />
-                                <Menu.Item key="3"><a href="#">Sign in →</a></Menu.Item>
-                            </Menu>
-                        } trigger={['click']}>
-                            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                                <MenuOutlined style={{ fontSize: '22px', color: '#404040' }} />
-                            </a>
-                        </Dropdown>
-                    </div> */}
 
-                    {/* shifted down 27px to center it vertically in the header */}
+                    {/* shifted down 30px to center it vertically in the header */}
                     <div className='hamburgerMenu' style={{ padding: '30px 25px 0 0', margin: '0 0 0 auto' }}>
-                        {/* <a className="ant-dropdown-link" onClick={e => this.setState({ headerHeight: '200px' })}>
-                            <MenuOutlined style={{ fontSize: '22px', color: '#404040' }} />
-                        </a> */}
                         <button className={this.state.hamburgerActive ? 'hamburger hamburger--slider is-active' :
                             'hamburger hamburger--slider'}
                             type="button"
@@ -246,13 +228,15 @@ class NewLayout extends React.Component {
                     </div>
 
                     <div className='headerLRSpace'></div>
+                    {/* <div className="break"></div> */}
+                    {/* <div style={{ flexDirection: 'row' }}>About</div> */}
                 </div>
 
                 <div style={{ margin: '55px 0 55px 0', textAlign: 'center' }}>
                     <b id="captionText">Create a customized meal plan in seconds.</b>
                 </div>
 
-                <div className="row" style={{ minHeight: 680 }}>
+                <div className="mainBodyRow" style={{ minHeight: 680 }}>
                     <div className="leftColumn">
                         {/* has a margin of 90 on the right so that the pie chart is alligned with it */}
                         <div className="inputArea" >
@@ -282,7 +266,7 @@ class NewLayout extends React.Component {
                             </p>
 
                             <Collapse bordered={true} expandIconPosition='right' activeKey={this.state.enableMacros ? 1 : 0} style={{ marginLeft: 'auto', width: '257px' }}>
-                                <Panel header={<b id="macroSwitchText">Macro Preferences&nbsp;&nbsp;</b>} showArrow={true} key="1"
+                                <Panel header={<b id="macroSwitchText">Macro Prefences&nbsp;&nbsp;</b>} showArrow={true} key="1"
                                     extra={<Switch defaultChecked={false} onChange={this.macroSwitch} />}
                                 >
                                     <div className="macroText">Carbohydrates:&nbsp;
