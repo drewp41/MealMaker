@@ -75,11 +75,7 @@
     font-family: 'Camphor';
     font-weight: 600;
     /* color: var(--mainTextColor); */
-    /* color:#484848; */
-    /* color:rgb(72,90,122); */
-    /* color: rgb(57,71,105); */
     /* color: #2f7e1e; */
-    /* color: white; */
 }
 
 #pt {
@@ -87,7 +83,6 @@
     font-family: 'Camphor';
     font-weight: 700;
     /* color:#484848; */
-    /* color:red; */
 	width: -webkit-fit-content;
 	width: -moz-fit-content;
 	width: fit-content;
@@ -132,8 +127,6 @@
     font-family: 'Camphor';
     font-weight: 300;
     color: var(--mainTextColor);
-    /* color: rgb(57,71,105); */
-    /* color:white; */
 }
 
 #signInArrow{ 
@@ -161,42 +154,30 @@ button{
 
 .hamburgerMenu {
     display: none;
-    /* flex-direction: row; */
-    /* flex: 1 1 200px; */
 }
 
 .colHeaderL {
     min-width: 180px; 
-    /* flex-direction: row; */
-    /* flex: 1 1 200px; */
 }
 
 .colHeaderMid {
     min-width: 250px;
-    /* flex-direction: row; */
 
 }
 
 .colHeaderR {
     min-width: 130px; 
-    /* flex-direction: row; */
-    /* flex: 1 1 200px; */
 }
 
 .headerLRSpace {
     flex: 1 1 auto;
-    /* flex-direction: row; */
-    /* flex: 1 1 200px; */
 }
 
 .headerCenterLeftSpace {
     flex: 0 1 190px;
-    /* flex-direction: row; */
-    /* width: 100px; */
 }
 .headerCenterRightSpace {
     flex: 0 1 290px;
-    /* flex-direction: row; */
 }
 
 /* Condense menu to hamburger */
