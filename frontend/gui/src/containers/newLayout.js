@@ -47,7 +47,7 @@ class NewLayout extends React.Component {
         this.emptyMeals = Array(18).fill({
             name: '', calories: 0, carbs: 0,
             protein: 0, fat: 0, ingredients: [],
-            instructions: []
+            instructions: [], servings: 0
         });
         this.state = {
             calories: 2000,
@@ -269,7 +269,7 @@ class NewLayout extends React.Component {
                                 </Select>
                             </p>
 
-                            <Collapse bordered={true} expandIconPosition='right' activeKey={this.state.enableMacros ? 1 : 0} style={{ marginLeft: 'auto', width: '257px' }}>
+                            <Collapse bordered={true} expandIconPosition='right' activeKey={this.state.enableMacros ? 1 : 0} style={{ marginLeft: 'auto', width: '242px' }}>
                                 <Panel header={<b id="macroSwitchText">Macro Prefences&nbsp;&nbsp;</b>} showArrow={true} key="1"
                                     extra={<Switch defaultChecked={false} onChange={this.macroSwitch} />}
                                 >
@@ -402,19 +402,25 @@ class NewLayout extends React.Component {
                             extra={this.state.meals[this.state.breakfastCount].calories + " calories"}
                             style={{ width: 350, height: 200 }} bordered={false}
                             headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                            {/* <Meta
-                                avatar={
-                                    <Avatar src={groceries} />
-                                }
-                            /> */}
+
                             <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
                                 active={this.state.loadingMeals}
-                                paragraph={{ rows: 3, width: [250] }} />
-                            <div className='mealCard' style={{ display: this.state.hide }}>
+                                paragraph={{ rows: 3, width: [250] }} >
+                                <Meta
+                                    className='mealCard'
+                                    avatar={
+                                        <Avatar src={groceries} />
+                                    }
+                                    title={this.state.meals[this.state.breakfastCount].name}
+                                    description={this.state.meals[this.state.breakfastCount].servings + ' servings'}
+
+                                />
+                            </Skeleton>
+                            {/* <div className='mealCard' style={{ display: this.state.hide }}>
                                 <p>
                                     {this.state.meals[this.state.breakfastCount].name}
                                 </p>
-                            </div>
+                            </div> */}
                         </Card>
                         <div className={this.state.numMeals < 2 ? 'hidden' : ''}>
                             <br />

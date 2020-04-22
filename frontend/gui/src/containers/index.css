@@ -1,6 +1,10 @@
 @import url("font.css");
-
 /* Camphor font weight: 300-700, 500 is bugged */
+
+/* @import url("coolLinks.css"); */
+/* <nav class="cl-effect-3">
+                        <a href="#">Hello</a>
+                    </nav> */
 
 :root{
     --mainTextColor: #32323c;
@@ -319,11 +323,6 @@ button {
     /* background-color: #f6f9fc; */
     transform: translateY(1px);
     box-shadow:0 6px 12px -2px rgba(50, 50, 93, .25), 0 3px 7px -3px rgba(0, 0, 0, .3)
-}
-
-#mealCard{
-    font-family: 'Camphor';
-    font-weight: 600;
 }
 
 a:link, a:visited{

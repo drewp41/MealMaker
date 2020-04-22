@@ -86,11 +86,13 @@ export async function fetchMeals(cals, numMeals, carbs = 0, protein = 0, fat = 0
                 elem.missedIngredients.forEach((ing) => {
                     ingredients.push(ing.original);
                 })
+                const servings = elem.servings;
                 const obj = {
                     name: name, calories: calories, carbs: carbs,
                     protein: protein, fat: fat, ingredients: ingredients,
-                    instructions: instructions,
+                    instructions: instructions, servings: servings
                 };
+
                 breakfastRes.push(obj);
             })
 
