@@ -134,7 +134,7 @@
 }
 
 /* change to header buttons only */
-button{
+button {
     background: none;
 	color: inherit;
 	border: none;
@@ -144,11 +144,11 @@ button{
 	outline: inherit;
 }
 
-.headerText:hover, .logoText:hover{ 
+.headerText:hover, .logoText:hover, .condensedHeaderText:hover { 
     color: grey 
 }
 
-.headerText:hover #signInArrow{
+.headerText:hover #signInArrow {
     padding: 6px;
 }
 
