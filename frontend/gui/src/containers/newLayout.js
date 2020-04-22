@@ -28,30 +28,18 @@ import groceries from '../FoodIcons/groceries.svg';
 import { fetchMeals } from './FoodGenerator.js';
 import { SVG } from '@antv/g2plot/lib/dependents';
 
+import './hamb/hamburgers.scss';
+
 const { Header, Content, Footer } = Layout;
 const { Option } = Select;
 const { Panel } = Collapse;
 const { Meta } = Card;
+
+
+
 const mainTextColor = '#32323c'
 
-// padding is on the inside, margin is on the outside
-/* 
-Apply to all four sides 
-padding: 1em;
-
- vertical | horizontal 
-padding: 5% 10%;
-
- top | horizontal | bottom 
-padding: 1em 2em 2em;
-
- top | right | bottom | left 
-padding: 5px 1em 0 2em;
-*/
-
 //"background-color": "#383838"
-
-
 
 class NewLayout extends React.Component {
     constructor(props) {
@@ -86,6 +74,8 @@ class NewLayout extends React.Component {
             // when its false, don't call the database, and just spit out
             // one of the cached meals
             changedPrefs: true,
+            headerHeight: '80px',
+            hamburgerActive: false,
         };
     }
 
@@ -175,24 +165,23 @@ class NewLayout extends React.Component {
     render() {
         return (
 
-            // was backgroundColor: 'rgb(241, 242, 245)'
             <div style={{ backgroundColor: 'rgb(242, 242, 242)' }}>
                 <div id="topLine"></div>
                 {/* Header */}
                 <div className='rowHeader' style={{
-                    backgroundColor: 'rgb(242, 242, 242)', height: '80px',
-                    boxShadow: '0px 2px 20px 0px rgba(0, 0, 0, 0.08)'
+                    backgroundColor: 'rgb(242, 242, 242)', height: this.state.headerHeight,
+                    boxShadow: '0px 2px 20px 0px rgba(0, 0, 0, 0.08)', transitionDuration: '.15s'
                 }}>
                     <div className='headerLRSpace'></div>
-                    {/* <div style={{ 'border-left': '1px solid black' }} /> */}
                     {/* <a href='#'>
                         <img src={otherLogo} alt="logo" style={{ width: 60, height: 60, margin: '0 0 0 15px' }} draggable='false' />
                     </a> */}
                     {/* <a href='#'>
                         <img src={recoloredLogo} alt="logo" style={{ width: 53, height: 80, margin: '0 0 0 15px' }} draggable='false' />
                     </a> */}
-                    {/* 25px padding for using the .io text without the logo */}
-                    <div className='colHeaderL' style={{ padding: '0 0 0 20px' }}>
+
+                    {/* shifted down 21.5px to center it vertically in the header */}
+                    <div className='colHeaderL' style={{ padding: '21.5px 0 0 20px' }}>
                         {/* <button className="logoText" id="logo" style={{ height: '60px', width: '210px', textIndent: '-20px', }}>
                             Macro Meal Maker
                         </button> */}
@@ -202,10 +191,11 @@ class NewLayout extends React.Component {
                             </div>
                         </a>
                     </div>
-                    {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
+
                     <div className='headerCenterLeftSpace'></div>
-                    {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
-                    <div className='colHeaderMid'>
+
+                    {/* shifted down 10px to center it vertically in the header */}
+                    <div className='colHeaderMid' style={{ padding: '10px 0 0 0' }}>
                         <button className="headerText" style={{ height: '60px', width: '150px' }}>
                             How it works
                             </button>
@@ -213,15 +203,16 @@ class NewLayout extends React.Component {
                             About
                             </button>
                     </div>
-                    {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
+
                     <div className='headerCenterRightSpace'></div>
-                    {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
-                    <div className='colHeaderR'>
+
+                    {/* shifted down 10px to center it vertically in the header */}
+                    <div className='colHeaderR' style={{ padding: '10px 0 0 0' }}>
                         <button className="headerText" style={{ height: '60px', width: '130px' }}>
                             <text id="signInArrow">Sign in</text> <text > →</text>
                         </button>
                     </div>
-                    <div className='hamburger' style={{ padding: '0 30px 0 0', margin: '0 0 0 auto' }}>
+                    {/* <div className='hamburger' style={{ padding: '0 30px 0 0', margin: '0 0 0 auto' }}>
                         <Dropdown overlay={
                             <Menu>
                                 <Menu.Item key="1"><a href="#">How it works</a></Menu.Item>
@@ -234,8 +225,26 @@ class NewLayout extends React.Component {
                                 <MenuOutlined style={{ fontSize: '22px', color: '#404040' }} />
                             </a>
                         </Dropdown>
+                    </div> */}
+
+                    {/* shifted down 27px to center it vertically in the header */}
+                    <div className='hamburgerMenu' style={{ padding: '30px 25px 0 0', margin: '0 0 0 auto' }}>
+                        {/* <a className="ant-dropdown-link" onClick={e => this.setState({ headerHeight: '200px' })}>
+                            <MenuOutlined style={{ fontSize: '22px', color: '#404040' }} />
+                        </a> */}
+                        <button className={this.state.hamburgerActive ? 'hamburger hamburger--slider is-active' :
+                            'hamburger hamburger--slider'}
+                            type="button"
+                            onClick={e => this.setState({
+                                headerHeight: this.state.headerHeight == '300px' ? '80px' : '300px',
+                                hamburgerActive: !this.state.hamburgerActive,
+                            })}>
+                            <span className="hamburger-box">
+                                <span className="hamburger-inner"></span>
+                            </span>
+                        </button>
                     </div>
-                    {/* <div style={{ 'border-left': '1px solid silver' }} /> */}
+
                     <div className='headerLRSpace'></div>
                 </div>
 

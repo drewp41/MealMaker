@@ -1,5 +1,4 @@
 @import url("font.css");
-@import url("https://fonts.googleapis.com/css?family=Poppins:900&display=swap");
 
 /* Camphor font weight: 300-600 */
 
@@ -214,8 +213,8 @@ button{
 
 /* Condense menu to hamburger */
 @media screen and (max-width: 650px) {
-    .rowHeader div:not(.colHeaderL):not(.hamburger) {display: none;}
-    .hamburger {
+    .rowHeader div:not(.colHeaderL):not(.hamburgerMenu) {display: none;}
+    .hamburgerMenu {
         display: block !important;
     }
     #pt {
@@ -234,7 +233,7 @@ button{
 
 .rowHeader {
     display: flex;
-    align-items:center;
+    /* align-items:center; */
 }
 
 .colHeaderL {
@@ -260,7 +259,7 @@ button{
     flex: 0 1 290px;
 }
 
-.hamburger {
+.hamburgerMenu {
     display: none;
 }
 
