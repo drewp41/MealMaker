@@ -168,68 +168,72 @@ class NewLayout extends React.Component {
             <div style={{ backgroundColor: 'rgb(242, 242, 242)' }}>
                 <div id="topLine"></div>
                 {/* Header */}
-                <div className='rowHeader' style={{
-                    height: this.state.headerHeight
-                }}>
-                    <div className='headerLRSpace'></div>
-                    {/* <a href='#'>
-                        <img src={otherLogo} alt="logo" style={{ width: 60, height: 60, margin: '0 0 0 15px' }} draggable='false' />
-                    </a> */}
-                    {/* <a href='#'>
+                <div className='header' style={{ height: this.state.headerHeight }}>
+                    <div className='rowHeader'>
+                        <div className='headerLRSpace'></div>
+                        {/* <a href='#'>
                         <img src={recoloredLogo} alt="logo" style={{ width: 53, height: 80, margin: '0 0 0 15px' }} draggable='false' />
-                    </a> */}
-
-                    {/* shifted down 21.5px to center it vertically in the header */}
-                    <div className='colHeaderL' style={{ padding: '21.5px 0 0 20px' }}>
-                        {/* <button className="logoText" id="logo" style={{ height: '60px', width: '210px', textIndent: '-20px', }}>
+                        </a> */}
+                        {/* <a href='#'>
+                        <img src={otherLogo} alt="logo" style={{ width: 60, height: 60, margin: '0 0 0 15px' }} draggable='false' />
+                        </a> */}
+                        {/* shifted down 21.5px to center it vertically in the header */}
+                        <div className='colHeaderL' style={{ padding: '21.5px 0 0 20px' }}>
+                            {/* <button className="logoText" id="logo" style={{ height: '60px', width: '210px', textIndent: '-20px', }}>
                             Macro Meal Maker
                         </button> */}
-                        <a style={{ color: 'inherit' }}>
-                            <div id="pt">
-                                mealmaker.io
-                            </div>
-                        </a>
-                    </div>
+                            <a style={{ color: 'inherit' }}>
+                                <div id="pt">
+                                    mealmaker.io
+                                </div>
+                            </a>
+                        </div>
 
-                    <div className='headerCenterLeftSpace'></div>
+                        <div className='headerCenterLeftSpace'></div>
 
-                    {/* shifted down 10px to center it vertically in the header */}
-                    <div className='colHeaderMid' style={{ padding: '10px 0 0 0' }}>
-                        <button className="headerText" style={{ height: '60px', width: '150px' }}>
-                            How it works
+                        {/* shifted down 10px to center it vertically in the header */}
+                        <div className='colHeaderMid' style={{ padding: '10px 0 0 0' }}>
+                            <button className="headerText" style={{ height: '60px', width: '150px' }}>
+                                How it works
                             </button>
-                        <button className="headerText" style={{ height: '60px', width: '100px' }}>
-                            About
+                            <button className="headerText" style={{ height: '60px', width: '100px' }}>
+                                About
                             </button>
+                        </div>
+
+                        <div className='headerCenterRightSpace'></div>
+
+                        {/* shifted down 10px to center it vertically in the header */}
+                        <div className='colHeaderR' style={{ padding: '10px 0 0 0' }}>
+                            <button className="headerText" style={{ height: '60px', width: '130px' }}>
+                                <text id="signInArrow">Sign in</text> <text > →</text>
+                            </button>
+                        </div>
+
+                        {/* shifted down 30px to center it vertically in the header */}
+                        <div className='hamburgerMenu' style={{ padding: '30px 25px 0 0', margin: '0 0 0 auto' }}>
+                            <button className={this.state.hamburgerActive ? 'hamburger hamburger--slider is-active' :
+                                'hamburger hamburger--slider'}
+                                type="button"
+                                onClick={e => this.setState({
+                                    headerHeight: this.state.headerHeight == '250px' ? '80px' : '250px',
+                                    hamburgerActive: !this.state.hamburgerActive,
+                                })}>
+                                <span className="hamburger-box">
+                                    <span className="hamburger-inner"></span>
+                                </span>
+                            </button>
+                        </div>
+
+                        <div className='headerLRSpace'></div>
+                        {/* <div className="break"></div> */}
+                        {/* <div>About</div> */}
                     </div>
-
-                    <div className='headerCenterRightSpace'></div>
-
-                    {/* shifted down 10px to center it vertically in the header */}
-                    <div className='colHeaderR' style={{ padding: '10px 0 0 0' }}>
-                        <button className="headerText" style={{ height: '60px', width: '130px' }}>
-                            <text id="signInArrow">Sign in</text> <text > →</text>
-                        </button>
+                    <div className='condensedHeader'>
+                        <button className='condensedHeaderText' style={{ height: '45px', width: '120px' }}>How it works</button>
+                        <button className='condensedHeaderText' style={{ height: '45px', width: '70px' }}>About</button>
+                        <button className='condensedHeaderText' style={{ height: '45px', width: '80px' }}>Sign in</button>
                     </div>
-
-                    {/* shifted down 30px to center it vertically in the header */}
-                    <div className='hamburgerMenu' style={{ padding: '30px 25px 0 0', margin: '0 0 0 auto' }}>
-                        <button className={this.state.hamburgerActive ? 'hamburger hamburger--slider is-active' :
-                            'hamburger hamburger--slider'}
-                            type="button"
-                            onClick={e => this.setState({
-                                headerHeight: this.state.headerHeight == '300px' ? '80px' : '300px',
-                                hamburgerActive: !this.state.hamburgerActive,
-                            })}>
-                            <span className="hamburger-box">
-                                <span className="hamburger-inner"></span>
-                            </span>
-                        </button>
-                    </div>
-
-                    <div className='headerLRSpace'></div>
-                    {/* <div className="break"></div> */}
-                    {/* <div style={{ flexDirection: 'row' }}>About</div> */}
                 </div>
 
                 <div style={{ margin: '55px 0 55px 0', textAlign: 'center' }}>
@@ -300,13 +304,6 @@ class NewLayout extends React.Component {
                             </Collapse>
 
                             <br />
-
-                            {/* <div>
-                                <Button type="primary" id='generateButton' loading={this.state.loadingMeals}
-                                    icon={<SyncOutlined />} onClick={this.onClickGenerateButton}>
-                                    Generate
-                                </Button>
-                            </div> */}
 
                             {/* GENERATE BUTTON */}
                             <a className='genButton' onClick={this.onClickGenerateButton} style={{ color: 'white' }}>
