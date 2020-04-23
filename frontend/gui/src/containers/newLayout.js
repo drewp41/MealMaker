@@ -393,10 +393,6 @@ class NewLayout extends React.Component {
 
                     <div className="rightColumn">
 
-                        <a className='globalFooterCard'>
-                            {/* <p>hi</p> */}
-                        </a>
-
                         <Card className="cardShadow2" title={this.state.numMeals == 1 ? "Feast" :
                             (this.state.numMeals == 2 ? "Brunch" : "Breakfast")}
                             extra={this.state.meals[this.state.breakfastCount].calories + " calories"}
