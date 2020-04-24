@@ -39,21 +39,20 @@
 	background: -o-linear-gradient(right, #f8416c, #f1e319, #3bef17, #02bafe, #3bef17, #f1e319, #f8416c); */
 	/* background: linear-gradient(270deg, #f8416c, #f1e319, #3bef17, #02bafe, #3bef17, #f1e319, #f8416c); */
 	background-size: 1500% 1500%;
-	-webkit-animation: header_slide 25s linear infinite;
-	        animation: header_slide 25s linear infinite;
+	/* -webkit-animation: header_slide 25s linear infinite; */
+	/* animation: header_slide 25s linear infinite; */
 }
 
 .header {
     background-color: rgb(242, 242, 242);
     box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.08);
-    transition-duration: .15s;
+    transition: all .15s ease;
     overflow: hidden;
 }
 
 .rowHeader {
     height: 80px;
     display: flex;
-    transition-duration: .15s;
 }
 
 .condensedHeader {
@@ -308,7 +307,7 @@ button {
     letter-spacing: .04em;
     color: #fff;
     text-decoration: none;
-    transition:all .15s ease
+    transition: all .15s ease
 }
 
 .genButton:hover, .genButton:focus {

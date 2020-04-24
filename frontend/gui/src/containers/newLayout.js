@@ -180,7 +180,7 @@ class NewLayout extends React.Component {
                             <img src={otherLogo} alt="logo" style={{ width: 60, height: 60, margin: '0 0 0 15px' }} draggable='false' />
                         </a> */}
                         <a href='#'>
-                            <img src={coloredCarrot} alt="logo" style={{ width: 40, height: 40, margin: '16px 0 0 15px' }} draggable='false' />
+                            <img src={coloredCarrot} alt="logo" style={{ width: 35, height: 35, margin: '20px 0 0 15px' }} draggable='false' />
                         </a>
                         {/* shifted down 21.5px to center it vertically in the header */}
                         <div className='colHeaderL' style={{ padding: '21.5px 0 0 7px' }}>
