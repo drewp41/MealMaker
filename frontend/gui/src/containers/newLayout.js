@@ -22,6 +22,8 @@ import NumberFormat from 'react-number-format';
 import logo from '../MMM.png';
 import recoloredLogo from '../recoloredMMM.png';
 import otherLogo from '../otherLogo.png';
+import carrot from '../carrot.svg';
+import coloredCarrot from '../coloredCarrot.svg';
 
 import groceries from '../FoodIcons/groceries.svg';
 
@@ -175,14 +177,17 @@ class NewLayout extends React.Component {
                         <img src={recoloredLogo} alt="logo" style={{ width: 53, height: 80, margin: '0 0 0 15px' }} draggable='false' />
                         </a> */}
                         {/* <a href='#'>
-                        <img src={otherLogo} alt="logo" style={{ width: 60, height: 60, margin: '0 0 0 15px' }} draggable='false' />
+                            <img src={otherLogo} alt="logo" style={{ width: 60, height: 60, margin: '0 0 0 15px' }} draggable='false' />
                         </a> */}
+                        <a href='#'>
+                            <img src={coloredCarrot} alt="logo" style={{ width: 40, height: 40, margin: '16px 0 0 15px' }} draggable='false' />
+                        </a>
                         {/* shifted down 21.5px to center it vertically in the header */}
-                        <div className='colHeaderL' style={{ padding: '21.5px 0 0 20px' }}>
+                        <div className='colHeaderL' style={{ padding: '21.5px 0 0 7px' }}>
                             {/* <button className="logoText" id="logo" style={{ height: '60px', width: '210px', textIndent: '-20px', }}>
                             Macro Meal Maker
                         </button> */}
-                            <a style={{ color: 'inherit' }}>
+                            <a style={{ color: '#545454' }}>
                                 <div id="pt">
                                     mealmaker.io
                                 </div>
