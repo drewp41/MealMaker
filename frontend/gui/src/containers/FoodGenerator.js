@@ -26,7 +26,7 @@ async function fetchData(cals, numMeals, carbs, protein, fat) {
     let breakfastUrl = '';
     let mainUrl = '';
 
-    // macro prefs are turned off
+    // if macro prefs are turned off
     if (carbs === 0 && protein === 0 && fat === 0) {
         breakfastUrl = `${apiURL}${apiKey}&number=6`
             + `&minCalories=${minCals}&maxCalories=${maxCals}&minCarbs=0&minProtein=0&minFat=0&type=breakfast,brunch,morning+meal,`

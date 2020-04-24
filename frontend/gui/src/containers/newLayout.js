@@ -143,7 +143,7 @@ class NewLayout extends React.Component {
             });
         } else {
             // preferences haven't changed, use cached meals
-            // load the meals for a second, to make it seem more real
+            // load the meals for half a second, to make it seem more real
             this.setState({
                 displayMeals: false,
                 loadingMeals: true,
@@ -158,7 +158,7 @@ class NewLayout extends React.Component {
                     // -1 to account for the breakfast
                     mainCount: this.state.mainCount + this.state.numMeals - 1,
                 });
-            }, 1000);
+            }, 500);
         }
     };
 
@@ -393,12 +393,12 @@ class NewLayout extends React.Component {
 
                     <div className="rightColumn">
 
+                        {/* First card is always shown */}
                         <Card className="cardShadow2" title={this.state.numMeals == 1 ? "Feast" :
                             (this.state.numMeals == 2 ? "Brunch" : "Breakfast")}
                             extra={this.state.meals[this.state.breakfastCount].calories + " calories"}
                             style={{ width: 350, height: 200 }} bordered={false}
                             headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-
                             <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
                                 active={this.state.loadingMeals}
                                 paragraph={{ rows: 3, width: [250] }} >
@@ -408,91 +408,133 @@ class NewLayout extends React.Component {
                                         <Avatar src={groceries} />
                                     }
                                     title={this.state.meals[this.state.breakfastCount].name}
-                                    description={this.state.meals[this.state.breakfastCount].servings + ' servings'}
-
+                                    description={'C: ' + this.state.meals[this.state.breakfastCount].carbs +
+                                        ', P: ' + this.state.meals[this.state.breakfastCount].protein +
+                                        ', F: ' + this.state.meals[this.state.breakfastCount].fat}
                                 />
                             </Skeleton>
-                            {/* <div className='mealCard' style={{ display: this.state.hide }}>
-                                <p>
-                                    {this.state.meals[this.state.breakfastCount].name}
-                                </p>
-                            </div> */}
                         </Card>
-                        <div className={this.state.numMeals < 2 ? 'hidden' : ''}>
-                            <br />
-                            <Card className="cardShadow2" title={this.state.numMeals == 2 ? "Dinner" : "Lunch"}
-                                extra={(this.state.numMeals > 1 ? this.state.meals[this.state.mainCount].calories : '0') + " calories"}
-                                style={{ width: 350, height: 200 }} bordered={false}
-                                headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                                <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
-                                    paragraph={{ rows: 3, width: [250] }} />
-                                <div className='mealCard' style={{ display: this.state.hide }}>
-                                    <p>
-                                        {this.state.numMeals > 1 ? this.state.meals[this.state.mainCount].name : ''}
-                                    </p>
-                                </div>
-                            </Card>
-                        </div>
-                        <div className={this.state.numMeals < 3 ? 'hidden' : ''}>
-                            <br />
-                            <Card className="cardShadow2" title="Dinner"
-                                extra={(this.state.numMeals > 2 ? this.state.meals[this.state.mainCount + 1].calories : '0') + " calories"}
-                                style={{ width: 350, height: 200 }} bordered={false}
-                                headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                                <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
-                                    paragraph={{ rows: 3, width: [250] }} />
-                                <div className='mealCard' style={{ display: this.state.hide }}>
-                                    <p>
-                                        {this.state.numMeals > 2 ? this.state.meals[this.state.mainCount + 1].name : ''}
-                                    </p>
-                                </div>
-                            </Card>
-                        </div>
-                        <div className={this.state.numMeals < 4 ? 'hidden' : ''}>
-                            <br />
-                            <Card className="cardShadow2" title="Snack"
-                                extra={(this.state.numMeals > 3 ? this.state.meals[this.state.mainCount + 2].calories : '0') + " calories"}
-                                style={{ width: 350, height: 200 }} bordered={false}
-                                headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                                <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
-                                    paragraph={{ rows: 3, width: [250] }} />
-                                <div className='mealCard' style={{ display: this.state.hide }}>
-                                    <p>
-                                        {this.state.numMeals > 3 ? this.state.meals[this.state.mainCount + 2].name : ''}
-                                    </p>
-                                </div>
-                            </Card>
-                        </div>
-                        <div className={this.state.numMeals < 5 ? 'hidden' : ''}>
-                            <br />
-                            <Card className="cardShadow2" title="Snack"
-                                extra={(this.state.numMeals > 4 ? this.state.meals[this.state.mainCount + 3].calories : '0') + " calories"}
-                                style={{ width: 350, height: 200 }} bordered={false}
-                                headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                                <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
-                                    paragraph={{ rows: 3, width: [250] }} />
-                                <div className='mealCard' style={{ display: this.state.hide }}>
-                                    <p>
-                                        {this.state.numMeals > 4 ? this.state.meals[this.state.mainCount + 3].name : ''}
-                                    </p>
-                                </div>
-                            </Card>
-                        </div>
-                        <div className={this.state.numMeals < 6 ? 'hidden' : ''}>
-                            <br />
-                            <Card className="cardShadow2" title="Snack"
-                                extra={(this.state.numMeals > 5 ? this.state.meals[this.state.mainCount + 4].calories : '0') + " calories"}
-                                style={{ width: 350, height: 200 }} bordered={false}
-                                headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                                <Skeleton avatar={false} loading={!this.state.displayMeals} title={false} active={this.state.loadingMeals}
-                                    paragraph={{ rows: 3, width: [250] }} />
-                                <div className='mealCard' style={{ display: this.state.hide }}>
-                                    <p>
-                                        {this.state.numMeals > 5 ? this.state.meals[this.state.mainCount + 4].name : ''}
-                                    </p>
-                                </div>
-                            </Card>
-                        </div>
+
+                        {this.state.numMeals >= 2 &&
+                            <div>
+                                <br />
+                                <Card className="cardShadow2" title={this.state.numMeals == 2 ? "Dinner" : "Lunch"}
+                                    extra={(this.state.numMeals > 1 ? this.state.meals[this.state.mainCount].calories : '0') + " calories"}
+                                    style={{ width: 350, height: 200 }} bordered={false}
+                                    headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
+                                    <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
+                                        active={this.state.loadingMeals}
+                                        paragraph={{ rows: 3, width: [250] }} >
+                                        <Meta
+                                            className='mealCard'
+                                            avatar={
+                                                <Avatar src={groceries} />
+                                            }
+                                            title={this.state.meals[this.state.mainCount].name}
+                                            description={'C: ' + this.state.meals[this.state.mainCount].carbs +
+                                                ', P: ' + this.state.meals[this.state.mainCount].protein +
+                                                ', F: ' + this.state.meals[this.state.mainCount].fat}
+                                        />
+                                    </Skeleton>
+                                </Card>
+                            </div>
+                        }
+                        {this.state.numMeals >= 3 &&
+                            <div>
+                                <br />
+                                <Card className="cardShadow2" title="Dinner"
+                                    extra={(this.state.numMeals > 2 ? this.state.meals[this.state.mainCount + 1].calories : '0') + " calories"}
+                                    style={{ width: 350, height: 200 }} bordered={false}
+                                    headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
+                                    <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
+                                        active={this.state.loadingMeals}
+                                        paragraph={{ rows: 3, width: [250] }} >
+                                        <Meta
+                                            className='mealCard'
+                                            avatar={
+                                                <Avatar src={groceries} />
+                                            }
+                                            title={this.state.meals[this.state.mainCount + 1].name}
+                                            description={'C: ' + this.state.meals[this.state.mainCount + 1].carbs +
+                                                ', P: ' + this.state.meals[this.state.mainCount + 1].protein +
+                                                ', F: ' + this.state.meals[this.state.mainCount + 1].fat}
+                                        />
+                                    </Skeleton>
+                                </Card>
+                            </div>
+                        }
+                        {this.state.numMeals >= 4 &&
+                            <div>
+                                <br />
+                                <Card className="cardShadow2" title="Snack"
+                                    extra={(this.state.numMeals > 3 ? this.state.meals[this.state.mainCount + 2].calories : '0') + " calories"}
+                                    style={{ width: 350, height: 200 }} bordered={false}
+                                    headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
+                                    <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
+                                        active={this.state.loadingMeals}
+                                        paragraph={{ rows: 3, width: [250] }} >
+                                        <Meta
+                                            className='mealCard'
+                                            avatar={
+                                                <Avatar src={groceries} />
+                                            }
+                                            title={this.state.meals[this.state.mainCount + 2].name}
+                                            description={'C: ' + this.state.meals[this.state.mainCount + 2].carbs +
+                                                ', P: ' + this.state.meals[this.state.mainCount + 2].protein +
+                                                ', F: ' + this.state.meals[this.state.mainCount + 2].fat}
+                                        />
+                                    </Skeleton>
+                                </Card>
+                            </div>
+                        }
+                        {this.state.numMeals >= 5 &&
+                            <div>
+                                <br />
+                                <Card className="cardShadow2" title="Snack"
+                                    extra={(this.state.numMeals > 4 ? this.state.meals[this.state.mainCount + 3].calories : '0') + " calories"}
+                                    style={{ width: 350, height: 200 }} bordered={false}
+                                    headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
+                                    <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
+                                        active={this.state.loadingMeals}
+                                        paragraph={{ rows: 3, width: [250] }} >
+                                        <Meta
+                                            className='mealCard'
+                                            avatar={
+                                                <Avatar src={groceries} />
+                                            }
+                                            title={this.state.meals[this.state.mainCount + 3].name}
+                                            description={'C: ' + this.state.meals[this.state.mainCount + 3].carbs +
+                                                ', P: ' + this.state.meals[this.state.mainCount + 3].protein +
+                                                ', F: ' + this.state.meals[this.state.mainCount + 3].fat}
+                                        />
+                                    </Skeleton>
+                                </Card>
+                            </div>
+                        }
+                        {this.state.numMeals >= 6 &&
+                            <div>
+                                <br />
+                                <Card className="cardShadow2" title="Snack"
+                                    extra={(this.state.numMeals > 5 ? this.state.meals[this.state.mainCount + 4].calories : '0') + " calories"}
+                                    style={{ width: 350, height: 200 }} bordered={false}
+                                    headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
+                                    <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
+                                        active={this.state.loadingMeals}
+                                        paragraph={{ rows: 3, width: [250] }} >
+                                        <Meta
+                                            className='mealCard'
+                                            avatar={
+                                                <Avatar src={groceries} />
+                                            }
+                                            title={this.state.meals[this.state.mainCount + 4].name}
+                                            description={'C: ' + this.state.meals[this.state.mainCount + 4].carbs +
+                                                ', P: ' + this.state.meals[this.state.mainCount + 4].protein +
+                                                ', F: ' + this.state.meals[this.state.mainCount + 4].fat}
+                                        />
+                                    </Skeleton>
+                                </Card>
+                            </div>
+                        }
                     </div>
                 </div >
 
