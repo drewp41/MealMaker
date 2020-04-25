@@ -3,24 +3,8 @@ import { Creds } from './Credentials'
 
 import axios from "axios";
 
-// Create an Axios instance that all (most) the axios requests to Spoonacular will use
-const instance = axios.create({
-    method: 'get',
-    baseURL: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch',
-    headers: {
-        'content-type': 'application/octet-stream',
-        'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
-        'x-rapidapi-key': Creds.key,
-    },
-});
-
-// Parameters to be sent into all the get requests
-const defaultParams = {
-    'instructionsRequired': 'true',
-    'addRecipeInformation': 'true',
-    'fillIngredients': 'true',
-    'sort': 'random',
-}
+const apiURL = 'https://api.spoonacular.com/recipes/complexSearch';
+const apiKey = '?apiKey=' + Creds.key;
 
 async function fetchData(cals, numMeals, carbs, protein, fat) {
     const approxCals = Math.floor(cals / numMeals);
@@ -39,30 +23,31 @@ async function fetchData(cals, numMeals, carbs, protein, fat) {
     const minFat = Math.max(0, approxFat - 15);
     const maxFat = approxFat + 15;
 
+    let breakfastUrl = '';
+    let mainUrl = '';
+
+    // if macro prefs are turned off
+    if (carbs === 0 && protein === 0 && fat === 0) {
+        breakfastUrl = `${apiURL}${apiKey}&number=6`
+            + `&minCalories=${minCals}&maxCalories=${maxCals}&minCarbs=0&minProtein=0&minFat=0&type=breakfast,brunch,morning+meal,`
+            + `&instructionsRequired=true&addRecipeInformation=true&maxReadyTime=60&fillIngredients=true&sort=random`;
+        mainUrl = `${apiURL}${apiKey}&number=12`
+            + `&minCalories=${minCals}&maxCalories=${maxCals}&minCarbs=0&minProtein=0&minFat=0&type=main+course`
+            + `&instructionsRequired=true&addRecipeInformation=true&maxReadyTime=60&fillIngredients=true&sort=random`;
+    } else {
+        breakfastUrl = `${apiURL}${apiKey}&number=6`
+            + `&minCalories=${minCals}&maxCalories=${maxCals}&minCarbs=${minCarbs}&maxCarbs=${maxCarbs}`
+            + `&minProtein=${minProtein}&maxProtein=${maxProtein}&minFat=${minFat}&maxFat=${maxFat}&type=breakfast,brunch,morning+meal,`
+            + `&instructionsRequired=true&addRecipeInformation=true&maxReadyTime=60&fillIngredients=true&sort=random`;
+        mainUrl = `${apiURL}${apiKey}&number=12`
+            + `&minCalories=${minCals}&maxCalories=${maxCals}&minCarbs=${minCarbs}&maxCarbs=${maxCarbs}`
+            + `&minProtein=${minProtein}&maxProtein=${maxProtein}&minFat=${minFat}&maxFat=${maxFat}&type=main+course,`
+            + `&instructionsRequired=true&addRecipeInformation=true&maxReadyTime=60&fillIngredients=true&sort=random`;
+    }
     try {
         const [breakfastData, mainData] = await Promise.all([
-            instance({
-                "params": {
-                    ...defaultParams,
-                    'minCalories': '100',
-                    'minProtein': '0',
-                    'minCarbs': '0',
-                    'minFat': '0',
-                    'type': 'breakfast',
-                    'number': '6',
-                }
-            }),
-            instance({
-                "params": {
-                    ...defaultParams,
-                    'minCalories': '100',
-                    'minProtein': '0',
-                    'minCarbs': '0',
-                    'minFat': '0',
-                    'type': 'main+course',
-                    'number': '12',
-                }
-            })
+            axios.get(breakfastUrl),
+            axios.get(mainUrl),
         ]);
         return [breakfastData, mainData];
     } catch (error) {

@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@antv/g2plot": "^1.0.2",
-    "@opd/g2plot-react": "^1.1.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.1",
     "@testing-library/user-event": "^7.2.1",

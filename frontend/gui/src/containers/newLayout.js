@@ -6,7 +6,8 @@ import {
 } from 'antd';
 import {
     SyncOutlined, GithubOutlined,
-    LinkedinOutlined, MailOutlined, MenuOutlined
+    LinkedinOutlined, MailOutlined, MenuOutlined,
+    PushpinOutlined, PushpinFilled
 } from '@ant-design/icons';
 import { BetterInputNumber } from './betterInput';
 import { Link, withRouter } from 'react-router-dom';
@@ -15,7 +16,6 @@ import * as actions from '../store/actions/auth';
 import 'antd/dist/antd.css';
 import './index.css';
 import { Pie } from '@antv/g2plot';
-//import { Pie } from '@opd/g2plot-react'
 import ReactG2Plot from 'react-g2plot';
 import NumberFormat from 'react-number-format';
 
@@ -183,7 +183,7 @@ class NewLayout extends React.Component {
                             <img src={coloredCarrot} alt="logo" style={{ width: 35, height: 35, margin: '20px 0 0 15px' }} draggable='false' />
                         </a>
                         {/* shifted down 21.5px to center it vertically in the header */}
-                        <div className='colHeaderL' style={{ padding: '21.5px 0 0 7px' }}>
+                        <div className='colHeaderL' style={{ padding: '21.5px 0 0 9px' }}>
                             {/* <button className="logoText" id="logo" style={{ height: '60px', width: '210px', textIndent: '-20px', }}>
                             Macro Meal Maker
                         </button> */}
