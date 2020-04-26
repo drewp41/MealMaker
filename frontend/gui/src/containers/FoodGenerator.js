@@ -1,5 +1,8 @@
-// file for creating the actual meal plan
-import { Creds } from './Credentials'
+// ======= This is the file where the api calls are located  =======
+// ================ and the meal plan is made ======================
+
+import { Creds } from './Credentials';
+import { breakfastSides } from './BreakfastSides';
 
 import axios from "axios";
 
@@ -23,21 +26,14 @@ const defaultParams = {
 }
 
 async function fetchData(cals, numMeals, carbs, protein, fat) {
-    const approxCals = Math.floor(cals / numMeals);
-    const minCals = approxCals - 100;
-    const maxCals = approxCals + 100;
+    if (numMeals === 1) {
 
-    const approxCarbs = Math.floor(carbs / numMeals);
-    const minCarbs = Math.max(0, approxCarbs - 15);
-    const maxCarbs = approxCarbs + 15;
+    } else if (numMeals === 2) {
 
-    const approxProtein = Math.floor(protein / numMeals);
-    const minProtein = Math.max(0, approxProtein - 15);
-    const maxProtein = approxProtein + 15;
+    } else { //numMeals === 3-6
+        const approxCals = Math.floor(cals / numMeals);
 
-    const approxFat = Math.floor(fat / numMeals);
-    const minFat = Math.max(0, approxFat - 15);
-    const maxFat = approxFat + 15;
+    }
 
     try {
         const [breakfastData, mainData] = await Promise.all([
@@ -130,10 +126,11 @@ export async function fetchMeals(cals, numMeals, carbs = 0, protein = 0, fat = 0
                 elem.missedIngredients.forEach((ing) => {
                     ingredients.push(ing.original);
                 })
+                const servings = elem.servings;
                 const obj = {
                     name: name, calories: calories, carbs: carbs,
                     protein: protein, fat: fat, ingredients: ingredients,
-                    instructions: instructions,
+                    instructions: instructions, servings: servings
                 };
                 mainRes.push(obj);
             })

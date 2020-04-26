@@ -415,7 +415,8 @@ class NewLayout extends React.Component {
                                     title={this.state.meals[this.state.breakfastCount].name}
                                     description={'C: ' + this.state.meals[this.state.breakfastCount].carbs +
                                         ', P: ' + this.state.meals[this.state.breakfastCount].protein +
-                                        ', F: ' + this.state.meals[this.state.breakfastCount].fat}
+                                        ', F: ' + this.state.meals[this.state.breakfastCount].fat +
+                                        ', ' + this.state.meals[this.state.breakfastCount].servings + ' servings'}
                                 />
                             </Skeleton>
                         </Card>
@@ -438,7 +439,8 @@ class NewLayout extends React.Component {
                                             title={this.state.meals[this.state.mainCount].name}
                                             description={'C: ' + this.state.meals[this.state.mainCount].carbs +
                                                 ', P: ' + this.state.meals[this.state.mainCount].protein +
-                                                ', F: ' + this.state.meals[this.state.mainCount].fat}
+                                                ', F: ' + this.state.meals[this.state.mainCount].fat +
+                                                ', ' + this.state.meals[this.state.mainCount].servings + ' servings'}
                                         />
                                     </Skeleton>
                                 </Card>
@@ -462,7 +464,8 @@ class NewLayout extends React.Component {
                                             title={this.state.meals[this.state.mainCount + 1].name}
                                             description={'C: ' + this.state.meals[this.state.mainCount + 1].carbs +
                                                 ', P: ' + this.state.meals[this.state.mainCount + 1].protein +
-                                                ', F: ' + this.state.meals[this.state.mainCount + 1].fat}
+                                                ', F: ' + this.state.meals[this.state.mainCount + 1].fat +
+                                                ', ' + this.state.meals[this.state.mainCount + 1].servings + ' servings'}
                                         />
                                     </Skeleton>
                                 </Card>
@@ -486,7 +489,8 @@ class NewLayout extends React.Component {
                                             title={this.state.meals[this.state.mainCount + 2].name}
                                             description={'C: ' + this.state.meals[this.state.mainCount + 2].carbs +
                                                 ', P: ' + this.state.meals[this.state.mainCount + 2].protein +
-                                                ', F: ' + this.state.meals[this.state.mainCount + 2].fat}
+                                                ', F: ' + this.state.meals[this.state.mainCount + 2].fat +
+                                                ', ' + this.state.meals[this.state.mainCount + 2].servings + ' servings'}
                                         />
                                     </Skeleton>
                                 </Card>
@@ -510,7 +514,8 @@ class NewLayout extends React.Component {
                                             title={this.state.meals[this.state.mainCount + 3].name}
                                             description={'C: ' + this.state.meals[this.state.mainCount + 3].carbs +
                                                 ', P: ' + this.state.meals[this.state.mainCount + 3].protein +
-                                                ', F: ' + this.state.meals[this.state.mainCount + 3].fat}
+                                                ', F: ' + this.state.meals[this.state.mainCount + 3].fat +
+                                                ', ' + this.state.meals[this.state.mainCount + 3].servings + ' servings'}
                                         />
                                     </Skeleton>
                                 </Card>
@@ -534,7 +539,8 @@ class NewLayout extends React.Component {
                                             title={this.state.meals[this.state.mainCount + 4].name}
                                             description={'C: ' + this.state.meals[this.state.mainCount + 4].carbs +
                                                 ', P: ' + this.state.meals[this.state.mainCount + 4].protein +
-                                                ', F: ' + this.state.meals[this.state.mainCount + 4].fat}
+                                                ', F: ' + this.state.meals[this.state.mainCount + 4].fat +
+                                                ', ' + this.state.meals[this.state.mainCount + 4].servings + ' servings'}
                                         />
                                     </Skeleton>
                                 </Card>
