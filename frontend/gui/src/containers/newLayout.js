@@ -27,7 +27,7 @@ import coloredCarrot from '../coloredCarrot.svg';
 
 import groceries from '../FoodIcons/groceries.svg';
 
-import { fetchMeals } from './FoodGenerator.js';
+import { fetchMeals, fetchBreakfast, fetchMain } from './FoodGenerator.js';
 import { SVG } from '@antv/g2plot/lib/dependents';
 
 import './hamb/hamburgers.scss';
@@ -36,8 +36,6 @@ const { Header, Content, Footer } = Layout;
 const { Option } = Select;
 const { Panel } = Collapse;
 const { Meta } = Card;
-
-
 
 const mainTextColor = '#32323c'
 
@@ -51,6 +49,11 @@ class NewLayout extends React.Component {
             protein: 0, fat: 0, ingredients: [],
             instructions: [], servings: 0
         });
+        this.emptyMeal = {
+            name: '', calories: 0, carbs: 0,
+            protein: 0, fat: 0, ingredients: [],
+            instructions: [], servings: 0
+        }
         this.state = {
             calories: 2000,
             carbs: 220,
@@ -67,6 +70,8 @@ class NewLayout extends React.Component {
             // mainCount: mainMeals[Symbol.iterator](),
             breakfastCount: 0,
             mainCount: 0,
+            breakfastIter: null,
+            mainIter: null,
             // whether user wants macros factored into their preferences
             enableMacros: false,
             // when true, the load animations go off
@@ -80,6 +85,12 @@ class NewLayout extends React.Component {
             changedPrefs: true,
             headerHeight: '80px',
             hamburgerActive: false,
+            meal1: this.emptyMeal,
+            meal2: this.emptyMeal,
+            meal3: this.emptyMeal,
+            meal4: this.emptyMeal,
+            meal5: this.emptyMeal,
+            meal6: this.emptyMeal,
         };
     }
 
@@ -96,6 +107,89 @@ class NewLayout extends React.Component {
             enableMacros: !this.state.enableMacros,
             changedPrefs: true,
         })
+    }
+
+    regenMeal = () => {
+        this.setState({
+            loadingMeals: true,
+        })
+    }
+
+    updateMeal = (num) => {
+        // updates the meal to its next meal
+        const meal = 'meal' + num.toString();
+
+        // IF BREAKFAST
+        if (num == 1) {
+            // iterator returns {value, done}
+            const obj = this.state.breakfastIter.next();
+            if (!obj.done) {
+                this.setState({
+                    meal1: obj.value,
+                })
+            } else {
+                let carbVar = 0;
+                let proteinVar = 0;
+                let fatVar = 0;
+                if (this.state.enableMacros) {
+                    carbVar = this.state.carbs;
+                    proteinVar = this.state.protein;
+                    fatVar = this.state.fat;
+                }
+                const data = fetchBreakfast(this.state.calories, this.state.numMeals,
+                    carbVar, proteinVar, fatVar)
+                    .then(res => {
+                        this.setState({
+                            breakfastMeals: res[0],
+                            breakfastSides: res[1],
+                        }, () => {
+                            this.setState({
+                                breakfastIter: this.state.breakfastMeals[Symbol.iterator](),
+                            }, () => {
+                                // call the function again now that the meals are refreshed
+                                // and the iterator is at the '0th' meal
+                                this.updateMeal(num);
+                            })
+                        })
+                    });
+            }
+        }
+
+        // IF NOT BREAKFAST
+        else {
+            const obj = this.state.mainIter.next();
+            if (!obj.done) {
+                this.setState({
+                    // dynamic set the key to the correct meal
+                    [meal]: obj.value,
+                })
+            } else {
+                let carbVar = 0;
+                let proteinVar = 0;
+                let fatVar = 0;
+                if (this.state.enableMacros) {
+                    carbVar = this.state.carbs;
+                    proteinVar = this.state.protein;
+                    fatVar = this.state.fat;
+                }
+                const data = fetchMain(this.state.calories, this.state.numMeals,
+                    carbVar, proteinVar, fatVar)
+                    .then(res => {
+                        this.setState({
+                            mainMeals: res[0],
+                            mainSides: res[1],
+                        }, () => {
+                            this.setState({
+                                mainIter: this.state.mainMeals[Symbol.iterator](),
+                            }, () => {
+                                // call the function again now that the meals are refreshed
+                                // and the iterator is at the '0th' meal
+                                this.updateMeal(num);
+                            })
+                        })
+                    });
+            }
+        }
     }
 
     onClickGenerateButton = () => {
@@ -127,16 +221,30 @@ class NewLayout extends React.Component {
                 .then(res => {
                     console.log(res);
                     this.setState({
+                        breakfastMeals: res[0],
+                        breakfastSides: res[1],
+                        mainMeals: res[2],
+                        mainSides: res[3],
                         breakfastCount: 0,
-                        mainCount: 6,
-                        meals: res,
-                        loadingMeals: false,
-                        displayMeals: true,
-                        changedPrefs: false,
+                        mainCount: 0,
+                    }, () => { // after the meals are set
+                        this.setState({
+                            breakfastIter: this.state.breakfastMeals[Symbol.iterator](),
+                            mainIter: this.state.mainMeals[Symbol.iterator](),
+                        }, () => { // after the iterators are set, update all the meals
+                            for (let i = 1; i <= this.state.numMeals; i++) {
+                                this.updateMeal(i);
+                            }
+                            this.setState({
+                                loadingMeals: false,
+                                displayMeals: true,
+                                changedPrefs: false,
+                            })
+                        })
                     })
                 });
 
-            // set the loading and temp values while the meal data is laoding
+            // set the loading and temp values while the meal data is loading
             this.setState({
                 meals: this.emptyMeals,
                 displayMeals: false,
@@ -150,12 +258,15 @@ class NewLayout extends React.Component {
                 loadingMeals: true,
             })
             setTimeout(() => {
+                for (let i = 1; i <= this.state.numMeals; i++) {
+                    this.updateMeal(i);
+                }
                 this.setState({
                     loadingMeals: false,
                     displayMeals: true,
-                    breakfastCount: this.state.breakfastCount + 1,
+                    // breakfastCount: this.state.breakfastCount + 1,
                     // -1 to account for the breakfast
-                    mainCount: this.state.mainCount + this.state.numMeals - 1,
+                    // mainCount: this.state.mainCount + this.state.numMeals - 1,
                 });
             }, 500);
         }
@@ -391,11 +502,39 @@ class NewLayout extends React.Component {
                     <div style={{ borderLeft: '2px solid #e0e0e0' }} />
 
                     <div className="rightColumn">
+                        {/* TEST CARD */}
+                        <Card className="cardShadow2" title={this.state.numMeals == 1 ? "Feast" :
+                            (this.state.numMeals == 2 ? "Brunch" : "Breakfast")}
+                            extra={this.state.breakfastMeals[this.state.breakfastCount].calories + " calories"}
+                            style={{ width: 350, height: 200 }} bordered={false}
+                            headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
+                            <Skeleton avatar={false} loading={this.state.displayMeals} title={false}
+                                active={this.state.loadingMeals}
+                                paragraph={{ rows: 3, width: [250] }} >
+                                <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
+                                    <div style={{ float: 'right', fontSize: '18px' }}>
+                                        {this.state.loadingMeals ? <SyncOutlined spin /> : <SyncOutlined onClick={this.regenMeal} />}
+                                        &nbsp;&nbsp;&nbsp;
+                                        <PushpinOutlined />
+                                    </div>
+                                    <p>
+                                        . {this.state.breakfastMeals[this.state.breakfastCount].name}
+                                    </p>
+                                    <p>
+                                        C: {this.state.breakfastMeals[this.state.breakfastCount].carbs}
+                                        , P: {this.state.breakfastMeals[this.state.breakfastCount].protein}
+                                        , F: {this.state.breakfastMeals[this.state.breakfastCount].fat}
+                                        ,  {this.state.breakfastMeals[this.state.breakfastCount].servings} servings
+                                    </p>
+                                </div>
+                            </Skeleton>
+                        </Card>
+                        <br />
 
                         {/* First card is always shown */}
                         <Card className="cardShadow2" title={this.state.numMeals == 1 ? "Feast" :
                             (this.state.numMeals == 2 ? "Brunch" : "Breakfast")}
-                            extra={this.state.breakfastMeals[this.state.breakfastCount].calories + " calories"}
+                            extra={this.state.meal1.calories + " calories"}
                             style={{ width: 350, height: 200 }} bordered={false}
                             headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                             <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
@@ -406,11 +545,11 @@ class NewLayout extends React.Component {
                                     avatar={
                                         <Avatar src={groceries} />
                                     }
-                                    title={this.state.breakfastMeals[this.state.breakfastCount].name}
-                                    description={'C: ' + this.state.breakfastMeals[this.state.breakfastCount].carbs +
-                                        ', P: ' + this.state.breakfastMeals[this.state.breakfastCount].protein +
-                                        ', F: ' + this.state.breakfastMeals[this.state.breakfastCount].fat +
-                                        ', ' + this.state.breakfastMeals[this.state.breakfastCount].servings + ' servings'}
+                                    title={this.state.meal1.name}
+                                    description={'C: ' + this.state.meal1.carbs +
+                                        ', P: ' + this.state.meal1.protein +
+                                        ', F: ' + this.state.meal1.fat +
+                                        ', ' + this.state.meal1.servings + ' servings'}
                                 />
                             </Skeleton>
                         </Card>
@@ -419,7 +558,7 @@ class NewLayout extends React.Component {
                             <div>
                                 <br />
                                 <Card className="cardShadow2" title={this.state.numMeals == 2 ? "Dinner" : "Lunch"}
-                                    extra={(this.state.numMeals > 1 ? this.state.mainMeals[this.state.mainCount].calories : '0') + " calories"}
+                                    extra={(this.state.numMeals > 1 ? this.state.meal2.calories : '0') + " calories"}
                                     style={{ width: 350, height: 200 }} bordered={false}
                                     headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                                     <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
@@ -430,11 +569,11 @@ class NewLayout extends React.Component {
                                             avatar={
                                                 <Avatar src={groceries} />
                                             }
-                                            title={this.state.mainMeals[this.state.mainCount].name}
-                                            description={'C: ' + this.state.mainMeals[this.state.mainCount].carbs +
-                                                ', P: ' + this.state.mainMeals[this.state.mainCount].protein +
-                                                ', F: ' + this.state.mainMeals[this.state.mainCount].fat +
-                                                ', ' + this.state.mainMeals[this.state.mainCount].servings + ' servings'}
+                                            title={this.state.meal2.name}
+                                            description={'C: ' + this.state.meal2.carbs +
+                                                ', P: ' + this.state.meal2.protein +
+                                                ', F: ' + this.state.meal2.fat +
+                                                ', ' + this.state.meal2.servings + ' servings'}
                                         />
                                     </Skeleton>
                                 </Card>
@@ -444,7 +583,7 @@ class NewLayout extends React.Component {
                             <div>
                                 <br />
                                 <Card className="cardShadow2" title="Dinner"
-                                    extra={(this.state.numMeals > 2 ? this.state.mainMeals[this.state.mainCount + 1].calories : '0') + " calories"}
+                                    extra={(this.state.numMeals > 2 ? this.state.meal3.calories : '0') + " calories"}
                                     style={{ width: 350, height: 200 }} bordered={false}
                                     headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                                     <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
@@ -455,11 +594,11 @@ class NewLayout extends React.Component {
                                             avatar={
                                                 <Avatar src={groceries} />
                                             }
-                                            title={this.state.mainMeals[this.state.mainCount + 1].name}
-                                            description={'C: ' + this.state.mainMeals[this.state.mainCount + 1].carbs +
-                                                ', P: ' + this.state.mainMeals[this.state.mainCount + 1].protein +
-                                                ', F: ' + this.state.mainMeals[this.state.mainCount + 1].fat +
-                                                ', ' + this.state.mainMeals[this.state.mainCount + 1].servings + ' servings'}
+                                            title={this.state.meal3.name}
+                                            description={'C: ' + this.state.meal3.carbs +
+                                                ', P: ' + this.state.meal3.protein +
+                                                ', F: ' + this.state.meal3.fat +
+                                                ', ' + this.state.meal3.servings + ' servings'}
                                         />
                                     </Skeleton>
                                 </Card>
@@ -469,7 +608,7 @@ class NewLayout extends React.Component {
                             <div>
                                 <br />
                                 <Card className="cardShadow2" title="Snack"
-                                    extra={(this.state.numMeals > 3 ? this.state.meals[this.state.mainCount + 2].calories : '0') + " calories"}
+                                    extra={(this.state.numMeals > 3 ? this.state.meal4.calories : '0') + " calories"}
                                     style={{ width: 350, height: 200 }} bordered={false}
                                     headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                                     <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
@@ -480,11 +619,11 @@ class NewLayout extends React.Component {
                                             avatar={
                                                 <Avatar src={groceries} />
                                             }
-                                            title={this.state.meals[this.state.mainCount + 2].name}
-                                            description={'C: ' + this.state.meals[this.state.mainCount + 2].carbs +
-                                                ', P: ' + this.state.meals[this.state.mainCount + 2].protein +
-                                                ', F: ' + this.state.meals[this.state.mainCount + 2].fat +
-                                                ', ' + this.state.meals[this.state.mainCount + 2].servings + ' servings'}
+                                            title={this.state.meal4.name}
+                                            description={'C: ' + this.state.meal4.carbs +
+                                                ', P: ' + this.state.meal4.protein +
+                                                ', F: ' + this.state.meal4.fat +
+                                                ', ' + this.state.meal4.servings + ' servings'}
                                         />
                                     </Skeleton>
                                 </Card>
@@ -494,7 +633,7 @@ class NewLayout extends React.Component {
                             <div>
                                 <br />
                                 <Card className="cardShadow2" title="Snack"
-                                    extra={(this.state.numMeals > 4 ? this.state.meals[this.state.mainCount + 3].calories : '0') + " calories"}
+                                    extra={(this.state.numMeals > 4 ? this.state.meal5.calories : '0') + " calories"}
                                     style={{ width: 350, height: 200 }} bordered={false}
                                     headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                                     <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
@@ -505,11 +644,11 @@ class NewLayout extends React.Component {
                                             avatar={
                                                 <Avatar src={groceries} />
                                             }
-                                            title={this.state.meals[this.state.mainCount + 3].name}
-                                            description={'C: ' + this.state.meals[this.state.mainCount + 3].carbs +
-                                                ', P: ' + this.state.meals[this.state.mainCount + 3].protein +
-                                                ', F: ' + this.state.meals[this.state.mainCount + 3].fat +
-                                                ', ' + this.state.meals[this.state.mainCount + 3].servings + ' servings'}
+                                            title={this.state.meal5.name}
+                                            description={'C: ' + this.state.meal5.carbs +
+                                                ', P: ' + this.state.meal5.protein +
+                                                ', F: ' + this.state.meal5.fat +
+                                                ', ' + this.state.meal5.servings + ' servings'}
                                         />
                                     </Skeleton>
                                 </Card>
@@ -519,7 +658,7 @@ class NewLayout extends React.Component {
                             <div>
                                 <br />
                                 <Card className="cardShadow2" title="Snack"
-                                    extra={(this.state.numMeals > 5 ? this.state.meals[this.state.mainCount + 4].calories : '0') + " calories"}
+                                    extra={(this.state.numMeals > 5 ? this.state.meal6.calories : '0') + " calories"}
                                     style={{ width: 350, height: 200 }} bordered={false}
                                     headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                                     <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
@@ -530,11 +669,11 @@ class NewLayout extends React.Component {
                                             avatar={
                                                 <Avatar src={groceries} />
                                             }
-                                            title={this.state.meals[this.state.mainCount + 4].name}
-                                            description={'C: ' + this.state.meals[this.state.mainCount + 4].carbs +
-                                                ', P: ' + this.state.meals[this.state.mainCount + 4].protein +
-                                                ', F: ' + this.state.meals[this.state.mainCount + 4].fat +
-                                                ', ' + this.state.meals[this.state.mainCount + 4].servings + ' servings'}
+                                            title={this.state.meal6.name}
+                                            description={'C: ' + this.state.meal6.carbs +
+                                                ', P: ' + this.state.meal6.protein +
+                                                ', F: ' + this.state.meal6.fat +
+                                                ', ' + this.state.meal6.servings + ' servings'}
                                         />
                                     </Skeleton>
                                 </Card>
@@ -597,5 +736,28 @@ const mapDispatchToProps = dispatch => {
 
 export default withRouter(connect(null, mapDispatchToProps)(NewLayout));
 
+
+// old card
+// <Card className="cardShadow2" title={this.state.numMeals == 1 ? "Feast" :
+//     (this.state.numMeals == 2 ? "Brunch" : "Breakfast")}
+//     extra={this.state.breakfastMeals[this.state.breakfastCount].calories + " calories"}
+//     style={{ width: 350, height: 200 }} bordered={false}
+//     headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
+//     <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
+//         active={this.state.loadingMeals}
+//         paragraph={{ rows: 3, width: [250] }} >
+//         <Meta
+//             className='mealCard'
+//             avatar={
+//                 <Avatar src={groceries} />
+//             }
+//             title={this.state.breakfastMeals[this.state.breakfastCount].name}
+//             description={'C: ' + this.state.breakfastMeals[this.state.breakfastCount].carbs +
+//                 ', P: ' + this.state.breakfastMeals[this.state.breakfastCount].protein +
+//                 ', F: ' + this.state.breakfastMeals[this.state.breakfastCount].fat +
+//                 ', ' + this.state.breakfastMeals[this.state.breakfastCount].servings + ' servings'}
+//         />
+//     </Skeleton>
+// </Card>
 
 
