@@ -66,12 +66,12 @@ async function fetchData(cals, numMeals, carbs, protein, fat) {
             minFat = 0;
             maxFat = 1000;
         } else {
-            minCarbs = Math.floor(carbs / numMeals) - 15;
-            maxCarbs = Math.floor(carbs / numMeals) + 15;
-            minProtein = Math.floor(protein / numMeals) - 15;
-            maxProtein = Math.floor(protein / numMeals) + 15;
-            minFat = Math.floor(fat / numMeals) - 15;
-            maxFat = Math.floor(fat / numMeals) + 15;
+            minCarbs = Math.floor(carbs / numMeals) - 10;
+            maxCarbs = Math.floor(carbs / numMeals) + 10;
+            minProtein = Math.floor(protein / numMeals) - 10;
+            maxProtein = Math.floor(protein / numMeals) + 10;
+            minFat = Math.floor(fat / numMeals) - 5;
+            maxFat = Math.floor(fat / numMeals) + 5;
         }
     }
 
@@ -225,7 +225,7 @@ export async function fetchMeals(cals, numMeals, carbs = 0, protein = 0, fat = 0
                 sidesRes.push(obj);
             })
 
-            const res = breakfastRes.concat(mainRes).concat(sidesRes).concat(breakfastSides);
+            const res = [breakfastRes, breakfastSides, mainRes, sidesRes]
             console.log(res);
             return res;
         })
