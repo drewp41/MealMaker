@@ -193,6 +193,8 @@ class NewLayout extends React.Component {
     }
 
     onClickGenerateButton = () => {
+        if (this.state.loadingMeals)
+            return;
         if (this.state.breakfastCount == 5 || this.state.mainCount >= 14) {
             // give it a half second delay so the if statement under this runs
             setTimeout(() => {
