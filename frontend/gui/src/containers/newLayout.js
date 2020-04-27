@@ -85,6 +85,7 @@ class NewLayout extends React.Component {
             changedPrefs: true,
             headerHeight: '80px',
             hamburgerActive: false,
+            pinMeals: false,
             meal1: this.emptyMeal,
             meal2: this.emptyMeal,
             meal3: this.emptyMeal,
@@ -111,7 +112,13 @@ class NewLayout extends React.Component {
 
     regenMeal = () => {
         this.setState({
-            loadingMeals: true,
+            loadingMeals: !this.state.loadingMeals,
+        })
+    }
+
+    pinMeals = () => {
+        this.setState({
+            pinMeals: !this.state.pinMeals,
         })
     }
 
@@ -504,34 +511,6 @@ class NewLayout extends React.Component {
                     <div style={{ borderLeft: '2px solid #e0e0e0' }} />
 
                     <div className="rightColumn">
-                        {/* TEST CARD */}
-                        <Card className="cardShadow2" title={this.state.numMeals == 1 ? "Feast" :
-                            (this.state.numMeals == 2 ? "Brunch" : "Breakfast")}
-                            extra={this.state.breakfastMeals[this.state.breakfastCount].calories + " calories"}
-                            style={{ width: 350, height: 200 }} bordered={false}
-                            headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                            <Skeleton avatar={false} loading={this.state.displayMeals} title={false}
-                                active={this.state.loadingMeals}
-                                paragraph={{ rows: 3, width: [250] }} >
-                                <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
-                                    <div style={{ float: 'right', fontSize: '18px' }}>
-                                        {this.state.loadingMeals ? <SyncOutlined spin /> : <SyncOutlined onClick={this.regenMeal} />}
-                                        &nbsp;&nbsp;&nbsp;
-                                        <PushpinOutlined />
-                                    </div>
-                                    <p>
-                                        . {this.state.breakfastMeals[this.state.breakfastCount].name}
-                                    </p>
-                                    <p>
-                                        C: {this.state.breakfastMeals[this.state.breakfastCount].carbs}
-                                        , P: {this.state.breakfastMeals[this.state.breakfastCount].protein}
-                                        , F: {this.state.breakfastMeals[this.state.breakfastCount].fat}
-                                        ,  {this.state.breakfastMeals[this.state.breakfastCount].servings} servings
-                                    </p>
-                                </div>
-                            </Skeleton>
-                        </Card>
-                        <br />
 
                         {/* First card is always shown */}
                         <Card className="cardShadow2" title={this.state.numMeals == 1 ? "Feast" :
@@ -542,17 +521,24 @@ class NewLayout extends React.Component {
                             <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
                                 active={this.state.loadingMeals}
                                 paragraph={{ rows: 3, width: [250] }} >
-                                <Meta
-                                    className='mealCard'
-                                    avatar={
-                                        <Avatar src={groceries} />
-                                    }
-                                    title={this.state.meal1.name}
-                                    description={'C: ' + this.state.meal1.carbs +
-                                        ', P: ' + this.state.meal1.protein +
-                                        ', F: ' + this.state.meal1.fat +
-                                        ', ' + this.state.meal1.servings + ' servings'}
-                                />
+                                <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
+                                    <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
+                                        {this.state.loadingMeals ? <SyncOutlined spin className='regenIcon' onClick={this.regenMeal} /> :
+                                            <SyncOutlined className='regenIcon' onClick={this.regenMeal} />}
+                                        &nbsp;&nbsp;&nbsp;
+                                        {this.state.pinMeals ? <PushpinFilled className='pinIcon' onClick={this.pinMeals} /> :
+                                            <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
+                                    </div>
+                                    <p className='ant-card-meta-title'>
+                                        {this.state.meal1.name}
+                                    </p>
+                                    <p className='ant-card-meta-description'>
+                                        C: {this.state.meal1.carbs}
+                                        , P: {this.state.meal1.protein}
+                                        , F: {this.state.meal1.fat}
+                                        ,  {this.state.meal1.servings} servings
+                                    </p>
+                                </div>
                             </Skeleton>
                         </Card>
 
@@ -566,17 +552,24 @@ class NewLayout extends React.Component {
                                     <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
                                         active={this.state.loadingMeals}
                                         paragraph={{ rows: 3, width: [250] }} >
-                                        <Meta
-                                            className='mealCard'
-                                            avatar={
-                                                <Avatar src={groceries} />
-                                            }
-                                            title={this.state.meal2.name}
-                                            description={'C: ' + this.state.meal2.carbs +
-                                                ', P: ' + this.state.meal2.protein +
-                                                ', F: ' + this.state.meal2.fat +
-                                                ', ' + this.state.meal2.servings + ' servings'}
-                                        />
+                                        <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
+                                            <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
+                                                {this.state.loadingMeals ? <SyncOutlined spin className='regenIcon' onClick={this.regenMeal} /> :
+                                                    <SyncOutlined className='regenIcon' onClick={this.regenMeal} />}
+                                                &nbsp;&nbsp;&nbsp;
+                                                {this.state.pinMeals ? <PushpinFilled className='pinIcon' onClick={this.pinMeals} /> :
+                                                    <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
+                                            </div>
+                                            <p className='ant-card-meta-title'>
+                                                {this.state.meal2.name}
+                                            </p>
+                                            <p className='ant-card-meta-description'>
+                                                C: {this.state.meal2.carbs}
+                                                , P: {this.state.meal2.protein}
+                                                , F: {this.state.meal2.fat}
+                                                ,  {this.state.meal2.servings} servings
+                                            </p>
+                                        </div>
                                     </Skeleton>
                                 </Card>
                             </div>
@@ -591,17 +584,24 @@ class NewLayout extends React.Component {
                                     <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
                                         active={this.state.loadingMeals}
                                         paragraph={{ rows: 3, width: [250] }} >
-                                        <Meta
-                                            className='mealCard'
-                                            avatar={
-                                                <Avatar src={groceries} />
-                                            }
-                                            title={this.state.meal3.name}
-                                            description={'C: ' + this.state.meal3.carbs +
-                                                ', P: ' + this.state.meal3.protein +
-                                                ', F: ' + this.state.meal3.fat +
-                                                ', ' + this.state.meal3.servings + ' servings'}
-                                        />
+                                        <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
+                                            <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
+                                                {this.state.loadingMeals ? <SyncOutlined spin className='regenIcon' onClick={this.regenMeal} /> :
+                                                    <SyncOutlined className='regenIcon' onClick={this.regenMeal} />}
+                                                &nbsp;&nbsp;&nbsp;
+                                                {this.state.pinMeals ? <PushpinFilled className='pinIcon' onClick={this.pinMeals} /> :
+                                                    <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
+                                            </div>
+                                            <p className='ant-card-meta-title'>
+                                                {this.state.meal3.name}
+                                            </p>
+                                            <p className='ant-card-meta-description'>
+                                                C: {this.state.meal3.carbs}
+                                                , P: {this.state.meal3.protein}
+                                                , F: {this.state.meal3.fat}
+                                                ,  {this.state.meal3.servings} servings
+                                            </p>
+                                        </div>
                                     </Skeleton>
                                 </Card>
                             </div>
@@ -616,17 +616,24 @@ class NewLayout extends React.Component {
                                     <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
                                         active={this.state.loadingMeals}
                                         paragraph={{ rows: 3, width: [250] }} >
-                                        <Meta
-                                            className='mealCard'
-                                            avatar={
-                                                <Avatar src={groceries} />
-                                            }
-                                            title={this.state.meal4.name}
-                                            description={'C: ' + this.state.meal4.carbs +
-                                                ', P: ' + this.state.meal4.protein +
-                                                ', F: ' + this.state.meal4.fat +
-                                                ', ' + this.state.meal4.servings + ' servings'}
-                                        />
+                                        <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
+                                            <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
+                                                {this.state.loadingMeals ? <SyncOutlined spin className='regenIcon' onClick={this.regenMeal} /> :
+                                                    <SyncOutlined className='regenIcon' onClick={this.regenMeal} />}
+                                                &nbsp;&nbsp;&nbsp;
+                                                {this.state.pinMeals ? <PushpinFilled className='pinIcon' onClick={this.pinMeals} /> :
+                                                    <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
+                                            </div>
+                                            <p className='ant-card-meta-title'>
+                                                {this.state.meal4.name}
+                                            </p>
+                                            <p className='ant-card-meta-description'>
+                                                C: {this.state.meal4.carbs}
+                                                , P: {this.state.meal4.protein}
+                                                , F: {this.state.meal4.fat}
+                                                ,  {this.state.meal4.servings} servings
+                                            </p>
+                                        </div>
                                     </Skeleton>
                                 </Card>
                             </div>
@@ -641,17 +648,24 @@ class NewLayout extends React.Component {
                                     <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
                                         active={this.state.loadingMeals}
                                         paragraph={{ rows: 3, width: [250] }} >
-                                        <Meta
-                                            className='mealCard'
-                                            avatar={
-                                                <Avatar src={groceries} />
-                                            }
-                                            title={this.state.meal5.name}
-                                            description={'C: ' + this.state.meal5.carbs +
-                                                ', P: ' + this.state.meal5.protein +
-                                                ', F: ' + this.state.meal5.fat +
-                                                ', ' + this.state.meal5.servings + ' servings'}
-                                        />
+                                        <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
+                                            <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
+                                                {this.state.loadingMeals ? <SyncOutlined spin className='regenIcon' onClick={this.regenMeal} /> :
+                                                    <SyncOutlined className='regenIcon' onClick={this.regenMeal} />}
+                                                &nbsp;&nbsp;&nbsp;
+                                                {this.state.pinMeals ? <PushpinFilled className='pinIcon' onClick={this.pinMeals} /> :
+                                                    <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
+                                            </div>
+                                            <p className='ant-card-meta-title'>
+                                                {this.state.meal5.name}
+                                            </p>
+                                            <p className='ant-card-meta-description'>
+                                                C: {this.state.meal5.carbs}
+                                                , P: {this.state.meal5.protein}
+                                                , F: {this.state.meal5.fat}
+                                                ,  {this.state.meal5.servings} servings
+                                            </p>
+                                        </div>
                                     </Skeleton>
                                 </Card>
                             </div>
@@ -666,17 +680,24 @@ class NewLayout extends React.Component {
                                     <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
                                         active={this.state.loadingMeals}
                                         paragraph={{ rows: 3, width: [250] }} >
-                                        <Meta
-                                            className='mealCard'
-                                            avatar={
-                                                <Avatar src={groceries} />
-                                            }
-                                            title={this.state.meal6.name}
-                                            description={'C: ' + this.state.meal6.carbs +
-                                                ', P: ' + this.state.meal6.protein +
-                                                ', F: ' + this.state.meal6.fat +
-                                                ', ' + this.state.meal6.servings + ' servings'}
-                                        />
+                                        <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
+                                            <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
+                                                {this.state.loadingMeals ? <SyncOutlined spin className='regenIcon' onClick={this.regenMeal} /> :
+                                                    <SyncOutlined className='regenIcon' onClick={this.regenMeal} />}
+                                                &nbsp;&nbsp;&nbsp;
+                                                {this.state.pinMeals ? <PushpinFilled className='pinIcon' onClick={this.pinMeals} /> :
+                                                    <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
+                                            </div>
+                                            <p className='ant-card-meta-title'>
+                                                {this.state.meal6.name}
+                                            </p>
+                                            <p className='ant-card-meta-description'>
+                                                C: {this.state.meal6.carbs}
+                                                , P: {this.state.meal6.protein}
+                                                , F: {this.state.meal6.fat}
+                                                ,  {this.state.meal6.servings} servings
+                                            </p>
+                                        </div>
                                     </Skeleton>
                                 </Card>
                             </div>
