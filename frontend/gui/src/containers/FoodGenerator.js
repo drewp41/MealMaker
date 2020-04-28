@@ -29,8 +29,6 @@ const defaultParams = {
 
 // ========== Fetch all meals ==========
 async function fetchData(cals, numMeals, carbs, protein, fat) {
-    console.log('fetchdata');
-
     let approxCals = 0;
     let minBreakfastCals = 0;
     let maxBreakfastCals = 0;
@@ -130,7 +128,6 @@ async function fetchData(cals, numMeals, carbs, protein, fat) {
 }
 
 export async function fetchMeals(cals, numMeals, carbs = 0, protein = 0, fat = 0) {
-    console.log('fetchmeals');
     return fetchData(cals, numMeals, carbs, protein, fat)
         .then(d => {
             const breakfastData = d[0].data.results;
@@ -240,8 +237,6 @@ export async function fetchMeals(cals, numMeals, carbs = 0, protein = 0, fat = 0
 
 // ========== Fetch only breakfast and its sides ==========
 async function fetchBreakfastData(cals, numMeals, carbs, protein, fat) {
-    console.log('fetchbreakfastdata');
-
     let approxCals = 0;
     let minBreakfastCals = 0;
     let maxBreakfastCals = 0;
@@ -309,7 +304,6 @@ async function fetchBreakfastData(cals, numMeals, carbs, protein, fat) {
 }
 
 export async function fetchBreakfast(cals, numMeals, carbs = 0, protein = 0, fat = 0) {
-    console.log('fetchBreakfast');
     return fetchBreakfastData(cals, numMeals, carbs, protein, fat)
         .then(d => {
             const breakfastData = d[0].data.results;
@@ -356,8 +350,6 @@ export async function fetchBreakfast(cals, numMeals, carbs = 0, protein = 0, fat
 
 // ========== Fetch all non-breakfast and their sides ==========
 async function fetchMainData(cals, numMeals, carbs, protein, fat) {
-
-    console.log('fetchMainData');
     let approxCals = 0;
     let minBreakfastCals = 0;
     let maxBreakfastCals = 0;
@@ -440,7 +432,6 @@ async function fetchMainData(cals, numMeals, carbs, protein, fat) {
 }
 
 export async function fetchMain(cals, numMeals, carbs = 0, protein = 0, fat = 0) {
-    console.log('fetchMain');
     return fetchMainData(cals, numMeals, carbs, protein, fat)
         .then(d => {
             const mainData = d[0].data.results;

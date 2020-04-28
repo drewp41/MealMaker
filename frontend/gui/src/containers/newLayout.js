@@ -65,11 +65,7 @@ class NewLayout extends React.Component {
             breakfastSides: this.emptyMeals,
             mainMeals: this.emptyMeals,
             mainSides: this.emptyMeals,
-            // what index of meal youre on
-            // breakfastCount: breakfastMeals[Symbol.iterator](),
-            // mainCount: mainMeals[Symbol.iterator](),
-            breakfastCount: 0,
-            mainCount: 0,
+            // what meal youre on
             breakfastIter: null,
             mainIter: null,
             // whether user wants macros factored into their preferences
@@ -203,17 +199,6 @@ class NewLayout extends React.Component {
     onClickGenerateButton = () => {
         if (this.state.loadingMeals)
             return;
-        if (this.state.breakfastCount == 5 || this.state.mainCount >= 14) {
-            // give it a half second delay so the if statement under this runs
-            setTimeout(() => {
-                this.setState({
-                    changedPrefs: true,
-                    // 2 lines might be unnecessary
-                    breakfastCount: 0,
-                    mainCount: 6,
-                });
-            }, 500);
-        }
 
         if (this.state.changedPrefs) {
             // get the meal data with the given preferences
@@ -235,8 +220,6 @@ class NewLayout extends React.Component {
                         breakfastSides: res[1],
                         mainMeals: res[2],
                         mainSides: res[3],
-                        breakfastCount: 0,
-                        mainCount: 0,
                     }, () => { // after the meals are set
                         this.setState({
                             breakfastIter: this.state.breakfastMeals[Symbol.iterator](),
@@ -274,9 +257,6 @@ class NewLayout extends React.Component {
                 this.setState({
                     loadingMeals: false,
                     displayMeals: true,
-                    // breakfastCount: this.state.breakfastCount + 1,
-                    // -1 to account for the breakfast
-                    // mainCount: this.state.mainCount + this.state.numMeals - 1,
                 });
             }, 500);
         }
