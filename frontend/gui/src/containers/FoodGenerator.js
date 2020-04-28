@@ -433,7 +433,7 @@ async function fetchMainData(cals, numMeals, carbs, protein, fat) {
                 }
             })
         ]);
-        return [mainMeals, mainSides]; // get breakfastSides from fetchMeals
+        return [mainMeals, mainSides];
     } catch (error) {
         console.log(error, "error");
     }
@@ -443,8 +443,8 @@ export async function fetchMain(cals, numMeals, carbs = 0, protein = 0, fat = 0)
     console.log('fetchMain');
     return fetchMainData(cals, numMeals, carbs, protein, fat)
         .then(d => {
-            const mainData = d[1].data.results;
-            const sidesData = d[2].data.results;
+            const mainData = d[0].data.results;
+            const sidesData = d[1].data.results;
 
             // return an array of meals
             // with each meal of the form
