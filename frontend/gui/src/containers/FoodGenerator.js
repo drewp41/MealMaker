@@ -285,7 +285,7 @@ async function fetchBreakfastData(cals, numMeals, carbs, protein, fat) {
     }
 
     try {
-        const breakfastMeals = await
+        const breakfastMeals = await Promise.all([
             instance({ // breakfast (6)
                 "params": {
                     ...defaultParams,
@@ -300,8 +300,9 @@ async function fetchBreakfastData(cals, numMeals, carbs, protein, fat) {
                     type: 'breakfast',
                     number: 6,
                 }
-            });
-        return breakfastMeals // get breakfastSides from fetchMeals
+            })
+        ]);
+        return breakfastMeals; // get breakfastSides from fetchMeals
     } catch (error) {
         console.log(error, "error");
     }
