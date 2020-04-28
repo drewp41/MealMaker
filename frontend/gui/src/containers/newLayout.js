@@ -111,6 +111,7 @@ class NewLayout extends React.Component {
     }
 
     regenMeal = (val) => {
+        this.updateMeal(val)
         this.setState({
             loadingMeals: !this.state.loadingMeals,
         });
