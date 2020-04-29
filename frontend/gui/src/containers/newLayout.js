@@ -44,12 +44,18 @@ const mainTextColor = '#32323c'
 class NewLayout extends React.Component {
     constructor(props) {
         super(props);
+        // so loading a meal that doesnt exist won't cause an error
         this.emptyMeal = {
             name: '', calories: 0, carbs: 0,
             protein: 0, fat: 0, ingredients: [],
             instructions: [], servings: 0
         }
-        this.emptyMeals = Array(6).fill(this.emptyMeal);
+        this.emptyObj = {
+            meal: this.emptyMeal,
+            side: this.emptyMeal,
+            loading: false,
+            pinned: false
+        }
         this.state = {
             calories: 2000,
             carbs: 220,
@@ -57,13 +63,15 @@ class NewLayout extends React.Component {
             fat: 65,
             numMeals: 3,
             // actual data of the meals (array of objects)
-            breakfastMeals: this.emptyMeals,
-            breakfastSides: this.emptyMeals,
-            mainMeals: this.emptyMeals,
-            mainSides: this.emptyMeals,
+            breakfastMeals: this.emptyMeal,
+            breakfastSides: this.emptyMeal,
+            mainMeals: this.emptyMeal,
+            mainSides: this.emptyMeal,
             // what meal youre on
             breakfastIter: null,
+            breakfastSideIter: null,
             mainIter: null,
+            mainSideIter: null,
             // whether user wants macros factored into their preferences
             enableMacros: false,
             // when true, the load animations go off
@@ -78,12 +86,12 @@ class NewLayout extends React.Component {
             headerHeight: '80px',
             hamburgerActive: false,
             pinMeals: false,
-            meal1: this.emptyMeal,
-            meal2: this.emptyMeal,
-            meal3: this.emptyMeal,
-            meal4: this.emptyMeal,
-            meal5: this.emptyMeal,
-            meal6: this.emptyMeal,
+            meal1: this.emptyObj,
+            meal2: this.emptyObj,
+            meal3: this.emptyObj,
+            meal4: this.emptyObj,
+            meal5: this.emptyObj,
+            meal6: this.emptyObj,
         };
     }
 
@@ -122,11 +130,17 @@ class NewLayout extends React.Component {
         // IF BREAKFAST
         if (num == 1) {
             // iterator returns {value, done}
-            const obj = this.state.breakfastIter.next();
-            if (!obj.done) {
-                this.setState({
-                    meal1: obj.value,
-                })
+            const mealObj = this.state.breakfastIter.next();
+            const sideObj = this.state.breakfastSideIter.next();
+            if (!mealObj.done) { // mealObj and sideObj are on the same "index", so if one is done, the other is too
+                this.setState(prevState => ({
+                    meal1: {
+                        // keep all the other values of the meal obj
+                        ...prevState.meal1,
+                        meal: mealObj.value,
+                        side: sideObj.value,
+                    }
+                }))
             } else {
                 let carbVar = 0;
                 let proteinVar = 0;
@@ -145,6 +159,7 @@ class NewLayout extends React.Component {
                         }, () => {
                             this.setState({
                                 breakfastIter: this.state.breakfastMeals[Symbol.iterator](),
+                                breakfastSideIter: this.state.breakfastSides[Symbol.iterator](),
                             }, () => {
                                 // call the function again now that the meals are refreshed
                                 // and the iterator is at the '0th' meal
@@ -157,11 +172,20 @@ class NewLayout extends React.Component {
 
         // IF NOT BREAKFAST
         else {
-            const obj = this.state.mainIter.next();
-            if (!obj.done) {
-                this.setState({
+            // iterator returns {value, done}
+            const mealObj = this.state.mainIter.next();
+            const sideObj = this.state.mainSideIter.next();
+            if (!mealObj.done) { // mealObj and sideObj are on the same "index", so if one is done, the other is too
+                this.setState(prevState => ({
                     // dynamic set the key to the correct meal
-                    [meal]: obj.value,
+                    // and keep all the other values of the meal obj
+                    [meal]: {
+                        ...prevState[meal],
+                        meal: mealObj.value,
+                        side: sideObj.value,
+                    }
+                }), () => {
+                    console.log(this.state[meal]);
                 })
             } else {
                 let carbVar = 0;
@@ -181,9 +205,10 @@ class NewLayout extends React.Component {
                         }, () => {
                             this.setState({
                                 mainIter: this.state.mainMeals[Symbol.iterator](),
+                                mainSideIter: this.state.mainSides[Symbol.iterator](),
                             }, () => {
                                 // call the function again now that the meals are refreshed
-                                // and the iterator is at the '0th' meal
+                                // and the iterator is now at the '0th' meal
                                 this.updateMeal(num);
                             })
                         })
@@ -219,7 +244,9 @@ class NewLayout extends React.Component {
                     }, () => { // after the meals are set
                         this.setState({
                             breakfastIter: this.state.breakfastMeals[Symbol.iterator](),
+                            breakfastSideIter: this.state.breakfastSides[Symbol.iterator](),
                             mainIter: this.state.mainMeals[Symbol.iterator](),
+                            mainSideIter: this.state.mainSides[Symbol.iterator](),
                         }, () => { // after the iterators are set, update all the meals
                             for (let i = 1; i <= this.state.numMeals; i++) {
                                 this.updateMeal(i);
@@ -491,7 +518,7 @@ class NewLayout extends React.Component {
                         {/* First card is always shown */}
                         <Card className="cardShadow2" title={this.state.numMeals == 1 ? "Feast" :
                             (this.state.numMeals == 2 ? "Brunch" : "Breakfast")}
-                            extra={this.state.meal1.calories + " calories"}
+                            extra={this.state.meal1.meal.calories + this.state.meal1.side.calories + " calories"}
                             style={{ width: 350, height: 200 }} bordered={false}
                             headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                             <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
@@ -506,20 +533,20 @@ class NewLayout extends React.Component {
                                             <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
                                     </div>
                                     <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
-                                        {this.state.meal1.name}
+                                        {this.state.meal1.meal.name}
                                     </div>
                                     <p className='ant-card-meta-description'>
-                                        C: {this.state.meal1.carbs}
-                                        , P: {this.state.meal1.protein}
-                                        , F: {this.state.meal1.fat}
+                                        C: {this.state.meal1.meal.carbs}
+                                        , P: {this.state.meal1.meal.protein}
+                                        , F: {this.state.meal1.meal.fat}
                                     </p>
                                     <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
-                                        {this.state.meal1.name}
+                                        {this.state.meal1.side.name}
                                     </div>
                                     <p className='ant-card-meta-description'>
-                                        C: {this.state.meal1.carbs}
-                                        , P: {this.state.meal1.protein}
-                                        , F: {this.state.meal1.fat}
+                                        C: {this.state.meal1.side.carbs}
+                                        , P: {this.state.meal1.side.protein}
+                                        , F: {this.state.meal1.side.fat}
                                     </p>
                                 </div>
                             </Skeleton>
@@ -529,7 +556,7 @@ class NewLayout extends React.Component {
                             <div>
                                 <br />
                                 <Card className="cardShadow2" title={this.state.numMeals == 2 ? "Dinner" : "Lunch"}
-                                    extra={(this.state.numMeals > 1 ? this.state.meal2.calories : '0') + " calories"}
+                                    extra={this.state.meal2.meal.calories + this.state.meal2.side.calories + " calories"}
                                     style={{ width: 350, height: 200 }} bordered={false}
                                     headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                                     <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
@@ -544,12 +571,20 @@ class NewLayout extends React.Component {
                                                     <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
                                             </div>
                                             <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
-                                                {this.state.meal2.name}
+                                                {this.state.meal2.meal.name}
                                             </div>
                                             <p className='ant-card-meta-description'>
-                                                C: {this.state.meal2.carbs}
-                                                , P: {this.state.meal2.protein}
-                                                , F: {this.state.meal2.fat}
+                                                C: {this.state.meal2.meal.carbs}
+                                                , P: {this.state.meal2.meal.protein}
+                                                , F: {this.state.meal2.meal.fat}
+                                            </p>
+                                            <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
+                                                {this.state.meal2.side.name}
+                                            </div>
+                                            <p className='ant-card-meta-description'>
+                                                C: {this.state.meal2.side.carbs}
+                                                , P: {this.state.meal2.side.protein}
+                                                , F: {this.state.meal2.side.fat}
                                             </p>
                                         </div>
                                     </Skeleton>
@@ -560,7 +595,7 @@ class NewLayout extends React.Component {
                             <div>
                                 <br />
                                 <Card className="cardShadow2" title="Dinner"
-                                    extra={(this.state.numMeals > 2 ? this.state.meal3.calories : '0') + " calories"}
+                                    extra={this.state.meal3.meal.calories + this.state.meal3.side.calories + " calories"}
                                     style={{ width: 350, height: 200 }} bordered={false}
                                     headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                                     <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
@@ -575,12 +610,20 @@ class NewLayout extends React.Component {
                                                     <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
                                             </div>
                                             <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
-                                                {this.state.meal3.name}
+                                                {this.state.meal3.meal.name}
                                             </div>
                                             <p className='ant-card-meta-description'>
-                                                C: {this.state.meal3.carbs}
-                                                , P: {this.state.meal3.protein}
-                                                , F: {this.state.meal3.fat}
+                                                C: {this.state.meal3.meal.carbs}
+                                                , P: {this.state.meal3.meal.protein}
+                                                , F: {this.state.meal3.meal.fat}
+                                            </p>
+                                            <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
+                                                {this.state.meal3.side.name}
+                                            </div>
+                                            <p className='ant-card-meta-description'>
+                                                C: {this.state.meal3.side.carbs}
+                                                , P: {this.state.meal3.side.protein}
+                                                , F: {this.state.meal3.side.fat}
                                             </p>
                                         </div>
                                     </Skeleton>
@@ -591,7 +634,7 @@ class NewLayout extends React.Component {
                             <div>
                                 <br />
                                 <Card className="cardShadow2" title="Snack"
-                                    extra={(this.state.numMeals > 3 ? this.state.meal4.calories : '0') + " calories"}
+                                    extra={this.state.meal4.meal.calories + this.state.meal4.side.calories + " calories"}
                                     style={{ width: 350, height: 200 }} bordered={false}
                                     headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                                     <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
@@ -606,12 +649,20 @@ class NewLayout extends React.Component {
                                                     <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
                                             </div>
                                             <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
-                                                {this.state.meal4.name}
+                                                {this.state.meal4.meal.name}
                                             </div>
                                             <p className='ant-card-meta-description'>
-                                                C: {this.state.meal4.carbs}
-                                                , P: {this.state.meal4.protein}
-                                                , F: {this.state.meal4.fat}
+                                                C: {this.state.meal4.meal.carbs}
+                                                , P: {this.state.meal4.meal.protein}
+                                                , F: {this.state.meal4.meal.fat}
+                                            </p>
+                                            <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
+                                                {this.state.mea4.side.name}
+                                            </div>
+                                            <p className='ant-card-meta-description'>
+                                                C: {this.state.meal4.side.carbs}
+                                                , P: {this.state.meal4.side.protein}
+                                                , F: {this.state.meal4.side.fat}
                                             </p>
                                         </div>
                                     </Skeleton>
@@ -622,7 +673,7 @@ class NewLayout extends React.Component {
                             <div>
                                 <br />
                                 <Card className="cardShadow2" title="Snack"
-                                    extra={(this.state.numMeals > 4 ? this.state.meal5.calories : '0') + " calories"}
+                                    extra={this.state.meal5.meal.calories + this.state.meal5.side.calories + " calories"}
                                     style={{ width: 350, height: 200 }} bordered={false}
                                     headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                                     <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
@@ -637,12 +688,20 @@ class NewLayout extends React.Component {
                                                     <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
                                             </div>
                                             <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
-                                                {this.state.meal5.name}
+                                                {this.state.meal5.meal.name}
                                             </div>
                                             <p className='ant-card-meta-description'>
-                                                C: {this.state.meal5.carbs}
-                                                , P: {this.state.meal5.protein}
-                                                , F: {this.state.meal5.fat}
+                                                C: {this.state.meal5.meal.carbs}
+                                                , P: {this.state.meal5.meal.protein}
+                                                , F: {this.state.meal5.meal.fat}
+                                            </p>
+                                            <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
+                                                {this.state.meal5.side.name}
+                                            </div>
+                                            <p className='ant-card-meta-description'>
+                                                C: {this.state.meal5.side.carbs}
+                                                , P: {this.state.meal5.side.protein}
+                                                , F: {this.state.meal5.side.fat}
                                             </p>
                                         </div>
                                     </Skeleton>
@@ -653,7 +712,7 @@ class NewLayout extends React.Component {
                             <div>
                                 <br />
                                 <Card className="cardShadow2" title="Snack"
-                                    extra={(this.state.numMeals > 5 ? this.state.meal6.calories : '0') + " calories"}
+                                    extra={this.state.meal6.meal.calories + this.state.meal6.side.calories + " calories"}
                                     style={{ width: 350, height: 200 }} bordered={false}
                                     headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                                     <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
@@ -668,12 +727,20 @@ class NewLayout extends React.Component {
                                                     <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
                                             </div>
                                             <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
-                                                {this.state.meal6.name}
+                                                {this.state.meal6.meal.name}
                                             </div>
                                             <p className='ant-card-meta-description'>
-                                                C: {this.state.meal6.carbs}
-                                                , P: {this.state.meal6.protein}
-                                                , F: {this.state.meal6.fat}
+                                                C: {this.state.meal6.meal.carbs}
+                                                , P: {this.state.meal6.meal.protein}
+                                                , F: {this.state.meal6.meal.fat}
+                                            </p>
+                                            <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
+                                                {this.state.meal6.side.name}
+                                            </div>
+                                            <p className='ant-card-meta-description'>
+                                                C: {this.state.meal6.side.carbs}
+                                                , P: {this.state.meal6.side.protein}
+                                                , F: {this.state.meal6.side.fat}
                                             </p>
                                         </div>
                                     </Skeleton>
@@ -683,8 +750,7 @@ class NewLayout extends React.Component {
                     </div>
                 </div >
 
-                <div className="main" style={{ minHeight: 200 }}>
-                </div>
+                <div className="main" style={{ minHeight: 200 }} />
 
                 <div style={{ borderTop: '2px solid #e0e0e0', width: '92%', margin: '0 auto' }} />
 
