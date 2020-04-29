@@ -25,6 +25,14 @@ const defaultParams = {
     sort: 'random',
 }
 
+const emptyMeal = {
+    name: '', calories: 0, carbs: 0,
+    protein: 0, fat: 0, ingredients: [],
+    instructions: [], servings: 0
+}
+
+const errorMeals = [[emptyMeal], [emptyMeal], [emptyMeal], [emptyMeal]];
+
 
 
 // ========== Fetch all meals ==========
@@ -124,6 +132,7 @@ async function fetchData(cals, numMeals, carbs, protein, fat) {
         return [breakfastMeals, mainMeals, mainSides]; // get breakfastSides from fetchMeals
     } catch (error) {
         console.log(error, "error");
+        return errorMeals.slice(0, 3);
     }
 }
 
@@ -290,6 +299,7 @@ async function fetchBreakfastData(cals, numMeals, carbs, protein, fat) {
         return breakfastMeals; // get breakfastSides from fetchMeals
     } catch (error) {
         console.log(error, "error");
+        return errorMeals.slice(0, 1);
     }
 }
 
@@ -413,6 +423,7 @@ async function fetchMainData(cals, numMeals, carbs, protein, fat) {
         return [mainMeals, mainSides];
     } catch (error) {
         console.log(error, "error");
+        return errorMeals.slice(0, 2);
     }
 }
 

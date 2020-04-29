@@ -510,14 +510,13 @@ class NewLayout extends React.Component {
                                         {this.state.pinMeals ? <PushpinFilled className='pinIcon' onClick={this.pinMeals} /> :
                                             <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
                                     </div>
-                                    <p className='ant-card-meta-title'>
+                                    <div className='ant-card-meta-title' style={{ margin: '0 0 7px 0' }}>
                                         {this.state.meal1.name}
-                                    </p>
+                                    </div>
                                     <p className='ant-card-meta-description'>
                                         C: {this.state.meal1.carbs}
                                         , P: {this.state.meal1.protein}
                                         , F: {this.state.meal1.fat}
-                                        ,  {this.state.meal1.servings} servings
                                     </p>
                                 </div>
                             </Skeleton>
@@ -541,14 +540,13 @@ class NewLayout extends React.Component {
                                                 {this.state.pinMeals ? <PushpinFilled className='pinIcon' onClick={this.pinMeals} /> :
                                                     <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
                                             </div>
-                                            <p className='ant-card-meta-title'>
+                                            <div className='ant-card-meta-title' style={{ margin: '0 0 7px 0' }}>
                                                 {this.state.meal2.name}
-                                            </p>
+                                            </div>
                                             <p className='ant-card-meta-description'>
                                                 C: {this.state.meal2.carbs}
                                                 , P: {this.state.meal2.protein}
                                                 , F: {this.state.meal2.fat}
-                                                ,  {this.state.meal2.servings} servings
                                             </p>
                                         </div>
                                     </Skeleton>
@@ -573,14 +571,13 @@ class NewLayout extends React.Component {
                                                 {this.state.pinMeals ? <PushpinFilled className='pinIcon' onClick={this.pinMeals} /> :
                                                     <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
                                             </div>
-                                            <p className='ant-card-meta-title'>
+                                            <div className='ant-card-meta-title' style={{ margin: '0 0 7px 0' }}>
                                                 {this.state.meal3.name}
-                                            </p>
+                                            </div>
                                             <p className='ant-card-meta-description'>
                                                 C: {this.state.meal3.carbs}
                                                 , P: {this.state.meal3.protein}
                                                 , F: {this.state.meal3.fat}
-                                                ,  {this.state.meal3.servings} servings
                                             </p>
                                         </div>
                                     </Skeleton>
@@ -605,14 +602,13 @@ class NewLayout extends React.Component {
                                                 {this.state.pinMeals ? <PushpinFilled className='pinIcon' onClick={this.pinMeals} /> :
                                                     <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
                                             </div>
-                                            <p className='ant-card-meta-title'>
+                                            <div className='ant-card-meta-title' style={{ margin: '0 0 7px 0' }}>
                                                 {this.state.meal4.name}
-                                            </p>
+                                            </div>
                                             <p className='ant-card-meta-description'>
                                                 C: {this.state.meal4.carbs}
                                                 , P: {this.state.meal4.protein}
                                                 , F: {this.state.meal4.fat}
-                                                ,  {this.state.meal4.servings} servings
                                             </p>
                                         </div>
                                     </Skeleton>
@@ -637,14 +633,13 @@ class NewLayout extends React.Component {
                                                 {this.state.pinMeals ? <PushpinFilled className='pinIcon' onClick={this.pinMeals} /> :
                                                     <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
                                             </div>
-                                            <p className='ant-card-meta-title'>
+                                            <div className='ant-card-meta-title' style={{ margin: '0 0 7px 0' }}>
                                                 {this.state.meal5.name}
-                                            </p>
+                                            </div>
                                             <p className='ant-card-meta-description'>
                                                 C: {this.state.meal5.carbs}
                                                 , P: {this.state.meal5.protein}
                                                 , F: {this.state.meal5.fat}
-                                                ,  {this.state.meal5.servings} servings
                                             </p>
                                         </div>
                                     </Skeleton>
@@ -669,14 +664,13 @@ class NewLayout extends React.Component {
                                                 {this.state.pinMeals ? <PushpinFilled className='pinIcon' onClick={this.pinMeals} /> :
                                                     <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
                                             </div>
-                                            <p className='ant-card-meta-title'>
+                                            <div className='ant-card-meta-title' style={{ margin: '0 0 7px 0' }}>
                                                 {this.state.meal6.name}
-                                            </p>
+                                            </div>
                                             <p className='ant-card-meta-description'>
                                                 C: {this.state.meal6.carbs}
                                                 , P: {this.state.meal6.protein}
                                                 , F: {this.state.meal6.fat}
-                                                ,  {this.state.meal6.servings} servings
                                             </p>
                                         </div>
                                     </Skeleton>
