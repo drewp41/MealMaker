@@ -75,7 +75,7 @@ class NewLayout extends React.Component {
             // when true, the meals are displayed 
             displayMeals: false,
             // when the generate button is hit, this is set to true
-            // but onces any mal preference changes, it's set to false
+            // but onces any meal preference changes, it's set to false
             // when its false, don't call the database, and just spit out
             // one of the cached meals
             changedPrefs: true,

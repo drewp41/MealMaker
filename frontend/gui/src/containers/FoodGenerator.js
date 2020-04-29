@@ -240,9 +240,6 @@ async function fetchBreakfastData(cals, numMeals, carbs, protein, fat) {
     let approxCals = 0;
     let minBreakfastCals = 0;
     let maxBreakfastCals = 0;
-    let minMainCals = 0;
-    let maxMainCals = 0;
-    let maxSideCals = 0;
     let minCarbs = 0;
     let maxCarbs = 0;
     let minProtein = 0;
@@ -254,13 +251,6 @@ async function fetchBreakfastData(cals, numMeals, carbs, protein, fat) {
     // target = (approxCals - 100) +- 25
     minBreakfastCals = approxCals - 125;
     maxBreakfastCals = approxCals - 75;
-    // target = (approxCals - 75) +- 25
-    minMainCals = approxCals - 100;
-    maxMainCals = approxCals - 50;
-    // constant
-    maxSideCals = 150;
-    // macro preferences using a range of +- 15
-    // might have to reduce carbs to account for extra carbs from the sides
 
     // if they all equal 0, macro preferences are off and make the macros anything
     if (carbs === 0 && protein === 0 && fat === 0) {
@@ -351,8 +341,6 @@ export async function fetchBreakfast(cals, numMeals, carbs = 0, protein = 0, fat
 // ========== Fetch all non-breakfast and their sides ==========
 async function fetchMainData(cals, numMeals, carbs, protein, fat) {
     let approxCals = 0;
-    let minBreakfastCals = 0;
-    let maxBreakfastCals = 0;
     let minMainCals = 0;
     let maxMainCals = 0;
     let maxSideCals = 0;
@@ -367,9 +355,6 @@ async function fetchMainData(cals, numMeals, carbs, protein, fat) {
 
     } else { //numMeals === 3-6
         approxCals = Math.floor(cals / numMeals);
-        // target = (approxCals - 100) +- 25
-        minBreakfastCals = approxCals - 125;
-        maxBreakfastCals = approxCals - 75;
         // target = (approxCals - 75) +- 25
         minMainCals = approxCals - 100;
         maxMainCals = approxCals - 50;
