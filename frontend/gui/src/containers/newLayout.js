@@ -44,16 +44,12 @@ const mainTextColor = '#32323c'
 class NewLayout extends React.Component {
     constructor(props) {
         super(props);
-        this.emptyMeals = Array(6).fill({
-            name: '', calories: 0, carbs: 0,
-            protein: 0, fat: 0, ingredients: [],
-            instructions: [], servings: 0
-        });
         this.emptyMeal = {
             name: '', calories: 0, carbs: 0,
             protein: 0, fat: 0, ingredients: [],
             instructions: [], servings: 0
         }
+        this.emptyMeals = Array(6).fill(this.emptyMeal);
         this.state = {
             calories: 2000,
             carbs: 220,
@@ -239,7 +235,6 @@ class NewLayout extends React.Component {
 
             // set the loading and temp values while the meal data is loading
             this.setState({
-                meals: this.emptyMeals,
                 displayMeals: false,
                 loadingMeals: true,
             });
@@ -510,7 +505,15 @@ class NewLayout extends React.Component {
                                         {this.state.pinMeals ? <PushpinFilled className='pinIcon' onClick={this.pinMeals} /> :
                                             <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
                                     </div>
-                                    <div className='ant-card-meta-title' style={{ margin: '0 0 7px 0' }}>
+                                    <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
+                                        {this.state.meal1.name}
+                                    </div>
+                                    <p className='ant-card-meta-description'>
+                                        C: {this.state.meal1.carbs}
+                                        , P: {this.state.meal1.protein}
+                                        , F: {this.state.meal1.fat}
+                                    </p>
+                                    <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
                                         {this.state.meal1.name}
                                     </div>
                                     <p className='ant-card-meta-description'>
@@ -540,7 +543,7 @@ class NewLayout extends React.Component {
                                                 {this.state.pinMeals ? <PushpinFilled className='pinIcon' onClick={this.pinMeals} /> :
                                                     <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
                                             </div>
-                                            <div className='ant-card-meta-title' style={{ margin: '0 0 7px 0' }}>
+                                            <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
                                                 {this.state.meal2.name}
                                             </div>
                                             <p className='ant-card-meta-description'>
@@ -571,7 +574,7 @@ class NewLayout extends React.Component {
                                                 {this.state.pinMeals ? <PushpinFilled className='pinIcon' onClick={this.pinMeals} /> :
                                                     <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
                                             </div>
-                                            <div className='ant-card-meta-title' style={{ margin: '0 0 7px 0' }}>
+                                            <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
                                                 {this.state.meal3.name}
                                             </div>
                                             <p className='ant-card-meta-description'>
@@ -602,7 +605,7 @@ class NewLayout extends React.Component {
                                                 {this.state.pinMeals ? <PushpinFilled className='pinIcon' onClick={this.pinMeals} /> :
                                                     <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
                                             </div>
-                                            <div className='ant-card-meta-title' style={{ margin: '0 0 7px 0' }}>
+                                            <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
                                                 {this.state.meal4.name}
                                             </div>
                                             <p className='ant-card-meta-description'>
@@ -633,7 +636,7 @@ class NewLayout extends React.Component {
                                                 {this.state.pinMeals ? <PushpinFilled className='pinIcon' onClick={this.pinMeals} /> :
                                                     <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
                                             </div>
-                                            <div className='ant-card-meta-title' style={{ margin: '0 0 7px 0' }}>
+                                            <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
                                                 {this.state.meal5.name}
                                             </div>
                                             <p className='ant-card-meta-description'>
@@ -664,7 +667,7 @@ class NewLayout extends React.Component {
                                                 {this.state.pinMeals ? <PushpinFilled className='pinIcon' onClick={this.pinMeals} /> :
                                                     <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
                                             </div>
-                                            <div className='ant-card-meta-title' style={{ margin: '0 0 7px 0' }}>
+                                            <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
                                                 {this.state.meal6.name}
                                             </div>
                                             <p className='ant-card-meta-description'>
