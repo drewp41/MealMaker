@@ -112,6 +112,10 @@ class NewLayout extends React.Component {
 
     regenMeal = (num) => {
         const meal = 'meal' + num.toString();
+        // if it's already loading a meal, return (stops spam clicking)
+        if (this.state[meal].loading) {
+            return;
+        }
         this.setState(prevState => ({
             [meal]: {
                 ...prevState[meal],
