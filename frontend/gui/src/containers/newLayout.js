@@ -85,7 +85,7 @@ class NewLayout extends React.Component {
             changedPrefs: true,
             headerHeight: '80px',
             hamburgerActive: false,
-            pinMeals: false,
+            pinMeal: false,
             meal1: this.emptyObj,
             meal2: this.emptyObj,
             meal3: this.emptyObj,
@@ -110,17 +110,33 @@ class NewLayout extends React.Component {
         })
     }
 
-    regenMeal = (val) => {
-        this.updateMeal(val)
-        this.setState({
-            loadingMeals: !this.state.loadingMeals,
-        });
+    regenMeal = (num) => {
+        const meal = 'meal' + num.toString();
+        this.setState(prevState => ({
+            [meal]: {
+                ...prevState[meal],
+                loading: true
+            }
+        }));
+        this.updateMeal(num);
+        setTimeout(() => {
+            this.setState(prevState => ({
+                [meal]: {
+                    ...prevState[meal],
+                    loading: false
+                }
+            }));
+        }, 500);
     }
 
-    pinMeals = () => {
-        this.setState({
-            pinMeals: !this.state.pinMeals,
-        })
+    pinMeal = (num) => {
+        const meal = 'meal' + num.toString();
+        this.setState(prevState => ({
+            [meal]: {
+                ...prevState[meal],
+                pinned: !prevState[meal].pinned
+            }
+        }));
     }
 
     updateMeal = (num) => {
@@ -348,8 +364,6 @@ class NewLayout extends React.Component {
                         </div>
 
                         <div className='headerLRSpace'></div>
-                        {/* <div className="break"></div> */}
-                        {/* <div>About</div> */}
                     </div>
                     <div className='condensedHeader'>
                         <button className='condensedHeaderText' style={{ height: '45px', width: '120px' }}>How it works</button>
@@ -526,11 +540,11 @@ class NewLayout extends React.Component {
                                 paragraph={{ rows: 3, width: [250] }} >
                                 <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
                                     <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
-                                        {this.state.loadingMeals ? <SyncOutlined spin className='regenIcon' onClick={() => this.regenMeal(1)} /> :
+                                        {this.state.meal1.loading ? <SyncOutlined spin className='regenIcon' onClick={() => this.regenMeal(1)} /> :
                                             <SyncOutlined className='regenIcon' onClick={() => this.regenMeal(1)} />}
                                         &nbsp;&nbsp;&nbsp;
-                                        {this.state.pinMeals ? <PushpinFilled className='pinIcon' onClick={this.pinMeals} /> :
-                                            <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
+                                        {this.state.meal1.pinned ? <PushpinFilled className='pinIcon' onClick={() => this.pinMeal(1)} /> :
+                                            <PushpinOutlined className='pinIcon' onClick={() => this.pinMeal(1)} />}
                                     </div>
                                     <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
                                         {this.state.meal1.meal.name}
@@ -564,11 +578,11 @@ class NewLayout extends React.Component {
                                         paragraph={{ rows: 3, width: [250] }} >
                                         <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
                                             <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
-                                                {this.state.loadingMeals ? <SyncOutlined spin className='regenIcon' onClick={() => this.regenMeal(2)} /> :
+                                                {this.state.meal2.loading ? <SyncOutlined spin className='regenIcon' onClick={() => this.regenMeal(2)} /> :
                                                     <SyncOutlined className='regenIcon' onClick={() => this.regenMeal(2)} />}
                                                 &nbsp;&nbsp;&nbsp;
-                                                {this.state.pinMeals ? <PushpinFilled className='pinIcon' onClick={this.pinMeals} /> :
-                                                    <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
+                                                {this.state.meal2.pinned ? <PushpinFilled className='pinIcon' onClick={() => this.pinMeal(2)} /> :
+                                                    <PushpinOutlined className='pinIcon' onClick={() => this.pinMeal(2)} />}
                                             </div>
                                             <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
                                                 {this.state.meal2.meal.name}
@@ -603,11 +617,11 @@ class NewLayout extends React.Component {
                                         paragraph={{ rows: 3, width: [250] }} >
                                         <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
                                             <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
-                                                {this.state.loadingMeals ? <SyncOutlined spin className='regenIcon' onClick={() => this.regenMeal(3)} /> :
+                                                {this.state.meal3.loading ? <SyncOutlined spin className='regenIcon' onClick={() => this.regenMeal(3)} /> :
                                                     <SyncOutlined className='regenIcon' onClick={() => this.regenMeal(3)} />}
                                                 &nbsp;&nbsp;&nbsp;
-                                                {this.state.pinMeals ? <PushpinFilled className='pinIcon' onClick={this.pinMeals} /> :
-                                                    <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
+                                                {this.state.meal3.pinned ? <PushpinFilled className='pinIcon' onClick={() => this.pinMeal(3)} /> :
+                                                    <PushpinOutlined className='pinIcon' onClick={() => this.pinMeal(3)} />}
                                             </div>
                                             <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
                                                 {this.state.meal3.meal.name}
@@ -642,11 +656,11 @@ class NewLayout extends React.Component {
                                         paragraph={{ rows: 3, width: [250] }} >
                                         <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
                                             <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
-                                                {this.state.loadingMeals ? <SyncOutlined spin className='regenIcon' onClick={() => this.regenMeal(4)} /> :
+                                                {this.state.meal4.loading ? <SyncOutlined spin className='regenIcon' onClick={() => this.regenMeal(4)} /> :
                                                     <SyncOutlined className='regenIcon' onClick={() => this.regenMeal(4)} />}
                                                 &nbsp;&nbsp;&nbsp;
-                                                {this.state.pinMeals ? <PushpinFilled className='pinIcon' onClick={this.pinMeals} /> :
-                                                    <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
+                                                {this.state.meal4.pinned ? <PushpinFilled className='pinIcon' onClick={() => this.pinMeal(4)} /> :
+                                                    <PushpinOutlined className='pinIcon' onClick={() => this.pinMeal(4)} />}
                                             </div>
                                             <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
                                                 {this.state.meal4.meal.name}
@@ -681,11 +695,11 @@ class NewLayout extends React.Component {
                                         paragraph={{ rows: 3, width: [250] }} >
                                         <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
                                             <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
-                                                {this.state.loadingMeals ? <SyncOutlined spin className='regenIcon' onClick={() => this.regenMeal(5)} /> :
+                                                {this.state.meal5.loading ? <SyncOutlined spin className='regenIcon' onClick={() => this.regenMeal(5)} /> :
                                                     <SyncOutlined className='regenIcon' onClick={() => this.regenMeal(5)} />}
                                                 &nbsp;&nbsp;&nbsp;
-                                                {this.state.pinMeals ? <PushpinFilled className='pinIcon' onClick={this.pinMeals} /> :
-                                                    <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
+                                                {this.state.meal5.pinned ? <PushpinFilled className='pinIcon' onClick={() => this.pinMeal(5)} /> :
+                                                    <PushpinOutlined className='pinIcon' onClick={() => this.pinMeal(5)} />}
                                             </div>
                                             <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
                                                 {this.state.meal5.meal.name}
@@ -720,11 +734,11 @@ class NewLayout extends React.Component {
                                         paragraph={{ rows: 3, width: [250] }} >
                                         <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
                                             <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
-                                                {this.state.loadingMeals ? <SyncOutlined spin className='regenIcon' onClick={() => this.regenMeal(6)} /> :
+                                                {this.state.meal6.loading ? <SyncOutlined spin className='regenIcon' onClick={() => this.regenMeal(6)} /> :
                                                     <SyncOutlined className='regenIcon' onClick={() => this.regenMeal(6)} />}
                                                 &nbsp;&nbsp;&nbsp;
-                                                {this.state.pinMeals ? <PushpinFilled className='pinIcon' onClick={this.pinMeals} /> :
-                                                    <PushpinOutlined className='pinIcon' onClick={this.pinMeals} />}
+                                                {this.state.meal6.pinned ? <PushpinFilled className='pinIcon' onClick={() => this.pinMeal(6)} /> :
+                                                    <PushpinOutlined className='pinIcon' onClick={() => this.pinMeal(6)} />}
                                             </div>
                                             <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
                                                 {this.state.meal6.meal.name}
