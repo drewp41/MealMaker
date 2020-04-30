@@ -22,6 +22,7 @@ const defaultParams = {
     instructionsRequired: true,
     addRecipeInformation: true,
     fillIngredients: true,
+    maxAlcohol: 0,
     sort: 'random',
 }
 
