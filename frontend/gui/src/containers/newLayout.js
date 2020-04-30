@@ -204,9 +204,7 @@ class NewLayout extends React.Component {
                         meal: mealObj.value,
                         side: sideObj.value,
                     }
-                }), () => {
-                    console.log(this.state[meal]);
-                })
+                }))
             } else {
                 let carbVar = 0;
                 let proteinVar = 0;
@@ -269,7 +267,8 @@ class NewLayout extends React.Component {
                             mainSideIter: this.state.mainSides[Symbol.iterator](),
                         }, () => { // after the iterators are set, update all the meals
                             for (let i = 1; i <= this.state.numMeals; i++) {
-                                this.updateMeal(i);
+                                if (!this.state[`meal${i}`].pinned)
+                                    this.updateMeal(i);
                             }
                             this.setState({
                                 loadingMeals: false,
@@ -294,7 +293,8 @@ class NewLayout extends React.Component {
             })
             setTimeout(() => {
                 for (let i = 1; i <= this.state.numMeals; i++) {
-                    this.updateMeal(i);
+                    if (!this.state[`meal${i}`].pinned)
+                        this.updateMeal(i);
                 }
                 this.setState({
                     loadingMeals: false,
