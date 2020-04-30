@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     Layout, Menu, Divider, Input, InputNumber,
-    Skeleton, Card, Button, Dropdown,
+    Skeleton, Card, Button, Dropdown, Slider,
     Select, Alert, Switch, Collapse, Avatar
 } from 'antd';
 import {
@@ -58,9 +58,9 @@ class NewLayout extends React.Component {
         }
         this.state = {
             calories: 2000,
-            carbs: 220,
-            protein: 130,
-            fat: 65,
+            carbs: 225,   // 45%   225g
+            protein: 150, // 30%   150g
+            fat: 55,      // 25%   55g
             numMeals: 3,
             // actual data of the meals (array of objects)
             breakfastMeals: this.emptyMeal,
@@ -108,6 +108,10 @@ class NewLayout extends React.Component {
             enableMacros: !this.state.enableMacros,
             changedPrefs: true,
         })
+    }
+
+    sliderFormatter(val) {
+        return `${val}%`;
     }
 
     regenMeal = (num) => {
@@ -411,35 +415,34 @@ class NewLayout extends React.Component {
 
                             <Collapse bordered={true} expandIconPosition='right' activeKey={this.state.enableMacros ? 1 : 0} style={{ marginLeft: 'auto', width: '242px' }}>
                                 <Panel header={<b id="macroSwitchText">Macro Prefences&nbsp;&nbsp;</b>} showArrow={true} key="1"
-                                    extra={<Switch defaultChecked={false} onChange={this.macroSwitch} />}
-                                >
-                                    <div className="macroText">Carbohydrates:&nbsp;
-                                        <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={220}
-                                            allowEmptyFormatting={true} style={{ width: '80px' }}
-                                            onValueChange={(values) => this.setState({
-                                                carbs: Math.floor(values.floatValue),
-                                            })}
-                                        />
-                                    </div>
-                                    <p />
-                                    <div className="macroText">Protein:&nbsp;
-                                        <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={130}
-                                            allowEmptyFormatting={true} style={{ width: '80px' }}
-                                            onValueChange={(values) => this.setState({
-                                                protein: Math.floor(values.floatValue),
-                                            })}
-                                        />
-                                    </div>
-                                    <p />
-                                    <div className="macroText">Fat:&nbsp;
-                                        <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={65}
-                                            allowEmptyFormatting={true} style={{ width: '80px' }}
-                                            onValueChange={(values) => this.setState({
-                                                fat: Math.floor(values.floatValue),
-                                            })}
-                                        />
-                                    </div>
-
+                                    extra={<Switch defaultChecked={false} onChange={this.macroSwitch} />} >
+                                    {/* Carbs */}
+                                    <span className='mealInput' style={{ float: 'left' }}>Carbs: </span>
+                                    <span className='mealInput' style={{ float: 'right' }}>{this.state.carbs} g </span>
+                                    <br />
+                                    <Slider defaultValue={45} tipFormatter={this.sliderFormatter} max={80}
+                                        value={Math.floor((this.state.carbs * 4) / (this.state.calories / 100))}
+                                        onChange={(percent) => {
+                                            this.setState({ carbs: Math.floor((percent * this.state.calories) / 400) });
+                                        }} />
+                                    {/* Protein */}
+                                    <span className='mealInput' style={{ float: 'left' }}>Protein: </span>
+                                    <span className='mealInput' style={{ float: 'right' }}>{this.state.protein} g </span>
+                                    <br />
+                                    <Slider defaultValue={30} tipFormatter={this.sliderFormatter} max={80}
+                                        value={Math.floor((this.state.protein * 4) / (this.state.calories / 100))}
+                                        onChange={(percent) => {
+                                            this.setState({ protein: Math.floor((percent * this.state.calories) / 400) });
+                                        }} />
+                                    {/* Fat */}
+                                    <span className='mealInput' style={{ float: 'left' }}>Fat: </span>
+                                    <span className='mealInput' style={{ float: 'right' }}>{this.state.fat} g </span>
+                                    <br />
+                                    <Slider defaultValue={25} tipFormatter={this.sliderFormatter} max={80}
+                                        value={Math.floor((this.state.fat * 9) / (this.state.calories / 100))}
+                                        onChange={(percent) => {
+                                            this.setState({ fat: Math.floor((percent * this.state.calories) / 900) });
+                                        }} />
                                 </Panel>
                             </Collapse>
 
@@ -562,11 +565,10 @@ class NewLayout extends React.Component {
                                         <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
                                             {this.state.meal1.side.name}
                                         </div>
-
                                         <p className='ant-card-meta-description'>
                                             C: {this.state.meal1.side.carbs}
-                                        , P: {this.state.meal1.side.protein}
-                                        , F: {this.state.meal1.side.fat}
+                                            , P: {this.state.meal1.side.protein}
+                                            , F: {this.state.meal1.side.fat}
                                         </p>
                                     </>}
                                 </div>
@@ -859,3 +861,31 @@ export default withRouter(connect(null, mapDispatchToProps)(NewLayout));
 // </Card>
 
 
+
+// OLD MACRO SELECTION
+// <div className="macroText">Carbohydrates:&nbsp;
+//                                         <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={220}
+//         allowEmptyFormatting={true} style={{ width: '80px' }}
+//         onValueChange={(values) => this.setState({
+//             carbs: Math.floor(values.floatValue),
+//         })}
+//     />
+// </div>
+//     <p />
+//     <div className="macroText">Protein:&nbsp;
+//                                         <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={130}
+//             allowEmptyFormatting={true} style={{ width: '80px' }}
+//             onValueChange={(values) => this.setState({
+//                 protein: Math.floor(values.floatValue),
+//             })}
+//         />
+//     </div>
+//     <p />
+//     <div className="macroText">Fat:&nbsp;
+//                                         <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={65}
+//             allowEmptyFormatting={true} style={{ width: '80px' }}
+//             onValueChange={(values) => this.setState({
+//                 fat: Math.floor(values.floatValue),
+//             })}
+//         />
+//     </div>
