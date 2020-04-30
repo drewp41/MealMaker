@@ -415,7 +415,7 @@ class NewLayout extends React.Component {
 
                             <Collapse bordered={true} expandIconPosition='right' activeKey={this.state.enableMacros ? 1 : 0} style={{ marginLeft: 'auto', width: '242px' }}>
                                 <Panel header={<b id="macroSwitchText">Macro Prefences&nbsp;&nbsp;</b>} showArrow={true} key="1"
-                                    extra={<Switch defaultChecked={false} onChange={this.macroSwitch} />} >
+                                    extra={<Switch defaultChecked={false} onChange={this.macroSwitch} style={{ margin: '3px 0 0 0' }} />} >
                                     {/* Carbs */}
                                     <span className='mealInput' style={{ float: 'left' }}>Carbs: </span>
                                     <span className='mealInput' style={{ float: 'right' }}>{this.state.carbs} g </span>
