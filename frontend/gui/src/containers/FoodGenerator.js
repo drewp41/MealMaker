@@ -33,7 +33,8 @@ const emptyMeal = {
 
 const errorMeals = [[emptyMeal], [emptyMeal], [emptyMeal], [emptyMeal]];
 
-
+// percent change a main side appears
+const randMainSides = 0.8;
 
 // ========== Fetch all meals ==========
 async function fetchData(cals, numMeals, carbs, protein, fat) {
@@ -232,8 +233,10 @@ export async function fetchMeals(cals, numMeals, carbs = 0, protein = 0, fat = 0
                     protein: protein, fat: fat, ingredients: ingredients,
                     instructions: instructions, servings: servings
                 };
-
-                sidesRes.push(obj);
+                if (Math.random() < randMainSides)
+                    sidesRes.push(obj);
+                else
+                    sidesRes.push(emptyMeal);
             })
 
             const res = [breakfastRes, breakfastSides, mainRes, sidesRes]
@@ -494,20 +497,16 @@ export async function fetchMain(cals, numMeals, carbs = 0, protein = 0, fat = 0)
                     instructions: instructions, servings: servings
                 };
 
-                sidesRes.push(obj);
+                if (Math.random() < randMainSides)
+                    sidesRes.push(obj);
+                else
+                    sidesRes.push(emptyMeal);
             })
 
             const res = [mainRes, sidesRes];
             return res;
         })
 }
-
-
-
-
-
-
-
 
 
 

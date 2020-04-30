@@ -539,7 +539,7 @@ class NewLayout extends React.Component {
                             extra={this.state.meal1.meal.calories + this.state.meal1.side.calories + " calories"}
                             style={{ width: 350, height: 200 }} bordered={false}
                             headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                            <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
+                            <Skeleton avatar={false} loading={!this.state.displayMeals && !this.state.meal1.pinned} title={false}
                                 active={this.state.loadingMeals}
                                 paragraph={{ rows: 3, width: [250] }} >
                                 <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
@@ -558,14 +558,16 @@ class NewLayout extends React.Component {
                                         , P: {this.state.meal1.meal.protein}
                                         , F: {this.state.meal1.meal.fat}
                                     </p>
-                                    <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
-                                        {this.state.meal1.side.name}
-                                    </div>
-                                    <p className='ant-card-meta-description'>
-                                        C: {this.state.meal1.side.carbs}
+                                    {this.state.meal1.side.name &&
+                                        <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
+                                            {this.state.meal1.side.name}
+                                        </div>}
+                                    {this.state.meal1.side.name &&
+                                        <p className='ant-card-meta-description'>
+                                            C: {this.state.meal1.side.carbs}
                                         , P: {this.state.meal1.side.protein}
                                         , F: {this.state.meal1.side.fat}
-                                    </p>
+                                        </p>}
                                 </div>
                             </Skeleton>
                         </Card>
@@ -577,7 +579,7 @@ class NewLayout extends React.Component {
                                     extra={this.state.meal2.meal.calories + this.state.meal2.side.calories + " calories"}
                                     style={{ width: 350, height: 200 }} bordered={false}
                                     headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                                    <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
+                                    <Skeleton avatar={false} loading={!this.state.displayMeals && !this.state.meal2.pinned} title={false}
                                         active={this.state.loadingMeals}
                                         paragraph={{ rows: 3, width: [250] }} >
                                         <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
@@ -596,14 +598,17 @@ class NewLayout extends React.Component {
                                                 , P: {this.state.meal2.meal.protein}
                                                 , F: {this.state.meal2.meal.fat}
                                             </p>
-                                            <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
-                                                {this.state.meal2.side.name}
-                                            </div>
-                                            <p className='ant-card-meta-description'>
-                                                C: {this.state.meal2.side.carbs}
+                                            {this.state.meal2.side.name &&
+                                                <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
+                                                    {this.state.meal2.side.name}
+                                                </div>}
+                                            {this.state.meal2.side.name &&
+                                                <p className='ant-card-meta-description'>
+                                                    C: {this.state.meal2.side.carbs}
                                                 , P: {this.state.meal2.side.protein}
                                                 , F: {this.state.meal2.side.fat}
-                                            </p>
+                                                </p>}
+
                                         </div>
                                     </Skeleton>
                                 </Card>
@@ -616,7 +621,7 @@ class NewLayout extends React.Component {
                                     extra={this.state.meal3.meal.calories + this.state.meal3.side.calories + " calories"}
                                     style={{ width: 350, height: 200 }} bordered={false}
                                     headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                                    <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
+                                    <Skeleton avatar={false} loading={!this.state.displayMeals && !this.state.meal3.pinned} title={false}
                                         active={this.state.loadingMeals}
                                         paragraph={{ rows: 3, width: [250] }} >
                                         <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
@@ -635,14 +640,16 @@ class NewLayout extends React.Component {
                                                 , P: {this.state.meal3.meal.protein}
                                                 , F: {this.state.meal3.meal.fat}
                                             </p>
-                                            <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
-                                                {this.state.meal3.side.name}
-                                            </div>
-                                            <p className='ant-card-meta-description'>
-                                                C: {this.state.meal3.side.carbs}
+                                            {this.state.meal3.side.name &&
+                                                <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
+                                                    {this.state.meal3.side.name}
+                                                </div>}
+                                            {this.state.meal3.side.name &&
+                                                <p className='ant-card-meta-description'>
+                                                    C: {this.state.meal3.side.carbs}
                                                 , P: {this.state.meal3.side.protein}
                                                 , F: {this.state.meal3.side.fat}
-                                            </p>
+                                                </p>}
                                         </div>
                                     </Skeleton>
                                 </Card>
@@ -655,7 +662,7 @@ class NewLayout extends React.Component {
                                     extra={this.state.meal4.meal.calories + this.state.meal4.side.calories + " calories"}
                                     style={{ width: 350, height: 200 }} bordered={false}
                                     headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                                    <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
+                                    <Skeleton avatar={false} loading={!this.state.displayMeals && !this.state.meal4.pinned} title={false}
                                         active={this.state.loadingMeals}
                                         paragraph={{ rows: 3, width: [250] }} >
                                         <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
@@ -674,14 +681,16 @@ class NewLayout extends React.Component {
                                                 , P: {this.state.meal4.meal.protein}
                                                 , F: {this.state.meal4.meal.fat}
                                             </p>
-                                            <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
-                                                {this.state.meal4.side.name}
-                                            </div>
-                                            <p className='ant-card-meta-description'>
-                                                C: {this.state.meal4.side.carbs}
+                                            {this.state.meal4.side.name &&
+                                                <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
+                                                    {this.state.meal4.side.name}
+                                                </div>}
+                                            {this.state.meal4.side.name &&
+                                                <p className='ant-card-meta-description'>
+                                                    C: {this.state.meal4.side.carbs}
                                                 , P: {this.state.meal4.side.protein}
                                                 , F: {this.state.meal4.side.fat}
-                                            </p>
+                                                </p>}
                                         </div>
                                     </Skeleton>
                                 </Card>
@@ -694,7 +703,7 @@ class NewLayout extends React.Component {
                                     extra={this.state.meal5.meal.calories + this.state.meal5.side.calories + " calories"}
                                     style={{ width: 350, height: 200 }} bordered={false}
                                     headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                                    <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
+                                    <Skeleton avatar={false} loading={!this.state.displayMeals && !this.state.meal5.pinned} title={false}
                                         active={this.state.loadingMeals}
                                         paragraph={{ rows: 3, width: [250] }} >
                                         <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
@@ -713,14 +722,16 @@ class NewLayout extends React.Component {
                                                 , P: {this.state.meal5.meal.protein}
                                                 , F: {this.state.meal5.meal.fat}
                                             </p>
-                                            <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
-                                                {this.state.meal5.side.name}
-                                            </div>
-                                            <p className='ant-card-meta-description'>
-                                                C: {this.state.meal5.side.carbs}
+                                            {this.state.meal5.side.name &&
+                                                <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
+                                                    {this.state.meal5.side.name}
+                                                </div>}
+                                            {this.state.meal5.side.name &&
+                                                <p className='ant-card-meta-description'>
+                                                    C: {this.state.meal5.side.carbs}
                                                 , P: {this.state.meal5.side.protein}
                                                 , F: {this.state.meal5.side.fat}
-                                            </p>
+                                                </p>}
                                         </div>
                                     </Skeleton>
                                 </Card>
@@ -733,7 +744,7 @@ class NewLayout extends React.Component {
                                     extra={this.state.meal6.meal.calories + this.state.meal6.side.calories + " calories"}
                                     style={{ width: 350, height: 200 }} bordered={false}
                                     headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                                    <Skeleton avatar={false} loading={!this.state.displayMeals} title={false}
+                                    <Skeleton avatar={false} loading={!this.state.displayMeals && !this.state.meal6.pinned} title={false}
                                         active={this.state.loadingMeals}
                                         paragraph={{ rows: 3, width: [250] }} >
                                         <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
@@ -752,14 +763,16 @@ class NewLayout extends React.Component {
                                                 , P: {this.state.meal6.meal.protein}
                                                 , F: {this.state.meal6.meal.fat}
                                             </p>
-                                            <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
-                                                {this.state.meal6.side.name}
-                                            </div>
-                                            <p className='ant-card-meta-description'>
-                                                C: {this.state.meal6.side.carbs}
-                                                , P: {this.state.meal6.side.protein}
-                                                , F: {this.state.meal6.side.fat}
-                                            </p>
+                                            {this.state.meal6.side.name &&
+                                                <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
+                                                    {this.state.meal6.side.name}
+                                                </div>}
+                                            {this.state.meal6.side.name &&
+                                                <p className='ant-card-meta-description'>
+                                                    C: {this.state.meal6.side.carbs}
+                                                    , P: {this.state.meal6.side.protein}
+                                                    , F: {this.state.meal6.side.fat}
+                                                </p>}
                                         </div>
                                     </Skeleton>
                                 </Card>
