@@ -418,30 +418,48 @@ class NewLayout extends React.Component {
                                     extra={<Switch defaultChecked={false} onChange={this.macroSwitch} style={{ margin: '3px 0 0 0' }} />} >
                                     {/* Carbs */}
                                     <span className='mealInput' style={{ float: 'left' }}>Carbs: </span>
-                                    <span className='mealInput' style={{ float: 'right' }}>{this.state.carbs} g </span>
+                                    <span className='mealInput' style={{ float: 'right' }}>{Math.floor(this.state.carbs)} g </span>
                                     <br />
                                     <Slider defaultValue={45} tipFormatter={this.sliderFormatter} max={80}
                                         value={Math.floor((this.state.carbs * 4) / (this.state.calories / 100))}
                                         onChange={(percent) => {
-                                            this.setState({ carbs: Math.floor((percent * this.state.calories) / 400) });
+                                            let newCarbs = Math.floor((percent * this.state.calories) / 400);
+                                            this.setState(prevState => ({
+                                                carbs: newCarbs,
+                                                protein: prevState.protein + ((prevState.carbs - newCarbs) * 0.5 * (1)),
+                                                fat: prevState.fat + ((prevState.carbs - newCarbs) * 0.5 * (4 / 9))
+                                            }));
                                         }} />
                                     {/* Protein */}
                                     <span className='mealInput' style={{ float: 'left' }}>Protein: </span>
-                                    <span className='mealInput' style={{ float: 'right' }}>{this.state.protein} g </span>
+                                    <span className='mealInput' style={{ float: 'right' }}>{Math.floor(this.state.protein)} g </span>
                                     <br />
                                     <Slider defaultValue={30} tipFormatter={this.sliderFormatter} max={80}
                                         value={Math.floor((this.state.protein * 4) / (this.state.calories / 100))}
                                         onChange={(percent) => {
-                                            this.setState({ protein: Math.floor((percent * this.state.calories) / 400) });
+                                            let newProtein = Math.floor((percent * this.state.calories) / 400);
+                                            this.setState(prevState => ({
+                                                protein: newProtein,
+                                                carbs: prevState.carbs + ((prevState.protein - newProtein) * 0.5 * (1)),
+                                                fat: prevState.fat + ((prevState.protein - newProtein) * 0.5 * (4 / 9))
+                                            }));
                                         }} />
                                     {/* Fat */}
                                     <span className='mealInput' style={{ float: 'left' }}>Fat: </span>
-                                    <span className='mealInput' style={{ float: 'right' }}>{this.state.fat} g </span>
+                                    <span className='mealInput' style={{ float: 'right' }}>{Math.floor(this.state.fat)} g </span>
                                     <br />
                                     <Slider defaultValue={25} tipFormatter={this.sliderFormatter} max={80}
                                         value={Math.floor((this.state.fat * 9) / (this.state.calories / 100))}
                                         onChange={(percent) => {
                                             this.setState({ fat: Math.floor((percent * this.state.calories) / 900) });
+                                        }}
+                                        onChange={(percent) => {
+                                            let newFat = Math.floor((percent * this.state.calories) / 900);
+                                            this.setState(prevState => ({
+                                                fat: newFat,
+                                                carbs: prevState.carbs + ((prevState.fat - newFat) * 0.5 * (9 / 5)),
+                                                protein: prevState.protein + ((prevState.fat - newFat) * 0.5 * (9 / 5))
+                                            }));
                                         }} />
                                 </Panel>
                             </Collapse>
