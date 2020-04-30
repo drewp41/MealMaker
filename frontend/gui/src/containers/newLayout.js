@@ -675,7 +675,7 @@ class NewLayout extends React.Component {
                                                 , F: {this.state.meal4.meal.fat}
                                             </p>
                                             <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
-                                                {this.state.mea4.side.name}
+                                                {this.state.meal4.side.name}
                                             </div>
                                             <p className='ant-card-meta-description'>
                                                 C: {this.state.meal4.side.carbs}
