@@ -1,7 +1,6 @@
 /**
  * Created by Andrey Gayvoronsky on 13/04/16.
  */
-declare const locale: {
-    placeholder: string;
-};
+import { TimePickerLocale } from '../index';
+declare const locale: TimePickerLocale;
 export default locale;

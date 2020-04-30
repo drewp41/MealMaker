@@ -33,7 +33,7 @@ var Title = function Title(props) {
     component = 'h1';
   }
 
-  return React.createElement(Base, _extends({}, restProps, {
+  return /*#__PURE__*/React.createElement(Base, _extends({}, restProps, {
     component: component
   }));
 };

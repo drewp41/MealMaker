@@ -6,5 +6,5 @@ export interface ButtonGroupProps {
     className?: string;
     prefixCls?: string;
 }
-declare const ButtonGroup: React.SFC<ButtonGroupProps>;
+declare const ButtonGroup: React.FC<ButtonGroupProps>;
 export default ButtonGroup;

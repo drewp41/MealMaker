@@ -1,4 +1,4 @@
-import * as React from 'react';
+/// <reference types="react" />
 export interface SkeletonElementProps {
     prefixCls?: string;
     className?: string;
@@ -7,7 +7,5 @@ export interface SkeletonElementProps {
     shape?: 'circle' | 'square' | 'round';
     active?: boolean;
 }
-declare class Element extends React.Component<SkeletonElementProps, any> {
-    render(): JSX.Element;
-}
+declare const Element: (props: SkeletonElementProps) => JSX.Element;
 export default Element;

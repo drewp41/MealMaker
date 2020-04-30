@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ConfigConsumerProps } from '../config-provider';
-declare function getDefaultTarget(): (Window & typeof globalThis) | null;
 export interface AffixProps {
     /**
      * 距离窗口顶部达到指定偏移量后触发
@@ -15,7 +14,7 @@ export interface AffixProps {
     target?: () => Window | HTMLElement | null;
     prefixCls?: string;
     className?: string;
-    children: React.ReactElement;
+    children: React.ReactNode;
 }
 declare enum AffixStatus {
     None = 0,
@@ -29,13 +28,13 @@ export interface AffixState {
     prevTarget: Window | HTMLElement | null;
 }
 declare class Affix extends React.Component<AffixProps, AffixState> {
-    static defaultProps: {
-        target: typeof getDefaultTarget;
-    };
+    static contextType: React.Context<ConfigConsumerProps>;
     state: AffixState;
     placeholderNode: HTMLDivElement;
     fixedNode: HTMLDivElement;
     private timeout;
+    context: ConfigConsumerProps;
+    private getTargetFunc;
     componentDidMount(): void;
     componentDidUpdate(prevProps: AffixProps): void;
     componentWillUnmount(): void;
@@ -47,7 +46,6 @@ declare class Affix extends React.Component<AffixProps, AffixState> {
     prepareMeasure: () => void;
     updatePosition(): void;
     lazyUpdatePosition(): void;
-    renderAffix: ({ getPrefixCls }: ConfigConsumerProps) => JSX.Element;
-    render(): JSX.Element;
+    render: () => JSX.Element;
 }
 export default Affix;

@@ -1,6 +1,12 @@
 import * as React from 'react';
-export interface FooterProps {
+import Cell from './Cell';
+import Row from './Row';
+export interface FooterProps<RecordType> {
     children: React.ReactNode;
 }
-declare function Footer({ children }: FooterProps): JSX.Element;
+declare function Footer<RecordType>({ children }: FooterProps<RecordType>): JSX.Element;
 export default Footer;
+export declare const FooterComponents: {
+    Cell: typeof Cell;
+    Row: typeof Row;
+};

@@ -1,12 +1,12 @@
-import * as React from 'react';
+/// <reference types="react" />
 import { SkeletonElementProps } from './Element';
-import { ConfigConsumerProps } from '../config-provider';
-interface SkeletonButtonProps extends Omit<SkeletonElementProps, 'size'> {
+export interface SkeletonButtonProps extends Omit<SkeletonElementProps, 'size'> {
     size?: 'large' | 'small' | 'default';
 }
-declare class SkeletonButton extends React.Component<SkeletonButtonProps, any> {
-    static defaultProps: Partial<SkeletonButtonProps>;
-    renderSkeletonButton: ({ getPrefixCls }: ConfigConsumerProps) => JSX.Element;
-    render(): JSX.Element;
-}
+declare const SkeletonButton: {
+    (props: SkeletonButtonProps): JSX.Element;
+    defaultProps: {
+        size: string;
+    };
+};
 export default SkeletonButton;

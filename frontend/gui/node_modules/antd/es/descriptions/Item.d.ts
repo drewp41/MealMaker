@@ -7,5 +7,5 @@ export interface DescriptionsItemProps {
     children: React.ReactNode;
     span?: number;
 }
-declare const DescriptionsItem: React.SFC<DescriptionsItemProps>;
+declare const DescriptionsItem: React.FC<DescriptionsItemProps>;
 export default DescriptionsItem;

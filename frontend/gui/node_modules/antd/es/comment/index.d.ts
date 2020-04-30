@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { ConfigConsumerProps } from '../config-provider';
 export interface CommentProps {
     /** List of action items rendered below the comment content */
     actions?: Array<React.ReactNode>;
@@ -20,8 +19,5 @@ export interface CommentProps {
     /** A datetime element containing the time to be displayed */
     datetime?: React.ReactNode;
 }
-export default class Comment extends React.Component<CommentProps, {}> {
-    renderNested: (prefixCls: string, children: any) => JSX.Element;
-    renderComment: ({ getPrefixCls, direction }: ConfigConsumerProps) => JSX.Element;
-    render(): JSX.Element;
-}
+declare const Comment: React.FC<CommentProps>;
+export default Comment;

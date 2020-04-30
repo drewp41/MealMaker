@@ -6,11 +6,12 @@ export interface ExpandedRowProps<RecordType> {
     cellComponent: CustomizeComponent;
     fixHeader: boolean;
     fixColumn: boolean;
+    horizonScroll: boolean;
     componentWidth: number;
     className: string;
     expanded: boolean;
     children: React.ReactNode;
     colSpan: number;
 }
-declare function ExpandedRow<RecordType>({ prefixCls, children, component: Component, cellComponent, fixHeader, fixColumn, className, expanded, componentWidth, colSpan, }: ExpandedRowProps<RecordType>): JSX.Element;
+declare function ExpandedRow<RecordType>({ prefixCls, children, component: Component, cellComponent, fixHeader, fixColumn, horizonScroll, className, expanded, componentWidth, colSpan, }: ExpandedRowProps<RecordType>): JSX.Element;
 export default ExpandedRow;

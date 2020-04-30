@@ -9,7 +9,7 @@ var Title = function Title(_ref) {
       className = _ref.className,
       width = _ref.width,
       style = _ref.style;
-  return React.createElement("h3", {
+  return /*#__PURE__*/React.createElement("h3", {
     className: classNames(prefixCls, className),
     style: _extends({
       width: width

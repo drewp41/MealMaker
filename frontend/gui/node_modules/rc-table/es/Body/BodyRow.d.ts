@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { StickyOffsets, CustomizeComponent, GetComponentProps, Key, GetRowKey } from '../interface';
+import { CustomizeComponent, GetComponentProps, Key, GetRowKey } from '../interface';
 export interface BodyRowProps<RecordType> {
     record: RecordType;
     index: number;
     className?: string;
     style?: React.CSSProperties;
-    stickyOffsets: StickyOffsets;
     recordKey: Key;
     expandedKeys: Set<Key>;
     rowComponent: CustomizeComponent;

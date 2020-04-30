@@ -3,14 +3,14 @@ import Empty from '../empty';
 import { ConfigConsumer } from '.';
 
 var renderEmpty = function renderEmpty(componentName) {
-  return React.createElement(ConfigConsumer, null, function (_ref) {
+  return /*#__PURE__*/React.createElement(ConfigConsumer, null, function (_ref) {
     var getPrefixCls = _ref.getPrefixCls;
     var prefix = getPrefixCls('empty');
 
     switch (componentName) {
       case 'Table':
       case 'List':
-        return React.createElement(Empty, {
+        return /*#__PURE__*/React.createElement(Empty, {
           image: Empty.PRESENTED_IMAGE_SIMPLE
         });
 
@@ -19,13 +19,13 @@ var renderEmpty = function renderEmpty(componentName) {
       case 'Cascader':
       case 'Transfer':
       case 'Mentions':
-        return React.createElement(Empty, {
+        return /*#__PURE__*/React.createElement(Empty, {
           image: Empty.PRESENTED_IMAGE_SIMPLE,
           className: "".concat(prefix, "-small")
         });
 
       default:
-        return React.createElement(Empty, null);
+        return /*#__PURE__*/React.createElement(Empty, null);
     }
   });
 };

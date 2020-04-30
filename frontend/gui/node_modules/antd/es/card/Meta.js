@@ -18,7 +18,7 @@ import classNames from 'classnames';
 import { ConfigConsumer } from '../config-provider';
 
 var Meta = function Meta(props) {
-  return React.createElement(ConfigConsumer, null, function (_ref) {
+  return /*#__PURE__*/React.createElement(ConfigConsumer, null, function (_ref) {
     var getPrefixCls = _ref.getPrefixCls;
 
     var customizePrefixCls = props.prefixCls,
@@ -30,19 +30,19 @@ var Meta = function Meta(props) {
 
     var prefixCls = getPrefixCls('card', customizePrefixCls);
     var classString = classNames("".concat(prefixCls, "-meta"), className);
-    var avatarDom = avatar ? React.createElement("div", {
+    var avatarDom = avatar ? /*#__PURE__*/React.createElement("div", {
       className: "".concat(prefixCls, "-meta-avatar")
     }, avatar) : null;
-    var titleDom = title ? React.createElement("div", {
+    var titleDom = title ? /*#__PURE__*/React.createElement("div", {
       className: "".concat(prefixCls, "-meta-title")
     }, title) : null;
-    var descriptionDom = description ? React.createElement("div", {
+    var descriptionDom = description ? /*#__PURE__*/React.createElement("div", {
       className: "".concat(prefixCls, "-meta-description")
     }, description) : null;
-    var MetaDetail = titleDom || descriptionDom ? React.createElement("div", {
+    var MetaDetail = titleDom || descriptionDom ? /*#__PURE__*/React.createElement("div", {
       className: "".concat(prefixCls, "-meta-detail")
     }, titleDom, descriptionDom) : null;
-    return React.createElement("div", _extends({}, others, {
+    return /*#__PURE__*/React.createElement("div", _extends({}, others, {
       className: classString
     }), avatarDom, MetaDetail);
   });

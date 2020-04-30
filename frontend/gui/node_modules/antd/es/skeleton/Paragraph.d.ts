@@ -1,4 +1,4 @@
-import * as React from 'react';
+/// <reference types="react" />
 declare type widthUnit = number | string;
 export interface SkeletonParagraphProps {
     prefixCls?: string;
@@ -7,8 +7,5 @@ export interface SkeletonParagraphProps {
     width?: widthUnit | Array<widthUnit>;
     rows?: number;
 }
-declare class Paragraph extends React.Component<SkeletonParagraphProps, {}> {
-    getWidth(index: number): string | number | undefined;
-    render(): JSX.Element;
-}
+declare const Paragraph: (props: SkeletonParagraphProps) => JSX.Element;
 export default Paragraph;

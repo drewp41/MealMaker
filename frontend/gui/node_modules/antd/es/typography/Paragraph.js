@@ -4,7 +4,7 @@ import * as React from 'react';
 import Base from './Base';
 
 var Paragraph = function Paragraph(props) {
-  return React.createElement(Base, _extends({}, props, {
+  return /*#__PURE__*/React.createElement(Base, _extends({}, props, {
     component: "div"
   }));
 };

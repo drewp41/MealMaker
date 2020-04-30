@@ -5,5 +5,5 @@ interface CircleProps extends ProgressProps {
     children: React.ReactNode;
     progressStatus: string;
 }
-declare const Circle: React.SFC<CircleProps>;
+declare const Circle: React.FC<CircleProps>;
 export default Circle;

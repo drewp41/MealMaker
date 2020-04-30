@@ -3,13 +3,16 @@ import { Settings } from '@ant-design/react-slick';
 import { ConfigConsumerProps } from '../config-provider';
 export declare type CarouselEffect = 'scrollx' | 'fade';
 export declare type DotPosition = 'top' | 'bottom' | 'left' | 'right';
-export interface CarouselProps extends Settings {
+export interface CarouselProps extends Omit<Settings, 'dots' | 'dotsClass'> {
     effect?: CarouselEffect;
     style?: React.CSSProperties;
     prefixCls?: string;
     slickGoTo?: number;
     dotPosition?: DotPosition;
     children?: React.ReactNode;
+    dots?: boolean | {
+        className?: string;
+    };
 }
 export default class Carousel extends React.Component<CarouselProps, {}> {
     static defaultProps: {

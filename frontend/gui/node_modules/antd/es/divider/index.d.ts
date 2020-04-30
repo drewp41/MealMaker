@@ -7,6 +7,7 @@ export interface DividerProps {
     children?: React.ReactNode;
     dashed?: boolean;
     style?: React.CSSProperties;
+    plain?: boolean;
 }
-declare const Divider: React.SFC<DividerProps>;
+declare const Divider: React.FC<DividerProps>;
 export default Divider;

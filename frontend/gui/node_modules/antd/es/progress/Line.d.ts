@@ -32,5 +32,5 @@ export declare const sortGradient: (gradients: StringGradients) => string;
 export declare const handleGradient: (strokeColor: ProgressGradient) => {
     backgroundImage: string;
 };
-declare const Line: React.SFC<LineProps>;
+declare const Line: React.FC<LineProps>;
 export default Line;

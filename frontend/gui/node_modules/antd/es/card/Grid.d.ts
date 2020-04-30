@@ -5,5 +5,5 @@ export interface CardGridProps {
     className?: string;
     hoverable?: boolean;
 }
-declare const Grid: React.SFC<CardGridProps>;
+declare const Grid: React.FC<CardGridProps>;
 export default Grid;

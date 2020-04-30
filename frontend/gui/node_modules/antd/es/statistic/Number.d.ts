@@ -3,5 +3,5 @@ import { valueType, FormatConfig } from './utils';
 interface NumberProps extends FormatConfig {
     value: valueType;
 }
-declare const StatisticNumber: React.SFC<NumberProps>;
+declare const StatisticNumber: React.FC<NumberProps>;
 export default StatisticNumber;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Tag from '../tag';
+import { TagType } from '../tag';
 import { BreadcrumbProps } from '../breadcrumb';
 import { AvatarProps } from '../avatar';
 export interface PageHeaderProps {
@@ -9,7 +9,7 @@ export interface PageHeaderProps {
     subTitle?: React.ReactNode;
     style?: React.CSSProperties;
     breadcrumb?: BreadcrumbProps;
-    tags?: React.ReactElement<Tag> | React.ReactElement<Tag>[];
+    tags?: React.ReactElement<TagType> | React.ReactElement<TagType>[];
     footer?: React.ReactNode;
     extra?: React.ReactNode;
     avatar?: AvatarProps;
@@ -17,5 +17,5 @@ export interface PageHeaderProps {
     className?: string;
     ghost?: boolean;
 }
-declare const PageHeader: React.SFC<PageHeaderProps>;
+declare const PageHeader: React.FC<PageHeaderProps>;
 export default PageHeader;

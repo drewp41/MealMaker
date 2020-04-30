@@ -20,7 +20,7 @@ import classNames from 'classnames';
 import { ConfigConsumer } from '../config-provider';
 
 var Grid = function Grid(props) {
-  return React.createElement(ConfigConsumer, null, function (_ref) {
+  return /*#__PURE__*/React.createElement(ConfigConsumer, null, function (_ref) {
     var getPrefixCls = _ref.getPrefixCls;
 
     var customizePrefixCls = props.prefixCls,
@@ -31,7 +31,7 @@ var Grid = function Grid(props) {
 
     var prefixCls = getPrefixCls('card', customizePrefixCls);
     var classString = classNames("".concat(prefixCls, "-grid"), className, _defineProperty({}, "".concat(prefixCls, "-grid-hoverable"), hoverable));
-    return React.createElement("div", _extends({}, others, {
+    return /*#__PURE__*/React.createElement("div", _extends({}, others, {
       className: classString
     }));
   });

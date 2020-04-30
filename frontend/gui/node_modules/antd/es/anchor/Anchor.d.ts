@@ -1,8 +1,6 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import AnchorLink from './AnchorLink';
 import { ConfigConsumerProps } from '../config-provider';
-declare function getDefaultContainer(): Window & typeof globalThis;
 export declare type AnchorContainer = HTMLElement | Window;
 export interface AnchorProps {
     prefixCls?: string;
@@ -44,28 +42,26 @@ export interface AntAnchor {
         href: string;
     }) => void;
 }
-export default class Anchor extends React.Component<AnchorProps, AnchorState> {
+export default class Anchor extends React.Component<AnchorProps, AnchorState, ConfigConsumerProps> {
     static Link: typeof AnchorLink;
     static defaultProps: {
         affix: boolean;
         showInkInFixed: boolean;
-        getContainer: typeof getDefaultContainer;
     };
-    static childContextTypes: {
-        antAnchor: PropTypes.Requireable<object>;
-    };
+    static contextType: React.Context<ConfigConsumerProps>;
     state: {
         activeLink: null;
     };
+    content: ConfigConsumerProps;
     private inkNode;
     private scrollContainer;
     private links;
     private scrollEvent;
     private animating;
     private prefixCls?;
-    getChildContext(): {
-        antAnchor: AntAnchor;
-    };
+    registerLink: (link: string) => void;
+    unregisterLink: (link: string) => void;
+    getContainer: () => any;
     componentDidMount(): void;
     componentDidUpdate(): void;
     componentWillUnmount(): void;
@@ -75,7 +71,5 @@ export default class Anchor extends React.Component<AnchorProps, AnchorState> {
     setCurrentActiveLink: (link: string) => void;
     handleScroll: () => void;
     updateInk: () => void;
-    renderAnchor: ({ getPrefixCls }: ConfigConsumerProps) => JSX.Element;
-    render(): JSX.Element;
+    render: () => JSX.Element;
 }
-export {};
