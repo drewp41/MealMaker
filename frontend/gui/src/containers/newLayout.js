@@ -558,16 +558,17 @@ class NewLayout extends React.Component {
                                         , P: {this.state.meal1.meal.protein}
                                         , F: {this.state.meal1.meal.fat}
                                     </p>
-                                    {this.state.meal1.side.name &&
+                                    {this.state.meal1.side.name && <>
                                         <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
                                             {this.state.meal1.side.name}
-                                        </div>}
-                                    {this.state.meal1.side.name &&
+                                        </div>
+
                                         <p className='ant-card-meta-description'>
                                             C: {this.state.meal1.side.carbs}
                                         , P: {this.state.meal1.side.protein}
                                         , F: {this.state.meal1.side.fat}
-                                        </p>}
+                                        </p>
+                                    </>}
                                 </div>
                             </Skeleton>
                         </Card>
@@ -598,17 +599,16 @@ class NewLayout extends React.Component {
                                                 , P: {this.state.meal2.meal.protein}
                                                 , F: {this.state.meal2.meal.fat}
                                             </p>
-                                            {this.state.meal2.side.name &&
+                                            {this.state.meal2.side.name && <>
                                                 <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
                                                     {this.state.meal2.side.name}
-                                                </div>}
-                                            {this.state.meal2.side.name &&
+                                                </div>
                                                 <p className='ant-card-meta-description'>
                                                     C: {this.state.meal2.side.carbs}
                                                 , P: {this.state.meal2.side.protein}
                                                 , F: {this.state.meal2.side.fat}
-                                                </p>}
-
+                                                </p>
+                                            </>}
                                         </div>
                                     </Skeleton>
                                 </Card>
@@ -640,16 +640,16 @@ class NewLayout extends React.Component {
                                                 , P: {this.state.meal3.meal.protein}
                                                 , F: {this.state.meal3.meal.fat}
                                             </p>
-                                            {this.state.meal3.side.name &&
+                                            {this.state.meal3.side.name && <>
                                                 <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
                                                     {this.state.meal3.side.name}
-                                                </div>}
-                                            {this.state.meal3.side.name &&
+                                                </div>
                                                 <p className='ant-card-meta-description'>
                                                     C: {this.state.meal3.side.carbs}
                                                 , P: {this.state.meal3.side.protein}
                                                 , F: {this.state.meal3.side.fat}
-                                                </p>}
+                                                </p>
+                                            </>}
                                         </div>
                                     </Skeleton>
                                 </Card>
@@ -681,16 +681,16 @@ class NewLayout extends React.Component {
                                                 , P: {this.state.meal4.meal.protein}
                                                 , F: {this.state.meal4.meal.fat}
                                             </p>
-                                            {this.state.meal4.side.name &&
+                                            {this.state.meal4.side.name && <>
                                                 <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
                                                     {this.state.meal4.side.name}
-                                                </div>}
-                                            {this.state.meal4.side.name &&
+                                                </div>
                                                 <p className='ant-card-meta-description'>
                                                     C: {this.state.meal4.side.carbs}
                                                 , P: {this.state.meal4.side.protein}
                                                 , F: {this.state.meal4.side.fat}
-                                                </p>}
+                                                </p>
+                                            </>}
                                         </div>
                                     </Skeleton>
                                 </Card>
@@ -722,16 +722,16 @@ class NewLayout extends React.Component {
                                                 , P: {this.state.meal5.meal.protein}
                                                 , F: {this.state.meal5.meal.fat}
                                             </p>
-                                            {this.state.meal5.side.name &&
+                                            {this.state.meal5.side.name && <>
                                                 <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
                                                     {this.state.meal5.side.name}
-                                                </div>}
-                                            {this.state.meal5.side.name &&
+                                                </div>
                                                 <p className='ant-card-meta-description'>
                                                     C: {this.state.meal5.side.carbs}
                                                 , P: {this.state.meal5.side.protein}
                                                 , F: {this.state.meal5.side.fat}
-                                                </p>}
+                                                </p>
+                                            </>}
                                         </div>
                                     </Skeleton>
                                 </Card>
@@ -763,16 +763,16 @@ class NewLayout extends React.Component {
                                                 , P: {this.state.meal6.meal.protein}
                                                 , F: {this.state.meal6.meal.fat}
                                             </p>
-                                            {this.state.meal6.side.name &&
+                                            {this.state.meal6.side.name && <>
                                                 <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
                                                     {this.state.meal6.side.name}
-                                                </div>}
-                                            {this.state.meal6.side.name &&
+                                                </div>
                                                 <p className='ant-card-meta-description'>
                                                     C: {this.state.meal6.side.carbs}
                                                     , P: {this.state.meal6.side.protein}
                                                     , F: {this.state.meal6.side.fat}
-                                                </p>}
+                                                </p>
+                                            </>}
                                         </div>
                                     </Skeleton>
                                 </Card>
