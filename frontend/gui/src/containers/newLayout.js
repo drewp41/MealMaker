@@ -170,9 +170,9 @@ class NewLayout extends React.Component {
                 let proteinVar = 0;
                 let fatVar = 0;
                 if (this.state.enableMacros) {
-                    carbVar = this.state.carbs;
-                    proteinVar = this.state.protein;
-                    fatVar = this.state.fat;
+                    carbVar = Math.floor(this.state.carbs);
+                    proteinVar = Math.floor(this.state.protein);
+                    fatVar = Math.floor(this.state.fat);
                 }
                 const data = fetchBreakfast(this.state.calories, this.state.numMeals,
                     carbVar, proteinVar, fatVar)
@@ -214,9 +214,9 @@ class NewLayout extends React.Component {
                 let proteinVar = 0;
                 let fatVar = 0;
                 if (this.state.enableMacros) {
-                    carbVar = this.state.carbs;
-                    proteinVar = this.state.protein;
-                    fatVar = this.state.fat;
+                    carbVar = Math.floor(this.state.carbs);
+                    proteinVar = Math.floor(this.state.protein);
+                    fatVar = Math.floor(this.state.fat);
                 }
                 const data = fetchMain(this.state.calories, this.state.numMeals,
                     carbVar, proteinVar, fatVar)
@@ -251,9 +251,9 @@ class NewLayout extends React.Component {
             let proteinVar = 0;
             let fatVar = 0;
             if (this.state.enableMacros) {
-                carbVar = this.state.carbs;
-                proteinVar = this.state.protein;
-                fatVar = this.state.fat;
+                carbVar = Math.floor(this.state.carbs);
+                proteinVar = Math.floor(this.state.protein);
+                fatVar = Math.floor(this.state.fat);
             }
             const data = fetchMeals(this.state.calories, this.state.numMeals,
                 carbVar, proteinVar, fatVar)
