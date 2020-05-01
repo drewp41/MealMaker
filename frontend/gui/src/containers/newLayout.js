@@ -240,6 +240,7 @@ class NewLayout extends React.Component {
     }
 
     onClickGenerateButton = () => {
+        // if it's already loading a meal, return (stops spam clicking)
         if (this.state.loadingMeals)
             return;
 
@@ -257,6 +258,8 @@ class NewLayout extends React.Component {
             const data = fetchMeals(this.state.calories, this.state.numMeals,
                 carbVar, proteinVar, fatVar)
                 .then(res => {
+                    console.log(`Input: ${this.state.calories}, ${this.state.numMeals}, ${carbVar}, ${proteinVar}, ${fatVar}`)
+                    console.log('Output: ');
                     console.log(res);
                     this.setState({
                         breakfastMeals: res[0],
@@ -420,10 +423,21 @@ class NewLayout extends React.Component {
                                     <span className='mealInput' style={{ float: 'left' }}>Carbs: </span>
                                     <span className='mealInput' style={{ float: 'right' }}>{Math.floor(this.state.carbs)} g </span>
                                     <br />
-                                    <Slider defaultValue={45} tipFormatter={this.sliderFormatter} max={80}
+                                    <Slider defaultValue={45} tipFormatter={this.sliderFormatter} min={10} max={80}
                                         value={Math.floor((this.state.carbs * 4) / (this.state.calories / 100))}
                                         onChange={(percent) => {
                                             let newCarbs = Math.floor((percent * this.state.calories) / 400);
+                                            let diff = newCarbs - this.state.carbs;
+                                            // if one of the other macros are zero and youre trying to increase carbs even more
+                                            if (diff > 0 && ((this.state.protein <= (this.state.calories * 0.1) / 4) ||
+                                                (this.state.fat <= (this.state.calories * 0.1) / 9))) {
+                                                return;
+                                            }
+                                            // if one of the other macros are at 80% and youre trying to reduce carbs even more
+                                            if (diff < 0 && ((this.state.protein >= (this.state.calories * 0.8) / 4) ||
+                                                (this.state.fat >= (this.state.calories * 0.8) / 9))) {
+                                                return;
+                                            }
                                             this.setState(prevState => ({
                                                 carbs: newCarbs,
                                                 protein: prevState.protein + ((prevState.carbs - newCarbs) * 0.5 * (1)),
@@ -434,10 +448,19 @@ class NewLayout extends React.Component {
                                     <span className='mealInput' style={{ float: 'left' }}>Protein: </span>
                                     <span className='mealInput' style={{ float: 'right' }}>{Math.floor(this.state.protein)} g </span>
                                     <br />
-                                    <Slider defaultValue={30} tipFormatter={this.sliderFormatter} max={80}
+                                    <Slider defaultValue={30} tipFormatter={this.sliderFormatter} min={10} max={80}
                                         value={Math.floor((this.state.protein * 4) / (this.state.calories / 100))}
                                         onChange={(percent) => {
                                             let newProtein = Math.floor((percent * this.state.calories) / 400);
+                                            let diff = newProtein - this.state.protein;
+                                            if (diff > 0 && ((this.state.carbs <= (this.state.calories * 0.1) / 4) ||
+                                                (this.state.fat <= (this.state.calories * 0.1) / 9))) {
+                                                return;
+                                            }
+                                            if (diff < 0 && ((this.state.carbs >= (this.state.calories * 0.8) / 4) ||
+                                                (this.state.fat >= (this.state.calories * 0.8) / 9))) {
+                                                return;
+                                            }
                                             this.setState(prevState => ({
                                                 protein: newProtein,
                                                 carbs: prevState.carbs + ((prevState.protein - newProtein) * 0.5 * (1)),
@@ -448,13 +471,22 @@ class NewLayout extends React.Component {
                                     <span className='mealInput' style={{ float: 'left' }}>Fat: </span>
                                     <span className='mealInput' style={{ float: 'right' }}>{Math.floor(this.state.fat)} g </span>
                                     <br />
-                                    <Slider defaultValue={25} tipFormatter={this.sliderFormatter} max={80}
+                                    <Slider defaultValue={25} tipFormatter={this.sliderFormatter} min={10} max={80}
                                         value={Math.floor((this.state.fat * 9) / (this.state.calories / 100))}
                                         onChange={(percent) => {
                                             this.setState({ fat: Math.floor((percent * this.state.calories) / 900) });
                                         }}
                                         onChange={(percent) => {
                                             let newFat = Math.floor((percent * this.state.calories) / 900);
+                                            let diff = newFat - this.state.fat;
+                                            if (diff > 0 && ((this.state.carbs <= (this.state.calories * 0.1) / 4) ||
+                                                (this.state.protein <= (this.state.calories * 0.1) / 4))) {
+                                                return;
+                                            }
+                                            if (diff < 0 && ((this.state.carbs >= (this.state.calories * 0.8) / 4) ||
+                                                (this.state.protein >= (this.state.calories * 0.8) / 4))) {
+                                                return;
+                                            }
                                             this.setState(prevState => ({
                                                 fat: newFat,
                                                 carbs: prevState.carbs + ((prevState.fat - newFat) * 0.5 * (9 / 5)),
