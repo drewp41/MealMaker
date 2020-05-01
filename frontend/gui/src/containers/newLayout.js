@@ -441,7 +441,8 @@ class NewLayout extends React.Component {
                                             this.setState(prevState => ({
                                                 carbs: newCarbs,
                                                 protein: prevState.protein + ((prevState.carbs - newCarbs) * 0.5 * (1)),
-                                                fat: prevState.fat + ((prevState.carbs - newCarbs) * 0.5 * (4 / 9))
+                                                fat: prevState.fat + ((prevState.carbs - newCarbs) * 0.5 * (4 / 9)),
+                                                changedPrefs: true,
                                             }));
                                         }} />
                                     {/* Protein */}
@@ -464,7 +465,8 @@ class NewLayout extends React.Component {
                                             this.setState(prevState => ({
                                                 protein: newProtein,
                                                 carbs: prevState.carbs + ((prevState.protein - newProtein) * 0.5 * (1)),
-                                                fat: prevState.fat + ((prevState.protein - newProtein) * 0.5 * (4 / 9))
+                                                fat: prevState.fat + ((prevState.protein - newProtein) * 0.5 * (4 / 9)),
+                                                changedPrefs: true,
                                             }));
                                         }} />
                                     {/* Fat */}
@@ -490,7 +492,8 @@ class NewLayout extends React.Component {
                                             this.setState(prevState => ({
                                                 fat: newFat,
                                                 carbs: prevState.carbs + ((prevState.fat - newFat) * 0.5 * (9 / 5)),
-                                                protein: prevState.protein + ((prevState.fat - newFat) * 0.5 * (9 / 5))
+                                                protein: prevState.protein + ((prevState.fat - newFat) * 0.5 * (9 / 5)),
+                                                changedPrefs: true,
                                             }));
                                         }} />
                                 </Panel>
