@@ -841,11 +841,11 @@ class NewLayout extends React.Component {
                 <div style={{ borderTop: '2px solid #e0e0e0', width: '92%', margin: '0 auto' }} />
 
                 <div className="rowFooter" style={{ margin: '25px 0 0 0', fontFamily: 'Camphor', fontSize: '15px' }}>
-                    <div className="colFooter" style={{ padding: '0 50px 0 0' }}>
+                    <div className="colFooter" style={{ padding: '0 20px 0 0' }}>
                         <div style={{ float: 'right' }}>
                             <ul style={{ listStyleType: 'none' }}>
                                 <li>
-                                    <a href='#'>How it works</a>
+                                    <a href='#'>How it works&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
                                 </li>
                                 <p></p>
                                 <li>
@@ -858,7 +858,7 @@ class NewLayout extends React.Component {
                             </ul>
                         </div>
                     </div>
-                    <div className="colFooter" style={{ padding: '0 0 0 50px' }}>
+                    <div className="colFooter" style={{ padding: '0 0 0 15px' }}>
                         <ul style={{ listStyleType: 'none', }}>
                             <li>
                                 <a href='#'>Feedback</a>

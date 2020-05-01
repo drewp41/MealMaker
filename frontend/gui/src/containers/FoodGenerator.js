@@ -34,7 +34,7 @@ const emptyMeal = {
 
 const errorMeals = [[emptyMeal], [emptyMeal], [emptyMeal], [emptyMeal]];
 
-// percent change a main side appears
+// percent chance a main side appears
 const randMainSides = 0.8;
 
 // ========== Fetch all meals ==========
@@ -84,6 +84,7 @@ async function fetchData(cals, numMeals, carbs, protein, fat) {
             maxProtein = Math.floor(protein / numMeals) + 10;
             minFat = Math.floor(fat / numMeals) - 5;
             maxFat = Math.floor(fat / numMeals) + 5;
+            console.log(`${minBreakfastCals}, ${maxBreakfastCals}, ${minCarbs}, ${maxCarbs}, ${minProtein}, ${maxProtein}, ${minFat}, ${maxFat}`);
         }
     }
 
@@ -138,7 +139,7 @@ async function fetchData(cals, numMeals, carbs, protein, fat) {
     }
 }
 
-export async function fetchMeals(cals, numMeals, carbs = 0, protein = 0, fat = 0) {
+export async function fetchMeals(cals, numMeals, carbs, protein, fat) {
     return fetchData(cals, numMeals, carbs, protein, fat)
         .then(d => {
             const breakfastData = d[0].data.results;
@@ -240,8 +241,7 @@ export async function fetchMeals(cals, numMeals, carbs = 0, protein = 0, fat = 0
                     sidesRes.push(emptyMeal);
             })
 
-            const res = [breakfastRes, breakfastSides, mainRes, sidesRes]
-            return res;
+            return [breakfastRes, breakfastSides, mainRes, sidesRes];
         })
 }
 
@@ -504,8 +504,7 @@ export async function fetchMain(cals, numMeals, carbs = 0, protein = 0, fat = 0)
                     sidesRes.push(emptyMeal);
             })
 
-            const res = [mainRes, sidesRes];
-            return res;
+            return [mainRes, sidesRes];
         })
 }
 
