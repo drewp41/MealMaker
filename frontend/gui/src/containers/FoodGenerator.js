@@ -39,6 +39,7 @@ const randMainSides = 0.8;
 
 // ========== Fetch all meals ==========
 async function fetchData(cals, numMeals, carbs, protein, fat) {
+    console.log('Fetching all meals');
     let approxCals = 0;
     let minBreakfastCals = 0;
     let maxBreakfastCals = 0;
@@ -250,6 +251,7 @@ export async function fetchMeals(cals, numMeals, carbs, protein, fat) {
 
 // ========== Fetch only breakfast and its sides ==========
 async function fetchBreakfastData(cals, numMeals, carbs, protein, fat) {
+    console.log('Fetching breakfast');
     let approxCals = 0;
     let minBreakfastCals = 0;
     let maxBreakfastCals = 0;
@@ -354,6 +356,7 @@ export async function fetchBreakfast(cals, numMeals, carbs = 0, protein = 0, fat
 
 // ========== Fetch all non-breakfast and their sides ==========
 async function fetchMainData(cals, numMeals, carbs, protein, fat) {
+    console.log('Fetching main meals');
     let approxCals = 0;
     let minMainCals = 0;
     let maxMainCals = 0;
