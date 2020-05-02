@@ -311,6 +311,7 @@ class NewLayout extends React.Component {
         }
     };
 
+
     render() {
         return (
 
@@ -365,7 +366,7 @@ class NewLayout extends React.Component {
                                 'hamburger hamburger--slider'}
                                 type="button"
                                 onClick={e => this.setState({
-                                    headerHeight: this.state.headerHeight == '250px' ? '80px' : '250px',
+                                    headerHeight: this.state.headerHeight === '250px' ? '80px' : '250px',
                                     hamburgerActive: !this.state.hamburgerActive,
                                 })}>
                                 <span className="hamburger-box">
