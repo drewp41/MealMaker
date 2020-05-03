@@ -122,6 +122,121 @@ class NewLayout extends React.Component {
         }));
     }
 
+    carbSlider(percent) {
+        let newCarbs = Math.floor((percent * this.state.calories) / 400);
+        let diff = newCarbs - this.state.carbs;
+        // if one of the other macros are zero and youre trying to increase carbs even more
+        if (diff > 0 && ((this.state.protein <= (this.state.calories * 0.1) / 4) ||
+            (this.state.fat <= (this.state.calories * 0.1) / 9))) {
+            return;
+        }
+        // if one of the other macros are at 80% and youre trying to reduce carbs even more
+        if (diff < 0 && ((this.state.protein >= (this.state.calories * 0.8) / 4) ||
+            (this.state.fat >= (this.state.calories * 0.8) / 9))) {
+            return;
+        }
+        if (this.state.macroPinned === null) {
+            this.setState(prevState => ({
+                carbs: newCarbs,
+                protein: prevState.protein - (diff * 0.5),
+                fat: prevState.fat - (diff * 0.5 * (4 / 9)),
+                changedPrefs: true,
+            }));
+        }
+        else if (this.state.macroPinned === 1)
+            return;
+        else if (this.state.macroPinned === 2) {
+            this.setState(prevState => ({
+                carbs: newCarbs,
+                fat: prevState.fat - (diff * (4 / 9)),
+                changedPrefs: true,
+            }));
+        }
+        else if (this.state.macroPinned === 3) {
+            this.setState(prevState => ({
+                carbs: newCarbs,
+                protein: prevState.protein - diff,
+                changedPrefs: true,
+            }));
+        }
+    }
+
+    proteinSlider(percent) {
+        let newProtein = Math.floor((percent * this.state.calories) / 400);
+        let diff = newProtein - this.state.protein;
+        if (diff > 0 && ((this.state.carbs <= (this.state.calories * 0.1) / 4) ||
+            (this.state.fat <= (this.state.calories * 0.1) / 9))) {
+            return;
+        }
+        if (diff < 0 && ((this.state.carbs >= (this.state.calories * 0.8) / 4) ||
+            (this.state.fat >= (this.state.calories * 0.8) / 9))) {
+            return;
+        }
+
+        if (this.state.macroPinned === null) {
+            this.setState(prevState => ({
+                protein: newProtein,
+                carbs: prevState.carbs - (diff * 0.5),
+                fat: prevState.fat - (diff * 0.5 * (4 / 9)),
+                changedPrefs: true,
+            }));
+        }
+        else if (this.state.macroPinned === 1) {
+            this.setState(prevState => ({
+                protein: newProtein,
+                fat: prevState.fat - (diff * (4 / 9)),
+                changedPrefs: true,
+            }));
+        }
+        else if (this.state.macroPinned === 2)
+            return;
+        else if (this.state.macroPinned === 3) {
+            this.setState(prevState => ({
+                protein: newProtein,
+                carbs: prevState.carbs - diff,
+                changedPrefs: true,
+            }));
+        }
+    }
+
+    fatSlider(percent) {
+        let newFat = Math.floor((percent * this.state.calories) / 900);
+        let diff = newFat - this.state.fat;
+        if (diff > 0 && ((this.state.carbs <= (this.state.calories * 0.1) / 4) ||
+            (this.state.protein <= (this.state.calories * 0.1) / 4))) {
+            return;
+        }
+        if (diff < 0 && ((this.state.carbs >= (this.state.calories * 0.8) / 4) ||
+            (this.state.protein >= (this.state.calories * 0.8) / 4))) {
+            return;
+        }
+        if (this.state.macroPinned === null) {
+            this.setState(prevState => ({
+                fat: newFat,
+                carbs: prevState.carbs - (diff * 0.5 * (9 / 5)),
+                protein: prevState.protein - (diff * 0.5 * (9 / 5)),
+                changedPrefs: true,
+            }));
+        }
+        else if (this.state.macroPinned === 1) {
+            this.setState(prevState => ({
+                fat: newFat,
+                protein: prevState.protein - (diff * (9 / 5)),
+                changedPrefs: true,
+            }));
+        }
+        else if (this.state.macroPinned === 2) {
+            this.setState(prevState => ({
+                fat: newFat,
+                carbs: prevState.carbs - (diff * (9 / 5)),
+                changedPrefs: true,
+            }));
+        }
+        else if (this.state.macroPinned === 3) {
+            return;
+        }
+    }
+
     regenMeal = (num) => {
         const meal = 'meal' + num.toString();
         // if it's already loading a meal, return (stops spam clicking)
@@ -443,45 +558,7 @@ class NewLayout extends React.Component {
                                     <Slider defaultValue={45} tipFormatter={this.sliderFormatter} min={10} max={80}
                                         value={Math.floor((this.state.carbs * 4) / (this.state.calories / 100))}
                                         disabled={this.state.macroPinned === 1}
-                                        onChange={(percent) => {
-                                            let newCarbs = Math.floor((percent * this.state.calories) / 400);
-                                            let diff = newCarbs - this.state.carbs;
-                                            // if one of the other macros are zero and youre trying to increase carbs even more
-                                            if (diff > 0 && ((this.state.protein <= (this.state.calories * 0.1) / 4) ||
-                                                (this.state.fat <= (this.state.calories * 0.1) / 9))) {
-                                                return;
-                                            }
-                                            // if one of the other macros are at 80% and youre trying to reduce carbs even more
-                                            if (diff < 0 && ((this.state.protein >= (this.state.calories * 0.8) / 4) ||
-                                                (this.state.fat >= (this.state.calories * 0.8) / 9))) {
-                                                return;
-                                            }
-                                            if (this.state.macroPinned === null) {
-                                                this.setState(prevState => ({
-                                                    carbs: newCarbs,
-                                                    protein: prevState.protein - (diff * 0.5 * (1)),
-                                                    fat: prevState.fat - (diff * 0.5 * (4 / 9)),
-                                                    changedPrefs: true,
-                                                }));
-                                            }
-                                            else if (this.state.macroPinned === 1)
-                                                return;
-                                            else if (this.state.macroPinned === 2) {
-                                                this.setState(prevState => ({
-                                                    carbs: newCarbs,
-                                                    fat: prevState.fat - (diff * (4 / 9)),
-                                                    changedPrefs: true,
-                                                }));
-                                            }
-                                            else if (this.state.macroPinned === 3) {
-                                                this.setState(prevState => ({
-                                                    carbs: newCarbs,
-                                                    protein: prevState.protein - diff,
-                                                    changedPrefs: true,
-                                                }));
-                                            }
-
-                                        }} />
+                                        onChange={(percent) => this.carbSlider(percent)} />
                                     {/* Protein */}
                                     <span className='mealInput' style={{ float: 'left' }}>
                                         Protein &nbsp;
@@ -497,43 +574,7 @@ class NewLayout extends React.Component {
                                     <Slider defaultValue={30} tipFormatter={this.sliderFormatter} min={10} max={80}
                                         value={Math.floor((this.state.protein * 4) / (this.state.calories / 100))}
                                         disabled={this.state.macroPinned === 2}
-                                        onChange={(percent) => {
-                                            let newProtein = Math.floor((percent * this.state.calories) / 400);
-                                            let diff = newProtein - this.state.protein;
-                                            if (diff > 0 && ((this.state.carbs <= (this.state.calories * 0.1) / 4) ||
-                                                (this.state.fat <= (this.state.calories * 0.1) / 9))) {
-                                                return;
-                                            }
-                                            if (diff < 0 && ((this.state.carbs >= (this.state.calories * 0.8) / 4) ||
-                                                (this.state.fat >= (this.state.calories * 0.8) / 9))) {
-                                                return;
-                                            }
-
-                                            if (this.state.macroPinned === null) {
-                                                this.setState(prevState => ({
-                                                    protein: newProtein,
-                                                    carbs: prevState.carbs - (diff * 0.5 * (1)),
-                                                    fat: prevState.fat - (diff * 0.5 * (4 / 9)),
-                                                    changedPrefs: true,
-                                                }));
-                                            }
-                                            else if (this.state.macroPinned === 1) {
-                                                this.setState(prevState => ({
-                                                    protein: newProtein,
-                                                    fat: prevState.fat - (diff * (4 / 9)),
-                                                    changedPrefs: true,
-                                                }));
-                                            }
-                                            else if (this.state.macroPinned === 2)
-                                                return;
-                                            else if (this.state.macroPinned === 3) {
-                                                this.setState(prevState => ({
-                                                    protein: newProtein,
-                                                    carbs: prevState.carbs - diff,
-                                                    changedPrefs: true,
-                                                }));
-                                            }
-                                        }} />
+                                        onChange={(percent) => this.proteinSlider(percent)} />
                                     {/* Fat */}
                                     <span className='mealInput' style={{ float: 'left' }}>
                                         Fat &nbsp;
@@ -552,43 +593,7 @@ class NewLayout extends React.Component {
                                         onChange={(percent) => {
                                             this.setState({ fat: Math.floor((percent * this.state.calories) / 900) });
                                         }}
-                                        onChange={(percent) => {
-                                            let newFat = Math.floor((percent * this.state.calories) / 900);
-                                            let diff = newFat - this.state.fat;
-                                            if (diff > 0 && ((this.state.carbs <= (this.state.calories * 0.1) / 4) ||
-                                                (this.state.protein <= (this.state.calories * 0.1) / 4))) {
-                                                return;
-                                            }
-                                            if (diff < 0 && ((this.state.carbs >= (this.state.calories * 0.8) / 4) ||
-                                                (this.state.protein >= (this.state.calories * 0.8) / 4))) {
-                                                return;
-                                            }
-                                            if (this.state.macroPinned === null) {
-                                                this.setState(prevState => ({
-                                                    fat: newFat,
-                                                    carbs: prevState.carbs - (diff * 0.5 * (9 / 5)),
-                                                    protein: prevState.protein - (diff * 0.5 * (9 / 5)),
-                                                    changedPrefs: true,
-                                                }));
-                                            }
-                                            else if (this.state.macroPinned === 1) {
-                                                this.setState(prevState => ({
-                                                    fat: newFat,
-                                                    protein: prevState.protein - (diff * (9 / 5)),
-                                                    changedPrefs: true,
-                                                }));
-                                            }
-                                            else if (this.state.macroPinned === 2) {
-                                                this.setState(prevState => ({
-                                                    fat: newFat,
-                                                    carbs: prevState.carbs - (diff * (9 / 5)),
-                                                    changedPrefs: true,
-                                                }));
-                                            }
-                                            else if (this.state.macroPinned === 3) {
-                                                return;
-                                            }
-                                        }} />
+                                        onChange={(percent) => this.fatSlider(percent)} />
                                 </Panel>
                             </Collapse>
 
