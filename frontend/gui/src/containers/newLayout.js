@@ -567,7 +567,8 @@ class NewLayout extends React.Component {
                     </div>
                 </div>
 
-                {/* <div style={{ minHeight: 200, backgroundColor: 'white' }} /> */}
+                <div style={{ borderTop: '2px solid #e0e0e0', width: '1060px', margin: '0 auto' }} />
+
 
                 <div style={{ margin: '55px 0 55px 0', textAlign: 'center' }}>
                     <b id="captionText">Create a customized meal plan in seconds.</b>
