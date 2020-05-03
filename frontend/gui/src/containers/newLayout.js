@@ -498,7 +498,8 @@ class NewLayout extends React.Component {
     render() {
         return (
             //  242, 242, 242
-            <div style={{ backgroundColor: 'rgb(245, 243, 240)' }}>
+            <div style={{ backgroundColor: 'rgb(242, 242, 242)' }}>
+                {/* <div style={{ backgroundColor: 'rgb(245, 243, 240)' }}> */}
                 <div id="topLine"></div>
                 {/* Header */}
                 <div className='header' style={{ height: this.state.headerHeight }} >
@@ -567,7 +568,7 @@ class NewLayout extends React.Component {
                     </div>
                 </div>
 
-                <div style={{ borderTop: '2px solid #e0e0e0', width: '1060px', margin: '0 auto' }} />
+                <div className='headerBorder' />
 
 
                 <div style={{ margin: '55px 0 55px 0', textAlign: 'center' }}>
