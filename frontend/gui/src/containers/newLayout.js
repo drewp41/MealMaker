@@ -442,6 +442,7 @@ class NewLayout extends React.Component {
                                     <br />
                                     <Slider defaultValue={45} tipFormatter={this.sliderFormatter} min={10} max={80}
                                         value={Math.floor((this.state.carbs * 4) / (this.state.calories / 100))}
+                                        disabled={this.state.macroPinned === 1}
                                         onChange={(percent) => {
                                             let newCarbs = Math.floor((percent * this.state.calories) / 400);
                                             let diff = newCarbs - this.state.carbs;
@@ -495,6 +496,7 @@ class NewLayout extends React.Component {
                                     <br />
                                     <Slider defaultValue={30} tipFormatter={this.sliderFormatter} min={10} max={80}
                                         value={Math.floor((this.state.protein * 4) / (this.state.calories / 100))}
+                                        disabled={this.state.macroPinned === 2}
                                         onChange={(percent) => {
                                             let newProtein = Math.floor((percent * this.state.calories) / 400);
                                             let diff = newProtein - this.state.protein;
@@ -546,6 +548,7 @@ class NewLayout extends React.Component {
                                     <br />
                                     <Slider defaultValue={25} tipFormatter={this.sliderFormatter} min={10} max={80}
                                         value={Math.floor((this.state.fat * 9) / (this.state.calories / 100))}
+                                        disabled={this.state.macroPinned === 3}
                                         onChange={(percent) => {
                                             this.setState({ fat: Math.floor((percent * this.state.calories) / 900) });
                                         }}
