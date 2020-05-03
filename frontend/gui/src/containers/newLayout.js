@@ -455,12 +455,31 @@ class NewLayout extends React.Component {
                                                 (this.state.fat >= (this.state.calories * 0.8) / 9))) {
                                                 return;
                                             }
-                                            this.setState(prevState => ({
-                                                carbs: newCarbs,
-                                                protein: prevState.protein + ((prevState.carbs - newCarbs) * 0.5 * (1)),
-                                                fat: prevState.fat + ((prevState.carbs - newCarbs) * 0.5 * (4 / 9)),
-                                                changedPrefs: true,
-                                            }));
+                                            if (this.state.macroPinned === null) {
+                                                this.setState(prevState => ({
+                                                    carbs: newCarbs,
+                                                    protein: prevState.protein - (diff * 0.5 * (1)),
+                                                    fat: prevState.fat - (diff * 0.5 * (4 / 9)),
+                                                    changedPrefs: true,
+                                                }));
+                                            }
+                                            else if (this.state.macroPinned === 1)
+                                                return;
+                                            else if (this.state.macroPinned === 2) {
+                                                this.setState(prevState => ({
+                                                    carbs: newCarbs,
+                                                    fat: prevState.fat - (diff * (4 / 9)),
+                                                    changedPrefs: true,
+                                                }));
+                                            }
+                                            else if (this.state.macroPinned === 3) {
+                                                this.setState(prevState => ({
+                                                    carbs: newCarbs,
+                                                    protein: prevState.protein - diff,
+                                                    changedPrefs: true,
+                                                }));
+                                            }
+
                                         }} />
                                     {/* Protein */}
                                     <span className='mealInput' style={{ float: 'left' }}>
@@ -487,12 +506,31 @@ class NewLayout extends React.Component {
                                                 (this.state.fat >= (this.state.calories * 0.8) / 9))) {
                                                 return;
                                             }
-                                            this.setState(prevState => ({
-                                                protein: newProtein,
-                                                carbs: prevState.carbs + ((prevState.protein - newProtein) * 0.5 * (1)),
-                                                fat: prevState.fat + ((prevState.protein - newProtein) * 0.5 * (4 / 9)),
-                                                changedPrefs: true,
-                                            }));
+
+                                            if (this.state.macroPinned === null) {
+                                                this.setState(prevState => ({
+                                                    protein: newProtein,
+                                                    carbs: prevState.carbs - (diff * 0.5 * (1)),
+                                                    fat: prevState.fat - (diff * 0.5 * (4 / 9)),
+                                                    changedPrefs: true,
+                                                }));
+                                            }
+                                            else if (this.state.macroPinned === 1) {
+                                                this.setState(prevState => ({
+                                                    protein: newProtein,
+                                                    fat: prevState.fat - (diff * (4 / 9)),
+                                                    changedPrefs: true,
+                                                }));
+                                            }
+                                            else if (this.state.macroPinned === 2)
+                                                return;
+                                            else if (this.state.macroPinned === 3) {
+                                                this.setState(prevState => ({
+                                                    protein: newProtein,
+                                                    carbs: prevState.carbs - diff,
+                                                    changedPrefs: true,
+                                                }));
+                                            }
                                         }} />
                                     {/* Fat */}
                                     <span className='mealInput' style={{ float: 'left' }}>
@@ -522,12 +560,31 @@ class NewLayout extends React.Component {
                                                 (this.state.protein >= (this.state.calories * 0.8) / 4))) {
                                                 return;
                                             }
-                                            this.setState(prevState => ({
-                                                fat: newFat,
-                                                carbs: prevState.carbs + ((prevState.fat - newFat) * 0.5 * (9 / 5)),
-                                                protein: prevState.protein + ((prevState.fat - newFat) * 0.5 * (9 / 5)),
-                                                changedPrefs: true,
-                                            }));
+                                            if (this.state.macroPinned === null) {
+                                                this.setState(prevState => ({
+                                                    fat: newFat,
+                                                    carbs: prevState.carbs - (diff * 0.5 * (9 / 5)),
+                                                    protein: prevState.protein - (diff * 0.5 * (9 / 5)),
+                                                    changedPrefs: true,
+                                                }));
+                                            }
+                                            else if (this.state.macroPinned === 1) {
+                                                this.setState(prevState => ({
+                                                    fat: newFat,
+                                                    protein: prevState.protein - (diff * (9 / 5)),
+                                                    changedPrefs: true,
+                                                }));
+                                            }
+                                            else if (this.state.macroPinned === 2) {
+                                                this.setState(prevState => ({
+                                                    fat: newFat,
+                                                    carbs: prevState.carbs - (diff * (9 / 5)),
+                                                    changedPrefs: true,
+                                                }));
+                                            }
+                                            else if (this.state.macroPinned === 3) {
+                                                return;
+                                            }
                                         }} />
                                 </Panel>
                             </Collapse>
