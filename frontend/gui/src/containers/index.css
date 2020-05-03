@@ -285,6 +285,11 @@ button {
     font-weight: 300;
 }
 
+.macroPin:hover {
+    color: #202020;
+    cursor: pointer;
+}
+
 #generateButton{
     font-family: 'Camphor';
     font-weight: 400;

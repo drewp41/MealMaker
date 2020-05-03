@@ -92,6 +92,7 @@ class NewLayout extends React.Component {
             meal4: this.emptyObj,
             meal5: this.emptyObj,
             meal6: this.emptyObj,
+            macroPinned: null,
         };
     }
 
@@ -112,6 +113,13 @@ class NewLayout extends React.Component {
 
     sliderFormatter(val) {
         return `${val}%`;
+    }
+
+    pinMacro(num) {
+        // set the pin to whichever macro is calling it, remove the pin if it already exists
+        this.setState(prevState => ({
+            macroPinned: prevState.macroPinned === num ? null : num
+        }));
     }
 
     regenMeal = (num) => {
@@ -417,11 +425,19 @@ class NewLayout extends React.Component {
                                 </Select>
                             </p>
 
-                            <Collapse bordered={true} expandIconPosition='right' activeKey={this.state.enableMacros ? 1 : 0} style={{ marginLeft: 'auto', width: '242px' }}>
-                                <Panel header={<b id="macroSwitchText">Macro Prefences&nbsp;&nbsp;</b>} showArrow={true} key="1"
+                            <Collapse bordered={true} expandIconPosition='right' activeKey={this.state.enableMacros ? 1 : 0} style={{ marginLeft: 'auto', width: '257px' }}>
+                                <Panel header={<b id="macroSwitchText">Macro Preferences&nbsp;&nbsp;</b>} showArrow={true} key="1"
                                     extra={<Switch defaultChecked={false} onChange={this.macroSwitch} style={{ margin: '3px 0 0 0' }} />} >
                                     {/* Carbs */}
-                                    <span className='mealInput' style={{ float: 'left' }}>Carbs: </span>
+                                    <span className='mealInput' style={{ float: 'left' }}>
+                                        Carbs &nbsp;
+                                        {this.state.macroPinned === null ?
+                                            <PushpinOutlined className='macroPin' onClick={() => this.pinMacro(1)} /> :
+                                            (this.state.macroPinned === 1 ?
+                                                <PushpinFilled className='macroPin' onClick={() => this.pinMacro(1)} /> :
+                                                null)
+                                        }
+                                    </span>
                                     <span className='mealInput' style={{ float: 'right' }}>{Math.floor(this.state.carbs)} g </span>
                                     <br />
                                     <Slider defaultValue={45} tipFormatter={this.sliderFormatter} min={10} max={80}
@@ -447,7 +463,15 @@ class NewLayout extends React.Component {
                                             }));
                                         }} />
                                     {/* Protein */}
-                                    <span className='mealInput' style={{ float: 'left' }}>Protein: </span>
+                                    <span className='mealInput' style={{ float: 'left' }}>
+                                        Protein &nbsp;
+                                        {this.state.macroPinned === null ?
+                                            <PushpinOutlined className='macroPin' onClick={() => this.pinMacro(2)} /> :
+                                            (this.state.macroPinned === 2 ?
+                                                <PushpinFilled className='macroPin' onClick={() => this.pinMacro(2)} /> :
+                                                null)
+                                        }
+                                    </span>
                                     <span className='mealInput' style={{ float: 'right' }}>{Math.floor(this.state.protein)} g </span>
                                     <br />
                                     <Slider defaultValue={30} tipFormatter={this.sliderFormatter} min={10} max={80}
@@ -471,7 +495,15 @@ class NewLayout extends React.Component {
                                             }));
                                         }} />
                                     {/* Fat */}
-                                    <span className='mealInput' style={{ float: 'left' }}>Fat: </span>
+                                    <span className='mealInput' style={{ float: 'left' }}>
+                                        Fat &nbsp;
+                                        {this.state.macroPinned === null ?
+                                            <PushpinOutlined className='macroPin' onClick={() => this.pinMacro(3)} /> :
+                                            (this.state.macroPinned === 3 ?
+                                                <PushpinFilled className='macroPin' onClick={() => this.pinMacro(3)} /> :
+                                                null)
+                                        }
+                                    </span>
                                     <span className='mealInput' style={{ float: 'right' }}>{Math.floor(this.state.fat)} g </span>
                                     <br />
                                     <Slider defaultValue={25} tipFormatter={this.sliderFormatter} min={10} max={80}
