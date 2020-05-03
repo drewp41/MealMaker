@@ -539,7 +539,7 @@ class NewLayout extends React.Component {
                         {/* shifted down 10px to center it vertically in the header */}
                         <div className='colHeaderR' style={{ padding: '10px 0 0 0' }}>
                             <button className="headerText" style={{ height: '60px', width: '130px' }}>
-                                <text id="signInArrow">Sign in</text> <text > →</text>
+                                <text id="signInArrow">&nbsp;&nbsp;&nbsp;&nbsp;Sign in</text> <text > →</text>
                             </button>
                         </div>
 
