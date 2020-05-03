@@ -93,7 +93,68 @@ class NewLayout extends React.Component {
             meal5: this.emptyObj,
             meal6: this.emptyObj,
             macroPinned: null,
-        };
+        }
+        this.pieConfig = {
+            width: 325,
+            height: 325,
+            //forceFit: true,
+            pixelRatio: 4,
+            renderer: 'canvas',
+            title: {
+                visible: false,
+                text: '            Macro Breakdown',
+                //position: 'middle',
+                style: {
+                    fontSize: 22,
+                    fontFamily: 'Camphor',
+                    fontWeight: 300,
+                    fill: mainTextColor,
+                },
+            },
+            description: {
+                visible: false,
+                //text:
+            },
+            radius: 1,
+            colorField: 'type',
+            color: ['#5B8FF9', '#E15554', '#3BB273'], //#3BB273, #7768AE
+            data: [
+                {
+                    type: 'Carbohydrates',
+                    value: 33,
+                },
+                {
+                    type: 'Protein',
+                    value: 33,
+                },
+                {
+                    type: 'Fat',
+                    value: 33,
+                },
+            ],
+            angleField: 'value',
+            label: {
+                visible: true,
+                type: 'inner',
+                formatter: (val) => {
+                    return val + '%';
+                },
+                style: {
+                    fontFamily: 'Camphor',
+                    fill: '#fcfcfc',
+                    lineWidth: 0,
+                },
+            },
+            legend: {
+                visible: true,
+                position: 'bottom-center',
+                offsetY: -5
+            },
+            tooltip: {
+                //offset: 100,
+            },
+            responsive: true
+        }
     }
 
     onChange(value) {
@@ -316,7 +377,6 @@ class NewLayout extends React.Component {
                     });
             }
         }
-
         // IF NOT BREAKFAST
         else {
             // iterator returns {value, done}
@@ -437,18 +497,18 @@ class NewLayout extends React.Component {
 
     render() {
         return (
-
-            <div style={{ backgroundColor: 'rgb(242, 242, 242)' }}>
+            //  242, 242, 242
+            <div style={{ backgroundColor: 'rgb(245, 243, 240)' }}>
                 <div id="topLine"></div>
                 {/* Header */}
-                <div className='header' style={{ height: this.state.headerHeight }}>
+                <div className='header' style={{ height: this.state.headerHeight }} >
                     <div className='rowHeader'>
                         <div className='headerLRSpace'></div>
                         {/* <a href='#'>
                         <img src={recoloredLogo} alt="logo" style={{ width: 53, height: 80, margin: '0 0 0 15px' }} draggable='false' />
                         </a> */}
                         <a href='#'>
-                            <img src={coloredCarrot} alt="logo" style={{ width: 35, height: 35, margin: '20px 0 0 15px' }} draggable='false' />
+                            <img src={coloredCarrot} alt="logo" style={{ width: 35, height: 35, margin: '20px 0 0 18px' }} draggable='false' />
                         </a>
                         {/* shifted down 21.5px to center it vertically in the header */}
                         <div className='colHeaderL' style={{ padding: '21.5px 0 0 9px' }}>
@@ -507,6 +567,8 @@ class NewLayout extends React.Component {
                     </div>
                 </div>
 
+                {/* <div style={{ minHeight: 200, backgroundColor: 'white' }} /> */}
+
                 <div style={{ margin: '55px 0 55px 0', textAlign: 'center' }}>
                     <b id="captionText">Create a customized meal plan in seconds.</b>
                 </div>
@@ -553,12 +615,15 @@ class NewLayout extends React.Component {
                                                 null)
                                         }
                                     </span>
-                                    <span className='mealInput' style={{ float: 'right' }}>{Math.floor(this.state.carbs)} g </span>
+                                    <span className='mealInput' style={{ float: 'right' }}>
+                                        {Math.floor(this.state.carbs)} g
+                                    </span>
                                     <br />
                                     <Slider defaultValue={45} tipFormatter={this.sliderFormatter} min={10} max={80}
                                         value={Math.floor((this.state.carbs * 4) / (this.state.calories / 100))}
                                         disabled={this.state.macroPinned === 1}
-                                        onChange={(percent) => this.carbSlider(percent)} />
+                                        onChange={(percent) => this.carbSlider(percent)}
+                                    />
                                     {/* Protein */}
                                     <span className='mealInput' style={{ float: 'left' }}>
                                         Protein &nbsp;
@@ -569,12 +634,15 @@ class NewLayout extends React.Component {
                                                 null)
                                         }
                                     </span>
-                                    <span className='mealInput' style={{ float: 'right' }}>{Math.floor(this.state.protein)} g </span>
+                                    <span className='mealInput' style={{ float: 'right' }}>
+                                        {Math.floor(this.state.protein)} g
+                                    </span>
                                     <br />
                                     <Slider defaultValue={30} tipFormatter={this.sliderFormatter} min={10} max={80}
                                         value={Math.floor((this.state.protein * 4) / (this.state.calories / 100))}
                                         disabled={this.state.macroPinned === 2}
-                                        onChange={(percent) => this.proteinSlider(percent)} />
+                                        onChange={(percent) => this.proteinSlider(percent)}
+                                    />
                                     {/* Fat */}
                                     <span className='mealInput' style={{ float: 'left' }}>
                                         Fat &nbsp;
@@ -585,7 +653,9 @@ class NewLayout extends React.Component {
                                                 null)
                                         }
                                     </span>
-                                    <span className='mealInput' style={{ float: 'right' }}>{Math.floor(this.state.fat)} g </span>
+                                    <span className='mealInput' style={{ float: 'right' }}>
+                                        {Math.floor(this.state.fat)} g
+                                    </span>
                                     <br />
                                     <Slider defaultValue={25} tipFormatter={this.sliderFormatter} min={10} max={80}
                                         value={Math.floor((this.state.fat * 9) / (this.state.calories / 100))}
@@ -593,7 +663,8 @@ class NewLayout extends React.Component {
                                         onChange={(percent) => {
                                             this.setState({ fat: Math.floor((percent * this.state.calories) / 900) });
                                         }}
-                                        onChange={(percent) => this.fatSlider(percent)} />
+                                        onChange={(percent) => this.fatSlider(percent)}
+                                    />
                                 </Panel>
                             </Collapse>
 
@@ -616,67 +687,7 @@ class NewLayout extends React.Component {
                             <ReactG2Plot
                                 className="pie"
                                 Ctor={Pie}
-                                config={{
-                                    width: 325,
-                                    height: 325,
-                                    //forceFit: true,
-                                    pixelRatio: 4,
-                                    renderer: 'canvas',
-                                    title: {
-                                        visible: false,
-                                        text: '            Macro Breakdown',
-                                        //position: 'middle',
-                                        style: {
-                                            fontSize: 22,
-                                            fontFamily: 'Camphor',
-                                            fontWeight: 300,
-                                            fill: mainTextColor,
-                                        },
-                                    },
-                                    description: {
-                                        visible: false,
-                                        //text:
-                                    },
-                                    radius: 1,
-                                    colorField: 'type',
-                                    color: ['#5B8FF9', '#E15554', '#3BB273'], //#3BB273, #7768AE
-                                    data: [
-                                        {
-                                            type: 'Carbohydrates',
-                                            value: 33,
-                                        },
-                                        {
-                                            type: 'Protein',
-                                            value: 33,
-                                        },
-                                        {
-                                            type: 'Fat',
-                                            value: 33,
-                                        },
-                                    ],
-                                    angleField: 'value',
-                                    label: {
-                                        visible: true,
-                                        type: 'inner',
-                                        formatter: (val) => {
-                                            return val + '%';
-                                        },
-                                        style: {
-                                            fontFamily: 'Camphor',
-                                            fill: '#fcfcfc',
-                                            lineWidth: 0,
-                                        },
-                                    },
-                                    legend: {
-                                        visible: true,
-                                        position: 'bottom-center',
-                                        offsetY: -5
-                                    },
-                                    tooltip: {
-                                        //offset: 100,
-                                    },
-                                    responsive: true
-                                }}
+                                config={this.pieConfig}
                             />
                         </div>
 
@@ -934,16 +945,16 @@ class NewLayout extends React.Component {
                     </div>
                 </div >
 
-                <div className="main" style={{ minHeight: 200 }} />
+                <div style={{ minHeight: 200 }} />
 
                 <div style={{ borderTop: '2px solid #e0e0e0', width: '92%', margin: '0 auto' }} />
 
                 <div className="rowFooter" style={{ margin: '25px 0 0 0', fontFamily: 'Camphor', fontSize: '15px' }}>
-                    <div className="colFooter" style={{ padding: '0 20px 0 0' }}>
+                    <div className="colFooter" style={{ padding: '0 40px 0 0' }}>
                         <div style={{ float: 'right' }}>
                             <ul style={{ listStyleType: 'none' }}>
                                 <li>
-                                    <a href='#'>How it works&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                    <a href='#'>How it works</a>
                                 </li>
                                 <p></p>
                                 <li>
@@ -1010,33 +1021,3 @@ export default withRouter(connect(null, mapDispatchToProps)(NewLayout));
 //         />
 //     </Skeleton>
 // </Card>
-
-
-
-// OLD MACRO SELECTION
-// <div className="macroText">Carbohydrates:&nbsp;
-//                                         <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={220}
-//         allowEmptyFormatting={true} style={{ width: '80px' }}
-//         onValueChange={(values) => this.setState({
-//             carbs: Math.floor(values.floatValue),
-//         })}
-//     />
-// </div>
-//     <p />
-//     <div className="macroText">Protein:&nbsp;
-//                                         <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={130}
-//             allowEmptyFormatting={true} style={{ width: '80px' }}
-//             onValueChange={(values) => this.setState({
-//                 protein: Math.floor(values.floatValue),
-//             })}
-//         />
-//     </div>
-//     <p />
-//     <div className="macroText">Fat:&nbsp;
-//                                         <NumberFormat className='ant-input' id="macroNumbers" suffix=' g' defaultValue={65}
-//             allowEmptyFormatting={true} style={{ width: '80px' }}
-//             onValueChange={(values) => this.setState({
-//                 fat: Math.floor(values.floatValue),
-//             })}
-//         />
-//     </div>
