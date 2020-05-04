@@ -32,14 +32,12 @@ const emptyMeal = {
     instructions: [], servings: 0
 }
 
-const errorMeals = [[emptyMeal], [emptyMeal], [emptyMeal], [emptyMeal]];
-
 // percent chance a main side appears
 const randMainSides = 0.8;
 
 // ========== Fetch all meals ==========
 export async function fetchMeals(cals, numMeals, carbs, protein, fat) {
-    console.log('fetching all meals baby');
+    console.log('Fetching all meals');
     const [breakfast, main] = await Promise.all([
         fetchBreakfast(cals, numMeals, carbs, protein, fat),
         fetchMain(cals, numMeals, carbs, protein, fat),
@@ -103,7 +101,7 @@ async function fetchBreakfastData(cals, numMeals, carbs, protein, fat) {
         return breakfastMeals; // get breakfastSides from fetchMeals
     } catch (error) {
         console.log(error, "error");
-        return errorMeals.slice(0, 1);
+        return emptyMeal;
     }
 }
 
@@ -149,7 +147,6 @@ export async function fetchBreakfast(cals, numMeals, carbs = 0, protein = 0, fat
             return [breakfastRes, breakfastSides];
         })
 }
-
 
 
 // ========== Fetch all non-breakfast and their sides ==========
@@ -228,7 +225,7 @@ async function fetchMainData(cals, numMeals, carbs, protein, fat) {
         return [mainMeals, mainSides];
     } catch (error) {
         console.log(error, "error");
-        return errorMeals.slice(0, 2);
+        return [[emptyMeal], [emptyMeal]];
     }
 }
 

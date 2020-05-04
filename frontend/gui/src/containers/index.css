@@ -198,6 +198,12 @@ button {
         display: block !important;
     }
 }
+/* Guarantees header is 80px (its normal height) when the hamburger menu isnt showing */
+@media screen and (min-width: 650px) {
+    .header{
+        height: 80px !important;
+    }
+}
 
 
 /*

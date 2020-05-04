@@ -505,17 +505,11 @@ class NewLayout extends React.Component {
                 <div className='header' style={{ height: this.state.headerHeight }} >
                     <div className='rowHeader'>
                         <div className='headerLRSpace'></div>
-                        {/* <a href='#'>
-                        <img src={recoloredLogo} alt="logo" style={{ width: 53, height: 80, margin: '0 0 0 15px' }} draggable='false' />
-                        </a> */}
                         <a href='#'>
                             <img src={coloredCarrot} alt="logo" style={{ width: 35, height: 35, margin: '20px 0 0 18px' }} draggable='false' />
                         </a>
                         {/* shifted down 21.5px to center it vertically in the header */}
                         <div className='colHeaderL' style={{ padding: '21.5px 0 0 9px' }}>
-                            {/* <button className="logoText" id="logo" style={{ height: '60px', width: '210px', textIndent: '-20px', }}>
-                            Macro Meal Maker
-                        </button> */}
                             <a style={{ color: '#545454' }}>
                                 <div id="pt">
                                     mealmaker.io
@@ -569,7 +563,6 @@ class NewLayout extends React.Component {
                 </div>
 
                 <div className='headerBorder' />
-
 
                 <div style={{ margin: '55px 0 55px 0', textAlign: 'center' }}>
                     <b id="captionText">Create a customized meal plan in seconds.</b>
