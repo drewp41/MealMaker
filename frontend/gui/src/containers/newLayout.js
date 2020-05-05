@@ -9,7 +9,6 @@ import {
     LinkedinOutlined, MailOutlined, MenuOutlined,
     PushpinOutlined, PushpinFilled
 } from '@ant-design/icons';
-import { BetterInputNumber } from './betterInput';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/auth';
@@ -18,6 +17,7 @@ import './index.css';
 import { Pie } from '@antv/g2plot';
 import ReactG2Plot from 'react-g2plot';
 import NumberFormat from 'react-number-format';
+import MealCard from '../components/MealCard';
 
 import logo from '../MMM.png';
 import recoloredLogo from '../recoloredMMM.png';
@@ -37,7 +37,7 @@ const { Option } = Select;
 const { Panel } = Collapse;
 const { Meta } = Card;
 
-const mainTextColor = '#32323c'
+const mainTextColor = '#32323c';
 
 //"background-color": "#383838"
 
@@ -511,7 +511,7 @@ class NewLayout extends React.Component {
                         {/* shifted down 21.5px to center it vertically in the header */}
                         <div className='colHeaderL' style={{ padding: '21.5px 0 0 9px' }}>
                             <a style={{ color: '#545454' }}>
-                                <div id="pt">
+                                <div className='logoText'>
                                     mealmaker.io
                                 </div>
                             </a>
@@ -570,7 +570,6 @@ class NewLayout extends React.Component {
 
                 <div className="mainBodyRow" style={{ minHeight: 680 }}>
                     <div className="leftColumn">
-                        {/* has a margin of 90 on the right so that the pie chart is alligned with it */}
                         <div className="inputArea" >
                             <p className="leftColumnText">I want to eat &nbsp;
                                 <NumberFormat className='ant-input' id='calorieInput' style={{ width: '126px' }} suffix={' calories'}
@@ -694,7 +693,10 @@ class NewLayout extends React.Component {
                     <div className="rightColumn">
 
                         {/* First card is always shown */}
-                        <Card className="cardShadow2" title={this.state.numMeals == 1 ? "Feast" :
+                        <MealCard mealNum={1} mealObj={this.state.meal1} numMeals={this.state.numMeals}
+                            displayMeals={this.state.displayMeals} loadingMeals={this.state.loadingMeals}
+                            regenMeal={this.regenMeal} pinMeal={this.pinMeal} />
+                        {/* <Card className="cardShadow2" title={this.state.numMeals == 1 ? "Feast" :
                             (this.state.numMeals == 2 ? "Brunch" : "Breakfast")}
                             extra={this.state.meal1.meal.calories + this.state.meal1.side.calories + " calories"}
                             style={{ width: 350, height: 200 }} bordered={false}
@@ -730,12 +732,15 @@ class NewLayout extends React.Component {
                                     </>}
                                 </div>
                             </Skeleton>
-                        </Card>
+                        </Card> */}
 
                         {this.state.numMeals >= 2 &&
                             <div>
                                 <br />
-                                <Card className="cardShadow2" title={this.state.numMeals == 2 ? "Dinner" : "Lunch"}
+                                <MealCard mealNum={2} mealObj={this.state.meal2} numMeals={this.state.numMeals}
+                                    displayMeals={this.state.displayMeals} loadingMeals={this.state.loadingMeals}
+                                    regenMeal={this.regenMeal} pinMeal={this.pinMeal} />
+                                {/* <Card className="cardShadow2" title={this.state.numMeals == 2 ? "Dinner" : "Lunch"}
                                     extra={this.state.meal2.meal.calories + this.state.meal2.side.calories + " calories"}
                                     style={{ width: 350, height: 200 }} bordered={false}
                                     headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
@@ -770,13 +775,16 @@ class NewLayout extends React.Component {
                                             </>}
                                         </div>
                                     </Skeleton>
-                                </Card>
+                                </Card> */}
                             </div>
                         }
                         {this.state.numMeals >= 3 &&
                             <div>
                                 <br />
-                                <Card className="cardShadow2" title="Dinner"
+                                <MealCard mealNum={3} mealObj={this.state.meal3} numMeals={this.state.numMeals}
+                                    displayMeals={this.state.displayMeals} loadingMeals={this.state.loadingMeals}
+                                    regenMeal={this.regenMeal} pinMeal={this.pinMeal} />
+                                {/* <Card className="cardShadow2" title="Dinner"
                                     extra={this.state.meal3.meal.calories + this.state.meal3.side.calories + " calories"}
                                     style={{ width: 350, height: 200 }} bordered={false}
                                     headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
@@ -811,13 +819,16 @@ class NewLayout extends React.Component {
                                             </>}
                                         </div>
                                     </Skeleton>
-                                </Card>
+                                </Card> */}
                             </div>
                         }
                         {this.state.numMeals >= 4 &&
                             <div>
                                 <br />
-                                <Card className="cardShadow2" title="Snack"
+                                <MealCard mealNum={4} mealObj={this.state.meal4} numMeals={this.state.numMeals}
+                                    displayMeals={this.state.displayMeals} loadingMeals={this.state.loadingMeals}
+                                    regenMeal={this.regenMeal} pinMeal={this.pinMeal} />
+                                {/* <Card className="cardShadow2" title="Snack"
                                     extra={this.state.meal4.meal.calories + this.state.meal4.side.calories + " calories"}
                                     style={{ width: 350, height: 200 }} bordered={false}
                                     headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
@@ -852,13 +863,16 @@ class NewLayout extends React.Component {
                                             </>}
                                         </div>
                                     </Skeleton>
-                                </Card>
+                                </Card> */}
                             </div>
                         }
                         {this.state.numMeals >= 5 &&
                             <div>
                                 <br />
-                                <Card className="cardShadow2" title="Snack"
+                                <MealCard mealNum={5} mealObj={this.state.meal5} numMeals={this.state.numMeals}
+                                    displayMeals={this.state.displayMeals} loadingMeals={this.state.loadingMeals}
+                                    regenMeal={this.regenMeal} pinMeal={this.pinMeal} />
+                                {/* <Card className="cardShadow2" title="Snack"
                                     extra={this.state.meal5.meal.calories + this.state.meal5.side.calories + " calories"}
                                     style={{ width: 350, height: 200 }} bordered={false}
                                     headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
@@ -893,13 +907,16 @@ class NewLayout extends React.Component {
                                             </>}
                                         </div>
                                     </Skeleton>
-                                </Card>
+                                </Card> */}
                             </div>
                         }
                         {this.state.numMeals >= 6 &&
                             <div>
                                 <br />
-                                <Card className="cardShadow2" title="Snack"
+                                <MealCard mealNum={6} mealObj={this.state.meal6} numMeals={this.state.numMeals}
+                                    displayMeals={this.state.displayMeals} loadingMeals={this.state.loadingMeals}
+                                    regenMeal={this.regenMeal} pinMeal={this.pinMeal} />
+                                {/* <Card className="cardShadow2" title="Snack"
                                     extra={this.state.meal6.meal.calories + this.state.meal6.side.calories + " calories"}
                                     style={{ width: 350, height: 200 }} bordered={false}
                                     headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
@@ -934,7 +951,7 @@ class NewLayout extends React.Component {
                                             </>}
                                         </div>
                                     </Skeleton>
-                                </Card>
+                                </Card> */}
                             </div>
                         }
                     </div>

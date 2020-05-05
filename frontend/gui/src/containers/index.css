@@ -55,8 +55,6 @@
     }
 }
 
-
-
 .rowHeader {
     height: 80px;
     display: flex;
@@ -78,35 +76,12 @@
     text-align: left;
 }
 
-.logoText{
-    font-size: 24px;
-    font-family: 'Camphor';
-    font-weight: 600;
-    /* color: var(--mainTextColor); */
-    /* color: #2f7e1e; */
-}
 
-#pt {
+.logoText {
     font-size: 24px;
     font-family: 'Camphor';
     font-weight: 700;
-    /* color:#484848; */
-	width: -webkit-fit-content;
-	width: -moz-fit-content;
-	width: fit-content;
-	position: relative;
-	-webkit-user-select: none;
-	   -moz-user-select: none;
-	    -ms-user-select: none;
-	        user-select: none;
-	/* background: linear-gradient(270deg, #f8416c, #f1e319, #3bef17, #02bafe, #3bef17, #f1e319, #f8416c);
-	background-size: 10000% 10000%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
-    animation: header_slide 25s linear infinite; 
-	-webkit-transform-style: preserve-3d;
-	        transform-style: preserve-3d;*/
+    color:#484848;
 }
 
 #pt::afterr {
@@ -152,7 +127,7 @@ button {
 	outline: inherit;
 }
 
-.headerText:hover, .logoText:hover, .condensedHeaderText:hover { 
+.headerText:hover, .condensedHeaderText:hover { 
     color: grey 
 }
 
@@ -194,7 +169,7 @@ button {
     .hamburgerMenu {
         display: block !important;
     }
-    #pt {
+    .logoText {
         display: block !important;
     }
 }
@@ -346,10 +321,17 @@ a:hover, a:active{
     color: var(--mainTextColor);
 }
 
-.mealCard{
+.mealCard {
     font-size: 15px;
     font-family: 'Camphor';
     font-weight: 300;
+    color: var(--mainTextColor);
+}
+
+.mealCardTitle {
+    font-size: 15px;
+    font-family: 'Camphor';
+    font-weight: 400;
     color: var(--mainTextColor);
 }
 
