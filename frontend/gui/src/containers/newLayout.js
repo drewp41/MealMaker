@@ -692,29 +692,26 @@ class NewLayout extends React.Component {
 
                     <div className="rightColumn">
 
-                        {/* First card is always shown */}
                         <MealCard mealNum={1} mealObj={this.state.meal1} numMeals={this.state.numMeals}
                             displayMeals={this.state.displayMeals} loadingMeals={this.state.loadingMeals}
                             regenMeal={this.regenMeal} pinMeal={this.pinMeal} />
-                        <br />
+
                         <MealCard mealNum={2} mealObj={this.state.meal2} numMeals={this.state.numMeals}
                             displayMeals={this.state.displayMeals} loadingMeals={this.state.loadingMeals}
                             regenMeal={this.regenMeal} pinMeal={this.pinMeal} />
-                        <br />
+
                         <MealCard mealNum={3} mealObj={this.state.meal3} numMeals={this.state.numMeals}
                             displayMeals={this.state.displayMeals} loadingMeals={this.state.loadingMeals}
                             regenMeal={this.regenMeal} pinMeal={this.pinMeal} />
 
-                        <br />
                         <MealCard mealNum={4} mealObj={this.state.meal4} numMeals={this.state.numMeals}
                             displayMeals={this.state.displayMeals} loadingMeals={this.state.loadingMeals}
                             regenMeal={this.regenMeal} pinMeal={this.pinMeal} />
 
-                        <br />
                         <MealCard mealNum={5} mealObj={this.state.meal5} numMeals={this.state.numMeals}
                             displayMeals={this.state.displayMeals} loadingMeals={this.state.loadingMeals}
                             regenMeal={this.regenMeal} pinMeal={this.pinMeal} />
-                        <br />
+
                         <MealCard mealNum={6} mealObj={this.state.meal6} numMeals={this.state.numMeals}
                             displayMeals={this.state.displayMeals} loadingMeals={this.state.loadingMeals}
                             regenMeal={this.regenMeal} pinMeal={this.pinMeal} />

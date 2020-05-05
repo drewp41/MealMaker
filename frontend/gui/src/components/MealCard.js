@@ -21,76 +21,75 @@ function MealCardTitle(props) {
     </>;
 }
 
-class MealCard extends React.Component {
+function MealCard(props) {
 
-    regenMeal = () => {
-        this.props.regenMeal(this.props.mealNum);
+    const regenMeal = () => {
+        props.regenMeal(props.mealNum);
     }
 
-    pinMeal = () => {
-        this.props.pinMeal(this.props.mealNum);
+    const pinMeal = () => {
+        props.pinMeal(props.mealNum);
     }
 
-    render() {
-        return (
-            <div>
-                {this.props.numMeals >= this.props.mealNum &&
-                    <Card className='cardShadow2' title={
-                        this.props.mealNum === 1 ? (
-                            this.props.numMeals === 1 ?
-                                'Feast'
-                                : (this.props.numMeals === 2 ?
-                                    'Brunch'
-                                    :
-                                    'Breakfast'))
-                            : this.props.mealNum === 2 ? (
-                                this.props.numMeals === 2 ?
-                                    'Dinner'
-                                    :
-                                    'Lunch')
-                                : this.props.mealNum === 3 ?
-                                    'Dinner'
-                                    : 'Snack'
-                    }
-                        extra={this.props.mealObj.meal.calories + this.props.mealObj.side.calories + ' calories'}
+    return (
+        <>
+            {props.numMeals >= props.mealNum &&
+                <>
+                    {props.mealNum != 1 && <br />}
+                    <Card className='cardShadow2'
+                        title={
+                            props.mealNum === 1 ? (
+                                props.numMeals === 1 ? 'Feast'
+                                    : (props.numMeals === 2 ? 'Brunch'
+                                        : 'Breakfast'))
+                                : props.mealNum === 2 ? (
+                                    props.numMeals === 2 ? 'Dinner'
+                                        : 'Lunch')
+                                    : props.mealNum === 3 ? 'Dinner'
+                                        : 'Snack'
+                        }
+                        extra={props.mealObj.meal.calories + props.mealObj.side.calories + ' calories'}
                         style={{ width: 350, height: 200 }} bordered={false}
                         headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                        <Skeleton avatar={false} loading={!this.props.displayMeals && !this.props.mealObj.pinned} title={false}
-                            active={this.props.loadingMeals}
+                        <Skeleton avatar={false} loading={!props.displayMeals && !props.mealObj.pinned} title={false}
+                            active={props.loadingMeals}
                             paragraph={{ rows: 3, width: [250] }} >
                             <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
                                 <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
-                                    {this.props.mealObj.loading ? <SyncOutlined spin className='regenIcon' onClick={() => this.regenMeal(1)} /> :
-                                        <SyncOutlined className='regenIcon' onClick={() => this.regenMeal(1)} />}
-                    &nbsp;&nbsp;&nbsp;
-                    {this.props.mealObj.pinned ? <PushpinFilled className='pinIcon' onClick={() => this.pinMeal(1)} /> :
-                                        <PushpinOutlined className='pinIcon' onClick={() => this.pinMeal(1)} />}
+                                    {props.mealObj.loading ?
+                                        <SyncOutlined spin className='regenIcon' onClick={() => regenMeal(1)} /> :
+                                        <SyncOutlined className='regenIcon' onClick={() => regenMeal(1)} />}
+                                    &nbsp;&nbsp;&nbsp;
+                                    {props.mealObj.pinned ?
+                                        <PushpinFilled className='pinIcon' onClick={() => pinMeal(1)} /> :
+                                        <PushpinOutlined className='pinIcon' onClick={() => pinMeal(1)} />}
                                 </div>
                                 <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
-                                    {this.props.mealObj.meal.name}
+                                    {props.mealObj.meal.name}
                                 </div>
                                 <p className='ant-card-meta-description'>
-                                    C: {this.props.mealObj.meal.carbs}
-                    , P: {this.props.mealObj.meal.protein}
-                    , F: {this.props.mealObj.meal.fat}
+                                    C: {props.mealObj.meal.carbs}
+                                    , P: {props.mealObj.meal.protein}
+                                    , F: {props.mealObj.meal.fat}
                                 </p>
-                                {this.props.mealObj.side.name && <>
+                                {props.mealObj.side.name && <>
                                     <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
-                                        {this.props.mealObj.side.name}
+                                        {props.mealObj.side.name}
                                     </div>
                                     <p className='ant-card-meta-description'>
-                                        C: {this.props.mealObj.side.carbs}
-                        , P: {this.props.mealObj.side.protein}
-                        , F: {this.props.mealObj.side.fat}
+                                        C: {props.mealObj.side.carbs}
+                                        , P: {props.mealObj.side.protein}
+                                        , F: {props.mealObj.side.fat}
                                     </p>
                                 </>}
                             </div>
                         </Skeleton>
                     </Card >
-                }
-            </div>
-        );
-    }
+                </>
+            }
+        </>
+    );
+
 }
 
 export default MealCard;
