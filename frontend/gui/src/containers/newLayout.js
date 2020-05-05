@@ -696,264 +696,28 @@ class NewLayout extends React.Component {
                         <MealCard mealNum={1} mealObj={this.state.meal1} numMeals={this.state.numMeals}
                             displayMeals={this.state.displayMeals} loadingMeals={this.state.loadingMeals}
                             regenMeal={this.regenMeal} pinMeal={this.pinMeal} />
-                        {/* <Card className="cardShadow2" title={this.state.numMeals == 1 ? "Feast" :
-                            (this.state.numMeals == 2 ? "Brunch" : "Breakfast")}
-                            extra={this.state.meal1.meal.calories + this.state.meal1.side.calories + " calories"}
-                            style={{ width: 350, height: 200 }} bordered={false}
-                            headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                            <Skeleton avatar={false} loading={!this.state.displayMeals && !this.state.meal1.pinned} title={false}
-                                active={this.state.loadingMeals}
-                                paragraph={{ rows: 3, width: [250] }} >
-                                <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
-                                    <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
-                                        {this.state.meal1.loading ? <SyncOutlined spin className='regenIcon' onClick={() => this.regenMeal(1)} /> :
-                                            <SyncOutlined className='regenIcon' onClick={() => this.regenMeal(1)} />}
-                                        &nbsp;&nbsp;&nbsp;
-                                        {this.state.meal1.pinned ? <PushpinFilled className='pinIcon' onClick={() => this.pinMeal(1)} /> :
-                                            <PushpinOutlined className='pinIcon' onClick={() => this.pinMeal(1)} />}
-                                    </div>
-                                    <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
-                                        {this.state.meal1.meal.name}
-                                    </div>
-                                    <p className='ant-card-meta-description'>
-                                        C: {this.state.meal1.meal.carbs}
-                                        , P: {this.state.meal1.meal.protein}
-                                        , F: {this.state.meal1.meal.fat}
-                                    </p>
-                                    {this.state.meal1.side.name && <>
-                                        <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
-                                            {this.state.meal1.side.name}
-                                        </div>
-                                        <p className='ant-card-meta-description'>
-                                            C: {this.state.meal1.side.carbs}
-                                            , P: {this.state.meal1.side.protein}
-                                            , F: {this.state.meal1.side.fat}
-                                        </p>
-                                    </>}
-                                </div>
-                            </Skeleton>
-                        </Card> */}
+                        <br />
+                        <MealCard mealNum={2} mealObj={this.state.meal2} numMeals={this.state.numMeals}
+                            displayMeals={this.state.displayMeals} loadingMeals={this.state.loadingMeals}
+                            regenMeal={this.regenMeal} pinMeal={this.pinMeal} />
+                        <br />
+                        <MealCard mealNum={3} mealObj={this.state.meal3} numMeals={this.state.numMeals}
+                            displayMeals={this.state.displayMeals} loadingMeals={this.state.loadingMeals}
+                            regenMeal={this.regenMeal} pinMeal={this.pinMeal} />
 
-                        {this.state.numMeals >= 2 &&
-                            <div>
-                                <br />
-                                <MealCard mealNum={2} mealObj={this.state.meal2} numMeals={this.state.numMeals}
-                                    displayMeals={this.state.displayMeals} loadingMeals={this.state.loadingMeals}
-                                    regenMeal={this.regenMeal} pinMeal={this.pinMeal} />
-                                {/* <Card className="cardShadow2" title={this.state.numMeals == 2 ? "Dinner" : "Lunch"}
-                                    extra={this.state.meal2.meal.calories + this.state.meal2.side.calories + " calories"}
-                                    style={{ width: 350, height: 200 }} bordered={false}
-                                    headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                                    <Skeleton avatar={false} loading={!this.state.displayMeals && !this.state.meal2.pinned} title={false}
-                                        active={this.state.loadingMeals}
-                                        paragraph={{ rows: 3, width: [250] }} >
-                                        <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
-                                            <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
-                                                {this.state.meal2.loading ? <SyncOutlined spin className='regenIcon' onClick={() => this.regenMeal(2)} /> :
-                                                    <SyncOutlined className='regenIcon' onClick={() => this.regenMeal(2)} />}
-                                                &nbsp;&nbsp;&nbsp;
-                                                {this.state.meal2.pinned ? <PushpinFilled className='pinIcon' onClick={() => this.pinMeal(2)} /> :
-                                                    <PushpinOutlined className='pinIcon' onClick={() => this.pinMeal(2)} />}
-                                            </div>
-                                            <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
-                                                {this.state.meal2.meal.name}
-                                            </div>
-                                            <p className='ant-card-meta-description'>
-                                                C: {this.state.meal2.meal.carbs}
-                                                , P: {this.state.meal2.meal.protein}
-                                                , F: {this.state.meal2.meal.fat}
-                                            </p>
-                                            {this.state.meal2.side.name && <>
-                                                <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
-                                                    {this.state.meal2.side.name}
-                                                </div>
-                                                <p className='ant-card-meta-description'>
-                                                    C: {this.state.meal2.side.carbs}
-                                                , P: {this.state.meal2.side.protein}
-                                                , F: {this.state.meal2.side.fat}
-                                                </p>
-                                            </>}
-                                        </div>
-                                    </Skeleton>
-                                </Card> */}
-                            </div>
-                        }
-                        {this.state.numMeals >= 3 &&
-                            <div>
-                                <br />
-                                <MealCard mealNum={3} mealObj={this.state.meal3} numMeals={this.state.numMeals}
-                                    displayMeals={this.state.displayMeals} loadingMeals={this.state.loadingMeals}
-                                    regenMeal={this.regenMeal} pinMeal={this.pinMeal} />
-                                {/* <Card className="cardShadow2" title="Dinner"
-                                    extra={this.state.meal3.meal.calories + this.state.meal3.side.calories + " calories"}
-                                    style={{ width: 350, height: 200 }} bordered={false}
-                                    headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                                    <Skeleton avatar={false} loading={!this.state.displayMeals && !this.state.meal3.pinned} title={false}
-                                        active={this.state.loadingMeals}
-                                        paragraph={{ rows: 3, width: [250] }} >
-                                        <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
-                                            <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
-                                                {this.state.meal3.loading ? <SyncOutlined spin className='regenIcon' onClick={() => this.regenMeal(3)} /> :
-                                                    <SyncOutlined className='regenIcon' onClick={() => this.regenMeal(3)} />}
-                                                &nbsp;&nbsp;&nbsp;
-                                                {this.state.meal3.pinned ? <PushpinFilled className='pinIcon' onClick={() => this.pinMeal(3)} /> :
-                                                    <PushpinOutlined className='pinIcon' onClick={() => this.pinMeal(3)} />}
-                                            </div>
-                                            <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
-                                                {this.state.meal3.meal.name}
-                                            </div>
-                                            <p className='ant-card-meta-description'>
-                                                C: {this.state.meal3.meal.carbs}
-                                                , P: {this.state.meal3.meal.protein}
-                                                , F: {this.state.meal3.meal.fat}
-                                            </p>
-                                            {this.state.meal3.side.name && <>
-                                                <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
-                                                    {this.state.meal3.side.name}
-                                                </div>
-                                                <p className='ant-card-meta-description'>
-                                                    C: {this.state.meal3.side.carbs}
-                                                , P: {this.state.meal3.side.protein}
-                                                , F: {this.state.meal3.side.fat}
-                                                </p>
-                                            </>}
-                                        </div>
-                                    </Skeleton>
-                                </Card> */}
-                            </div>
-                        }
-                        {this.state.numMeals >= 4 &&
-                            <div>
-                                <br />
-                                <MealCard mealNum={4} mealObj={this.state.meal4} numMeals={this.state.numMeals}
-                                    displayMeals={this.state.displayMeals} loadingMeals={this.state.loadingMeals}
-                                    regenMeal={this.regenMeal} pinMeal={this.pinMeal} />
-                                {/* <Card className="cardShadow2" title="Snack"
-                                    extra={this.state.meal4.meal.calories + this.state.meal4.side.calories + " calories"}
-                                    style={{ width: 350, height: 200 }} bordered={false}
-                                    headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                                    <Skeleton avatar={false} loading={!this.state.displayMeals && !this.state.meal4.pinned} title={false}
-                                        active={this.state.loadingMeals}
-                                        paragraph={{ rows: 3, width: [250] }} >
-                                        <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
-                                            <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
-                                                {this.state.meal4.loading ? <SyncOutlined spin className='regenIcon' onClick={() => this.regenMeal(4)} /> :
-                                                    <SyncOutlined className='regenIcon' onClick={() => this.regenMeal(4)} />}
-                                                &nbsp;&nbsp;&nbsp;
-                                                {this.state.meal4.pinned ? <PushpinFilled className='pinIcon' onClick={() => this.pinMeal(4)} /> :
-                                                    <PushpinOutlined className='pinIcon' onClick={() => this.pinMeal(4)} />}
-                                            </div>
-                                            <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
-                                                {this.state.meal4.meal.name}
-                                            </div>
-                                            <p className='ant-card-meta-description'>
-                                                C: {this.state.meal4.meal.carbs}
-                                                , P: {this.state.meal4.meal.protein}
-                                                , F: {this.state.meal4.meal.fat}
-                                            </p>
-                                            {this.state.meal4.side.name && <>
-                                                <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
-                                                    {this.state.meal4.side.name}
-                                                </div>
-                                                <p className='ant-card-meta-description'>
-                                                    C: {this.state.meal4.side.carbs}
-                                                , P: {this.state.meal4.side.protein}
-                                                , F: {this.state.meal4.side.fat}
-                                                </p>
-                                            </>}
-                                        </div>
-                                    </Skeleton>
-                                </Card> */}
-                            </div>
-                        }
-                        {this.state.numMeals >= 5 &&
-                            <div>
-                                <br />
-                                <MealCard mealNum={5} mealObj={this.state.meal5} numMeals={this.state.numMeals}
-                                    displayMeals={this.state.displayMeals} loadingMeals={this.state.loadingMeals}
-                                    regenMeal={this.regenMeal} pinMeal={this.pinMeal} />
-                                {/* <Card className="cardShadow2" title="Snack"
-                                    extra={this.state.meal5.meal.calories + this.state.meal5.side.calories + " calories"}
-                                    style={{ width: 350, height: 200 }} bordered={false}
-                                    headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                                    <Skeleton avatar={false} loading={!this.state.displayMeals && !this.state.meal5.pinned} title={false}
-                                        active={this.state.loadingMeals}
-                                        paragraph={{ rows: 3, width: [250] }} >
-                                        <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
-                                            <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
-                                                {this.state.meal5.loading ? <SyncOutlined spin className='regenIcon' onClick={() => this.regenMeal(5)} /> :
-                                                    <SyncOutlined className='regenIcon' onClick={() => this.regenMeal(5)} />}
-                                                &nbsp;&nbsp;&nbsp;
-                                                {this.state.meal5.pinned ? <PushpinFilled className='pinIcon' onClick={() => this.pinMeal(5)} /> :
-                                                    <PushpinOutlined className='pinIcon' onClick={() => this.pinMeal(5)} />}
-                                            </div>
-                                            <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
-                                                {this.state.meal5.meal.name}
-                                            </div>
-                                            <p className='ant-card-meta-description'>
-                                                C: {this.state.meal5.meal.carbs}
-                                                , P: {this.state.meal5.meal.protein}
-                                                , F: {this.state.meal5.meal.fat}
-                                            </p>
-                                            {this.state.meal5.side.name && <>
-                                                <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
-                                                    {this.state.meal5.side.name}
-                                                </div>
-                                                <p className='ant-card-meta-description'>
-                                                    C: {this.state.meal5.side.carbs}
-                                                , P: {this.state.meal5.side.protein}
-                                                , F: {this.state.meal5.side.fat}
-                                                </p>
-                                            </>}
-                                        </div>
-                                    </Skeleton>
-                                </Card> */}
-                            </div>
-                        }
-                        {this.state.numMeals >= 6 &&
-                            <div>
-                                <br />
-                                <MealCard mealNum={6} mealObj={this.state.meal6} numMeals={this.state.numMeals}
-                                    displayMeals={this.state.displayMeals} loadingMeals={this.state.loadingMeals}
-                                    regenMeal={this.regenMeal} pinMeal={this.pinMeal} />
-                                {/* <Card className="cardShadow2" title="Snack"
-                                    extra={this.state.meal6.meal.calories + this.state.meal6.side.calories + " calories"}
-                                    style={{ width: 350, height: 200 }} bordered={false}
-                                    headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                                    <Skeleton avatar={false} loading={!this.state.displayMeals && !this.state.meal6.pinned} title={false}
-                                        active={this.state.loadingMeals}
-                                        paragraph={{ rows: 3, width: [250] }} >
-                                        <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
-                                            <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
-                                                {this.state.meal6.loading ? <SyncOutlined spin className='regenIcon' onClick={() => this.regenMeal(6)} /> :
-                                                    <SyncOutlined className='regenIcon' onClick={() => this.regenMeal(6)} />}
-                                                &nbsp;&nbsp;&nbsp;
-                                                {this.state.meal6.pinned ? <PushpinFilled className='pinIcon' onClick={() => this.pinMeal(6)} /> :
-                                                    <PushpinOutlined className='pinIcon' onClick={() => this.pinMeal(6)} />}
-                                            </div>
-                                            <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
-                                                {this.state.meal6.meal.name}
-                                            </div>
-                                            <p className='ant-card-meta-description'>
-                                                C: {this.state.meal6.meal.carbs}
-                                                , P: {this.state.meal6.meal.protein}
-                                                , F: {this.state.meal6.meal.fat}
-                                            </p>
-                                            {this.state.meal6.side.name && <>
-                                                <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
-                                                    {this.state.meal6.side.name}
-                                                </div>
-                                                <p className='ant-card-meta-description'>
-                                                    C: {this.state.meal6.side.carbs}
-                                                    , P: {this.state.meal6.side.protein}
-                                                    , F: {this.state.meal6.side.fat}
-                                                </p>
-                                            </>}
-                                        </div>
-                                    </Skeleton>
-                                </Card> */}
-                            </div>
-                        }
+                        <br />
+                        <MealCard mealNum={4} mealObj={this.state.meal4} numMeals={this.state.numMeals}
+                            displayMeals={this.state.displayMeals} loadingMeals={this.state.loadingMeals}
+                            regenMeal={this.regenMeal} pinMeal={this.pinMeal} />
+
+                        <br />
+                        <MealCard mealNum={5} mealObj={this.state.meal5} numMeals={this.state.numMeals}
+                            displayMeals={this.state.displayMeals} loadingMeals={this.state.loadingMeals}
+                            regenMeal={this.regenMeal} pinMeal={this.pinMeal} />
+                        <br />
+                        <MealCard mealNum={6} mealObj={this.state.meal6} numMeals={this.state.numMeals}
+                            displayMeals={this.state.displayMeals} loadingMeals={this.state.loadingMeals}
+                            regenMeal={this.regenMeal} pinMeal={this.pinMeal} />
                     </div>
                 </div >
 
