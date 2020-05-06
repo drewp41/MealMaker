@@ -62,12 +62,7 @@ class NewLayout extends React.Component {
             protein: 150, // 30%   150g
             fat: 55,      // 25%   55g
             numMeals: 3,
-            // actual data of the meals (array of objects)
-            breakfastMeals: this.emptyMeal,
-            breakfastSides: this.emptyMeal,
-            mainMeals: this.emptyMeal,
-            mainSides: this.emptyMeal,
-            // what meal youre on
+            // actual data of the meals (iterator on array of objects)
             breakfastIter: null,
             breakfastSideIter: null,
             mainIter: null,
@@ -78,14 +73,13 @@ class NewLayout extends React.Component {
             loadingMeals: false,
             // when true, the meals are displayed 
             displayMeals: false,
-            // when the generate button is hit, this is set to true
-            // but onces any meal preference changes, it's set to false
-            // when its false, don't call the database, and just spit out
-            // one of the cached meals
+            // set to true when any of the meal prefs. change
+            // when its false, don't call the database, and 
+            // just spit out one of the cached meals
             changedPrefs: true,
+            // used because the hamburger menu expands the header height
             headerHeight: '80px',
             hamburgerActive: false,
-            pinMeal: false,
             meal1: this.emptyObj,
             meal2: this.emptyObj,
             meal3: this.emptyObj,
@@ -113,7 +107,6 @@ class NewLayout extends React.Component {
             },
             description: {
                 visible: false,
-                //text:
             },
             radius: 1,
             colorField: 'type',
@@ -150,10 +143,6 @@ class NewLayout extends React.Component {
                 position: 'bottom-center',
                 offsetY: -5
             },
-            tooltip: {
-                //offset: 100,
-            },
-            responsive: true
         }
     }
 
@@ -362,17 +351,12 @@ class NewLayout extends React.Component {
                     carbVar, proteinVar, fatVar)
                     .then(res => {
                         this.setState({
-                            breakfastMeals: res[0],
-                            breakfastSides: res[1],
+                            breakfastIter: res[0][Symbol.iterator](),
+                            breakfastSideIter: res[1][Symbol.iterator](),
                         }, () => {
-                            this.setState({
-                                breakfastIter: this.state.breakfastMeals[Symbol.iterator](),
-                                breakfastSideIter: this.state.breakfastSides[Symbol.iterator](),
-                            }, () => {
-                                // call the function again now that the meals are refreshed
-                                // and the iterator is at the '0th' meal
-                                this.updateMeal(num);
-                            })
+                            // call the function again now that the meals are refreshed
+                            // and the iterator is at the '0th' meal
+                            this.updateMeal(num);
                         })
                     });
             }
@@ -391,7 +375,7 @@ class NewLayout extends React.Component {
                         meal: mealObj.value,
                         side: sideObj.value,
                     }
-                }))
+                }));
             } else {
                 let carbVar = 0;
                 let proteinVar = 0;
@@ -405,17 +389,12 @@ class NewLayout extends React.Component {
                     carbVar, proteinVar, fatVar)
                     .then(res => {
                         this.setState({
-                            mainMeals: res[0],
-                            mainSides: res[1],
+                            mainIter: res[0][Symbol.iterator](),
+                            mainSideIter: res[1][Symbol.iterator](),
                         }, () => {
-                            this.setState({
-                                mainIter: this.state.mainMeals[Symbol.iterator](),
-                                mainSideIter: this.state.mainSides[Symbol.iterator](),
-                            }, () => {
-                                // call the function again now that the meals are refreshed
-                                // and the iterator is now at the '0th' meal
-                                this.updateMeal(num);
-                            })
+                            // call the function again now that the meals are refreshed
+                            // and the iterator is now at the '0th' meal
+                            this.updateMeal(num);
                         })
                     });
             }
@@ -445,30 +424,22 @@ class NewLayout extends React.Component {
                     console.log('Output: ');
                     console.log(res);
                     this.setState({
-                        breakfastMeals: res[0],
-                        breakfastSides: res[1],
-                        mainMeals: res[2],
-                        mainSides: res[3],
-                    }, () => { // after the meals are set
+                        breakfastIter: res[0][Symbol.iterator](),
+                        breakfastSideIter: res[1][Symbol.iterator](),
+                        mainIter: res[2][Symbol.iterator](),
+                        mainSideIter: res[3][Symbol.iterator](),
+                    }, () => { // after the iterators are set, update all the meals
+                        for (let i = 1; i <= this.state.numMeals; i++) {
+                            if (!this.state[`meal${i}`].pinned)
+                                this.updateMeal(i);
+                        }
                         this.setState({
-                            breakfastIter: this.state.breakfastMeals[Symbol.iterator](),
-                            breakfastSideIter: this.state.breakfastSides[Symbol.iterator](),
-                            mainIter: this.state.mainMeals[Symbol.iterator](),
-                            mainSideIter: this.state.mainSides[Symbol.iterator](),
-                        }, () => { // after the iterators are set, update all the meals
-                            for (let i = 1; i <= this.state.numMeals; i++) {
-                                if (!this.state[`meal${i}`].pinned)
-                                    this.updateMeal(i);
-                            }
-                            this.setState({
-                                loadingMeals: false,
-                                displayMeals: true,
-                                changedPrefs: false,
-                            })
+                            loadingMeals: false,
+                            displayMeals: true,
+                            changedPrefs: false,
                         })
                     })
                 });
-
             // set the loading and temp values while the meal data is loading
             this.setState({
                 displayMeals: false,
@@ -722,6 +693,7 @@ class NewLayout extends React.Component {
 
                 <div style={{ borderTop: '2px solid #e0e0e0', width: '92%', margin: '0 auto' }} />
 
+                {/* background: rgb(27,28,29) and dividers: rgb(50,51,52) */}
                 <div className="rowFooter" style={{ margin: '25px 0 0 0', fontFamily: 'Camphor', fontSize: '15px' }}>
                     <div className="colFooter" style={{ padding: '0 40px 0 0' }}>
                         <div style={{ float: 'right' }}>
