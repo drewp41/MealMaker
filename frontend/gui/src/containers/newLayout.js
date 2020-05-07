@@ -49,7 +49,7 @@ const emptyObj = {
     meal: emptyMeal,
     side: emptyMeal,
     loading: false,
-    pinned: false
+    pinned: false,
 }
 
 
@@ -305,6 +305,7 @@ function NewLayout(props) {
         eval(setMealVar)(prev => ({
             ...prev,
             loading: true,
+            regen: true
         }));
 
         updateMeal(num);
@@ -312,7 +313,8 @@ function NewLayout(props) {
         setTimeout(() => {
             eval(setMealVar)(prev => ({
                 ...prev,
-                loading: false,
+                // if it's still looking for the meal (aka the name didnt change), keep the loading icon
+                loading: prev.meal.name == eval(mealVar).meal.name ? true : false,
             }));
         }, 500);
     }
@@ -339,7 +341,7 @@ function NewLayout(props) {
                 eval(setMealVar)(prev => ({
                     ...prev,
                     meal: mealObj.value,
-                    side: sideObj.value
+                    side: sideObj.value,
                 }));
             } else {
                 let carbVar = 0;
@@ -360,6 +362,7 @@ function NewLayout(props) {
                                     ...prev,
                                     meal: res[0][0],
                                     side: res[1][0],
+                                    loading: false,
                                 }));
                                 // and now increment the iterators since we just used the first entry
                                 breakfastRef.current.next();
@@ -401,6 +404,7 @@ function NewLayout(props) {
                             ...prev,
                             meal: res[0][0],
                             side: res[1][0],
+                            loading: false,
                         }));
                         // and now increment the iterators since we just used the first entry
                         mainRef.current.next();
