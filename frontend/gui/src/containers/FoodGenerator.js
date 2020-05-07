@@ -207,7 +207,7 @@ async function fetchMainData(cals, numMeals, carbs, protein, fat) {
                     minFat: minFat,
                     maxFat: maxFat,
                     type: 'main+course',
-                    number: 6 * numMeals,
+                    number: 6 * (numMeals - 1), //exclude bfast
                 }
             }),
             instance({ // main sides (6 * numMeals)
@@ -218,7 +218,7 @@ async function fetchMainData(cals, numMeals, carbs, protein, fat) {
                     minProtein: 0,
                     minFat: 0,
                     type: 'side+dish',
-                    number: 6 * numMeals,
+                    number: 6 * (numMeals - 1), //exclude bfast
                 }
             })
         ]);

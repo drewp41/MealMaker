@@ -199,6 +199,7 @@ function NewLayout(props) {
             return;
         else if (macroPinned === 2) {
             setMacros(prev => ({
+                ...prev,
                 carbs: newCarbs,
                 fat: prev.fat - (diff * (4 / 9)),
             }));
@@ -206,6 +207,7 @@ function NewLayout(props) {
         }
         else if (macroPinned === 3) {
             setMacros(prev => ({
+                ...prev,
                 carbs: newCarbs,
                 protein: prev.protein - diff,
             }));
@@ -235,6 +237,7 @@ function NewLayout(props) {
         }
         else if (macroPinned === 1) {
             setMacros(prev => ({
+                ...prev,
                 protein: newProtein,
                 fat: prev.fat - (diff * (4 / 9)),
             }));
@@ -244,6 +247,7 @@ function NewLayout(props) {
             return;
         else if (macroPinned === 3) {
             setMacros(prev => ({
+                ...prev,
                 protein: newProtein,
                 carbs: prev.carbs - diff,
             }));
@@ -272,6 +276,7 @@ function NewLayout(props) {
         }
         else if (macroPinned === 1) {
             setMacros(prev => ({
+                ...prev,
                 fat: newFat,
                 protein: prev.protein - (diff * (9 / 5)),
             }));
@@ -279,6 +284,7 @@ function NewLayout(props) {
         }
         else if (macroPinned === 2) {
             setMacros(prev => ({
+                ...prev,
                 fat: newFat,
                 carbs: prev.carbs - (diff * (9 / 5)),
             }));
