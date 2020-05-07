@@ -35,7 +35,7 @@ function MealCard(props) {
         <>
             {props.numMeals >= props.mealNum &&
                 <>
-                    {props.mealNum != 1 && <br />}
+                    {props.mealNum !== 1 && <br />}
                     <Card className='cardShadow2'
                         title={
                             props.mealNum === 1 ? (
