@@ -1,14 +1,11 @@
 // using hooks :(
 import React, { useState, useEffect, useRef } from 'react';
 import {
-    Layout, Menu, Divider, Input, InputNumber,
-    Skeleton, Card, Button, Dropdown, Slider,
-    Select, Alert, Switch, Collapse, Avatar
+    Card, Slider, Select,
+    Switch, Collapse, Avatar
 } from 'antd';
 import {
-    SyncOutlined, GithubOutlined,
-    LinkedinOutlined, MailOutlined, MenuOutlined,
-    PushpinOutlined, PushpinFilled
+    SyncOutlined, PushpinOutlined, PushpinFilled
 } from '@ant-design/icons';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -20,6 +17,7 @@ import ReactG2Plot from 'react-g2plot';
 import NumberFormat from 'react-number-format';
 import MealCard from '../components/MealCard';
 import Header from './Header';
+import Footer from './Footer';
 
 import groceries from '../FoodIcons/groceries.svg';
 
@@ -463,10 +461,8 @@ function NewLayout(props) {
         <div style={{ backgroundColor: 'rgb(242, 242, 242)' }}>
             {/* <div style={{ backgroundColor: 'rgb(245, 243, 240)' }}> */}
             <div id="topLine"></div>
-            {/* Header */}
-            <Header />
 
-            <div className='headerBorder' />
+            <Header />
 
             <div style={{ margin: '55px 0 55px 0', textAlign: 'center' }}>
                 <b id="captionText">Create a customized meal plan in seconds.</b>
@@ -621,43 +617,7 @@ function NewLayout(props) {
 
             <div style={{ minHeight: 200 }} />
 
-            <div style={{ borderTop: '2px solid #e0e0e0', width: '92%', margin: '0 auto' }} />
-
-            {/* background: rgb(27,28,29) and dividers: rgb(50,51,52) */}
-            <div className="rowFooter" style={{ margin: '25px 0 0 0', fontFamily: 'Camphor', fontSize: '15px' }}>
-                <div className="colFooter" style={{ padding: '0 40px 0 0' }}>
-                    <div style={{ float: 'right' }}>
-                        <ul style={{ listStyleType: 'none' }}>
-                            <li>
-                                <a href='#'>How it works</a>
-                            </li>
-                            <p></p>
-                            <li>
-                                <a href='#'>Source code</a>
-                            </li>
-                            <p></p>
-                            <li>
-                                <a href='#'>About</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div className="colFooter" style={{ padding: '0 0 0 15px' }}>
-                    <ul style={{ listStyleType: 'none', }}>
-                        <li>
-                            <a href='#'>Feedback</a>
-                        </li>
-                        <p></p>
-                        <li>
-                            <a href='#'><GithubOutlined style={{ fontSize: '26px' }} /></a>
-                                    &nbsp;&nbsp;
-                                    <a href='#'><LinkedinOutlined style={{ fontSize: '26px' }} /></a>
-                                    &nbsp;&nbsp;
-                                    <a href='#'><MailOutlined style={{ fontSize: '26px' }} /></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <Footer />
 
         </div >
     )
