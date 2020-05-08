@@ -19,12 +19,7 @@ import { Pie } from '@antv/g2plot';
 import ReactG2Plot from 'react-g2plot';
 import NumberFormat from 'react-number-format';
 import MealCard from '../components/MealCard';
-
-import logo from '../MMM.png';
-import recoloredLogo from '../recoloredMMM.png';
-import otherLogo from '../otherLogo.png';
-import carrot from '../carrot.svg';
-import coloredCarrot from '../coloredCarrot.svg';
+import Header from './Header';
 
 import groceries from '../FoodIcons/groceries.svg';
 
@@ -33,7 +28,6 @@ import { SVG } from '@antv/g2plot/lib/dependents';
 
 import './hamb/hamburgers.scss';
 
-const { Header, Content, Footer } = Layout;
 const { Option } = Select;
 const { Panel } = Collapse;
 const { Meta } = Card;
@@ -125,6 +119,13 @@ function NewLayout(props) {
     const [calories, setCalories] = useState(2000);
     const [macros, setMacros] = useState({ carbs: 225, protein: 150, fat: 55 });
     const [numMeals, setNumMeals] = useState(3);
+
+    const [enableMacros, setEnableMacros] = useState(false);
+    const [loadingMeals, setLoadingMeals] = useState(false);
+    const [displayMeals, setDisplayMeals] = useState(false);
+    const [changedPrefs, setChangedPrefs] = useState(true);
+    const [macroPinned, setMacroPinned] = useState(null);
+
     const [breakfastIter, setBreakfastIter] = useAsyncState(null);
     const breakfastRef = useRef(breakfastIter);
     breakfastRef.current = breakfastIter;
@@ -137,13 +138,6 @@ function NewLayout(props) {
     const [mainSideIter, setMainSideIter] = useAsyncState(null);
     const mainSideRef = useRef(mainSideIter);
     mainSideRef.current = mainSideIter;
-    const [enableMacros, setEnableMacros] = useState(false);
-    const [loadingMeals, setLoadingMeals] = useState(false);
-    const [displayMeals, setDisplayMeals] = useState(false);
-    const [changedPrefs, setChangedPrefs] = useState(true);
-    const [headerHeight, setHeaderHeight] = useState('80px');
-    const [hamburger, setHamburger] = useState(false);
-    const [macroPinned, setMacroPinned] = useState(null);
 
     const [meal1, setMeal1] = useState(emptyObj);
     const [meal2, setMeal2] = useState(emptyObj);
@@ -152,10 +146,6 @@ function NewLayout(props) {
     const [meal5, setMeal5] = useState(emptyObj);
     const [meal6, setMeal6] = useState(emptyObj);
 
-    useEffect(() => {
-
-    }, [enableMacros]) // only for mounting, not updating
-
     const onChange = (value) => {
         console.log('changed', value);
     }
@@ -163,10 +153,6 @@ function NewLayout(props) {
     const macroSwitch = () => {
         setEnableMacros(prev => !prev);
         setChangedPrefs(true);
-    }
-
-    const sliderFormatter = (val) => {
-        return `${val}%`;
     }
 
     const pinMacro = (num) => {
@@ -437,9 +423,9 @@ function NewLayout(props) {
                     console.log(`Input: ${calories}, ${numMeals}, ${carbVar}, ${proteinVar}, ${fatVar}`);
                     console.log('Output: ');
                     console.log(res);
-                    setBreakfastIter(res[0][Symbol.iterator]()).then(a => {
-                        setBreakfastSideIter(res[1][Symbol.iterator]()).then(b => {
-                            setMainIter(res[2][Symbol.iterator]()).then(c => {
+                    setBreakfastIter(res[0][Symbol.iterator]()).then(a =>
+                        setBreakfastSideIter(res[1][Symbol.iterator]()).then(b =>
+                            setMainIter(res[2][Symbol.iterator]()).then(c =>
                                 setMainSideIter(res[3][Symbol.iterator]()).then(d => {
                                     // now that the iters are set, update all the meals that aren't pinned
                                     for (let i = 1; i <= numMeals; i++) {
@@ -450,10 +436,7 @@ function NewLayout(props) {
                                     setDisplayMeals(true);
                                     setLoadingMeals(false);
                                     setChangedPrefs(false);
-                                })
-                            })
-                        })
-                    });
+                                }))));
                 });
             // set the loading and temp values while the meal data is loading
             setDisplayMeals(false);
@@ -481,65 +464,7 @@ function NewLayout(props) {
             {/* <div style={{ backgroundColor: 'rgb(245, 243, 240)' }}> */}
             <div id="topLine"></div>
             {/* Header */}
-            <div className='header' style={{ height: headerHeight }} >
-                <div className='rowHeader'>
-                    <div className='headerLRSpace'></div>
-                    <a href='#'>
-                        <img src={coloredCarrot} alt="logo" style={{ width: 35, height: 35, margin: '20px 0 0 18px' }} draggable='false' />
-                    </a>
-                    {/* shifted down 21.5px to center it vertically in the header */}
-                    <div className='colHeaderL' style={{ padding: '21.5px 0 0 9px' }}>
-                        <a style={{ color: '#545454' }}>
-                            <div className='logoText'>
-                                mealmaker.io
-                                    </div>
-                        </a>
-                    </div>
-
-                    <div className='headerCenterLeftSpace'></div>
-
-                    {/* shifted down 10px to center it vertically in the header */}
-                    <div className='colHeaderMid' style={{ padding: '10px 0 0 0' }}>
-                        <button className="headerText" style={{ height: '60px', width: '150px' }}>
-                            How it works
-                                </button>
-                        <button className="headerText" style={{ height: '60px', width: '100px' }}>
-                            About
-                                </button>
-                    </div>
-
-                    <div className='headerCenterRightSpace'></div>
-
-                    {/* shifted down 10px to center it vertically in the header */}
-                    <div className='colHeaderR' style={{ padding: '10px 0 0 0' }}>
-                        <button className="headerText" style={{ height: '60px', width: '130px' }}>
-                            <text id="signInArrow">&nbsp;&nbsp;&nbsp;&nbsp;Sign in</text> <text > →</text>
-                        </button>
-                    </div>
-
-                    {/* shifted down 30px to center it vertically in the header */}
-                    <div className='hamburgerMenu' style={{ padding: '30px 25px 0 0', margin: '0 0 0 auto' }}>
-                        <button className={hamburger ? 'hamburger hamburger--slider is-active' :
-                            'hamburger hamburger--slider'}
-                            type="button"
-                            onClick={e => {
-                                setHeaderHeight(prev => prev === '250px' ? '80px' : '250px');
-                                setHamburger(prev => !prev);
-                            }}>
-                            <span className="hamburger-box">
-                                <span className="hamburger-inner"></span>
-                            </span>
-                        </button>
-                    </div>
-
-                    <div className='headerLRSpace'></div>
-                </div>
-                <div className='condensedHeader'>
-                    <button className='condensedHeaderText' style={{ height: '45px', width: '120px' }}>How it works</button>
-                    <button className='condensedHeaderText' style={{ height: '45px', width: '70px' }}>About</button>
-                    <button className='condensedHeaderText' style={{ height: '45px', width: '80px' }}>Sign in</button>
-                </div>
-            </div>
+            <Header />
 
             <div className='headerBorder' />
 
@@ -592,7 +517,7 @@ function NewLayout(props) {
                                     {Math.floor(macros.carbs)} g
                                         </span>
                                 <br />
-                                <Slider defaultValue={45} tipFormatter={sliderFormatter} min={10} max={80}
+                                <Slider defaultValue={45} tipFormatter={val => `${val}%`} min={10} max={80}
                                     value={Math.floor((macros.carbs * 4) / (calories / 100))}
                                     disabled={macroPinned === 1}
                                     onChange={(percent) => carbSlider(percent)}
@@ -611,7 +536,7 @@ function NewLayout(props) {
                                     {Math.floor(macros.protein)} g
                                         </span>
                                 <br />
-                                <Slider defaultValue={30} tipFormatter={sliderFormatter} min={10} max={80}
+                                <Slider defaultValue={30} tipFormatter={val => `${val}%`} min={10} max={80}
                                     value={Math.floor((macros.protein * 4) / (calories / 100))}
                                     disabled={macroPinned === 2}
                                     onChange={(percent) => proteinSlider(percent)}
@@ -630,7 +555,7 @@ function NewLayout(props) {
                                     {Math.floor(macros.fat)} g
                                         </span>
                                 <br />
-                                <Slider defaultValue={25} tipFormatter={sliderFormatter} min={10} max={80}
+                                <Slider defaultValue={25} tipFormatter={val => `${val}%`} min={10} max={80}
                                     value={Math.floor((macros.fat * 9) / (calories / 100))}
                                     disabled={macroPinned === 3}
                                     onChange={(percent) => fatSlider(percent)}
