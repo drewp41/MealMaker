@@ -55,8 +55,8 @@ function MealCard(props) {
                             active={props.loadingMeals}
                             paragraph={{ rows: 3, width: [250] }} >
                             <div className='mealCard'>
-                                <div className='mealCardMainRow' >
-                                    <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
+                                <div className='mealCardMainRow'>
+                                    <div className='mealCardIcons'>
                                         {props.mealObj.loading ?
                                             <SyncOutlined spin className='regenIcon' onClick={() => regenMeal(1)} /> :
                                             <SyncOutlined className='regenIcon' onClick={() => regenMeal(1)} />}
@@ -71,8 +71,8 @@ function MealCard(props) {
                                     <div className='space2' />
                                     <p className='ant-card-meta-description'>
                                         C: {props.mealObj.meal.carbs}
-                                            , P: {props.mealObj.meal.protein}
-                                            , F: {props.mealObj.meal.fat}
+                                        , P: {props.mealObj.meal.protein}
+                                        , F: {props.mealObj.meal.fat}
                                     </p>
                                 </div>
                                 {props.mealObj.side.name &&

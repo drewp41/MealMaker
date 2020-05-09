@@ -347,21 +347,31 @@ a:hover, a:active{
 
 .mealCardMainRow {
     height: 62px;
-    margin: -9px 0 0 0;
+    /* bc the ant card body doesnt start at the top */
+    margin: -12px 0 0 0;
+    /* line-height: 62px; */
+    padding: 4px 0 0 0;
 }
 
 .mealCardSideRow {
     height: 62px;
+    padding: 4px 0 0 0;
 }
 
 .mealCardMainRow:hover {
     border: 1px solid #b0b0b0;
-    margin: -10px -1px 1px -1px;
+    margin: -13px -1px 1px -1px;
 }
 
 .mealCardSideRow:hover {
     border: 1px solid #b0b0b0;
     margin: -1px;
+}
+
+.mealCardIcons {
+    float: right;
+    font-size: 18px;
+    color: #606060;
 }
 
 .regenIcon:hover {
