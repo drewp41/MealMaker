@@ -345,23 +345,22 @@ a:hover, a:active{
     color: var(--mainTextColor);
 }
 
-.mealCardMealRow {
-    margin: -10px 0 0 0;
-    height: 60px;
-
+.mealCardMainRow {
+    height: 62px;
+    margin: -9px 0 0 0;
 }
 
 .mealCardSideRow {
-    height: 60px;
+    height: 62px;
 }
 
-.mealCardMealRow:hover {
-    border: 1px solid #606060;
-    margin: -11px -1px 1px -1px;
+.mealCardMainRow:hover {
+    border: 1px solid #b0b0b0;
+    margin: -10px -1px 1px -1px;
 }
 
 .mealCardSideRow:hover {
-    border: 1px solid #606060;
+    border: 1px solid #b0b0b0;
     margin: -1px;
 }
 

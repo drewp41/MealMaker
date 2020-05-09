@@ -55,7 +55,7 @@ function MealCard(props) {
                             active={props.loadingMeals}
                             paragraph={{ rows: 3, width: [250] }} >
                             <div className='mealCard'>
-                                <div className='mealCardMealRow' >
+                                <div className='mealCardMainRow' >
                                     <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
                                         {props.mealObj.loading ?
                                             <SyncOutlined spin className='regenIcon' onClick={() => regenMeal(1)} /> :
