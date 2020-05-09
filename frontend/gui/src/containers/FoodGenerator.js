@@ -33,7 +33,7 @@ const emptyMeal = {
 }
 
 // percent chance a main side appears
-const randMainSides = 0.8;
+const randMainSides = 0.7;
 
 // ========== Fetch all meals ==========
 export async function fetchMeals(cals, numMeals, carbs, protein, fat) {

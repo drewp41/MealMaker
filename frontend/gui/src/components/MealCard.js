@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Card, Skeleton
+    Card, Skeleton, Space
 } from 'antd';
 import {
     SyncOutlined,
@@ -49,39 +49,54 @@ function MealCard(props) {
                                         : 'Snack'
                         }
                         extra={props.mealObj.meal.calories + props.mealObj.side.calories + ' calories'}
-                        style={{ width: 350, height: 200 }} bordered={false}
+                        style={{ width: 360, height: 208 }} bordered={false} //head height: 58, body height: 150
                         headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                         <Skeleton avatar={false} loading={!props.displayMeals && !props.mealObj.pinned} title={false}
                             active={props.loadingMeals}
                             paragraph={{ rows: 3, width: [250] }} >
-                            <div className='mealCard' style={{ margin: '-10px 0 0 0' }}>
-                                <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
-                                    {props.mealObj.loading ?
-                                        <SyncOutlined spin className='regenIcon' onClick={() => regenMeal(1)} /> :
-                                        <SyncOutlined className='regenIcon' onClick={() => regenMeal(1)} />}
-                                    &nbsp;&nbsp;&nbsp;
-                                    {props.mealObj.pinned ?
-                                        <PushpinFilled className='pinIcon' onClick={() => pinMeal(1)} /> :
-                                        <PushpinOutlined className='pinIcon' onClick={() => pinMeal(1)} />}
-                                </div>
-                                <div className='ant-card-meta-title' style={{ margin: '0 0 5px 0' }}>
-                                    {props.mealObj.meal.name}
-                                </div>
-                                <p className='ant-card-meta-description'>
-                                    C: {props.mealObj.meal.carbs}
-                                    , P: {props.mealObj.meal.protein}
-                                    , F: {props.mealObj.meal.fat}
-                                </p>
-                                {props.mealObj.side.name && <>
-                                    <div className='ant-card-meta-title' style={{ margin: '-8px 0 5px 0' }}>
-                                        {props.mealObj.side.name}
+                            <div className='mealCard'>
+                                <div className='mealCardMealRow' >
+                                    <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
+                                        {props.mealObj.loading ?
+                                            <SyncOutlined spin className='regenIcon' onClick={() => regenMeal(1)} /> :
+                                            <SyncOutlined className='regenIcon' onClick={() => regenMeal(1)} />}
+                                                &nbsp;&nbsp;&nbsp;
+                                                {props.mealObj.pinned ?
+                                            <PushpinFilled className='pinIcon' onClick={() => pinMeal(1)} /> :
+                                            <PushpinOutlined className='pinIcon' onClick={() => pinMeal(1)} />}
                                     </div>
+                                    <div className='ant-card-meta-title'>
+                                        {props.mealObj.meal.name}
+                                    </div>
+                                    <div className='space2' />
                                     <p className='ant-card-meta-description'>
-                                        C: {props.mealObj.side.carbs}
+                                        C: {props.mealObj.meal.carbs}
+                                            , P: {props.mealObj.meal.protein}
+                                            , F: {props.mealObj.meal.fat}
+                                    </p>
+                                </div>
+                                {props.mealObj.side.name &&
+                                    <div className='mealCardSideRow'>
+                                        <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
+                                            {props.mealObj.loading ?
+                                                <SyncOutlined spin className='regenIcon' onClick={() => regenMeal(1)} /> :
+                                                <SyncOutlined className='regenIcon' onClick={() => regenMeal(1)} />}
+                                                &nbsp;&nbsp;&nbsp;
+                                                {props.mealObj.pinned ?
+                                                <PushpinFilled className='pinIcon' onClick={() => pinMeal(1)} /> :
+                                                <PushpinOutlined className='pinIcon' onClick={() => pinMeal(1)} />}
+                                        </div>
+
+                                        <div className='ant-card-meta-title'>
+                                            {props.mealObj.side.name}
+                                        </div>
+                                        <div className='space2' />
+                                        <p className='ant-card-meta-description'>
+                                            C: {props.mealObj.side.carbs}
                                         , P: {props.mealObj.side.protein}
                                         , F: {props.mealObj.side.fat}
-                                    </p>
-                                </>}
+                                        </p>
+                                    </div>}
                             </div>
                         </Skeleton>
                     </Card >

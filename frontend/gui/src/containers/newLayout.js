@@ -144,10 +144,6 @@ function NewLayout(props) {
     const [meal5, setMeal5] = useState(emptyObj);
     const [meal6, setMeal6] = useState(emptyObj);
 
-    const onChange = (value) => {
-        console.log('changed', value);
-    }
-
     const macroSwitch = () => {
         setEnableMacros(prev => !prev);
         setChangedPrefs(true);
@@ -316,6 +312,7 @@ function NewLayout(props) {
     const updateMeal = (num) => {
         const mealVar = 'meal' + num.toString();
         const setMealVar = 'setMeal' + num.toString();
+
         // IF BREAKFAST
         if (num == 1) {
             // iterator returns {value, done}
