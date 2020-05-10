@@ -42,7 +42,7 @@ const emptyMeal = {
     instructions: [], servings: 0
 }
 const emptyObj = {
-    meal: emptyMeal,
+    main: emptyMeal,
     side: emptyMeal,
     mainLoading: false,
     sideLoading: false,
@@ -300,7 +300,7 @@ function NewLayout(props) {
                 ...prev,
                 // if it's still looking for the meal (aka the name didnt change), keep the loading icon
                 // works bc of stale closures
-                mainLoading: prev.meal.name == eval(mealVar).meal.name ? true : false,
+                mainLoading: prev.main.name === eval(mealVar).main.name ? true : false,
             }));
         }, 500);
     }
@@ -324,7 +324,7 @@ function NewLayout(props) {
                 ...prev,
                 // if it's still looking for the meal (aka the name didnt change), keep the loading icon
                 // works bc of stale closures
-                sideLoading: prev.side.name == eval(mealVar).side.name ? true : false,
+                sideLoading: prev.side.name === eval(mealVar).side.name ? true : false,
             }));
         }, 500);
     }
@@ -358,7 +358,7 @@ function NewLayout(props) {
             if (!mealObj.done) { // mealObj and sideObj are on the same "index", so if one is done, the other is too
                 eval(setMealVar)(prev => ({
                     ...prev,
-                    meal: mealObj.value,
+                    main: mealObj.value,
                     side: sideObj.value,
                 }));
             } else {
@@ -378,7 +378,7 @@ function NewLayout(props) {
                                 // now that the iters are loaded, set the meal with the new data
                                 eval(setMealVar)(prev => ({
                                     ...prev,
-                                    meal: res[0][0],
+                                    main: res[0][0],
                                     side: res[1][0],
                                     mainLoading: false,
                                     sideLoading: false,
@@ -399,7 +399,7 @@ function NewLayout(props) {
             if (!mealObj.done) { // mealObj and sideObj are on the same "index", so if one is done, the other is too
                 eval(setMealVar)(prev => ({
                     ...prev,
-                    meal: mealObj.value,
+                    main: mealObj.value,
                     side: sideObj.value
                 }));
             } else {
@@ -419,7 +419,7 @@ function NewLayout(props) {
                         // now that the iters are loaded, set the meal with the new data
                         eval(setMealVar)(prev => ({
                             ...prev,
-                            meal: res[0][0],
+                            main: res[0][0],
                             side: res[1][0],
                             mainLoading: false,
                             sideLoading: false,
@@ -442,7 +442,7 @@ function NewLayout(props) {
             if (!mealObj.done) { // mealObj and sideObj are on the same "index", so if one is done, the other is too
                 eval(setMealVar)(prev => ({
                     ...prev,
-                    meal: mealObj.value,
+                    main: mealObj.value,
                 }));
             } else {
                 let carbVar = 0;
@@ -460,7 +460,7 @@ function NewLayout(props) {
                             // now that the iter is loaded, set the meal with the new data
                             eval(setMealVar)(prev => ({
                                 ...prev,
-                                meal: res[0][0],
+                                main: res[0][0],
                                 mainLoading: false,
                             }));
                             // and now increment the iterator since we just used the first entry
@@ -476,7 +476,7 @@ function NewLayout(props) {
             if (!mealObj.done) { // mealObj and sideObj are on the same "index", so if one is done, the other is too
                 eval(setMealVar)(prev => ({
                     ...prev,
-                    meal: mealObj.value,
+                    main: mealObj.value,
                 }));
             } else {
                 let carbVar = 0;
@@ -494,7 +494,7 @@ function NewLayout(props) {
                             // now that the iter is loaded, set the meal with the new data
                             eval(setMealVar)(prev => ({
                                 ...prev,
-                                meal: res[0][0],
+                                main: res[0][0],
                                 mainLoading: false,
                             }));
                             // and now increment the iterator since we just used the first entry
@@ -585,19 +585,13 @@ function NewLayout(props) {
 
         // set the unpinned meals to loading
         for (let i = 1; i <= numMeals; i++) {
-            if (!eval(`meal${i}`).mainPinned) {
-                eval(`setMeal${i}`)(prev => ({
-                    ...prev,
-                    mainLoading: true,
-                }));
-            }
-            if (!eval(`meal${i}`).sidePinned) {
-                eval(`setMeal${i}`)(prev => ({
-                    ...prev,
-                    sideLoading: true,
-                }));
-            }
+            eval(`setMeal${i}`)(prev => ({
+                ...prev,
+                mainLoading: !prev.mainPinned,
+                sideLoading: !prev.sidePinned,
+            }));
         }
+
         setDisplayMeals(false);
         setLoadingMeals(true);
 
@@ -647,7 +641,6 @@ function NewLayout(props) {
                 });
         } else {
             // preferences haven't changed, use cached meals
-            // spin the loading icon for half a second so it does half a rotation
             for (let i = 1; i <= numMeals; i++) {
                 if (!eval(`meal${i}`).mainPinned) {
                     updateMain(i);
@@ -656,12 +649,15 @@ function NewLayout(props) {
                     updateSide(i);
                 }
             }
+            // spin the loading icon for half a second so it does half a rotation
             setTimeout(() => {
                 for (let i = 1; i <= numMeals; i++) {
+                    // if it's still looking for the meal (aka the name didnt change), keep the loading icon
+                    // works bc of stale closures
                     eval(`setMeal${i}`)(prev => ({
                         ...prev,
-                        mainLoading: false,
-                        sideLoading: false
+                        mainLoading: prev.main.name === eval(`meal${i}`).main.name ? true : false,
+                        sideLoading: prev.side.name === eval(`meal${i}`).side.name ? true : false,
                     }));
                 }
                 setDisplayMeals(true);

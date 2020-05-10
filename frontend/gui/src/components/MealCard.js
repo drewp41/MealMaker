@@ -56,7 +56,7 @@ function MealCard(props) {
                                     : props.mealNum === 3 ? 'Dinner'
                                         : 'Snack'
                         }
-                        extra={props.mealObj.meal.calories + props.mealObj.side.calories + ' calories'}
+                        extra={props.mealObj.main.calories + props.mealObj.side.calories + ' calories'}
                         style={{ width: 360, height: 208 }} bordered={false} //head height: 58, body height: 150
                         headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
                         <Skeleton avatar={false} title={false}
@@ -76,13 +76,13 @@ function MealCard(props) {
                                             <PushpinOutlined className='pinIcon' onClick={() => pinMain()} />}
                                     </div>
                                     <div className='ant-card-meta-title'>
-                                        {props.mealObj.meal.name}
+                                        {props.mealObj.main.name}
                                     </div>
                                     <div className='space2' />
                                     <p className='ant-card-meta-description'>
-                                        C: {props.mealObj.meal.carbs}
-                                        , P: {props.mealObj.meal.protein}
-                                        , F: {props.mealObj.meal.fat}
+                                        C: {props.mealObj.main.carbs}
+                                        , P: {props.mealObj.main.protein}
+                                        , F: {props.mealObj.main.fat}
                                     </p>
                                 </div>
                                 {props.mealObj.side.name &&
