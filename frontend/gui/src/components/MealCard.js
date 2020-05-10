@@ -66,9 +66,10 @@ function MealCard(props) {
                             <div className='mealCard'>
                                 <div className='mealCardMainRow'>
                                     <div className='mealCardIcons'>
-                                        {props.mealObj.mainLoading ?
+                                        {/* show regen icon if the meal isn't pinned */}
+                                        {!props.mealObj.mainPinned && (props.mealObj.mainLoading ?
                                             <SyncOutlined spin className='regenIcon' onClick={() => regenMain()} /> :
-                                            <SyncOutlined className='regenIcon' onClick={() => regenMain()} />}
+                                            <SyncOutlined className='regenIcon' onClick={() => regenMain()} />)}
                                         &nbsp;&nbsp;&nbsp;
                                         {props.mealObj.mainPinned ?
                                             <PushpinFilled className='pinIcon' onClick={() => pinMain()} /> :
@@ -87,9 +88,10 @@ function MealCard(props) {
                                 {props.mealObj.side.name &&
                                     <div className='mealCardSideRow'>
                                         <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
-                                            {props.mealObj.sideLoading ?
+                                            {/* show regen icon if the meal isn't pinned */}
+                                            {!props.mealObj.sidePinned && (props.mealObj.sideLoading ?
                                                 <SyncOutlined spin className='regenIcon' onClick={() => regenSide()} /> :
-                                                <SyncOutlined className='regenIcon' onClick={() => regenSide()} />}
+                                                <SyncOutlined className='regenIcon' onClick={() => regenSide()} />)}
                                             &nbsp;&nbsp;&nbsp;
                                             {props.mealObj.sidePinned ?
                                                 <PushpinFilled className='pinIcon' onClick={() => pinSide()} /> :

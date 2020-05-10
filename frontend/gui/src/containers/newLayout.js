@@ -125,7 +125,7 @@ function NewLayout(props) {
     const [numMeals, setNumMeals] = useState(3);
 
     const [enableMacros, setEnableMacros] = useState(false);
-    const [loadingMeals, setLoadingMeals] = useState(false);
+    const [loadingMeals, setLoadingMeals] = useState(false); // used for gen button
     const [displayMeals, setDisplayMeals] = useState(false);
     const [changedPrefs, setChangedPrefs] = useState(true);
     const [macroPinned, setMacroPinned] = useState(null);
@@ -299,6 +299,7 @@ function NewLayout(props) {
             eval(setMealVar)(prev => ({
                 ...prev,
                 // if it's still looking for the meal (aka the name didnt change), keep the loading icon
+                // works bc of stale closures
                 mainLoading: prev.meal.name == eval(mealVar).meal.name ? true : false,
             }));
         }, 500);
@@ -322,6 +323,7 @@ function NewLayout(props) {
             eval(setMealVar)(prev => ({
                 ...prev,
                 // if it's still looking for the meal (aka the name didnt change), keep the loading icon
+                // works bc of stale closures
                 sideLoading: prev.side.name == eval(mealVar).side.name ? true : false,
             }));
         }, 500);
@@ -385,9 +387,7 @@ function NewLayout(props) {
                                 breakfastRef.current.next();
                                 breakfastSideRef.current.next();
                             })
-
                         })
-
                     });
             }
         }
@@ -583,6 +583,24 @@ function NewLayout(props) {
         if (loadingMeals)
             return;
 
+        // set the unpinned meals to loading
+        for (let i = 1; i <= numMeals; i++) {
+            if (!eval(`meal${i}`).mainPinned) {
+                eval(`setMeal${i}`)(prev => ({
+                    ...prev,
+                    mainLoading: true,
+                }));
+            }
+            if (!eval(`meal${i}`).sidePinned) {
+                eval(`setMeal${i}`)(prev => ({
+                    ...prev,
+                    sideLoading: true,
+                }));
+            }
+        }
+        setDisplayMeals(false);
+        setLoadingMeals(true);
+
         if (changedPrefs) {
             // get the meal data with the given preferences
             // and once that data is recieved (.then), update the state
@@ -594,7 +612,6 @@ function NewLayout(props) {
                 proteinVar = Math.floor(macros.protein);
                 fatVar = Math.floor(macros.fat);
             }
-
             fetchMeals(calories, numMeals,
                 carbVar, proteinVar, fatVar)
                 .then(res => {
@@ -607,8 +624,11 @@ function NewLayout(props) {
                                 setRegularSideIter(res[3][Symbol.iterator]()).then(d => {
                                     // now that the iters are set, update all the meals that aren't pinned
                                     for (let i = 1; i <= numMeals; i++) {
-                                        if (!eval(`meal${i}`).pinned) {
-                                            updateMeal(i);
+                                        if (!eval(`meal${i}`).mainPinned) {
+                                            updateMain(i);
+                                        }
+                                        if (!eval(`meal${i}`).sidePinned) {
+                                            updateSide(i);
                                         }
                                     }
 
@@ -625,32 +645,18 @@ function NewLayout(props) {
                                     setChangedPrefs(false);
                                 }))));
                 });
-            // set the loading and temp values while the meal data is loading
-            for (let i = 1; i <= numMeals; i++) {
-                eval(`setMeal${i}`)(prev => ({
-                    ...prev,
-                    mainLoading: true,
-                    sideLoading: true
-                }));
-            }
-            setDisplayMeals(false);
-            setLoadingMeals(true);
         } else {
             // preferences haven't changed, use cached meals
-            // load the meals for half a second, to make it seem more real
-            setDisplayMeals(false);
+            // spin the loading icon for half a second so it does half a rotation
             for (let i = 1; i <= numMeals; i++) {
-                eval(`setMeal${i}`)(prev => ({
-                    ...prev,
-                    mainLoading: true,
-                    sideLoading: true
-                }));
+                if (!eval(`meal${i}`).mainPinned) {
+                    updateMain(i);
+                }
+                if (!eval(`meal${i}`).sidePinned) {
+                    updateSide(i);
+                }
             }
             setTimeout(() => {
-                for (let i = 1; i <= numMeals; i++) {
-                    if (!eval(`meal${i}`).pinned)
-                        updateMeal(i);
-                }
                 for (let i = 1; i <= numMeals; i++) {
                     eval(`setMeal${i}`)(prev => ({
                         ...prev,
@@ -659,6 +665,7 @@ function NewLayout(props) {
                     }));
                 }
                 setDisplayMeals(true);
+                setLoadingMeals(false);
             }, 500);
         }
     };
@@ -690,7 +697,7 @@ function NewLayout(props) {
                             {/* <BetterInputNumber addonAfter="calories" /> */}
                         </p>
                         <p className="leftColumnText"> in &nbsp;
-                                    <Select className="mealInput" defaultValue="3" style={{ width: '126px' }}
+                            <Select className="mealInput" defaultValue="3" style={{ width: '126px' }}
                                 onChange={(value) => {
                                     setNumMeals(parseInt(value));
                                     setChangedPrefs(true);
@@ -781,13 +788,12 @@ function NewLayout(props) {
 
                     <b className='pieTitle' style={{ fontSize: '22px', fontFamily: 'Camphor', fontWeight: '300', color: mainTextColor }}>
                         Macro Breakdown
-                            </b>
+                    </b>
                     <div className='pieDiv' style={{ width: '325px', height: '325px' }}>
                         <ReactG2Plot
                             className="pie"
                             Ctor={Pie}
-                            config={pieConfig}
-                        />
+                            config={pieConfig} />
                     </div>
 
                 </div>

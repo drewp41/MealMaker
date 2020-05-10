@@ -1,5 +1,9 @@
 env/
 frontend/gui/src/containers/Credentials.js
+
+# Created by https://www.gitignore.io/api/react,django
+# Edit at https://www.gitignore.io/?templates=react,django
+
 ### Django ###
 *.log
 *.pot
@@ -117,4 +121,19 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# End of https://www.gitignore.io/api/django
+### react ###
+.DS_*
+logs
+**/*.backup.*
+**/*.back.*
+
+node_modules
+bower_components
+
+*.sublime*
+
+psd
+thumb
+sketch
+
+# End of https://www.gitignore.io/api/react,django
