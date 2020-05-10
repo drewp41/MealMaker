@@ -21,7 +21,11 @@ import Footer from './Footer';
 
 import groceries from '../FoodIcons/groceries.svg';
 
-import { fetchMeals, fetchBreakfast, fetchMain } from './FoodGenerator.js';
+import {
+    fetchMeals, fetchBreakfast, fetchRegular,
+    fetchBreakfastMain, fetchBreakfastSide,
+    fetchRegularMain, fetchRegularSide
+} from './FoodGenerator.js';
 import { SVG } from '@antv/g2plot/lib/dependents';
 
 import './hamb/hamburgers.scss';
@@ -40,8 +44,10 @@ const emptyMeal = {
 const emptyObj = {
     meal: emptyMeal,
     side: emptyMeal,
-    loading: false,
-    pinned: false,
+    mainLoading: false,
+    sideLoading: false,
+    mainPinned: false,
+    sidePinned: false,
 }
 
 
@@ -130,12 +136,12 @@ function NewLayout(props) {
     const [breakfastSideIter, setBreakfastSideIter] = useAsyncState(null);
     const breakfastSideRef = useRef(breakfastSideIter);
     breakfastSideRef.current = breakfastSideIter;
-    const [mainIter, setMainIter] = useAsyncState(null);
-    const mainRef = useRef(mainIter);
-    mainRef.current = mainIter;
-    const [mainSideIter, setMainSideIter] = useAsyncState(null);
-    const mainSideRef = useRef(mainSideIter);
-    mainSideRef.current = mainSideIter;
+    const [regularIter, setRegularIter] = useAsyncState(null);
+    const regularRef = useRef(regularIter);
+    regularRef.current = regularIter;
+    const [regularSideIter, setRegularSideIter] = useAsyncState(null);
+    const regularSideRef = useRef(regularSideIter);
+    regularSideRef.current = regularSideIter;
 
     const [meal1, setMeal1] = useState(emptyObj);
     const [meal2, setMeal2] = useState(emptyObj);
@@ -275,17 +281,16 @@ function NewLayout(props) {
         }
     }
 
-    const regenMeal = (num) => {
+    const regenMain = (num) => {
         const mealVar = 'meal' + num.toString();
         const setMealVar = 'setMeal' + num.toString();
         // if it's already loading a meal, return (stops spam clicking)
-        if (eval(mealVar).loading) {
+        if (eval(mealVar).mainLoading) {
             return;
         }
         eval(setMealVar)(prev => ({
             ...prev,
-            loading: true,
-            regen: true
+            mainLoading: true,
         }));
 
         updateMeal(num);
@@ -294,18 +299,49 @@ function NewLayout(props) {
             eval(setMealVar)(prev => ({
                 ...prev,
                 // if it's still looking for the meal (aka the name didnt change), keep the loading icon
-                loading: prev.meal.name == eval(mealVar).meal.name ? true : false,
+                mainLoading: prev.meal.name == eval(mealVar).meal.name ? true : false,
             }));
         }, 500);
     }
 
-    const pinMeal = (num) => {
+    const regenSide = (num) => {
         const mealVar = 'meal' + num.toString();
+        const setMealVar = 'setMeal' + num.toString();
+        // if it's already loading a meal, return (stops spam clicking)
+        if (eval(mealVar).sideLoading) {
+            return;
+        }
+        eval(setMealVar)(prev => ({
+            ...prev,
+            sideLoading: true,
+        }));
+
+        updateMeal(num);
+
+        setTimeout(() => {
+            eval(setMealVar)(prev => ({
+                ...prev,
+                // if it's still looking for the meal (aka the name didnt change), keep the loading icon
+                sideLoading: prev.side.name == eval(mealVar).side.name ? true : false,
+            }));
+        }, 500);
+    }
+
+    const pinMain = (num) => {
         const setMealVar = 'setMeal' + num.toString();
 
         eval(setMealVar)(prev => ({
             ...prev,
-            pinned: !prev.pinned,
+            mainPinned: !prev.mainPinned,
+        }));
+    }
+
+    const pinSide = (num) => {
+        const setMealVar = 'setMeal' + num.toString();
+
+        eval(setMealVar)(prev => ({
+            ...prev,
+            sidePinned: !prev.sidePinned,
         }));
     }
 
@@ -343,7 +379,7 @@ function NewLayout(props) {
                                     ...prev,
                                     meal: res[0][0],
                                     side: res[1][0],
-                                    loading: false,
+                                    mainLoading: false,
                                 }));
                                 // and now increment the iterators since we just used the first entry
                                 breakfastRef.current.next();
@@ -358,8 +394,8 @@ function NewLayout(props) {
         // IF NOT BREAKFAST
         else {
             // iterator returns {value, done}
-            const mealObj = mainRef.current.next();
-            const sideObj = mainSideRef.current.next();
+            const mealObj = regularRef.current.next();
+            const sideObj = regularSideRef.current.next();
             if (!mealObj.done) { // mealObj and sideObj are on the same "index", so if one is done, the other is too
                 eval(setMealVar)(prev => ({
                     ...prev,
@@ -375,21 +411,21 @@ function NewLayout(props) {
                     proteinVar = Math.floor(macros.protein);
                     fatVar = Math.floor(macros.fat);
                 }
-                fetchMain(calories, numMeals,
+                fetchRegular(calories, numMeals,
                     carbVar, proteinVar, fatVar)
                     .then(res => {
-                        setMainIter(res[0][Symbol.iterator]());
-                        setMainSideIter(res[1][Symbol.iterator]());
+                        setRegularIter(res[0][Symbol.iterator]());
+                        setRegularSideIter(res[1][Symbol.iterator]());
                         // now that the iters are loaded, set the meal with the new data
                         eval(setMealVar)(prev => ({
                             ...prev,
                             meal: res[0][0],
                             side: res[1][0],
-                            loading: false,
+                            sideLoading: false,
                         }));
                         // and now increment the iterators since we just used the first entry
-                        mainRef.current.next();
-                        mainSideRef.current.next();
+                        regularRef.current.next();
+                        regularSideRef.current.next();
                     });
             }
         }
@@ -420,13 +456,22 @@ function NewLayout(props) {
                     console.log(res);
                     setBreakfastIter(res[0][Symbol.iterator]()).then(a =>
                         setBreakfastSideIter(res[1][Symbol.iterator]()).then(b =>
-                            setMainIter(res[2][Symbol.iterator]()).then(c =>
-                                setMainSideIter(res[3][Symbol.iterator]()).then(d => {
+                            setRegularIter(res[2][Symbol.iterator]()).then(c =>
+                                setRegularSideIter(res[3][Symbol.iterator]()).then(d => {
                                     // now that the iters are set, update all the meals that aren't pinned
                                     for (let i = 1; i <= numMeals; i++) {
                                         if (!eval(`meal${i}`).pinned) {
                                             updateMeal(i);
                                         }
+                                    }
+
+                                    // turn the loading off
+                                    for (let i = 1; i <= numMeals; i++) {
+                                        eval(`setMeal${i}`)(prev => ({
+                                            ...prev,
+                                            mainLoading: false,
+                                            sideLoading: false
+                                        }));
                                     }
                                     setDisplayMeals(true);
                                     setLoadingMeals(false);
@@ -434,20 +479,39 @@ function NewLayout(props) {
                                 }))));
                 });
             // set the loading and temp values while the meal data is loading
+            for (let i = 1; i <= numMeals; i++) {
+                eval(`setMeal${i}`)(prev => ({
+                    ...prev,
+                    mainLoading: true,
+                    sideLoading: true
+                }));
+            }
             setDisplayMeals(false);
             setLoadingMeals(true);
         } else {
             // preferences haven't changed, use cached meals
             // load the meals for half a second, to make it seem more real
             setDisplayMeals(false);
-            setLoadingMeals(true);
+            for (let i = 1; i <= numMeals; i++) {
+                eval(`setMeal${i}`)(prev => ({
+                    ...prev,
+                    mainLoading: true,
+                    sideLoading: true
+                }));
+            }
             setTimeout(() => {
                 for (let i = 1; i <= numMeals; i++) {
                     if (!eval(`meal${i}`).pinned)
                         updateMeal(i);
                 }
+                for (let i = 1; i <= numMeals; i++) {
+                    eval(`setMeal${i}`)(prev => ({
+                        ...prev,
+                        mainLoading: false,
+                        sideLoading: false
+                    }));
+                }
                 setDisplayMeals(true);
-                setLoadingMeals(false);
             }, 500);
         }
     };
@@ -587,28 +651,34 @@ function NewLayout(props) {
                 <div className="rightColumn">
 
                     <MealCard mealNum={1} mealObj={meal1} numMeals={numMeals}
-                        displayMeals={displayMeals} loadingMeals={loadingMeals}
-                        regenMeal={regenMeal} pinMeal={pinMeal} />
+                        displayMeals={displayMeals}
+                        regenMain={regenMain} regenSide={regenSide}
+                        pinMain={pinMain} pinSide={pinSide} />
 
                     <MealCard mealNum={2} mealObj={meal2} numMeals={numMeals}
-                        displayMeals={displayMeals} loadingMeals={loadingMeals}
-                        regenMeal={regenMeal} pinMeal={pinMeal} />
+                        displayMeals={displayMeals}
+                        regenMain={regenMain} regenSide={regenSide}
+                        pinMain={pinMain} pinSide={pinSide} />
 
                     <MealCard mealNum={3} mealObj={meal3} numMeals={numMeals}
-                        displayMeals={displayMeals} loadingMeals={loadingMeals}
-                        regenMeal={regenMeal} pinMeal={pinMeal} />
+                        displayMeals={displayMeals}
+                        regenMain={regenMain} regenSide={regenSide}
+                        pinMain={pinMain} pinSide={pinSide} />
 
                     <MealCard mealNum={4} mealObj={meal4} numMeals={numMeals}
-                        displayMeals={displayMeals} loadingMeals={loadingMeals}
-                        regenMeal={regenMeal} pinMeal={pinMeal} />
+                        displayMeals={displayMeals}
+                        regenMain={regenMain} regenSide={regenSide}
+                        pinMain={pinMain} pinSide={pinSide} />
 
                     <MealCard mealNum={5} mealObj={meal5} numMeals={numMeals}
-                        displayMeals={displayMeals} loadingMeals={loadingMeals}
-                        regenMeal={regenMeal} pinMeal={pinMeal} />
+                        displayMeals={displayMeals}
+                        regenMain={regenMain} regenSide={regenSide}
+                        pinMain={pinMain} pinSide={pinSide} />
 
                     <MealCard mealNum={6} mealObj={meal6} numMeals={numMeals}
-                        displayMeals={displayMeals} loadingMeals={loadingMeals}
-                        regenMeal={regenMeal} pinMeal={pinMeal} />
+                        displayMeals={displayMeals}
+                        regenMain={regenMain} regenSide={regenSide}
+                        pinMain={pinMain} pinSide={pinSide} />
                 </div>
             </div >
 

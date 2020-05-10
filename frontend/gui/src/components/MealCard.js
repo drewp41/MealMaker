@@ -23,12 +23,20 @@ function MealCardTitle(props) {
 
 function MealCard(props) {
 
-    const regenMeal = () => {
-        props.regenMeal(props.mealNum);
+    const regenMain = () => {
+        props.regenMain(props.mealNum);
     }
 
-    const pinMeal = () => {
-        props.pinMeal(props.mealNum);
+    const regenSide = () => {
+        props.regenSide(props.mealNum);
+    }
+
+    const pinMain = () => {
+        props.pinMain(props.mealNum);
+    }
+
+    const pinSide = () => {
+        props.pinSide(props.mealNum);
     }
 
     return (
@@ -51,19 +59,20 @@ function MealCard(props) {
                         extra={props.mealObj.meal.calories + props.mealObj.side.calories + ' calories'}
                         style={{ width: 360, height: 208 }} bordered={false} //head height: 58, body height: 150
                         headStyle={{ fontFamily: 'Camphor', fontWeight: 400, color: mainTextColor }}>
-                        <Skeleton avatar={false} loading={!props.displayMeals && !props.mealObj.pinned} title={false}
-                            active={props.loadingMeals}
+                        <Skeleton avatar={false} title={false}
+                            loading={!props.displayMeals && !props.mealObj.mainPinned && !props.mealObj.sidePinned}
+                            active={props.mealObj.mainLoading || props.mealObj.sideLoading}
                             paragraph={{ rows: 3, width: [250] }} >
                             <div className='mealCard'>
                                 <div className='mealCardMainRow'>
                                     <div className='mealCardIcons'>
-                                        {props.mealObj.loading ?
-                                            <SyncOutlined spin className='regenIcon' onClick={() => regenMeal(1)} /> :
-                                            <SyncOutlined className='regenIcon' onClick={() => regenMeal(1)} />}
-                                                &nbsp;&nbsp;&nbsp;
-                                                {props.mealObj.pinned ?
-                                            <PushpinFilled className='pinIcon' onClick={() => pinMeal(1)} /> :
-                                            <PushpinOutlined className='pinIcon' onClick={() => pinMeal(1)} />}
+                                        {props.mealObj.mainLoading ?
+                                            <SyncOutlined spin className='regenIcon' onClick={() => regenMain()} /> :
+                                            <SyncOutlined className='regenIcon' onClick={() => regenMain()} />}
+                                        &nbsp;&nbsp;&nbsp;
+                                        {props.mealObj.mainPinned ?
+                                            <PushpinFilled className='pinIcon' onClick={() => pinMain()} /> :
+                                            <PushpinOutlined className='pinIcon' onClick={() => pinMain()} />}
                                     </div>
                                     <div className='ant-card-meta-title'>
                                         {props.mealObj.meal.name}
@@ -78,13 +87,13 @@ function MealCard(props) {
                                 {props.mealObj.side.name &&
                                     <div className='mealCardSideRow'>
                                         <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
-                                            {props.mealObj.loading ?
-                                                <SyncOutlined spin className='regenIcon' onClick={() => regenMeal(1)} /> :
-                                                <SyncOutlined className='regenIcon' onClick={() => regenMeal(1)} />}
-                                                &nbsp;&nbsp;&nbsp;
-                                                {props.mealObj.pinned ?
-                                                <PushpinFilled className='pinIcon' onClick={() => pinMeal(1)} /> :
-                                                <PushpinOutlined className='pinIcon' onClick={() => pinMeal(1)} />}
+                                            {props.mealObj.sideLoading ?
+                                                <SyncOutlined spin className='regenIcon' onClick={() => regenSide()} /> :
+                                                <SyncOutlined className='regenIcon' onClick={() => regenSide()} />}
+                                            &nbsp;&nbsp;&nbsp;
+                                            {props.mealObj.sidePinned ?
+                                                <PushpinFilled className='pinIcon' onClick={() => pinSide()} /> :
+                                                <PushpinOutlined className='pinIcon' onClick={() => pinSide()} />}
                                         </div>
 
                                         <div className='ant-card-meta-title'>
@@ -93,8 +102,8 @@ function MealCard(props) {
                                         <div className='space2' />
                                         <p className='ant-card-meta-description'>
                                             C: {props.mealObj.side.carbs}
-                                        , P: {props.mealObj.side.protein}
-                                        , F: {props.mealObj.side.fat}
+                                            , P: {props.mealObj.side.protein}
+                                            , F: {props.mealObj.side.fat}
                                         </p>
                                     </div>}
                             </div>

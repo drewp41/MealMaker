@@ -346,21 +346,22 @@ a:hover, a:active{
 }
 
 .mealCardMainRow {
-    height: 62px;
+    height: 64px;
     /* bc the ant card body doesnt start at the top */
-    margin: -12px 0 0 0;
-    /* line-height: 62px; */
-    padding: 4px 0 0 0;
+    margin: -11px 0 0 0;
+    padding: 5px 0 0 0;
+    cursor: pointer;
 }
 
 .mealCardSideRow {
-    height: 62px;
-    padding: 4px 0 0 0;
+    height: 64px;
+    padding: 5px 0 0 0;
+    cursor: pointer;
 }
 
 .mealCardMainRow:hover {
     border: 1px solid #b0b0b0;
-    margin: -13px -1px 1px -1px;
+    margin: -12px -1px 1px -1px;
 }
 
 .mealCardSideRow:hover {
@@ -410,7 +411,8 @@ a:hover, a:active{
     cursor: pointer;
 }
 .cardShadow2:active, .cardShadow2:hover{
-    box-shadow:0 15px 30px -6px rgba(50, 50, 93, .25), 0 9px 18px -9px rgba(0, 0, 0, .3), 0 -6px 18px -4px rgba(0, 0, 0, .025)
+    box-shadow:0 15px 30px -6px rgba(50, 50, 93, .25), 0 9px 18px -9px rgba(0, 0, 0, .3), 0 -6px 18px -4px rgba(0, 0, 0, .025);
+    cursor: default;
 }
 .cardShadow2:active {
     transform:translateY(2px)
