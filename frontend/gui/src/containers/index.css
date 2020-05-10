@@ -348,25 +348,28 @@ a:hover, a:active{
 .mealCardMainRow {
     height: 64px;
     /* bc the ant card body doesnt start at the top */
-    margin: -11px 0 0 0;
-    padding: 5px 0 0 0;
+    margin: -11px -10px 0 -10px;
+    padding: 5px 8px 0 8px;
     cursor: pointer;
 }
 
 .mealCardSideRow {
     height: 64px;
-    padding: 5px 0 0 0;
+    margin: 0 -10px 0 -10px;
+    padding: 5px 10px 0 10px;
     cursor: pointer;
 }
 
 .mealCardMainRow:hover {
     border: 1px solid #b0b0b0;
-    margin: -12px -1px 1px -1px;
+    /* add a -1px margin every to cancel the movement from border */
+    margin: -12px -11px 1px -11px;
 }
 
 .mealCardSideRow:hover {
     border: 1px solid #b0b0b0;
-    margin: -1px;
+    /* add a -1px margin every to cancel the movement from border */
+    margin: -1px -11px -1px -11px;
 }
 
 .mealCardIcons {
@@ -387,7 +390,7 @@ a:hover, a:active{
 .cardShadow1 {
     box-shadow:0 7px 14px 0 rgba(50, 50, 93, .1), 0 3px 6px 0 rgba(0, 0, 0, .07);
     transition-property: color, background-color, box-shadow, transform;
-    transition-duration:.15s
+    transition-duration: .15s
 }
 .cardShadow1:hover{
     transform:translateY(-2px);
@@ -404,7 +407,7 @@ a:hover, a:active{
 .cardShadow2 {
     box-shadow:0 5px 10px 0 rgba(50, 50, 93, .1), 0 2px 4px 0 rgba(0, 0, 0, .07);
     transition-property: color, background-color, box-shadow, transform;
-    transition-duration:.15s;
+    transition-duration: .15s;
 }
 .cardShadow2:hover{
     transform:translateY(-2px);

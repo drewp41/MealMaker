@@ -74,7 +74,7 @@ export async function fetchRegular(cals, numMeals, carbs, protein, fat) {
     return [...main, ...side];
 }
 
-async function fetchBreakfastMain(cals, numMeals, carbs, protein, fat) {
+export async function fetchBreakfastMain(cals, numMeals, carbs, protein, fat) {
     console.log('Fetching breakfast main');
     return fetchBreakfastMainData(cals, numMeals, carbs, protein, fat)
         .then(d => {
@@ -176,16 +176,26 @@ async function fetchBreakfastMainData(cals, numMeals, carbs, protein, fat) {
     }
 }
 
-async function fetchBreakfastSide(cals, numMeals, carbs, protein, fat) {
+export async function fetchBreakfastSide(cals, numMeals, carbs, protein, fat) {
     console.log('Fetching breakfast side');
-    return [breakfastSides.slice(0, 6)];
+    // return [breakfastSides.slice(0, 6)]
+    return fetchBreakfastSideData(cals, numMeals, carbs, protein, fat)
+        .then(d => {
+            return d;
+        });
 }
 
 async function fetchBreakfastSideData(cals, numMeals, carbs, protein, fat) {
-    return [breakfastSides.slice(0, 6)];
+    // let it wait at least half a second before returning, so it's not instant
+    let res = await new Promise((resolve) => {
+        setTimeout(() => {
+            resolve([breakfastSides.slice(0, 6)]);
+        }, 500)
+    })
+    return res;
 }
 
-async function fetchRegularMain(cals, numMeals, carbs, protein, fat) {
+export async function fetchRegularMain(cals, numMeals, carbs, protein, fat) {
     console.log('Fetching regular main');
     return fetchRegularMainData(cals, numMeals, carbs, protein, fat)
         .then(d => {
@@ -296,7 +306,7 @@ async function fetchRegularMainData(cals, numMeals, carbs, protein, fat) {
     }
 }
 
-async function fetchRegularSide(cals, numMeals, carbs, protein, fat) {
+export async function fetchRegularSide(cals, numMeals, carbs, protein, fat) {
     console.log('Fetching regular side');
     return fetchRegularSideData(cals, numMeals, carbs, protein, fat)
         .then(d => {

@@ -293,7 +293,7 @@ function NewLayout(props) {
             mainLoading: true,
         }));
 
-        updateMeal(num);
+        updateMain(num);
 
         setTimeout(() => {
             eval(setMealVar)(prev => ({
@@ -316,7 +316,7 @@ function NewLayout(props) {
             sideLoading: true,
         }));
 
-        updateMeal(num);
+        updateSide(num);
 
         setTimeout(() => {
             eval(setMealVar)(prev => ({
@@ -346,7 +346,6 @@ function NewLayout(props) {
     }
 
     const updateMeal = (num) => {
-        const mealVar = 'meal' + num.toString();
         const setMealVar = 'setMeal' + num.toString();
 
         // IF BREAKFAST
@@ -380,6 +379,7 @@ function NewLayout(props) {
                                     meal: res[0][0],
                                     side: res[1][0],
                                     mainLoading: false,
+                                    sideLoading: false,
                                 }));
                                 // and now increment the iterators since we just used the first entry
                                 breakfastRef.current.next();
@@ -421,11 +421,158 @@ function NewLayout(props) {
                             ...prev,
                             meal: res[0][0],
                             side: res[1][0],
+                            mainLoading: false,
                             sideLoading: false,
                         }));
                         // and now increment the iterators since we just used the first entry
                         regularRef.current.next();
                         regularSideRef.current.next();
+                    });
+            }
+        }
+    }
+
+    const updateMain = (num) => {
+        const setMealVar = 'setMeal' + num.toString();
+
+        // IF BREAKFAST
+        if (num == 1) {
+            // iterator returns {value, done}
+            const mealObj = breakfastRef.current.next();
+            if (!mealObj.done) { // mealObj and sideObj are on the same "index", so if one is done, the other is too
+                eval(setMealVar)(prev => ({
+                    ...prev,
+                    meal: mealObj.value,
+                }));
+            } else {
+                let carbVar = 0;
+                let proteinVar = 0;
+                let fatVar = 0;
+                if (enableMacros) {
+                    carbVar = Math.floor(macros.carbs);
+                    proteinVar = Math.floor(macros.protein);
+                    fatVar = Math.floor(macros.fat);
+                }
+                fetchBreakfastMain(calories, numMeals,
+                    carbVar, proteinVar, fatVar)
+                    .then(res => {
+                        setBreakfastIter(res[0][Symbol.iterator]()).then(a => {
+                            // now that the iter is loaded, set the meal with the new data
+                            eval(setMealVar)(prev => ({
+                                ...prev,
+                                meal: res[0][0],
+                                mainLoading: false,
+                            }));
+                            // and now increment the iterator since we just used the first entry
+                            breakfastRef.current.next();
+                        })
+                    });
+            }
+        }
+        // IF NOT BREAKFAST
+        else {
+            // iterator returns {value, done}
+            const mealObj = regularRef.current.next();
+            if (!mealObj.done) { // mealObj and sideObj are on the same "index", so if one is done, the other is too
+                eval(setMealVar)(prev => ({
+                    ...prev,
+                    meal: mealObj.value,
+                }));
+            } else {
+                let carbVar = 0;
+                let proteinVar = 0;
+                let fatVar = 0;
+                if (enableMacros) {
+                    carbVar = Math.floor(macros.carbs);
+                    proteinVar = Math.floor(macros.protein);
+                    fatVar = Math.floor(macros.fat);
+                }
+                fetchRegularMain(calories, numMeals,
+                    carbVar, proteinVar, fatVar)
+                    .then(res => {
+                        setRegularIter(res[0][Symbol.iterator]()).then(a => {
+                            // now that the iter is loaded, set the meal with the new data
+                            eval(setMealVar)(prev => ({
+                                ...prev,
+                                meal: res[0][0],
+                                mainLoading: false,
+                            }));
+                            // and now increment the iterator since we just used the first entry
+                            regularRef.current.next();
+                        })
+                    });
+            }
+        }
+    }
+
+    const updateSide = (num) => {
+        const setMealVar = 'setMeal' + num.toString();
+
+        // IF BREAKFAST
+        if (num == 1) {
+            // iterator returns {value, done}
+            const sideObj = breakfastSideRef.current.next();
+            if (!sideObj.done) { // mealObj and sideObj are on the same "index", so if one is done, the other is too
+                eval(setMealVar)(prev => ({
+                    ...prev,
+                    side: sideObj.value,
+                }));
+            } else {
+                let carbVar = 0;
+                let proteinVar = 0;
+                let fatVar = 0;
+                if (enableMacros) {
+                    carbVar = Math.floor(macros.carbs);
+                    proteinVar = Math.floor(macros.protein);
+                    fatVar = Math.floor(macros.fat);
+                }
+                fetchBreakfastSide(calories, numMeals,
+                    carbVar, proteinVar, fatVar)
+                    .then(res => {
+                        setBreakfastSideIter(res[0][Symbol.iterator]()).then(b => {
+                            // now that the iters are loaded, set the meal with the new data
+                            eval(setMealVar)(prev => ({
+                                ...prev,
+                                side: res[0][0],
+                                sideLoading: false,
+                            }));
+                            // and now increment the iterator since we just used the first entry
+                            breakfastSideRef.current.next();
+                        })
+                    });
+            }
+        }
+        // IF NOT BREAKFAST
+        else {
+            // iterator returns {value, done}
+            const sideObj = regularSideRef.current.next();
+            if (!sideObj.done) { // mealObj and sideObj are on the same "index", so if one is done, the other is too
+                eval(setMealVar)(prev => ({
+                    ...prev,
+                    side: sideObj.value
+                }));
+            } else {
+                let carbVar = 0;
+                let proteinVar = 0;
+                let fatVar = 0;
+                if (enableMacros) {
+                    carbVar = Math.floor(macros.carbs);
+                    proteinVar = Math.floor(macros.protein);
+                    fatVar = Math.floor(macros.fat);
+                }
+                fetchRegularSide(calories, numMeals,
+                    carbVar, proteinVar, fatVar)
+                    .then(res => {
+                        setRegularSideIter(res[0][Symbol.iterator]()).then(a => {
+                            // now that the iter is loaded, set the meal with the new data
+                            eval(setMealVar)(prev => ({
+                                ...prev,
+                                side: res[0][0],
+                                sideLoading: false,
+                            }));
+                            // and now increment the iterator since we just used the first entry
+                            regularSideRef.current.next();
+                        })
                     });
             }
         }
