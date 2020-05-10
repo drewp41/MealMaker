@@ -284,7 +284,7 @@ function NewLayout(props) {
     const regenMain = (num) => {
         const mealVar = 'meal' + num.toString();
         const setMealVar = 'setMeal' + num.toString();
-        // if it's already loading a meal, return (stops spam clicking)
+        // if it's already loading a meal, return (prevents spam clicking)
         if (eval(mealVar).mainLoading) {
             return;
         }
@@ -308,7 +308,7 @@ function NewLayout(props) {
     const regenSide = (num) => {
         const mealVar = 'meal' + num.toString();
         const setMealVar = 'setMeal' + num.toString();
-        // if it's already loading a meal, return (stops spam clicking)
+        // if it's already loading a meal, return (prevents spam clicking)
         if (eval(mealVar).sideLoading) {
             return;
         }
@@ -579,7 +579,7 @@ function NewLayout(props) {
     }
 
     const onClickGenerateButton = () => {
-        // if it's already loading a meal, return (stops spam clicking)
+        // if it's already loading a meal, return (prevents spam clicking)
         if (loadingMeals)
             return;
 
@@ -609,8 +609,7 @@ function NewLayout(props) {
             fetchMeals(calories, numMeals,
                 carbVar, proteinVar, fatVar)
                 .then(res => {
-                    console.log(`Input: ${calories}, ${numMeals}, ${carbVar}, ${proteinVar}, ${fatVar}`);
-                    console.log('Output: ');
+                    console.log(`Getting all meals: ${calories}, ${numMeals}, ${carbVar}, ${proteinVar}, ${fatVar}`);
                     console.log(res);
                     setBreakfastIter(res[0][Symbol.iterator]()).then(a =>
                         setBreakfastSideIter(res[1][Symbol.iterator]()).then(b =>
@@ -653,11 +652,12 @@ function NewLayout(props) {
             setTimeout(() => {
                 for (let i = 1; i <= numMeals; i++) {
                     // if it's still looking for the meal (aka the name didnt change), keep the loading icon
+                    // must also check if it's pinned or obviously the names will be the same
                     // works bc of stale closures
                     eval(`setMeal${i}`)(prev => ({
                         ...prev,
-                        mainLoading: prev.main.name === eval(`meal${i}`).main.name ? true : false,
-                        sideLoading: prev.side.name === eval(`meal${i}`).side.name ? true : false,
+                        mainLoading: !prev.mainPinned && prev.main.name === eval(`meal${i}`).main.name ? true : false,
+                        sideLoading: !prev.sidePinned && prev.side.name === eval(`meal${i}`).side.name ? true : false,
                     }));
                 }
                 setDisplayMeals(true);
