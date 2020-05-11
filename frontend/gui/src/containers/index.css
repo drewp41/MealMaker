@@ -76,7 +76,8 @@
 }
 
 .logoIcon {
-    
+    /* x offset, y offset */
+    /* transform-origin: 30px 25px; */
 }
 
 .logoIconRotate {
