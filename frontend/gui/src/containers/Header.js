@@ -5,42 +5,53 @@ import coloredCarrot from '../coloredCarrot.svg';
 function Header(props) {
     const [headerHeight, setHeaderHeight] = useState('80px');
     const [hamburger, setHamburger] = useState(false);
+    const [rotateClass, setRotateClass] = useState('logoIcon');
+
+    const rotateIcon = () => {
+        if (rotateClass === 'logoIconRotate')
+            return;
+        setRotateClass('logoIconRotate');
+        setTimeout(() => {
+            setRotateClass('logoIcon');
+        }, 1100);
+    }
 
     return (
         <>
             <div className='header' style={{ height: headerHeight }} >
                 <div className='rowHeader'>
                     <div className='headerLRSpace'></div>
-                    <a href='#'>
-                        <img src={coloredCarrot} alt="logo" style={{ width: 35, height: 35, margin: '20px 0 0 18px' }} draggable='false' />
-                    </a>
-                    {/* shifted down 21.5px to center it vertically in the header */}
-                    <div className='colHeaderL' style={{ padding: '21.5px 0 0 9px' }}>
-                        <a style={{ color: '#545454' }}>
-                            <div className='logoText'>
-                                mealmaker.io
-                                    </div>
-                        </a>
+                    <div style={{ padding: '12px 0 0 0' }}>
+                        <button className={rotateClass} onClick={rotateIcon} style={{ height: '50px', width: '58px' }}>
+                            <img src={coloredCarrot} alt="logo" style={{ width: 35, height: 35, margin: '0 -18px 0px 0' }} draggable='false' />
+                        </button>
+                    </div>
+                    {/* shifted down 15px to center it vertically in the header */}
+                    <div className='colHeaderL' style={{ padding: '15px 0 0 0' }}>
+                        <button className='logoText' onClick={rotateIcon}
+                            style={{ height: '50px', width: '160px' }}>
+                            mealmaker.io
+                        </button>
                     </div>
 
                     <div className='headerCenterLeftSpace'></div>
 
                     {/* shifted down 10px to center it vertically in the header */}
-                    <div className='colHeaderMid' style={{ padding: '10px 0 0 0' }}>
-                        <button className="headerText" style={{ height: '60px', width: '150px' }}>
+                    <div className='colHeaderMid' style={{ padding: '15px 0 0 0' }}>
+                        <button className="headerText" style={{ height: '50px', width: '135px' }}>
                             How it works
-                                </button>
-                        <button className="headerText" style={{ height: '60px', width: '100px' }}>
+                        </button>
+                        <button className="headerText" style={{ height: '50px', width: '85px' }}>
                             About
-                                </button>
+                        </button>
                     </div>
 
                     <div className='headerCenterRightSpace'></div>
 
                     {/* shifted down 10px to center it vertically in the header */}
-                    <div className='colHeaderR' style={{ padding: '10px 0 0 0' }}>
-                        <button className="headerText" style={{ height: '60px', width: '130px' }}>
-                            <span id="signInArrow">&nbsp;&nbsp;&nbsp;&nbsp;Sign in</span> <span > →</span>
+                    <div className='colHeaderR' style={{ padding: '15px 0 0 0' }}>
+                        <button className="headerText" style={{ height: '50px', width: '110px' }}>
+                            <span id="signInArrow">Sign in</span> <span > →</span>
                         </button>
                     </div>
 

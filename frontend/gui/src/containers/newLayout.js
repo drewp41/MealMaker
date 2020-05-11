@@ -708,7 +708,6 @@ function NewLayout(props) {
                         </span>
                         <div className='space20' />
 
-
                         <Collapse bordered={true} expandIconPosition='right' activeKey={enableMacros ? 1 : 0}
                             style={{ marginLeft: 'auto', width: '257px' }}>
                             <Panel header={<b id="macroSwitchText">Macro Preferences&nbsp;&nbsp;</b>} showArrow={true} key="1"

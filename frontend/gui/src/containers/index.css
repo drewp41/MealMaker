@@ -54,18 +54,6 @@
     overflow: hidden;
 }
 
-.headerBorder {
-    border-top: 2px solid #e0e0e0;
-    width: 1060px;
-    margin: 0 auto;
-}
-
-@media screen and (max-width: 1060px) {
-    .headerBorder {
-        width: 100%;
-    }
-}
-
 .rowHeader {
     height: 80px;
     display: flex;
@@ -87,6 +75,14 @@
     text-align: left;
 }
 
+.logoIcon {
+    
+}
+
+.logoIconRotate {
+    transform: rotate(360deg);
+    transition: 1s ease;
+}
 
 .logoText {
     font-size: 24px;
@@ -94,6 +90,7 @@
     font-weight: 700;
     color:#484848;
 }
+
 
 #pt::afterr {
 	position: absolute;
@@ -131,7 +128,8 @@
 button {
     background: none;
 	color: inherit;
-	border: none;
+    /* border: 1px solid black; */
+    border: none;
 	padding: 0;
 	font: inherit;
 	cursor: pointer;
@@ -160,18 +158,32 @@ button {
 }
 
 .colHeaderR {
-    min-width: 130px; 
+    min-width: 110px; 
 }
 
 .headerLRSpace {
     flex: 1 1 auto;
 }
 
+/* total of 496 */
 .headerCenterLeftSpace {
-    flex: 0 1 190px;
+    flex: 0 1 218px;
 }
 .headerCenterRightSpace {
-    flex: 0 1 290px;
+    flex: 0 1 278px;
+}
+
+.headerBorder {
+    border-top: 2px solid #e0e0e0;
+    width: 1060px;
+    margin: 0 auto;
+}
+
+/* Condenses the width of the header border */
+@media screen and (max-width: 1060px) {
+    .headerBorder {
+        width: 100%;
+    }
 }
 
 /* Condense menu to hamburger */
@@ -268,6 +280,10 @@ button {
     font-family: 'Camphor';
     font-weight: 300;
     color: var(--mainTextColor);
+}
+
+.macroSwitchCollapse:hover {
+    cursor: default !important;
 }
 
 .macroText{
