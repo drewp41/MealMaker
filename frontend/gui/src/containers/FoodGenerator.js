@@ -243,7 +243,6 @@ async function fetchRegularMainData(cals, numMeals, carbs, protein, fat) {
     let approxCals = 0;
     let minMainCals = 0;
     let maxMainCals = 0;
-    let maxSideCals = 0;
     let minCarbs = 0;
     let maxCarbs = 0;
     let minProtein = 0;
@@ -258,8 +257,6 @@ async function fetchRegularMainData(cals, numMeals, carbs, protein, fat) {
         // target = (approxCals - 75) +- 25
         minMainCals = approxCals - 100;
         maxMainCals = approxCals - 50;
-        // constant
-        maxSideCals = 150;
         // macro preferences using a range of +- 15
         // might have to reduce carbs to account for extra carbs from the sides
 

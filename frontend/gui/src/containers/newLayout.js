@@ -436,7 +436,7 @@ function NewLayout(props) {
         const setMealVar = 'setMeal' + num.toString();
 
         // IF BREAKFAST
-        if (num == 1) {
+        if (num === 1) {
             // iterator returns {value, done}
             const mealObj = breakfastRef.current.next();
             if (!mealObj.done) { // mealObj and sideObj are on the same "index", so if one is done, the other is too
@@ -509,7 +509,7 @@ function NewLayout(props) {
         const setMealVar = 'setMeal' + num.toString();
 
         // IF BREAKFAST
-        if (num == 1) {
+        if (num === 1) {
             // iterator returns {value, done}
             const sideObj = breakfastSideRef.current.next();
             if (!sideObj.done) { // mealObj and sideObj are on the same "index", so if one is done, the other is too
@@ -682,7 +682,7 @@ function NewLayout(props) {
             <div className="mainBodyRow" style={{ minHeight: 680 }}>
                 <div className="leftColumn">
                     <div className="inputArea" >
-                        <p className="leftColumnText">I want to eat &nbsp;
+                        <span className="leftColumnText">I want to eat &nbsp;
                                     <NumberFormat className='ant-input' id='calorieInput' style={{ width: '126px' }} suffix={' calories'}
                                 defaultValue={2000} allowEmptyFormatting={true}
                                 onValueChange={(value) => {
@@ -690,9 +690,9 @@ function NewLayout(props) {
                                     setChangedPrefs(true);
                                 }}
                             />
-                            {/* <BetterInputNumber addonAfter="calories" /> */}
-                        </p>
-                        <p className="leftColumnText"> in &nbsp;
+                        </span>
+                        <div className='space20' />
+                        <span className="leftColumnText"> in &nbsp;
                             <Select className="mealInput" defaultValue="3" style={{ width: '126px' }}
                                 onChange={(value) => {
                                     setNumMeals(parseInt(value));
@@ -705,9 +705,12 @@ function NewLayout(props) {
                                 <Option className='camphorFont' value="5" style={{ fontSize: '15px' }}>5 meals</Option>
                                 <Option className='camphorFont' value="6" style={{ fontSize: '15px' }}>6 meals</Option>
                             </Select>
-                        </p>
+                        </span>
+                        <div className='space20' />
 
-                        <Collapse bordered={true} expandIconPosition='right' activeKey={enableMacros ? 1 : 0} style={{ marginLeft: 'auto', width: '257px' }}>
+
+                        <Collapse bordered={true} expandIconPosition='right' activeKey={enableMacros ? 1 : 0}
+                            style={{ marginLeft: 'auto', width: '257px' }}>
                             <Panel header={<b id="macroSwitchText">Macro Preferences&nbsp;&nbsp;</b>} showArrow={true} key="1"
                                 extra={<Switch defaultChecked={false} onChange={macroSwitch} style={{ margin: '3px 0 0 0' }} />} >
                                 {/* Carbs */}

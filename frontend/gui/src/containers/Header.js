@@ -40,7 +40,7 @@ function Header(props) {
                     {/* shifted down 10px to center it vertically in the header */}
                     <div className='colHeaderR' style={{ padding: '10px 0 0 0' }}>
                         <button className="headerText" style={{ height: '60px', width: '130px' }}>
-                            <text id="signInArrow">&nbsp;&nbsp;&nbsp;&nbsp;Sign in</text> <text > →</text>
+                            <span id="signInArrow">&nbsp;&nbsp;&nbsp;&nbsp;Sign in</span> <span > →</span>
                         </button>
                     </div>
 
