@@ -362,15 +362,15 @@ a:hover, a:active{
 }
 
 .mealCardMainRow:hover {
-    border: 1px solid #b0b0b0;
-    /* add a -1px margin every to cancel the movement from border */
-    margin: -12px -11px 1px -11px;
+    border: 2px solid #e0e0e0;
+    /* add a -2px margin every to cancel the movement from border */
+    margin: -13px -12px 2px -12px;
 }
 
 .mealCardSideRow:hover {
-    border: 1px solid #b0b0b0;
-    /* add a -1px margin every to cancel the movement from border */
-    margin: -1px -11px -1px -11px;
+    border: 2px solid #e0e0e0;
+    /* add a -2px margin every to cancel the movement from border */
+    margin: -2px -12px -2px -12px;
 }
 
 .mealCardIcons {
