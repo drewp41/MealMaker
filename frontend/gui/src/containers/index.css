@@ -189,7 +189,7 @@ button {
 
 /* Condense menu to hamburger */
 @media screen and (max-width: 650px) {
-    .rowHeader div:not(.colHeaderL):not(.hamburgerMenu) {display: none;}
+    .rowHeader div:not(.colHeaderL):not(.hamburgerMenu):not(.logoIcon):not(.logoIconRotate) {display: none;}
     .hamburgerMenu {
         display: block !important;
     }

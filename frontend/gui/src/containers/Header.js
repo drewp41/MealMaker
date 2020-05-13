@@ -21,7 +21,7 @@ function Header(props) {
             <div className='header' style={{ height: headerHeight }} >
                 <div className='rowHeader'>
                     <div className='headerLRSpace'></div>
-                    <div style={{ padding: '11px 0 0 0' }}>
+                    <div className='logoIcon' style={{ padding: '11px 0 0 0' }}>
                         <button onClick={rotateIcon} style={{ height: '50px', width: '58px' }}>
                             <img className={rotateClass} src={coloredCarrot} alt="logo" style={{ width: 35, height: 35, margin: '0 -18px 0px 0' }} draggable='false' />
                         </button>
