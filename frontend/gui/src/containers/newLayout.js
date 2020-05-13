@@ -432,7 +432,7 @@ function NewLayout(props) {
         }
     }
 
-    const updateMain = (num) => {
+    const updateMain = async (num) => {
         const setMealVar = 'setMeal' + num.toString();
 
         // IF BREAKFAST
@@ -487,7 +487,7 @@ function NewLayout(props) {
                     proteinVar = Math.floor(macros.protein);
                     fatVar = Math.floor(macros.fat);
                 }
-                fetchRegularMain(calories, numMeals,
+                await fetchRegularMain(calories, numMeals,
                     carbVar, proteinVar, fatVar)
                     .then(res => {
                         setRegularIter(res[0][Symbol.iterator]()).then(a => {
@@ -505,7 +505,7 @@ function NewLayout(props) {
         }
     }
 
-    const updateSide = (num) => {
+    const updateSide = async (num) => {
         const setMealVar = 'setMeal' + num.toString();
 
         // IF BREAKFAST
@@ -560,7 +560,7 @@ function NewLayout(props) {
                     proteinVar = Math.floor(macros.protein);
                     fatVar = Math.floor(macros.fat);
                 }
-                fetchRegularSide(calories, numMeals,
+                await fetchRegularSide(calories, numMeals,
                     carbVar, proteinVar, fatVar)
                     .then(res => {
                         setRegularSideIter(res[0][Symbol.iterator]()).then(a => {
@@ -578,7 +578,7 @@ function NewLayout(props) {
         }
     }
 
-    const onClickGenerateButton = () => {
+    const onClickGenerateButton = async () => {
         // if it's already loading a meal, return (prevents spam clicking)
         if (loadingMeals)
             return;
@@ -642,10 +642,10 @@ function NewLayout(props) {
             // preferences haven't changed, use cached meals
             for (let i = 1; i <= numMeals; i++) {
                 if (!eval(`meal${i}`).mainPinned) {
-                    updateMain(i);
+                    await updateMain(i);
                 }
                 if (!eval(`meal${i}`).sidePinned) {
-                    updateSide(i);
+                    await updateSide(i);
                 }
             }
             // spin the loading icon for half a second so it does half a rotation
@@ -665,7 +665,6 @@ function NewLayout(props) {
             }, 500);
         }
     };
-
 
     return (
         //  242, 242, 242
