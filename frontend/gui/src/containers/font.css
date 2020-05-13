@@ -1,3 +1,9 @@
+@font-face {
+    font-family: "Iter";
+    src: url("../fonts/InterVariableFont.woff2") format("woff2-variations"); /* Modern Browsers */
+    font-weight: 1 900;
+}
+
 
 @font-face {
     font-family: "Camphor";

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import { CheckboxChangeEvent } from './Checkbox';
 import { ConfigConsumerProps } from '../config-provider';
 export declare type CheckboxValueType = string | number | boolean;
@@ -36,12 +35,6 @@ export declare const GroupContext: React.Context<CheckboxGroupContext | null>;
 declare class CheckboxGroup extends React.PureComponent<CheckboxGroupProps, CheckboxGroupState> {
     static defaultProps: {
         options: never[];
-    };
-    static propTypes: {
-        defaultValue: PropTypes.Requireable<any[]>;
-        value: PropTypes.Requireable<any[]>;
-        options: PropTypes.Validator<any[]>;
-        onChange: PropTypes.Requireable<(...args: any[]) => any>;
     };
     static getDerivedStateFromProps(nextProps: CheckboxGroupProps): {
         value: CheckboxValueType[];

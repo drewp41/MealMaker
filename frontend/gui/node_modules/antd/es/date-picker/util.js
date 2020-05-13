@@ -1,4 +1,8 @@
-export function getPlaceholder(picker, locale) {
+export function getPlaceholder(picker, locale, customizePlaceholder) {
+  if (customizePlaceholder !== undefined) {
+    return customizePlaceholder;
+  }
+
   if (picker === 'year' && locale.lang.yearPlaceholder) {
     return locale.lang.yearPlaceholder;
   }
@@ -21,7 +25,11 @@ export function getPlaceholder(picker, locale) {
 
   return locale.lang.placeholder;
 }
-export function getRangePlaceholder(picker, locale) {
+export function getRangePlaceholder(picker, locale, customizePlaceholder) {
+  if (customizePlaceholder !== undefined) {
+    return customizePlaceholder;
+  }
+
   if (picker === 'year' && locale.lang.yearPlaceholder) {
     return locale.lang.rangeYearPlaceholder;
   }

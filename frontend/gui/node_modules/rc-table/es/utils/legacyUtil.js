@@ -15,7 +15,7 @@ export function getExpandableProps(props) {
       legacyExpandableConfig = _objectWithoutProperties(props, ["expandable"]);
 
   if ('expandable' in props) {
-    return _objectSpread({}, legacyExpandableConfig, {}, expandable);
+    return _objectSpread(_objectSpread({}, legacyExpandableConfig), expandable);
   }
 
   if (process.env.NODE_ENV !== 'production' && ['indentSize', 'expandedRowKeys', 'defaultExpandedRowKeys', 'defaultExpandAllRows', 'expandedRowRender', 'expandRowByClick', 'expandIcon', 'onExpand', 'onExpandedRowsChange', 'expandedRowClassName', 'expandIconColumnIndex'].some(function (prop) {

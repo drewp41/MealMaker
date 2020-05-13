@@ -32,7 +32,7 @@ declare class TextArea extends React.Component<TextAreaProps, TextAreaState> {
     handleKeyDown: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void;
     handleReset: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
     renderTextArea: (prefixCls: string) => JSX.Element;
-    renderComponent: ({ getPrefixCls }: ConfigConsumerProps) => JSX.Element;
+    renderComponent: ({ getPrefixCls, direction }: ConfigConsumerProps) => JSX.Element;
     render(): JSX.Element;
 }
 export default TextArea;

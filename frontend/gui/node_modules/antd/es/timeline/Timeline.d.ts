@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { TimeLineItemProps } from './TimelineItem';
-import { ConfigConsumerProps } from '../config-provider';
 export interface TimelineProps {
     prefixCls?: string;
     className?: string;
@@ -11,12 +10,8 @@ export interface TimelineProps {
     reverse?: boolean;
     mode?: 'left' | 'alternate' | 'right';
 }
-export default class Timeline extends React.Component<TimelineProps, any> {
-    static Item: React.FC<TimeLineItemProps>;
-    static defaultProps: {
-        reverse: boolean;
-        mode: "alternate" | "left" | "right" | undefined;
-    };
-    renderTimeline: ({ getPrefixCls, direction }: ConfigConsumerProps) => JSX.Element;
-    render(): JSX.Element;
+interface TimelineType extends React.FC<TimelineProps> {
+    Item: React.FC<TimeLineItemProps>;
 }
+declare const Timeline: TimelineType;
+export default Timeline;

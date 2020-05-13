@@ -64,12 +64,19 @@ export default function confirm(config) {
     var okText = _a.okText,
         cancelText = _a.cancelText,
         props = __rest(_a, ["okText", "cancelText"]);
+    /**
+     * https://github.com/ant-design/ant-design/issues/23623
+     * Sync render blocks React event. Let's make this async.
+     */
 
-    var runtimeLocale = getConfirmLocale();
-    ReactDOM.render( /*#__PURE__*/React.createElement(ConfirmDialog, _extends({}, props, {
-      okText: okText || (props.okCancel ? runtimeLocale.okText : runtimeLocale.justOkText),
-      cancelText: cancelText || runtimeLocale.cancelText
-    })), div);
+
+    setTimeout(function () {
+      var runtimeLocale = getConfirmLocale();
+      ReactDOM.render( /*#__PURE__*/React.createElement(ConfirmDialog, _extends({}, props, {
+        okText: okText || (props.okCancel ? runtimeLocale.okText : runtimeLocale.justOkText),
+        cancelText: cancelText || runtimeLocale.cancelText
+      })), div);
+    });
   }
 
   function close() {

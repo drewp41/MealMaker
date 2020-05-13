@@ -4,7 +4,7 @@ export declare function convertChildrenToColumns<RecordType>(children: React.Rea
 /**
  * Parse `columns` & `children` into `columns`.
  */
-declare function useColumns<RecordType>({ prefixCls, columns, children, expandable, expandedKeys, getRowKey, onTriggerExpand, expandIcon, rowExpandable, expandIconColumnIndex, direction, }: {
+declare function useColumns<RecordType>({ prefixCls, columns, children, expandable, expandedKeys, getRowKey, onTriggerExpand, expandIcon, rowExpandable, expandIconColumnIndex, direction, expandRowByClick, }: {
     prefixCls?: string;
     columns?: ColumnsType<RecordType>;
     children?: React.ReactNode;
@@ -16,5 +16,6 @@ declare function useColumns<RecordType>({ prefixCls, columns, children, expandab
     rowExpandable?: (record: RecordType) => boolean;
     expandIconColumnIndex?: number;
     direction?: 'ltr' | 'rtl';
+    expandRowByClick?: boolean;
 }, transformColumns: (columns: ColumnsType<RecordType>) => ColumnsType<RecordType>): [ColumnsType<RecordType>, ColumnType<RecordType>[]];
 export default useColumns;
