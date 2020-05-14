@@ -7,7 +7,7 @@ import {
     PushpinOutlined, PushpinFilled
 } from '@ant-design/icons';
 
-function MealModal(props) {
+const MealModal = (props) => {
 
     function handleOk() {
         props.closeModal();
@@ -27,7 +27,20 @@ function MealModal(props) {
             width='600px'
             bodyStyle={{ height: '500px' }}
         >
-            <p>Yummy food</p>
+            Ingredients:
+            <ul>
+                {props.meal.ingredients.map((elem) =>
+                    <li>{elem}</li>
+                )}
+            </ul>
+            <br />
+            Instructions:
+            <ul style={{ listStyleType: 'none' }}>
+                {props.meal.instructions.map((elem, idx) =>
+                    <li>{idx + 1}) {elem}</li>
+                )}
+            </ul>
+
         </Modal>
     );
 }

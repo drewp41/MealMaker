@@ -117,7 +117,7 @@ function useAsyncState(initialValue) {
     return [value, setter];
 }
 
-function NewLayout(props) {
+const NewLayout = (props) => {
 
     const [calories, setCalories] = useState(2000);
     const [macros, setMacros] = useState({ carbs: 225, protein: 150, fat: 55 });
