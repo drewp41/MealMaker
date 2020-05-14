@@ -78,7 +78,7 @@ export async function fetchBreakfastMain(cals, numMeals, carbs, protein, fat) {
     console.log('Fetching breakfast main');
     return fetchBreakfastMainData(cals, numMeals, carbs, protein, fat)
         .then(d => {
-            const breakfastData = d[0].data.results;
+            const breakfastData = d.data.results;
 
             // return an array of meals
             // with each meal of the form
@@ -152,7 +152,7 @@ async function fetchBreakfastMainData(cals, numMeals, carbs, protein, fat) {
     }
 
     try {
-        const breakfastMeals = await Promise.all([
+        const breakfastMeals = await
             instance({ // breakfast (6)
                 "params": {
                     ...defaultParams,
@@ -167,8 +167,8 @@ async function fetchBreakfastMainData(cals, numMeals, carbs, protein, fat) {
                     type: 'breakfast',
                     number: 6,
                 }
-            })
-        ]);
+            });
+        // will throw an error if we do 'const breakfastMeals' and then 'return breakfastMeals'
         return breakfastMeals; // get breakfastSides from fetchMeals
     } catch (error) {
         console.log(error, "error");
@@ -199,7 +199,7 @@ export async function fetchRegularMain(cals, numMeals, carbs, protein, fat) {
     console.log('Fetching regular main');
     return fetchRegularMainData(cals, numMeals, carbs, protein, fat)
         .then(d => {
-            const mainData = d[0].data.results;
+            const mainData = d.data.results;
 
             // return an array of meals
             // with each meal of the form
@@ -279,7 +279,7 @@ async function fetchRegularMainData(cals, numMeals, carbs, protein, fat) {
     }
 
     try {
-        const [main] = await Promise.all([
+        const main = await
             instance({ // main meals (6 * numMeals)
                 "params": {
                     ...defaultParams,
@@ -294,9 +294,8 @@ async function fetchRegularMainData(cals, numMeals, carbs, protein, fat) {
                     type: 'main+course',
                     number: 6 * (numMeals - 1), //exclude bfast
                 }
-            }),
-        ]);
-        return [main];
+            });
+        return main;
     } catch (error) {
         console.log(error, "error");
         return [[emptyMeal]];
@@ -307,7 +306,7 @@ export async function fetchRegularSide(cals, numMeals, carbs, protein, fat) {
     console.log('Fetching regular side');
     return fetchRegularSideData(cals, numMeals, carbs, protein, fat)
         .then(d => {
-            const sidesData = d[0].data.results;
+            const sidesData = d.data.results;
 
             // return an array of meals
             // with each meal of the form
@@ -353,7 +352,7 @@ async function fetchRegularSideData(cals, numMeals, carbs, protein, fat) {
     let maxSideCals = 150;
 
     try {
-        const [mainSides] = await Promise.all([
+        const mainSides = await
             instance({ // main sides (6 * numMeals)
                 "params": {
                     ...defaultParams,
@@ -364,9 +363,8 @@ async function fetchRegularSideData(cals, numMeals, carbs, protein, fat) {
                     type: 'side+dish',
                     number: 6 * (numMeals - 1), //exclude bfast
                 }
-            })
-        ]);
-        return [mainSides];
+            });
+        return mainSides;
     } catch (error) {
         console.log(error, "error");
         return [[emptyMeal]];

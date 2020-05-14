@@ -28,7 +28,7 @@ function Header(props) {
                     </div>
                     {/* shifted down 15px to center it vertically in the header */}
                     <div className='colHeaderL' style={{ padding: '15px 0 0 0' }}>
-                        <button className='logoText' onClick={rotateIcon}
+                        <button className='logoText'
                             style={{ height: '50px', width: '160px' }}>
                             mealmaker.io
                         </button>

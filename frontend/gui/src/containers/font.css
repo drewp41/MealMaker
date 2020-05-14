@@ -1,50 +1,50 @@
 @font-face {
-    font-family: "Iter";
-    src: url("../fonts/InterVariableFont.woff2") format("woff2-variations"); /* Modern Browsers */
+    font-family: 'Iter';
+    src: url('../fonts/InterVariableFont.woff2') format('woff2-variations'); /* Modern Browsers */
     font-weight: 1 900;
 }
 
 
 @font-face {
-    font-family: "Camphor";
+    font-family: 'Camphor';
   
-    src: url("../fonts/camphorLight.woff2") format("woff2"); /* Modern Browsers */
+    src: url('../fonts/camphorLight.woff2') format('woff2'); /* Modern Browsers */
       
     font-weight: 300;
     font-style: normal;
 }
 
 @font-face {
-    font-family: "Camphor";
+    font-family: 'Camphor';
   
-    src: url("../fonts/camphorMedium.woff2") format("woff2"); /* Modern Browsers */
+    src: url('../fonts/camphorMedium.woff2') format('woff2'); /* Modern Browsers */
       
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
-    font-family: "Camphor";
+    font-family: 'Camphor';
   
-    src: url("../fonts/camphorRegular.woff2") format("woff2"); /* Modern Browsers */
+    src: url('../fonts/camphorRegular.woff2') format('woff2'); /* Modern Browsers */
       
     font-weight: 500;
     font-style: normal;
 }
 
 @font-face {
-    font-family: "Camphor";
+    font-family: 'Camphor';
   
-    src: url("../fonts/camphorBold.woff2") format("woff2"); /* Modern Browsers */
+    src: url('../fonts/camphorBold.woff2') format('woff2'); /* Modern Browsers */
       
     font-weight: 600;
     font-style: normal;
 }
 
 @font-face {
-    font-family: "Camphor";
+    font-family: 'Camphor';
   
-    src: url("../fonts/camphorHeavy.woff") format("woff"); /* Modern Browsers */
+    src: url('../fonts/camphorHeavy.woff') format('woff'); /* Modern Browsers */
       
     font-weight: 700;
     font-style: normal;
