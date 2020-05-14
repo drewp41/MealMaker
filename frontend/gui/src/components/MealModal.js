@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import {
-    Modal
+    Modal, Steps
 } from 'antd';
 import {
     SyncOutlined,
     PushpinOutlined, PushpinFilled
 } from '@ant-design/icons';
+
+const { Step } = Steps;
 
 const MealModal = (props) => {
 
@@ -24,8 +26,8 @@ const MealModal = (props) => {
             onOk={handleOk}
             onCancel={handleCancel}
             footer={null}
-            width='600px'
-            bodyStyle={{ height: '500px' }}
+            width='800px'
+            bodyStyle={{ height: '700px' }}
         >
             Ingredients:
             <ul>
@@ -35,12 +37,12 @@ const MealModal = (props) => {
             </ul>
             <br />
             Instructions:
-            <ul style={{ listStyleType: 'none' }}>
+            <div className='space8' />
+            <Steps direction='vertical' size='small' current={0} style={{ color: 'black !important' }}>
                 {props.meal.instructions.map((elem, idx) =>
-                    <li>{idx + 1}) {elem}</li>
+                    <Step description={elem} />
                 )}
-            </ul>
-
+            </Steps>
         </Modal>
     );
 }

@@ -404,6 +404,10 @@ a:hover, a:active{
     color: #202020;
 }
 
+.ant-steps-item-description {
+    color:#595959 !important;
+}
+
 /* more shadow, same hover */
 .cardShadow1 {
     box-shadow:0 7px 14px 0 rgba(50, 50, 93, .1), 0 3px 6px 0 rgba(0, 0, 0, .07);
