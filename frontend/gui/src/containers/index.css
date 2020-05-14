@@ -368,14 +368,14 @@ a:hover, a:active{
     /* bc the ant card body doesnt start at the top */
     margin: -11px -10px 0 -10px;
     padding: 5px 10px 0 10px;
-    /* cursor: pointer; */
+    cursor: pointer;
 }
 
 .mealCardSideRow {
     height: 64px;
     margin: 0 -10px 0 -10px;
     padding: 5px 10px 0 10px;
-    /* cursor: pointer; */
+    cursor: pointer;
 }
 
 .mealCardMainRow:hover {

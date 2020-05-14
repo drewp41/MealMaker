@@ -10,12 +10,10 @@ import {
 function MealModal(props) {
 
     function handleOk() {
-        console.log('ok');
         props.closeModal();
     }
 
     function handleCancel() {
-        console.log('cancel');
         props.closeModal();
     }
 
@@ -26,6 +24,8 @@ function MealModal(props) {
             onOk={handleOk}
             onCancel={handleCancel}
             footer={null}
+            width='600px'
+            bodyStyle={{ height: '500px' }}
         >
             <p>Yummy food</p>
         </Modal>

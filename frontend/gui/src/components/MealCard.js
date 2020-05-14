@@ -31,19 +31,24 @@ function MealCard(props) {
         setShowModal(false);
     }
 
-    function regenMain() {
+    function regenMain(e) {
+        // prevents the meal modal from opening when clicking an icon
+        e.stopPropagation();
         props.regenMain(props.mealNum);
     }
 
-    function regenSide() {
+    function regenSide(e) {
+        e.stopPropagation();
         props.regenSide(props.mealNum);
     }
 
-    function pinMain() {
+    function pinMain(e) {
+        e.stopPropagation();
         props.pinMain(props.mealNum);
     }
 
-    function pinSide() {
+    function pinSide(e) {
+        e.stopPropagation();
         props.pinSide(props.mealNum);
     }
 
@@ -77,12 +82,12 @@ function MealCard(props) {
                                     <div className='mealCardIcons'>
                                         {/* show regen icon if the meal isn't pinned */}
                                         {!props.mealObj.mainPinned && (props.mealObj.mainLoading ?
-                                            <SyncOutlined spin className='regenIcon' onClick={() => regenMain()} /> :
-                                            <SyncOutlined className='regenIcon' onClick={() => regenMain()} />)}
+                                            <SyncOutlined spin className='regenIcon' onClick={(e) => regenMain(e)} /> :
+                                            <SyncOutlined className='regenIcon' onClick={(e) => regenMain(e)} />)}
                                         &nbsp;&nbsp;&nbsp;
                                         {props.mealObj.mainPinned ?
-                                            <PushpinFilled className='pinIcon' onClick={() => pinMain()} /> :
-                                            <PushpinOutlined className='pinIcon' onClick={() => pinMain()} />}
+                                            <PushpinFilled className='pinIcon' onClick={(e) => pinMain(e)} /> :
+                                            <PushpinOutlined className='pinIcon' onClick={(e) => pinMain(e)} />}
                                     </div>
                                     <div className='ant-card-meta-title'>
                                         {props.mealObj.main.name}
@@ -100,12 +105,12 @@ function MealCard(props) {
                                         <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
                                             {/* show regen icon if the meal isn't pinned */}
                                             {!props.mealObj.sidePinned && (props.mealObj.sideLoading ?
-                                                <SyncOutlined spin className='regenIcon' onClick={() => regenSide()} /> :
-                                                <SyncOutlined className='regenIcon' onClick={() => regenSide()} />)}
+                                                <SyncOutlined spin className='regenIcon' onClick={(e) => regenSide(e)} /> :
+                                                <SyncOutlined className='regenIcon' onClick={(e) => regenSide(e)} />)}
                                             &nbsp;&nbsp;&nbsp;
                                             {props.mealObj.sidePinned ?
-                                                <PushpinFilled className='pinIcon' onClick={() => pinSide()} /> :
-                                                <PushpinOutlined className='pinIcon' onClick={() => pinSide()} />}
+                                                <PushpinFilled className='pinIcon' onClick={(e) => pinSide(e)} /> :
+                                                <PushpinOutlined className='pinIcon' onClick={(e) => pinSide(e)} />}
                                         </div>
 
                                         <div className='ant-card-meta-title'>
