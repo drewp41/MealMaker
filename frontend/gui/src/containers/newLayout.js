@@ -149,17 +149,17 @@ function NewLayout(props) {
     const [meal5, setMeal5] = useState(emptyObj);
     const [meal6, setMeal6] = useState(emptyObj);
 
-    const macroSwitch = () => {
+    function macroSwitch() {
         setEnableMacros(prev => !prev);
         setChangedPrefs(true);
     }
 
-    const pinMacro = (num) => {
+    function pinMacro(num) {
         // set the pin to whichever macro is calling it, remove the pin if it already exists
         setMacroPinned(prev => prev === num ? null : num);
     }
 
-    const carbSlider = (percent) => {
+    function carbSlider(percent) {
         let newCarbs = Math.floor((percent * calories) / 400);
         let diff = newCarbs - macros.carbs;
         // if one of the other macros are zero and youre trying to increase carbs even more
@@ -200,7 +200,7 @@ function NewLayout(props) {
         }
     }
 
-    const proteinSlider = (percent) => {
+    function proteinSlider(percent) {
         let newProtein = Math.floor((percent * calories) / 400);
         let diff = newProtein - macros.protein;
         if (diff > 0 && ((macros.carbs <= (calories * 0.1) / 4) ||
@@ -240,7 +240,7 @@ function NewLayout(props) {
         }
     }
 
-    const fatSlider = (percent) => {
+    function fatSlider(percent) {
         let newFat = Math.floor((percent * calories) / 900);
         let diff = newFat - macros.fat;
         if (diff > 0 && ((macros.carbs <= (calories * 0.1) / 4) ||
@@ -280,7 +280,7 @@ function NewLayout(props) {
         }
     }
 
-    const regenMain = (num) => {
+    function regenMain(num) {
         const mealVar = 'meal' + num.toString();
         const setMealVar = 'setMeal' + num.toString();
         // if it's already loading a meal, return (prevents spam clicking)
@@ -304,7 +304,7 @@ function NewLayout(props) {
         }, 500);
     }
 
-    const regenSide = (num) => {
+    function regenSide(num) {
         const mealVar = 'meal' + num.toString();
         const setMealVar = 'setMeal' + num.toString();
         // if it's already loading a meal, return (prevents spam clicking)
@@ -328,7 +328,7 @@ function NewLayout(props) {
         }, 500);
     }
 
-    const pinMain = (num) => {
+    function pinMain(num) {
         const setMealVar = 'setMeal' + num.toString();
 
         eval(setMealVar)(prev => ({
@@ -337,7 +337,7 @@ function NewLayout(props) {
         }));
     }
 
-    const pinSide = (num) => {
+    function pinSide(num) {
         const setMealVar = 'setMeal' + num.toString();
 
         eval(setMealVar)(prev => ({
@@ -346,7 +346,7 @@ function NewLayout(props) {
         }));
     }
 
-    const updateMeal = (num) => {
+    function updateMeal(num) {
         const setMealVar = 'setMeal' + num.toString();
 
         // IF BREAKFAST
@@ -431,7 +431,7 @@ function NewLayout(props) {
         }
     }
 
-    const updateMain = async (num) => {
+    async function updateMain(num) {
         const setMealVar = 'setMeal' + num.toString();
 
         // IF BREAKFAST
@@ -504,7 +504,7 @@ function NewLayout(props) {
         }
     }
 
-    const updateSide = async (num) => {
+    async function updateSide(num) {
         const setMealVar = 'setMeal' + num.toString();
 
         // IF BREAKFAST
@@ -577,7 +577,7 @@ function NewLayout(props) {
         }
     }
 
-    const onClickGenerateButton = async () => {
+    async function onClickGenerateButton() {
         // if it's already loading a meal, return (prevents spam clicking)
         if (loadingMeals)
             return;
