@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-    Card, Skeleton, Space
+    Card, Skeleton
 } from 'antd';
 import {
     SyncOutlined,
     PushpinOutlined, PushpinFilled
 } from '@ant-design/icons';
 
+import MealModal from './MealModal';
+
 const mainTextColor = '#32323c';
 
-
+// didn't use yet
 function MealCardTitle(props) {
     return <>
         Breakfast &nbsp;&nbsp;
@@ -23,19 +25,25 @@ function MealCardTitle(props) {
 
 function MealCard(props) {
 
-    const regenMain = () => {
+    const [showModal, setShowModal] = useState(false);
+
+    function closeModal() {
+        setShowModal(false);
+    }
+
+    function regenMain() {
         props.regenMain(props.mealNum);
     }
 
-    const regenSide = () => {
+    function regenSide() {
         props.regenSide(props.mealNum);
     }
 
-    const pinMain = () => {
+    function pinMain() {
         props.pinMain(props.mealNum);
     }
 
-    const pinSide = () => {
+    function pinSide() {
         props.pinSide(props.mealNum);
     }
 
@@ -64,7 +72,8 @@ function MealCard(props) {
                             active={props.mealObj.mainLoading || props.mealObj.sideLoading}
                             paragraph={{ rows: 3, width: [250] }} >
                             <div className='mealCard'>
-                                <div className='mealCardMainRow'>
+                                <MealModal visible={showModal} meal={props.mealObj.main} closeModal={closeModal} />
+                                <div className='mealCardMainRow' onClick={() => setShowModal(true)}>
                                     <div className='mealCardIcons'>
                                         {/* show regen icon if the meal isn't pinned */}
                                         {!props.mealObj.mainPinned && (props.mealObj.mainLoading ?
@@ -86,7 +95,8 @@ function MealCard(props) {
                                     </p>
                                 </div>
                                 {props.mealObj.side.name &&
-                                    <div className='mealCardSideRow'>
+                                    <MealModal visible={showModal} meal={props.mealObj.side} closeModal={closeModal} /> &&
+                                    <div className='mealCardSideRow' onClick={() => setShowModal(true)}>
                                         <div style={{ float: 'right', fontSize: '18px', color: '#606060' }}>
                                             {/* show regen icon if the meal isn't pinned */}
                                             {!props.mealObj.sidePinned && (props.mealObj.sideLoading ?

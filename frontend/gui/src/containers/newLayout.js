@@ -1,4 +1,3 @@
-// using hooks :(
 import React, { useState, useEffect, useRef } from 'react';
 import {
     Card, Slider, Select,
@@ -351,7 +350,7 @@ function NewLayout(props) {
         const setMealVar = 'setMeal' + num.toString();
 
         // IF BREAKFAST
-        if (num == 1) {
+        if (num === 1) {
             // iterator returns {value, done}
             const mealObj = breakfastRef.current.next();
             const sideObj = breakfastSideRef.current.next();
