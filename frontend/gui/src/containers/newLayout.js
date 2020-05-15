@@ -18,8 +18,6 @@ import MealCard from '../components/MealCard';
 import Header from './Header';
 import Footer from './Footer';
 
-import groceries from '../FoodIcons/groceries.svg';
-
 import {
     fetchMeals, fetchBreakfast, fetchRegular,
     fetchBreakfastMain, fetchBreakfastSide,

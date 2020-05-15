@@ -251,9 +251,11 @@ button {
 }
 
 /* override collape component color */
-.ant-collapse-header{
+ .ant-collapse-header {
     background-color:white !important;
+    cursor: default !important;
  }
+
 
 .leftColumnText{
     font-size: 20px;

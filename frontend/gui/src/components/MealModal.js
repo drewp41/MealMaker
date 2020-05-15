@@ -7,6 +7,8 @@ import {
     PushpinOutlined, PushpinFilled
 } from '@ant-design/icons';
 
+import groceries from '../FoodIcons/groceries.svg';
+
 const { Step } = Steps;
 
 const MealModal = (props) => {

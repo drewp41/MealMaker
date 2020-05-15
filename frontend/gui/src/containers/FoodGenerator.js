@@ -250,7 +250,9 @@ async function fetchRegularMainData(cals, numMeals, carbs, protein, fat) {
     let minFat = 0;
     let maxFat = 0;
 
-    if (numMeals === 2) {
+    if (numMeals === 1) {
+
+    } else if (numMeals === 2) {
 
     } else { //numMeals === 3-6
         approxCals = Math.floor(cals / numMeals);
