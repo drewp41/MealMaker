@@ -33,9 +33,10 @@ const MealModal = (props) => {
         >
             <b style={{ fontSize: '16px', fontWeight: 400 }}>Ingredients:</b>
             <div className='space4' />
+            {/* need to add keys to help React identify changes */}
             <ul>
-                {props.meal.ingredients.map((elem) =>
-                    <li>{elem}</li>
+                {props.meal.ingredients.map((elem, idx) =>
+                    <li key={idx}>{elem}</li>
                 )}
             </ul>
             <br />
@@ -43,7 +44,7 @@ const MealModal = (props) => {
             <div className='space8' />
             <Steps direction='vertical' size='small' current={-1} >
                 {props.meal.instructions.map((elem, idx) =>
-                    <Step description={elem} />
+                    <Step description={elem} key={idx} />
                 )}
             </Steps>
         </Modal>

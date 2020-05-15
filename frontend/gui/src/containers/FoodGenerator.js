@@ -253,7 +253,26 @@ async function fetchRegularMainData(cals, numMeals, carbs, protein, fat) {
     if (numMeals === 1) {
 
     } else if (numMeals === 2) {
-
+        //just get one dinner
+        approxCals = Math.floor((3 / 5) * cals);
+        // target = (approxCals - 150) +- 25 bc guaranteed side
+        minMainCals = approxCals - 175;
+        maxMainCals = approxCals - 125;
+        if (carbs === 0 && protein === 0 && fat === 0) {
+            minCarbs = 0;
+            maxCarbs = 1000;
+            minProtein = 0;
+            maxProtein = 1000;
+            minFat = 0;
+            maxFat = 1000;
+        } else {
+            minCarbs = Math.floor((3 / 5) * carbs) - 10;
+            maxCarbs = Math.floor((3 / 5) * carbs) + 10;
+            minProtein = Math.floor((3 / 5) * protein) - 10;
+            maxProtein = Math.floor((3 / 5) * protein) + 10;
+            minFat = Math.floor((3 / 5) * fat) - 5;
+            maxFat = Math.floor((3 / 5) * fat) + 5;
+        }
     } else { //numMeals === 3-6
         approxCals = Math.floor(cals / numMeals);
         // target = (approxCals - 75) +- 25
@@ -341,10 +360,16 @@ export async function fetchRegularSide(cals, numMeals, carbs, protein, fat) {
                     instructions: instructions, servings: servings
                 };
 
-                if (Math.random() < randMainSides)
-                    sidesRes.push(obj);
-                else
+                if (numMeals === 1) // make it two servings!!
                     sidesRes.push(emptyMeal);
+                else if (numMeals === 2)
+                    sidesRes.push(emptyMeal);
+                else {
+                    if (Math.random() < randMainSides)
+                        sidesRes.push(obj);
+                    else
+                        sidesRes.push(emptyMeal);
+                }
             })
 
             return [sidesRes];
