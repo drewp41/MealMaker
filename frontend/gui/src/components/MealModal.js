@@ -11,10 +11,6 @@ const { Step } = Steps;
 
 const MealModal = (props) => {
 
-    function handleOk() {
-        props.closeModal();
-    }
-
     function handleCancel() {
         props.closeModal();
     }
@@ -22,13 +18,17 @@ const MealModal = (props) => {
     return (
         <Modal
             className='mealModal'
-            title={props.meal.name}
+            title={
+                <>
+                    <p style={{ fontWeight: 400 }}>{props.meal.name}</p>
+                    <p style={{ fontWeight: 400 }}>{props.meal.name}</p>
+                </>
+            }
             visible={props.visible}
-            onOk={handleOk}
             onCancel={handleCancel}
             footer={null}
             width='800px'
-            bodyStyle={{ height: '700px' }}
+            bodyStyle={{ minHeight: '400px' }}
         >
             <b style={{ fontSize: '16px', fontWeight: 400 }}>Ingredients:</b>
             <div className='space4' />

@@ -405,8 +405,12 @@ a:hover, a:active{
 }
 
 .mealModal {
-    font-family: Camphor;
+    font-family: 'Camphor';
     font-weight: 300;
+}
+
+.ant-modal-title {
+    text-align: center;
 }
 
 /* Overriding styles for the meal instructions */
@@ -422,6 +426,7 @@ a:hover, a:active{
  .ant-steps-icon {
     color: #a8a8a8 !important;
  }
+ 
 
 /* more shadow, same hover */
 .cardShadow1 {
