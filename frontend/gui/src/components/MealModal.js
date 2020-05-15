@@ -20,15 +20,14 @@ const MealModal = (props) => {
             className='mealModal'
             title={
                 <>
-                    <p style={{ fontWeight: 400 }}>{props.meal.name}</p>
-                    <p style={{ fontWeight: 400 }}>{props.meal.name}</p>
+                    <b style={{ fontWeight: 400 }}>{props.meal.name}</b>
                 </>
             }
             visible={props.visible}
             onCancel={handleCancel}
             footer={null}
             width='800px'
-            bodyStyle={{ minHeight: '400px' }}
+            bodyStyle={{}}
         >
             <b style={{ fontSize: '16px', fontWeight: 400 }}>Ingredients:</b>
             <div className='space4' />
