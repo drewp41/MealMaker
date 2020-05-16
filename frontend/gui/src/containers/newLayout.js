@@ -36,7 +36,8 @@ const mainTextColor = '#32323c';
 const emptyMeal = {
     name: '', calories: 0, carbs: 0,
     protein: 0, fat: 0, ingredients: [],
-    instructions: [], servings: 0
+    instructions: [], servings: 0, makes: 0,
+    prepTime: 0, cookTime: 0
 }
 const emptyObj = {
     main: emptyMeal,
@@ -796,6 +797,17 @@ const NewLayout = (props) => {
                 <div style={{ borderLeft: '2px solid #e0e0e0' }} />
 
                 <div className="rightColumn">
+
+                    <p style={{ fontFamily: 'Camphor', fontSize: '16px', marginTop: '-41px' }}>
+                        Total calories: {
+                            meal1.main.calories + meal1.side.calories +
+                            (numMeals >= 2 ? meal2.main.calories + meal2.side.calories : 0) +
+                            (numMeals >= 3 ? meal3.main.calories + meal3.side.calories : 0) +
+                            (numMeals >= 4 ? meal4.main.calories + meal4.side.calories : 0) +
+                            (numMeals >= 5 ? meal5.main.calories + meal5.side.calories : 0) +
+                            (numMeals >= 6 ? meal6.main.calories + meal6.side.calories : 0)
+                        }
+                    </p>
 
                     <MealCard mealNum={1} mealObj={meal1} numMeals={numMeals}
                         displayMeals={displayMeals}

@@ -32,13 +32,15 @@ const defaultParams = {
     addRecipeInformation: true,
     fillIngredients: true,
     maxAlcohol: 0,
+    maxReadyTime: 60,
     sort: 'random',
 }
 
 const emptyMeal = {
     name: '', calories: 0, carbs: 0,
     protein: 0, fat: 0, ingredients: [],
-    instructions: [], servings: 0
+    instructions: [], servings: 0, makes: 0,
+    prepTime: 0, cookTime: 0
 }
 
 // percent chance a main side appears
@@ -47,11 +49,16 @@ const randMainSides = 0.7;
 // ========== Fetch all meals ==========
 export async function fetchMeals(cals, numMeals, carbs, protein, fat) {
     console.log('Fetching all meals');
-    const [breakfast, main] = await Promise.all([
-        fetchBreakfast(cals, numMeals, carbs, protein, fat),
-        fetchRegular(cals, numMeals, carbs, protein, fat),
-    ]);
-    return [...breakfast, ...main];
+    if (numMeals === 1) {
+        const feast = await fetchBreakfast(cals, numMeals, carbs, protein, fat);
+        return [...feast, [], []];
+    } else {
+        const [breakfast, main] = await Promise.all([
+            fetchBreakfast(cals, numMeals, carbs, protein, fat),
+            fetchRegular(cals, numMeals, carbs, protein, fat),
+        ]);
+        return [...breakfast, ...main];
+    }
 }
 
 // ========== Fetch both breakfast main and side ==========
@@ -101,14 +108,17 @@ export async function fetchBreakfastMain(cals, numMeals, carbs, protein, fat) {
                     })
                 }
                 let ingredients = [];
-                elem.missedIngredients.forEach((ing) => {
+                elem.extendedIngredients.forEach((ing) => {
                     ingredients.push(ing.original);
                 })
-                const servings = elem.servings;
+                const makes = elem.servings;
+                const prepTime = elem.preparationMinutes;
+                const cookTime = elem.cookingMinutes;
                 const obj = {
                     name: name, calories: calories, carbs: carbs,
                     protein: protein, fat: fat, ingredients: ingredients,
-                    instructions: instructions, servings: servings
+                    instructions: instructions, servings: 1, makes: makes,
+                    prepTime: prepTime, cookTime: cookTime
                 };
 
                 breakfastRes.push(obj);
@@ -129,26 +139,72 @@ async function fetchBreakfastMainData(cals, numMeals, carbs, protein, fat) {
     let minFat = 0;
     let maxFat = 0;
 
-    approxCals = Math.floor(cals / numMeals);
-    // target = (approxCals - 100) +- 25
-    minBreakfastCals = approxCals - 125;
-    maxBreakfastCals = approxCals - 75;
+    if (numMeals === 1) {
+        approxCals = Math.floor(cals / 2) - 300;
+        // target = (approxCals - 100) +- 25
+        minBreakfastCals = approxCals - 125;
+        maxBreakfastCals = approxCals - 75;
 
-    // if they all equal 0, macro preferences are off and make the macros anything
-    if (carbs === 0 && protein === 0 && fat === 0) {
-        minCarbs = 0;
-        maxCarbs = 1000;
-        minProtein = 0;
-        maxProtein = 1000;
-        minFat = 0;
-        maxFat = 1000;
+        // if they all equal 0, macro preferences are off and make the macros anything
+        if (carbs === 0 && protein === 0 && fat === 0) {
+            minCarbs = 0;
+            maxCarbs = 1000;
+            minProtein = 0;
+            maxProtein = 1000;
+            minFat = 0;
+            maxFat = 1000;
+        } else {
+            minCarbs = Math.floor(carbs / numMeals) - 10;
+            maxCarbs = Math.floor(carbs / numMeals) + 10;
+            minProtein = Math.floor(protein / numMeals) - 10;
+            maxProtein = Math.floor(protein / numMeals) + 10;
+            minFat = Math.floor(fat / numMeals) - 5;
+            maxFat = Math.floor(fat / numMeals) + 5;
+        }
+    } else if (numMeals === 2) {
+        approxCals = Math.floor((2 / 5) * cals);
+        // target = (approxCals - 100) +- 25
+        minBreakfastCals = approxCals - 125;
+        maxBreakfastCals = approxCals - 75;
+
+        // if they all equal 0, macro preferences are off and make the macros anything
+        if (carbs === 0 && protein === 0 && fat === 0) {
+            minCarbs = 0;
+            maxCarbs = 1000;
+            minProtein = 0;
+            maxProtein = 1000;
+            minFat = 0;
+            maxFat = 1000;
+        } else {
+            minCarbs = Math.floor(carbs / numMeals) - 10;
+            maxCarbs = Math.floor(carbs / numMeals) + 10;
+            minProtein = Math.floor(protein / numMeals) - 10;
+            maxProtein = Math.floor(protein / numMeals) + 10;
+            minFat = Math.floor(fat / numMeals) - 5;
+            maxFat = Math.floor(fat / numMeals) + 5;
+        }
     } else {
-        minCarbs = Math.floor(carbs / numMeals) - 10;
-        maxCarbs = Math.floor(carbs / numMeals) + 10;
-        minProtein = Math.floor(protein / numMeals) - 10;
-        maxProtein = Math.floor(protein / numMeals) + 10;
-        minFat = Math.floor(fat / numMeals) - 5;
-        maxFat = Math.floor(fat / numMeals) + 5;
+        approxCals = Math.floor(cals / numMeals);
+        // target = (approxCals - 100) +- 25
+        minBreakfastCals = approxCals - 125;
+        maxBreakfastCals = approxCals - 75;
+
+        // if they all equal 0, macro preferences are off and make the macros anything
+        if (carbs === 0 && protein === 0 && fat === 0) {
+            minCarbs = 0;
+            maxCarbs = 1000;
+            minProtein = 0;
+            maxProtein = 1000;
+            minFat = 0;
+            maxFat = 1000;
+        } else {
+            minCarbs = Math.floor(carbs / numMeals) - 10;
+            maxCarbs = Math.floor(carbs / numMeals) + 10;
+            minProtein = Math.floor(protein / numMeals) - 10;
+            maxProtein = Math.floor(protein / numMeals) + 10;
+            minFat = Math.floor(fat / numMeals) - 5;
+            maxFat = Math.floor(fat / numMeals) + 5;
+        }
     }
 
     try {
@@ -164,7 +220,7 @@ async function fetchBreakfastMainData(cals, numMeals, carbs, protein, fat) {
                     maxProtein: maxProtein,
                     minFat: minFat,
                     maxFat: maxFat,
-                    type: 'breakfast',
+                    type: (numMeals > 1) ? 'breakfast' : 'main+course',
                     number: 6,
                 }
             });
@@ -178,21 +234,89 @@ async function fetchBreakfastMainData(cals, numMeals, carbs, protein, fat) {
 
 export async function fetchBreakfastSide(cals, numMeals, carbs, protein, fat) {
     console.log('Fetching breakfast side');
-    // return [breakfastSides.slice(0, 6)]
-    return fetchBreakfastSideData(cals, numMeals, carbs, protein, fat)
-        .then(d => {
-            return d;
-        });
+    if (numMeals === 1) {
+        return fetchBreakfastSideData(cals, numMeals, carbs, protein, fat)
+            .then(d => {
+                const sidesData = d.data.results;
+                // return an array of meals
+                // with each meal of the form
+                // [name of food, calories, carbs, protein, 
+                /// fat, ingredients, instructions, servings]
+
+                // ======== MAIN SIDES ========
+                let sidesRes = [];
+                sidesData.forEach(elem => {
+                    const name = elem.title;
+                    const calories = Math.floor(elem.nutrition[0].amount);
+                    const carbs = Math.floor(elem.nutrition[3].amount);
+                    const protein = Math.floor(elem.nutrition[1].amount);
+                    const fat = Math.floor(elem.nutrition[2].amount);
+                    let instructions = [];
+                    let instArr = elem.analyzedInstructions;
+                    if (instArr && instArr.length) {
+                        instArr[0].steps.forEach((inst) => {
+                            instructions.push(inst.step);
+                        })
+                    }
+                    let ingredients = [];
+                    elem.extendedIngredients.forEach((ing) => {
+                        ingredients.push(ing.original);
+                    })
+                    const makes = elem.servings;
+                    const prepTime = elem.preparationMinutes;
+                    const cookTime = elem.cookingMinutes;
+                    const obj = {
+                        name: name, calories: calories, carbs: carbs,
+                        protein: protein, fat: fat, ingredients: ingredients,
+                        instructions: instructions, servings: 1, makes: makes,
+                        prepTime: prepTime, cookTime: cookTime
+                    };
+
+                    sidesRes.push(obj);
+                })
+
+                return [sidesRes];
+            })
+    } else {
+        return fetchBreakfastSideData(cals, numMeals, carbs, protein, fat)
+            .then(d => {
+                return d;
+            });
+    }
 }
 
 async function fetchBreakfastSideData(cals, numMeals, carbs, protein, fat) {
-    // let it wait at least half a second before returning, so it's not instant
-    let res = await new Promise((resolve) => {
-        setTimeout(() => {
-            resolve([breakfastSides.slice(0, 6)]);
-        }, 500)
-    })
-    return res;
+    if (numMeals === 1) {
+        let maxSideCals = 150;
+
+        try {
+            const sides = await
+                instance({ // sides
+                    "params": {
+                        ...defaultParams,
+                        maxCalories: maxSideCals,
+                        minCarbs: 0,
+                        minProtein: 0,
+                        minFat: 0,
+                        type: 'side+dish',
+                        number: 6
+                    }
+                });
+            return sides;
+        } catch (error) {
+            console.log(error, "error");
+            return [[emptyMeal]];
+        }
+    }
+    else {
+        // let it wait at least half a second before returning, so it's not instant
+        let res = await new Promise((resolve) => {
+            setTimeout(() => {
+                resolve([breakfastSides.slice(0, 6)]);
+            }, 500)
+        })
+        return res;
+    }
 }
 
 export async function fetchRegularMain(cals, numMeals, carbs, protein, fat) {
@@ -222,14 +346,17 @@ export async function fetchRegularMain(cals, numMeals, carbs, protein, fat) {
                     })
                 }
                 let ingredients = [];
-                elem.missedIngredients.forEach((ing) => {
+                elem.extendedIngredients.forEach((ing) => {
                     ingredients.push(ing.original);
                 })
-                const servings = elem.servings;
+                const makes = elem.servings;
+                const prepTime = elem.preparationMinutes;
+                const cookTime = elem.cookingMinutes;
                 const obj = {
                     name: name, calories: calories, carbs: carbs,
                     protein: protein, fat: fat, ingredients: ingredients,
-                    instructions: instructions, servings: servings
+                    instructions: instructions, servings: 1, makes: makes,
+                    prepTime: prepTime, cookTime: cookTime
                 };
 
                 mainRes.push(obj);
@@ -250,9 +377,7 @@ async function fetchRegularMainData(cals, numMeals, carbs, protein, fat) {
     let minFat = 0;
     let maxFat = 0;
 
-    if (numMeals === 1) {
-
-    } else if (numMeals === 2) {
+    if (numMeals === 2) {
         //just get one dinner
         approxCals = Math.floor((3 / 5) * cals);
         // target = (approxCals - 150) +- 25 bc guaranteed side
@@ -350,20 +475,21 @@ export async function fetchRegularSide(cals, numMeals, carbs, protein, fat) {
                     })
                 }
                 let ingredients = [];
-                elem.missedIngredients.forEach((ing) => {
+                elem.extendedIngredients.forEach((ing) => {
                     ingredients.push(ing.original);
                 })
-                const servings = elem.servings;
+                const makes = elem.servings;
+                const prepTime = elem.preparationMinutes;
+                const cookTime = elem.cookingMinutes;
                 const obj = {
                     name: name, calories: calories, carbs: carbs,
                     protein: protein, fat: fat, ingredients: ingredients,
-                    instructions: instructions, servings: servings
+                    instructions: instructions, servings: 1, makes: makes,
+                    prepTime: prepTime, cookTime: cookTime
                 };
 
-                if (numMeals === 1) // make it two servings!!
-                    sidesRes.push(emptyMeal);
-                else if (numMeals === 2)
-                    sidesRes.push(emptyMeal);
+                if (numMeals === 2)
+                    sidesRes.push(obj);
                 else {
                     if (Math.random() < randMainSides)
                         sidesRes.push(obj);
