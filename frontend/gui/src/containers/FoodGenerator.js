@@ -32,7 +32,7 @@ const defaultParams = {
     addRecipeInformation: true,
     fillIngredients: true,
     maxAlcohol: 0,
-    maxReadyTime: 60,
+    maxReadyTime: 31,
     sort: 'random',
 }
 

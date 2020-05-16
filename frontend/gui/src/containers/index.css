@@ -418,6 +418,7 @@ a:hover, a:active{
 /* Overriding styles for the meal instructions */
 .ant-steps-item-description {
     color:#595959 !important;
+    font-size: 15px !important;
 }
 .ant-steps-item-tail::after {
     background: #e0e0e0 !important;
