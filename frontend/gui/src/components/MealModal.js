@@ -14,6 +14,47 @@ import 'chartjs-plugin-datalabels';
 
 defaults.global.legend.display = false;
 
+const pieOptions = {
+    plugins: {
+        datalabels: {
+            formatter: (value, context) => {
+                return ['C', 'P', 'F'][context.dataIndex];
+            },
+            color: 'white',
+            font: {
+                family: 'Camphor',
+                size: 14
+            }
+        }
+    },
+    maintainAspectRatio: false,
+    responsive: false,
+
+}
+
+const pieData = {
+    labels: ['Carbs', 'Protein', 'Fat'],
+    datasets:
+        [
+            {
+                backgroundColor: [
+                    '#5B8FF9',
+                    '#E8684A',
+                    '#47B57A',
+                    // '#5D7092',
+                ],
+                hoverBackgroundColor: [
+                    '#4972D8',
+                    '#C7533B',
+                    '#399662',
+                    // '#4A5A7B'
+                ],
+                data: [30, 40, 30]
+                // data: [props.meal.carbs, props.meal.protein, props.meal.fat]
+            }
+        ]
+}
+
 const { Step } = Steps;
 
 const MealModal = (props) => {
@@ -47,41 +88,9 @@ const MealModal = (props) => {
                             <Pie
                                 width={110}
                                 height={110}
-                                data={{
-                                    labels: ['Carbs', 'Protein', 'Fat'],
-                                    datasets:
-                                        [
-                                            {
-                                                backgroundColor: [
-                                                    '#43B02A',
-                                                    '#3DA5D9',
-                                                    '#FF8200',
-                                                ],
-                                                hoverBackgroundColor: [
-                                                    '#369222',
-                                                    '#3187B8',
-                                                    '#DA6800',
-                                                ],
-                                                data: [props.meal.carbs, props.meal.protein, props.meal.fat]
-                                            }
-                                        ]
-                                }}
-                                options={{
-                                    plugins: {
-                                        datalabels: {
-                                            formatter: (value, context) => {
-                                                return ['C', 'P', 'F'][context.dataIndex];
-                                            },
-                                            color: 'white',
-                                            font: {
-                                                family: 'Camphor',
-                                                size: 14
-                                            }
-                                        }
-                                    },
-                                    maintainAspectRatio: false,
-                                    responsive: false,
-                                }}
+                                data={pieData}
+                                // pieData.datasets[0].data = [props.meal.carbs, props.meal.protein, props.meal.fat]}
+                                options={pieOptions}
                             />
                         </div>
                         <div style={{ flex: 2, textAlign: 'left', color: '#383838', fontSize: '14px' }}>

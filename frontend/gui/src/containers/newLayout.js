@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
-    Card, Slider, Select,
-    Switch, Collapse, Avatar
+    Slider, Select,
+    Switch, Collapse
 } from 'antd';
 import {
     SyncOutlined, PushpinOutlined, PushpinFilled
@@ -11,8 +11,8 @@ import { connect } from 'react-redux';
 import * as actions from '../store/actions/auth';
 import 'antd/dist/antd.css';
 import './index.css';
-import { Pie } from '@antv/g2plot';
-import ReactG2Plot from 'react-g2plot';
+import { Pie, defaults } from 'react-chartjs-2';
+import 'chartjs-plugin-datalabels';
 import NumberFormat from 'react-number-format';
 import MealCard from '../components/MealCard';
 import Header from './Header';
@@ -23,13 +23,13 @@ import {
     fetchBreakfastMain, fetchBreakfastSide,
     fetchRegularMain, fetchRegularSide
 } from './FoodGenerator.js';
-import { SVG } from '@antv/g2plot/lib/dependents';
 
 import './hamb/hamburgers.scss';
 
+defaults.global.legend.display = false;
+
 const { Option } = Select;
 const { Panel } = Collapse;
-const { Meta } = Card;
 
 const mainTextColor = '#32323c';
 
@@ -785,10 +785,52 @@ const NewLayout = (props) => {
                         Macro Breakdown
                     </b>
                     <div className='pieDiv' style={{ width: '325px', height: '325px' }}>
-                        <ReactG2Plot
+                        {/* <ReactG2Plot
                             className="pie"
                             Ctor={Pie}
-                            config={pieConfig} />
+                            config={pieConfig} /> */}
+                        <p />
+                        <Pie
+                            width={240}
+                            height={240}
+                            data={{
+                                labels: ['Carbs', 'Protein', 'Fat'],
+                                datasets:
+                                    [
+                                        {
+                                            backgroundColor: [
+                                                '#5B8FF9',
+                                                '#E8684A',
+                                                '#47B57A',
+                                                // '#5D7092',
+                                            ],
+                                            hoverBackgroundColor: [
+                                                '#4972D8',
+                                                '#C7533B',
+                                                '#399662',
+                                                // '#4A5A7B'
+                                            ],
+                                            data: enableMacros ? [macros.carbs, macros.protein, macros.fat] : [33, 33, 33]
+                                        }
+                                    ]
+                            }}
+                            options={{
+                                plugins: {
+                                    datalabels: {
+                                        formatter: (value, context) => {
+                                            return ['C', 'P', 'F'][context.dataIndex];
+                                        },
+                                        color: 'white',
+                                        font: {
+                                            family: 'Camphor',
+                                            size: 14
+                                        }
+                                    }
+                                },
+                                maintainAspectRatio: false,
+                                responsive: false,
+                            }}
+                        />
                     </div>
 
                 </div>
