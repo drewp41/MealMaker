@@ -31,11 +31,11 @@ const MealModal = (props) => {
                     <br />
                     <br />
                     <div style={{ display: 'flex', color: '#383838' }}>
-                        <div style={{ flex: 1, textAlign: 'left' }}>
+                        <div style={{ flex: 1, textAlign: 'left', padding: '5px 0 0 0' }}>
                             <img src={groceries} alt={props.meal.name + 'image'}
                                 style={{ width: 100, height: 100 }} />
                         </div>
-                        <div style={{ flex: 2, textAlign: 'left' }}>
+                        <div style={{ flex: 2, textAlign: 'left', padding: '0 0 0 20px' }}>
                             <p> {'Prep: '}
                                 {typeof props.meal.prepTime === 'undefined' ? 'n/a'
                                     : props.meal.prepTime + ' mins'}</p>
@@ -44,25 +44,28 @@ const MealModal = (props) => {
                                     : props.meal.cookTime + ' mins'}</p>
                         </div>
                         <div style={{ flex: 2, textAlign: 'left' }}>
-                            <Pie data={{
-                                labels: ['Carbs', 'Protein', 'Fat'],
-                                datasets:
-                                    [
-                                        {
-                                            backgroundColor: [
-                                                '#43B02A',
-                                                '#3DA5D9',
-                                                '#FF8200',
-                                            ],
-                                            hoverBackgroundColor: [
-                                                '#369222',
-                                                '#3187B8',
-                                                '#DA6800',
-                                            ],
-                                            data: [props.meal.carbs, props.meal.protein, props.meal.fat]
-                                        }
-                                    ]
-                            }}
+                            <Pie
+                                width={110}
+                                height={110}
+                                data={{
+                                    labels: ['Carbs', 'Protein', 'Fat'],
+                                    datasets:
+                                        [
+                                            {
+                                                backgroundColor: [
+                                                    '#43B02A',
+                                                    '#3DA5D9',
+                                                    '#FF8200',
+                                                ],
+                                                hoverBackgroundColor: [
+                                                    '#369222',
+                                                    '#3187B8',
+                                                    '#DA6800',
+                                                ],
+                                                data: [props.meal.carbs, props.meal.protein, props.meal.fat]
+                                            }
+                                        ]
+                                }}
                                 options={{
                                     plugins: {
                                         datalabels: {
@@ -76,18 +79,19 @@ const MealModal = (props) => {
                                             }
                                         }
                                     },
+                                    maintainAspectRatio: false,
+                                    responsive: false,
                                 }}
                             />
                         </div>
-                        <div style={{ flex: 2, textAlign: 'left', color: '#383838', fontSize: '16px' }}>
-                            <p>{'Calories: '}
-                                {props.meal.calories}</p>
-                            <p>{'Carbs: '}
-                                {props.meal.carbs + ' g'}</p>
-                            <p>{'Protein: '}
-                                {props.meal.protein + ' g'}</p>
-                            <p>{'Fat: '}
-                                {props.meal.fat + ' g'}</p>
+                        <div style={{ flex: 2, textAlign: 'left', color: '#383838', fontSize: '14px' }}>
+                            <span>{'Calories: '}{props.meal.calories}</span>
+                            <div className='space6' />
+                            <span>{'Carbs: '}{props.meal.carbs}</span>
+                            <div className='space6' />
+                            <span>{'Protein: '}{props.meal.protein}</span>
+                            <div className='space6' />
+                            <span>{'Fat: '}{props.meal.fat}</span>
                         </div>
                     </div>
                 </>
