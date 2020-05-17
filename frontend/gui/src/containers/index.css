@@ -10,6 +10,9 @@
     --mainTextColor: #32323c;
 }
 
+/* orange: #ff8200 */
+/* green: #43b02a */
+
 .hidden {
     display: none;
 }
@@ -75,10 +78,10 @@
     text-align: left;
 }
 
-.logoIcon {
+/* .logoIcon { */
     /* x offset, y offset */
     /* transform-origin: 30px 25px; */
-}
+/* } */
 
 .logoIconRotate {
     transform: rotate(360deg);

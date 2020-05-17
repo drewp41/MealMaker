@@ -9,6 +9,11 @@ import {
 
 import groceries from '../FoodIcons/groceries.svg';
 
+import { Pie, defaults } from 'react-chartjs-2';
+import 'chartjs-plugin-datalabels';
+
+defaults.global.legend.display = false;
+
 const { Step } = Steps;
 
 const MealModal = (props) => {
@@ -31,14 +36,52 @@ const MealModal = (props) => {
                                 style={{ width: 100, height: 100 }} />
                         </div>
                         <div style={{ flex: 2, textAlign: 'left' }}>
-                            <p> {'Prep time: '}
+                            <p> {'Prep: '}
                                 {typeof props.meal.prepTime === 'undefined' ? 'n/a'
                                     : props.meal.prepTime + ' mins'}</p>
-                            <p> {'Cook time: '}
+                            <p> {'Cook: '}
                                 {typeof props.meal.cookTime === 'undefined' ? 'n/a'
                                     : props.meal.cookTime + ' mins'}</p>
                         </div>
-                        <div style={{ flex: 2, textAlign: 'left', color: '#383838' }}>
+                        <div style={{ flex: 2, textAlign: 'left' }}>
+                            <Pie data={{
+                                labels: ['Carbs', 'Protein', 'Fat'],
+                                datasets:
+                                    [
+                                        {
+                                            backgroundColor: [
+                                                '#43B02A',
+                                                '#3DA5D9',
+                                                '#FF8200',
+                                            ],
+                                            hoverBackgroundColor: [
+                                                '#369222',
+                                                '#3187B8',
+                                                '#DA6800',
+                                            ],
+                                            data: [props.meal.carbs, props.meal.protein, props.meal.fat]
+                                        }
+                                    ]
+                            }}
+                                options={{
+                                    plugins: {
+                                        datalabels: {
+                                            formatter: (value, context) => {
+                                                return ['C', 'P', 'F'][context.dataIndex];
+                                            },
+                                            color: 'white',
+                                            font: {
+                                                family: 'Camphor',
+                                                size: 14
+                                            }
+                                        }
+                                    },
+                                }}
+                            />
+                        </div>
+                        <div style={{ flex: 2, textAlign: 'left', color: '#383838', fontSize: '16px' }}>
+                            <p>{'Calories: '}
+                                {props.meal.calories}</p>
                             <p>{'Carbs: '}
                                 {props.meal.carbs + ' g'}</p>
                             <p>{'Protein: '}
