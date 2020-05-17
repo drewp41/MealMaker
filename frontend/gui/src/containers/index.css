@@ -246,12 +246,8 @@ button {
     margin: 0 90px 0 0;
 }
 
-.pieTitle {
-    padding: 0 125px 0 0;
-}
-
 .pieDiv {
-    margin: 0 50px 0 auto;
+    margin: 0 80px 0 auto;
 }
 
 /* override collape component color */
@@ -492,18 +488,6 @@ a:hover, a:active{
     .inputArea {
         /* centers it a little better */
         margin: 0 45px 0 0;
-    }
-
-    .pieTitle {
-        /* padding: 0 73px 0 0px; */
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .pieDiv {
-        margin: 0 auto;
     }
 }
 

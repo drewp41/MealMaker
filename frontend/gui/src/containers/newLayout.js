@@ -781,14 +781,11 @@ const NewLayout = (props) => {
                     <br />
                     <br />
 
-                    <b className='pieTitle' style={{ fontSize: '22px', fontFamily: 'Camphor', fontWeight: '300', color: mainTextColor }}>
-                        Macro Breakdown
-                    </b>
-                    <div className='pieDiv' style={{ width: '325px', height: '325px' }}>
-                        {/* <ReactG2Plot
-                            className="pie"
-                            Ctor={Pie}
-                            config={pieConfig} /> */}
+
+                    <div className='pieDiv' style={{ width: '240px', height: '300px', textAlign: 'center' }}>
+                        <b style={{ fontSize: '22px', fontFamily: 'Camphor', fontWeight: '300', color: mainTextColor }}>
+                            Macro Breakdown
+                        </b>
                         <p />
                         <Pie
                             width={240}
@@ -823,7 +820,7 @@ const NewLayout = (props) => {
                                         color: 'white',
                                         font: {
                                             family: 'Camphor',
-                                            size: 14
+                                            size: 16
                                         }
                                     }
                                 },
