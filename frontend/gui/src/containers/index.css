@@ -137,7 +137,6 @@ button {
 
 .colHeaderMid {
     min-width: 250px;
-
 }
 
 .colHeaderR {
@@ -383,36 +382,6 @@ a:hover, a:active{
 .pinIcon:hover {
     color: #202020;
 }
-
-.mealModal {
-    font-family: 'Camphor';
-    font-weight: 300;
-}
-
-.ant-modal-title {
-    text-align: center;
-}
-
-/* Overriding styles for the meal instructions */
-.ant-steps-item-description {
-    color:#595959 !important;
-    font-size: 15px !important;
-}
-.ant-steps-item-tail::after {
-    background: #e0e0e0 !important;
- }
-.ant-steps-item-icon {
-    border-color: #a8a8a8 !important;
- }
- .ant-steps-icon {
-    color: #a8a8a8 !important;
- }
-
- .underline-indigo {
-    text-decoration: none;
-    /* background-image: -webkit-gradient(linear,left top,left bottom,color-stop(70%,transparent),color-stop(70%,rgba(101,125,225,.4))); */
-    background-image: linear-gradient(180deg,transparent 70%,rgba(101,101,101,.4) 0);
-}
  
 
 /* more shadow, same hover */
@@ -479,6 +448,81 @@ a:hover, a:active{
     }
 }
 
+/*
+=======================================================
+                        MEAL MODAL
+=======================================================
+*/
+
+.mealModal {
+    font-family: 'Camphor';
+    font-weight: 300;
+}
+
+.ant-modal-title {
+    text-align: center;
+}
+
+/* Overriding styles for the meal instructions */
+.ant-steps-item-description {
+    color:#595959 !important;
+    font-size: 15px !important;
+}
+.ant-steps-item-tail::after {
+    background: #e0e0e0 !important;
+}
+.ant-steps-item-icon {
+    border-color: #a8a8a8 !important;
+}
+ .ant-steps-icon {
+    color: #a8a8a8 !important;
+}
+
+.rowMM {
+    display: flex;
+    color: #383838;
+}
+
+.colMMIcon {
+    min-width: 100px;
+    margin: auto 0;
+}
+
+.colMMPrep {
+    min-width: 120px;
+    text-align: left;
+    padding: 0 0 0 20px;
+    margin: 0 15px 0 0;
+}
+
+.colMML {
+    flex: 1 1 auto;
+}
+
+.colMMPie {
+    min-width: 110px;
+    text-align: center;
+}
+
+.colMMCals {
+    min-width: 145px;
+    padding: 0 0 0 35px;
+    text-align: left;
+    font-size: 16px;
+}
+
+.colMMR {
+    flex: 1 1 auto;
+}
+
+ /* .underline-indigo {
+    text-decoration: none;
+    background-image: linear-gradient(180deg,transparent 70%,rgba(101,101,101,.4) 0);
+} */
+
+@media screen and (max-width: 555px) { 
+    
+}
 
 /*
 =======================================================

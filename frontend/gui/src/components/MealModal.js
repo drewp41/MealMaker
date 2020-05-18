@@ -68,14 +68,14 @@ const MealModal = (props) => {
                     <b style={{ fontWeight: 400, fontSize: '18px' }}>{props.meal.name}</b>
                     <br />
                     <br />
-                    <div style={{ display: 'flex', color: '#383838' }}>
-                        <div style={{ flex: 1, textAlign: 'left', margin: 'auto 0' }}>
+                    <div className='rowMM'>
+                        <div className='colMMIcon'>
                             <img src={groceries} alt={props.meal.name + 'image'}
                                 style={{ width: 100, height: 100 }} />
                         </div>
-                        <div style={{ flex: 2, textAlign: 'left', padding: '0 0 0 25px' }}>
+                        <div className='colMMPrep'>
                             <div className='space8' />
-                            <div style={{ padding: '0 90px 0 0' }}>
+                            <div style={{ padding: '0 0px 0 0' }}>
                                 <p> {'Prep: '}
                                     <span style={{ float: 'right' }}>{typeof props.meal.prepTime === 'undefined' ? 'n/a'
                                         : props.meal.prepTime + ' mins'}</span>
@@ -93,7 +93,8 @@ const MealModal = (props) => {
                                 </span>
                             </div>
                         </div>
-                        <div style={{ flex: 2, textAlign: 'center' }}>
+                        <div className='colMML' />
+                        <div className='colMMPie'>
                             <div style={{ display: 'inline-block', margin: '3px 0 -3px 0' }}>
                                 <Pie
                                     width={110}
@@ -111,8 +112,8 @@ const MealModal = (props) => {
                                 />
                             </div>
                         </div>
-                        <div style={{ flex: 2, textAlign: 'left', fontSize: '16px' }}>
-                            <div style={{ padding: '0 80px 0 0' }}>
+                        <div className='colMMCals'>
+                            <div style={{ padding: '0 0px 0 0' }}>
                                 <span>{'Calories: '}
                                     <span style={{ float: 'right' }}>{props.meal.calories}</span>
                                 </span>
@@ -132,6 +133,7 @@ const MealModal = (props) => {
                                 </span>
                             </div>
                         </div>
+                        <div className='colMMR' />
                     </div>
                 </>
             }
