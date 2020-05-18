@@ -18,7 +18,7 @@ const pieOptions = {
     plugins: {
         datalabels: {
             formatter: (value, context) => {
-                return ['C', 'P', 'F'][context.dataIndex];
+                return (value === 0) ? '' : ['C', 'P', 'F'][context.dataIndex];
             },
             color: 'white',
             font: {
@@ -27,32 +27,29 @@ const pieOptions = {
             }
         }
     },
+    elements: {
+        arc: {
+            borderWidth: 1
+        }
+    },
     maintainAspectRatio: false,
     responsive: false,
 
 }
 
-const pieData = {
-    labels: ['Carbs', 'Protein', 'Fat'],
-    datasets:
-        [
-            {
-                backgroundColor: [
-                    '#5B8FF9',
-                    '#E8684A',
-                    '#47B57A',
-                    // '#5D7092',
-                ],
-                hoverBackgroundColor: [
-                    '#4972D8',
-                    '#C7533B',
-                    '#399662',
-                    // '#4A5A7B'
-                ],
-                data: [30, 40, 30]
-                // data: [props.meal.carbs, props.meal.protein, props.meal.fat]
-            }
-        ]
+const pieColors = {
+    backgroundColor: [
+        '#5B8FF9',
+        '#E8684A',
+        '#47B57A',
+        // '#5D7092',
+    ],
+    hoverBackgroundColor: [
+        '#4972D8',
+        '#C7533B',
+        '#399662',
+        // '#4A5A7B'
+    ],
 }
 
 const { Step } = Steps;
@@ -84,23 +81,44 @@ const MealModal = (props) => {
                                 {typeof props.meal.cookTime === 'undefined' ? 'n/a'
                                     : props.meal.cookTime + ' mins'}</p>
                         </div>
-                        <div style={{ flex: 2, textAlign: 'left' }}>
-                            <Pie
-                                width={110}
-                                height={110}
-                                data={pieData}
-                                // pieData.datasets[0].data = [props.meal.carbs, props.meal.protein, props.meal.fat]}
-                                options={pieOptions}
-                            />
+                        <div style={{ flex: 2, textAlign: 'center' }}>
+                            <div style={{ display: 'inline-block' }}>
+                                <Pie
+                                    width={110}
+                                    height={110}
+                                    borderWidth={5}
+                                    data={{
+                                        labels: ['Carbs', 'Protein', 'Fat'],
+                                        datasets:
+                                            [{
+                                                ...pieColors,
+                                                data: [props.meal.carbs, props.meal.protein, props.meal.fat]
+                                            }]
+                                    }}
+                                    options={pieOptions}
+                                />
+                            </div>
                         </div>
-                        <div style={{ flex: 2, textAlign: 'left', color: '#383838', fontSize: '14px' }}>
-                            <span>{'Calories: '}{props.meal.calories}</span>
-                            <div className='space6' />
-                            <span>{'Carbs: '}{props.meal.carbs}</span>
-                            <div className='space6' />
-                            <span>{'Protein: '}{props.meal.protein}</span>
-                            <div className='space6' />
-                            <span>{'Fat: '}{props.meal.fat}</span>
+                        <div style={{ flex: 2, textAlign: 'left', color: '#383838', fontSize: '16px' }}>
+                            <div style={{ padding: '0 80px 0 0' }}>
+                                <span>{'Calories: '}
+                                    <span style={{ float: 'right' }}>{props.meal.calories}</span>
+                                </span>
+                                <div className='space6' />
+                                <div style={{ width: '25px', borderBottom: '2px solid #a0a0a0' }} />
+                                <div className='space8' />
+                                <span> {'Carbs: '}
+                                    <span style={{ float: 'right' }}>{props.meal.carbs}{'g'}</span>
+                                </span>
+                                <div className='space6' />
+                                <span> {'Protein: '}
+                                    <span style={{ float: 'right' }}>{props.meal.protein}{'g'}</span>
+                                </span>
+                                <div className='space6' />
+                                <span> {'Fat: '}
+                                    <span style={{ float: 'right' }}>{props.meal.fat}{'g'}</span>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </>

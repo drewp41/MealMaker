@@ -48,62 +48,41 @@ const emptyObj = {
     sidePinned: false,
 }
 
+const pieOptions = {
+    plugins: {
+        datalabels: {
+            formatter: (value, context) => {
+                return (value === 0) ? '' : ['C', 'P', 'F'][context.dataIndex];
+            },
+            color: 'white',
+            font: {
+                family: 'Camphor',
+                size: 16
+            }
+        }
+    },
+    elements: {
+        arc: {
+            borderWidth: 1
+        }
+    },
+    maintainAspectRatio: false,
+    responsive: false,
+}
 
-const pieConfig = {
-    width: 325,
-    height: 325,
-    //forceFit: true,
-    pixelRatio: 4,
-    renderer: 'canvas',
-    title: {
-        visible: false,
-        text: '            Macro Breakdown',
-        //position: 'middle',
-        style: {
-            fontSize: 22,
-            fontFamily: 'Camphor',
-            fontWeight: 300,
-            fill: mainTextColor,
-        },
-    },
-    description: {
-        visible: false,
-    },
-    radius: 1,
-    colorField: 'type',
-    color: ['#5B8FF9', '#E15554', '#3BB273'], //#3BB273, #7768AE
-    data: [
-        {
-            type: 'Carbohydrates',
-            value: 33,
-        },
-        {
-            type: 'Protein',
-            value: 33,
-        },
-        {
-            type: 'Fat',
-            value: 33,
-        },
+const pieColors = {
+    backgroundColor: [
+        '#5B8FF9',
+        '#E8684A',
+        '#47B57A',
+        // '#5D7092',
     ],
-    angleField: 'value',
-    label: {
-        visible: true,
-        type: 'inner',
-        formatter: (val) => {
-            return val + '%';
-        },
-        style: {
-            fontFamily: 'Camphor',
-            fill: '#fcfcfc',
-            lineWidth: 0,
-        },
-    },
-    legend: {
-        visible: true,
-        position: 'bottom-center',
-        offsetY: -5
-    },
+    hoverBackgroundColor: [
+        '#4972D8',
+        '#C7533B',
+        '#399662',
+        // '#4A5A7B'
+    ],
 }
 
 function useAsyncState(initialValue) {
@@ -793,40 +772,12 @@ const NewLayout = (props) => {
                             data={{
                                 labels: ['Carbs', 'Protein', 'Fat'],
                                 datasets:
-                                    [
-                                        {
-                                            backgroundColor: [
-                                                '#5B8FF9',
-                                                '#E8684A',
-                                                '#47B57A',
-                                                // '#5D7092',
-                                            ],
-                                            hoverBackgroundColor: [
-                                                '#4972D8',
-                                                '#C7533B',
-                                                '#399662',
-                                                // '#4A5A7B'
-                                            ],
-                                            data: enableMacros ? [macros.carbs, macros.protein, macros.fat] : [33, 33, 33]
-                                        }
-                                    ]
+                                    [{
+                                        ...pieColors,
+                                        data: enableMacros ? [macros.carbs, macros.protein, macros.fat] : [33, 33, 33]
+                                    }]
                             }}
-                            options={{
-                                plugins: {
-                                    datalabels: {
-                                        formatter: (value, context) => {
-                                            return ['C', 'P', 'F'][context.dataIndex];
-                                        },
-                                        color: 'white',
-                                        font: {
-                                            family: 'Camphor',
-                                            size: 16
-                                        }
-                                    }
-                                },
-                                maintainAspectRatio: false,
-                                responsive: false,
-                            }}
+                            options={pieOptions}
                         />
                     </div>
 

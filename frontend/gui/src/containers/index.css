@@ -96,28 +96,6 @@
     color:#484848;
 }
 
-
-#pt::afterr {
-	position: absolute;
-	content: '';
-	border-radius: 1px;
-	width: 100%;
-	height: 5px;
-	bottom: 2px;
-    left: 0;
-    /* background: #42af2a; */
-    background:rgb(71,181,122);
-	/* background: -webkit-gradient(linear, right top, left top, from(#f8416c), color-stop(#f1e319), color-stop(#3bef17), color-stop(#02bafe), color-stop(#3bef17), color-stop(#f1e319), to(#f8416c));
-	background: -webkit-linear-gradient(right, #f8416c, #f1e319, #3bef17, #02bafe, #3bef17, #f1e319, #f8416c);
-	background: -o-linear-gradient(right, #f8416c, #f1e319, #3bef17, #02bafe, #3bef17, #f1e319, #f8416c); */
-	/* background: linear-gradient(270deg, #f8416c, #f1e319, #3bef17, #02bafe, #3bef17, #f1e319, #f8416c); */
-	background-size: 10000% 10000%;
-	-webkit-animation: header_slide 25s linear infinite;
-	        animation: header_slide 25s linear infinite;
-	-webkit-transform: translateZ(-1px);
-	        transform: translateZ(-1px);
-}
-
 .headerText{ 
     font-size: 17px;
     font-family: 'Camphor';
@@ -429,6 +407,12 @@ a:hover, a:active{
  .ant-steps-icon {
     color: #a8a8a8 !important;
  }
+
+ .underline-indigo {
+    text-decoration: none;
+    /* background-image: -webkit-gradient(linear,left top,left bottom,color-stop(70%,transparent),color-stop(70%,rgba(101,125,225,.4))); */
+    background-image: linear-gradient(180deg,transparent 70%,rgba(101,101,101,.4) 0);
+}
  
 
 /* more shadow, same hover */
@@ -488,6 +472,10 @@ a:hover, a:active{
     .inputArea {
         /* centers it a little better */
         margin: 0 45px 0 0;
+    }
+
+    .pieDiv {
+        margin: 0 50px 0 auto;
     }
 }
 
