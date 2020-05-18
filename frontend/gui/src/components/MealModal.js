@@ -3,7 +3,7 @@ import {
     Modal, Steps
 } from 'antd';
 import {
-    SyncOutlined,
+    SyncOutlined, HeartOutlined, HeartFilled,
     PushpinOutlined, PushpinFilled
 } from '@ant-design/icons';
 
@@ -69,20 +69,32 @@ const MealModal = (props) => {
                     <br />
                     <br />
                     <div style={{ display: 'flex', color: '#383838' }}>
-                        <div style={{ flex: 1, textAlign: 'left', padding: '5px 0 0 0' }}>
+                        <div style={{ flex: 1, textAlign: 'left', margin: 'auto 0' }}>
                             <img src={groceries} alt={props.meal.name + 'image'}
                                 style={{ width: 100, height: 100 }} />
                         </div>
-                        <div style={{ flex: 2, textAlign: 'left', padding: '0 0 0 20px' }}>
-                            <p> {'Prep: '}
-                                {typeof props.meal.prepTime === 'undefined' ? 'n/a'
-                                    : props.meal.prepTime + ' mins'}</p>
-                            <p> {'Cook: '}
-                                {typeof props.meal.cookTime === 'undefined' ? 'n/a'
-                                    : props.meal.cookTime + ' mins'}</p>
+                        <div style={{ flex: 2, textAlign: 'left', padding: '0 0 0 25px' }}>
+                            <div className='space8' />
+                            <div style={{ padding: '0 90px 0 0' }}>
+                                <p> {'Prep: '}
+                                    <span style={{ float: 'right' }}>{typeof props.meal.prepTime === 'undefined' ? 'n/a'
+                                        : props.meal.prepTime + ' mins'}</span>
+                                </p>
+                                <p> {'Cook: '}
+                                    <span style={{ float: 'right' }}>{typeof props.meal.cookTime === 'undefined' ? 'n/a'
+                                        : props.meal.cookTime + ' mins'}</span>
+                                </p>
+                                <span style={{ fontSize: '18px' }}>
+                                    <SyncOutlined />
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <PushpinOutlined />
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <HeartOutlined />
+                                </span>
+                            </div>
                         </div>
                         <div style={{ flex: 2, textAlign: 'center' }}>
-                            <div style={{ display: 'inline-block' }}>
+                            <div style={{ display: 'inline-block', margin: '3px 0 -3px 0' }}>
                                 <Pie
                                     width={110}
                                     height={110}
@@ -99,7 +111,7 @@ const MealModal = (props) => {
                                 />
                             </div>
                         </div>
-                        <div style={{ flex: 2, textAlign: 'left', color: '#383838', fontSize: '16px' }}>
+                        <div style={{ flex: 2, textAlign: 'left', fontSize: '16px' }}>
                             <div style={{ padding: '0 80px 0 0' }}>
                                 <span>{'Calories: '}
                                     <span style={{ float: 'right' }}>{props.meal.calories}</span>
@@ -145,7 +157,7 @@ const MealModal = (props) => {
                     <Step description={elem} key={idx} />
                 )}
             </Steps>
-        </Modal>
+        </Modal >
     );
 }
 
