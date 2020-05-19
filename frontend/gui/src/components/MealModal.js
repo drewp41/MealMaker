@@ -70,12 +70,11 @@ const MealModal = (props) => {
                     <br />
                     <div className='rowMM'>
                         <div className='colMMIcon'>
-                            <img src={groceries} alt={props.meal.name + 'image'}
-                                style={{ width: 100, height: 100 }} />
-                        </div>
-                        <div className='colMMPrep'>
-                            <div className='space8' />
-                            <div style={{ padding: '0 0px 0 0' }}>
+                            <div style={{ width: '100px' }}>
+                                <img src={groceries} alt={props.meal.name + 'image'}
+                                    style={{ width: 100, height: 100 }} />
+                            </div>
+                            <div style={{ width: '120px', textAlign: 'left', margin: '0 0 0 20px' }}>
                                 <p> {'Prep: '}
                                     <span style={{ float: 'right' }}>{typeof props.meal.prepTime === 'undefined' ? 'n/a'
                                         : props.meal.prepTime + ' mins'}</span>
@@ -86,16 +85,16 @@ const MealModal = (props) => {
                                 </p>
                                 <span style={{ fontSize: '18px' }}>
                                     <SyncOutlined />
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                <PushpinOutlined />
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                <HeartOutlined />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <PushpinOutlined />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <HeartOutlined />
                                 </span>
                             </div>
                         </div>
-                        <div className='colMML' />
+                        <div className='colMMFiller' />
                         <div className='colMMPie'>
-                            <div style={{ display: 'inline-block', margin: '3px 0 -3px 0' }}>
+                            <div style={{ width: '110px' }}>
                                 <Pie
                                     width={110}
                                     height={110}
@@ -111,9 +110,7 @@ const MealModal = (props) => {
                                     options={pieOptions}
                                 />
                             </div>
-                        </div>
-                        <div className='colMMCals'>
-                            <div style={{ padding: '0 0px 0 0' }}>
+                            <div style={{ width: '145px', textAlign: 'left', margin: '0 0 0 35px' }}>
                                 <span>{'Calories: '}
                                     <span style={{ float: 'right' }}>{props.meal.calories}</span>
                                 </span>
@@ -133,14 +130,14 @@ const MealModal = (props) => {
                                 </span>
                             </div>
                         </div>
-                        <div className='colMMR' />
+                        <div className='colMMFiller' />
                     </div>
                 </>
             }
             visible={props.visible}
             onCancel={handleCancel}
             footer={null}
-            width='750px'
+            width='700px'
             bodyStyle={{}}
         >
             <b style={{ fontSize: '16px', fontWeight: 400 }}>Ingredients:</b>

@@ -658,8 +658,9 @@ const NewLayout = (props) => {
             <div className="mainBodyRow" style={{ minHeight: 680 }}>
                 <div className="leftColumn">
                     <div className="inputArea" >
-                        <span className="leftColumnText">I want to eat &nbsp;
-                                    <NumberFormat className='ant-input' id='calorieInput' style={{ width: '126px' }} suffix={' calories'}
+                        <span className="leftColumnText">
+                            I want to eat &nbsp;
+                            <NumberFormat className='ant-input' id='calorieInput' style={{ width: '126px' }} suffix={' calories'}
                                 defaultValue={2000} allowEmptyFormatting={true}
                                 onValueChange={(value) => {
                                     setCalories(Math.floor(value.floatValue));
