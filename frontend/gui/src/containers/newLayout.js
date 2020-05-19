@@ -66,6 +66,14 @@ const pieOptions = {
             borderWidth: 1
         }
     },
+    tooltips: {
+        callbacks: {
+            label: (tooltipItem, data) => {
+                return data['labels'][tooltipItem['index']] + ': ' +
+                    data['datasets'][0]['data'][tooltipItem['index']] + '%';
+            }
+        }
+    },
     maintainAspectRatio: false,
     responsive: false,
 }
@@ -775,7 +783,11 @@ const NewLayout = (props) => {
                                 datasets:
                                     [{
                                         ...pieColors,
-                                        data: enableMacros ? [macros.carbs, macros.protein, macros.fat] : [33, 33, 33]
+                                        data: enableMacros ?
+                                            [Math.floor(macros.carbs * 100 / (macros.carbs + macros.protein + macros.fat * (9 / 4))),
+                                            Math.floor(macros.protein * 100 / (macros.carbs + macros.protein + macros.fat * (9 / 4))),
+                                            Math.floor((macros.fat * (9 / 4) * 100) / (macros.carbs + macros.protein + macros.fat * (9 / 4)))]
+                                            : [33, 33, 33]
                                     }]
                             }}
                             options={pieOptions}

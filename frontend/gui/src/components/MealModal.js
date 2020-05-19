@@ -32,6 +32,14 @@ const pieOptions = {
             borderWidth: 1
         }
     },
+    tooltips: {
+        callbacks: {
+            label: (tooltipItem, data) => {
+                return data['labels'][tooltipItem['index']] + ': ' +
+                    data['datasets'][0]['data'][tooltipItem['index']] + '%';
+            }
+        }
+    },
     maintainAspectRatio: false,
     responsive: false,
 
@@ -104,7 +112,10 @@ const MealModal = (props) => {
                                         datasets:
                                             [{
                                                 ...pieColors,
-                                                data: [props.meal.carbs, props.meal.protein, props.meal.fat]
+                                                data:
+                                                    [Math.floor(props.meal.carbs * 100 / (props.meal.carbs + props.meal.protein + props.meal.fat * (9 / 4))),
+                                                    Math.floor(props.meal.protein * 100 / (props.meal.carbs + props.meal.protein + props.meal.fat * (9 / 4))),
+                                                    Math.floor((props.meal.fat * (9 / 4) * 100) / (props.meal.carbs + props.meal.protein + props.meal.fat * (9 / 4)))]
                                             }]
                                     }}
                                     options={pieOptions}
