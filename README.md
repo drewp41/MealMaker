@@ -1,4 +1,4 @@
-# Macro Meal Maker
+# mealmaker.io
 
 ![](https://img.shields.io/badge/react-16.13.0-red)
 ![](https://img.shields.io/badge/django-3.03-blue)  
