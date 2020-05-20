@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { ButtonHTMLType } from '../button/button';
 import { ButtonGroupProps } from '../button/button-group';
-import { ConfigConsumerProps } from '../config-provider';
 import { DropDownProps } from './dropdown';
 declare type DropdownButtonType = 'primary' | 'ghost' | 'dashed';
 export interface DropdownButtonProps extends ButtonGroupProps, DropDownProps {
@@ -15,14 +14,8 @@ export interface DropdownButtonProps extends ButtonGroupProps, DropDownProps {
     title?: string;
     buttonsRender?: (buttons: React.ReactNode[]) => React.ReactNode[];
 }
-export default class DropdownButton extends React.Component<DropdownButtonProps, any> {
-    static __ANT_BUTTON: boolean;
-    static defaultProps: {
-        placement: "bottomRight" | "topLeft" | "topCenter" | "topRight" | "bottomLeft" | "bottomCenter" | undefined;
-        type: DropdownButtonType;
-        buttonsRender: (buttons: React.ReactNode[]) => React.ReactNode[];
-    };
-    renderButton: ({ getPopupContainer: getContextPopupContainer, getPrefixCls, }: ConfigConsumerProps) => JSX.Element;
-    render(): JSX.Element;
+interface DropdownButtonInterface extends React.FC<DropdownButtonProps> {
+    __ANT_BUTTON: boolean;
 }
-export {};
+declare const DropdownButton: DropdownButtonInterface;
+export default DropdownButton;

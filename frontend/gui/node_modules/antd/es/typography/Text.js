@@ -16,14 +16,14 @@ var __rest = this && this.__rest || function (s, e) {
 };
 
 import * as React from 'react';
-import warning from '../_util/warning';
+import devWarning from '../_util/devWarning';
 import Base from './Base';
 
 var Text = function Text(_a) {
   var ellipsis = _a.ellipsis,
       restProps = __rest(_a, ["ellipsis"]);
 
-  warning(_typeof(ellipsis) !== 'object', 'Typography.Text', '`ellipsis` only supports boolean value.');
+  devWarning(_typeof(ellipsis) !== 'object', 'Typography.Text', '`ellipsis` only supports boolean value.');
   return /*#__PURE__*/React.createElement(Base, _extends({}, restProps, {
     ellipsis: !!ellipsis,
     component: "span"

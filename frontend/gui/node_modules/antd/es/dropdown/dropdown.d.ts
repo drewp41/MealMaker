@@ -1,6 +1,5 @@
 import * as React from 'react';
 import DropdownButton from './dropdown-button';
-import { ConfigConsumerProps } from '../config-provider';
 declare const Placements: ["topLeft", "topCenter", "topRight", "bottomLeft", "bottomCenter", "bottomRight"];
 declare type Placement = typeof Placements[number];
 declare type OverlayFunc = () => React.ReactElement;
@@ -35,16 +34,8 @@ export interface DropDownProps {
     mouseLeaveDelay?: number;
     openClassName?: string;
 }
-export default class Dropdown extends React.Component<DropDownProps, any> {
-    static Button: typeof DropdownButton;
-    static defaultProps: {
-        mouseEnterDelay: number;
-        mouseLeaveDelay: number;
-    };
-    getTransitionName(): string;
-    renderOverlay: (prefixCls: string) => React.ReactElement<any, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
-    getPlacement(direction?: string): "bottomRight" | "topLeft" | "topCenter" | "topRight" | "bottomLeft" | "bottomCenter";
-    renderDropDown: ({ getPopupContainer: getContextPopupContainer, getPrefixCls, direction, }: ConfigConsumerProps) => JSX.Element;
-    render(): JSX.Element;
+interface DropdownInterface extends React.FC<DropDownProps> {
+    Button: typeof DropdownButton;
 }
-export {};
+declare const Dropdown: DropdownInterface;
+export default Dropdown;

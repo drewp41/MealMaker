@@ -144,67 +144,33 @@ async function fetchBreakfastMainData(cals, numMeals, carbs, protein, fat) {
         // target = (approxCals - 100) +- 25
         minBreakfastCals = approxCals - 125;
         maxBreakfastCals = approxCals - 75;
-
-        // if they all equal 0, macro preferences are off and make the macros anything
-        if (carbs === 0 && protein === 0 && fat === 0) {
-            minCarbs = 0;
-            maxCarbs = 1000;
-            minProtein = 0;
-            maxProtein = 1000;
-            minFat = 0;
-            maxFat = 1000;
-        } else {
-            minCarbs = Math.floor(carbs / numMeals) - 10;
-            maxCarbs = Math.floor(carbs / numMeals) + 10;
-            minProtein = Math.floor(protein / numMeals) - 10;
-            maxProtein = Math.floor(protein / numMeals) + 10;
-            minFat = Math.floor(fat / numMeals) - 5;
-            maxFat = Math.floor(fat / numMeals) + 5;
-        }
     } else if (numMeals === 2) {
         approxCals = Math.floor((2 / 5) * cals);
         // target = (approxCals - 100) +- 25
         minBreakfastCals = approxCals - 125;
         maxBreakfastCals = approxCals - 75;
-
-        // if they all equal 0, macro preferences are off and make the macros anything
-        if (carbs === 0 && protein === 0 && fat === 0) {
-            minCarbs = 0;
-            maxCarbs = 1000;
-            minProtein = 0;
-            maxProtein = 1000;
-            minFat = 0;
-            maxFat = 1000;
-        } else {
-            minCarbs = Math.floor(carbs / numMeals) - 10;
-            maxCarbs = Math.floor(carbs / numMeals) + 10;
-            minProtein = Math.floor(protein / numMeals) - 10;
-            maxProtein = Math.floor(protein / numMeals) + 10;
-            minFat = Math.floor(fat / numMeals) - 5;
-            maxFat = Math.floor(fat / numMeals) + 5;
-        }
     } else {
         approxCals = Math.floor(cals / numMeals);
         // target = (approxCals - 100) +- 25
         minBreakfastCals = approxCals - 125;
         maxBreakfastCals = approxCals - 75;
+    }
 
-        // if they all equal 0, macro preferences are off and make the macros anything
-        if (carbs === 0 && protein === 0 && fat === 0) {
-            minCarbs = 0;
-            maxCarbs = 1000;
-            minProtein = 0;
-            maxProtein = 1000;
-            minFat = 0;
-            maxFat = 1000;
-        } else {
-            minCarbs = Math.floor(carbs / numMeals) - 10;
-            maxCarbs = Math.floor(carbs / numMeals) + 10;
-            minProtein = Math.floor(protein / numMeals) - 10;
-            maxProtein = Math.floor(protein / numMeals) + 10;
-            minFat = Math.floor(fat / numMeals) - 5;
-            maxFat = Math.floor(fat / numMeals) + 5;
-        }
+    // if they all equal 0, macro preferences are off and make the macros anything
+    if (carbs === 0 && protein === 0 && fat === 0) {
+        minCarbs = 0;
+        maxCarbs = 1000;
+        minProtein = 0;
+        maxProtein = 1000;
+        minFat = 0;
+        maxFat = 1000;
+    } else {
+        minCarbs = Math.floor(carbs / numMeals) - 10;
+        maxCarbs = Math.floor(carbs / numMeals) + 10;
+        minProtein = Math.floor(protein / numMeals) - 10;
+        maxProtein = Math.floor(protein / numMeals) + 10;
+        minFat = Math.floor(fat / numMeals) - 5;
+        maxFat = Math.floor(fat / numMeals) + 5;
     }
 
     try {
@@ -383,21 +349,6 @@ async function fetchRegularMainData(cals, numMeals, carbs, protein, fat) {
         // target = (approxCals - 150) +- 25 bc guaranteed side
         minMainCals = approxCals - 175;
         maxMainCals = approxCals - 125;
-        if (carbs === 0 && protein === 0 && fat === 0) {
-            minCarbs = 0;
-            maxCarbs = 1000;
-            minProtein = 0;
-            maxProtein = 1000;
-            minFat = 0;
-            maxFat = 1000;
-        } else {
-            minCarbs = Math.floor((3 / 5) * carbs) - 10;
-            maxCarbs = Math.floor((3 / 5) * carbs) + 10;
-            minProtein = Math.floor((3 / 5) * protein) - 10;
-            maxProtein = Math.floor((3 / 5) * protein) + 10;
-            minFat = Math.floor((3 / 5) * fat) - 5;
-            maxFat = Math.floor((3 / 5) * fat) + 5;
-        }
     } else { //numMeals === 3-6
         approxCals = Math.floor(cals / numMeals);
         // target = (approxCals - 75) +- 25
@@ -405,23 +356,22 @@ async function fetchRegularMainData(cals, numMeals, carbs, protein, fat) {
         maxMainCals = approxCals - 50;
         // macro preferences using a range of +- 15
         // might have to reduce carbs to account for extra carbs from the sides
+    }
 
-        // if they all equal 0, macro preferences are off and make the macros anything
-        if (carbs === 0 && protein === 0 && fat === 0) {
-            minCarbs = 0;
-            maxCarbs = 1000;
-            minProtein = 0;
-            maxProtein = 1000;
-            minFat = 0;
-            maxFat = 1000;
-        } else {
-            minCarbs = Math.floor(carbs / numMeals) - 10;
-            maxCarbs = Math.floor(carbs / numMeals) + 10;
-            minProtein = Math.floor(protein / numMeals) - 10;
-            maxProtein = Math.floor(protein / numMeals) + 10;
-            minFat = Math.floor(fat / numMeals) - 5;
-            maxFat = Math.floor(fat / numMeals) + 5;
-        }
+    if (carbs === 0 && protein === 0 && fat === 0) {
+        minCarbs = 0;
+        maxCarbs = 1000;
+        minProtein = 0;
+        maxProtein = 1000;
+        minFat = 0;
+        maxFat = 1000;
+    } else {
+        minCarbs = Math.floor((3 / 5) * carbs) - 10;
+        maxCarbs = Math.floor((3 / 5) * carbs) + 10;
+        minProtein = Math.floor((3 / 5) * protein) - 10;
+        maxProtein = Math.floor((3 / 5) * protein) + 10;
+        minFat = Math.floor((3 / 5) * fat) - 5;
+        maxFat = Math.floor((3 / 5) * fat) + 5;
     }
 
     try {

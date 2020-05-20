@@ -14,7 +14,7 @@ var __rest = this && this.__rest || function (s, e) {
 };
 
 import * as React from 'react';
-import warning from 'warning';
+import devWarning from '../_util/devWarning';
 import Base from './Base';
 import { tupleNum } from '../_util/type';
 var TITLE_ELE_LIST = tupleNum(1, 2, 3, 4);
@@ -29,7 +29,7 @@ var Title = function Title(props) {
   if (TITLE_ELE_LIST.indexOf(level) !== -1) {
     component = "h".concat(level);
   } else {
-    warning(false, 'Title only accept `1 | 2 | 3 | 4` as `level` value.');
+    devWarning(false, 'Typography.Title', 'Title only accept `1 | 2 | 3 | 4` as `level` value.');
     component = 'h1';
   }
 

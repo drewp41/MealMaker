@@ -19,10 +19,11 @@ import * as React from 'react';
 import classNames from 'classnames';
 import toArray from "rc-util/es/Children/toArray";
 import ResponsiveObserve, { responsiveArray } from '../_util/responsiveObserve';
-import warning from '../_util/warning';
+import devWarning from '../_util/devWarning';
 import { ConfigContext } from '../config-provider';
 import Row from './Row';
 import DescriptionsItem from './Item';
+import { cloneElement } from '../_util/reactNode';
 var DEFAULT_COLUMN_MAP = {
   xxl: 3,
   xl: 3,
@@ -54,10 +55,10 @@ function getFilledItem(node, span, rowRestCol) {
   var clone = node;
 
   if (span === undefined || span > rowRestCol) {
-    clone = React.cloneElement(node, {
+    clone = cloneElement(node, {
       span: rowRestCol
     });
-    warning(span === undefined, 'Descriptions', 'Sum of column `span` in a line not match `column` of Descriptions.');
+    devWarning(span === undefined, 'Descriptions', 'Sum of column `span` in a line not match `column` of Descriptions.');
   }
 
   return clone;

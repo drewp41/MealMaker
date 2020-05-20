@@ -45,6 +45,12 @@
 .ant-mentions::placeholder {
   color: #bfbfbf;
 }
+.ant-mentions:-moz-placeholder-shown {
+  text-overflow: ellipsis;
+}
+.ant-mentions:-ms-input-placeholder {
+  text-overflow: ellipsis;
+}
 .ant-mentions:placeholder-shown {
   text-overflow: ellipsis;
 }
@@ -160,6 +166,12 @@ textarea.ant-mentions {
 }
 .ant-mentions > textarea::placeholder {
   color: #bfbfbf;
+}
+.ant-mentions > textarea:-moz-placeholder-shown {
+  text-overflow: ellipsis;
+}
+.ant-mentions > textarea:-ms-input-placeholder {
+  text-overflow: ellipsis;
 }
 .ant-mentions > textarea:placeholder-shown {
   text-overflow: ellipsis;

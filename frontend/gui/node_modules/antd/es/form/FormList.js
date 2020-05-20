@@ -15,13 +15,13 @@ var __rest = this && this.__rest || function (s, e) {
 
 import * as React from 'react';
 import { List } from 'rc-field-form';
-import warning from '../_util/warning';
+import devWarning from '../_util/devWarning';
 
 var FormList = function FormList(_a) {
   var children = _a.children,
       props = __rest(_a, ["children"]);
 
-  warning(!!props.name, 'Form.List', 'Miss `name` prop.');
+  devWarning(!!props.name, 'Form.List', 'Miss `name` prop.');
   return /*#__PURE__*/React.createElement(List, props, function (fields, operation) {
     return children(fields.map(function (field) {
       return _extends(_extends({}, field), {

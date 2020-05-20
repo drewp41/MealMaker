@@ -16,7 +16,7 @@ export default class Search extends React.Component<SearchProps, any> {
     saveInput: (node: Input) => void;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onMouseDown: React.MouseEventHandler<HTMLElement>;
-    onSearch: (e: React.MouseEvent<HTMLElement, MouseEvent> | React.KeyboardEvent<HTMLInputElement>) => void;
+    onSearch: (e: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLInputElement>) => void;
     focus(): void;
     blur(): void;
     renderLoading: (prefixCls: string) => JSX.Element;

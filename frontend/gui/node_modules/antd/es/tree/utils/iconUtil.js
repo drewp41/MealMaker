@@ -5,6 +5,7 @@ import FileOutlined from '@ant-design/icons/FileOutlined';
 import MinusSquareOutlined from '@ant-design/icons/MinusSquareOutlined';
 import PlusSquareOutlined from '@ant-design/icons/PlusSquareOutlined';
 import CaretDownFilled from '@ant-design/icons/CaretDownFilled';
+import { isValidElement, cloneElement } from '../../_util/reactNode';
 export default function renderSwitcherIcon(prefixCls, switcherIcon, showLine, _ref) {
   var isLeaf = _ref.isLeaf,
       expanded = _ref.expanded,
@@ -24,8 +25,8 @@ export default function renderSwitcherIcon(prefixCls, switcherIcon, showLine, _r
 
   var switcherCls = "".concat(prefixCls, "-switcher-icon");
 
-  if (React.isValidElement(switcherIcon)) {
-    return React.cloneElement(switcherIcon, {
+  if (isValidElement(switcherIcon)) {
+    return cloneElement(switcherIcon, {
       className: classNames(switcherIcon.props.className || '', switcherCls)
     });
   }

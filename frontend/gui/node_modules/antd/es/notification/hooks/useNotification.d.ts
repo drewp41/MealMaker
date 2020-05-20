@@ -4,4 +4,4 @@ import { NotificationInstance, ArgsProps } from '..';
 export default function createUseNotification(getNotificationInstance: (args: ArgsProps, callback: (info: {
     prefixCls: string;
     instance: RCNotificationInstance;
-}) => void) => void, getRCNoticeProps: (args: ArgsProps, prefixCls: string) => RCNoticeContent): () => [NotificationInstance, React.ReactElement<any, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>];
+}) => void) => void, getRCNoticeProps: (args: ArgsProps, prefixCls: string) => RCNoticeContent): () => [NotificationInstance, React.ReactElement];

@@ -278,6 +278,12 @@
 .ant-pagination-options-quick-jumper input::placeholder {
   color: #bfbfbf;
 }
+.ant-pagination-options-quick-jumper input:-moz-placeholder-shown {
+  text-overflow: ellipsis;
+}
+.ant-pagination-options-quick-jumper input:-ms-input-placeholder {
+  text-overflow: ellipsis;
+}
 .ant-pagination-options-quick-jumper input:placeholder-shown {
   text-overflow: ellipsis;
 }
@@ -338,6 +344,7 @@ textarea.ant-pagination-options-quick-jumper input {
 .ant-pagination-simple .ant-pagination-prev .ant-pagination-item-link,
 .ant-pagination-simple .ant-pagination-next .ant-pagination-item-link {
   height: 24px;
+  background-color: transparent;
   border: 0;
 }
 .ant-pagination-simple .ant-pagination-prev .ant-pagination-item-link::after,
@@ -487,6 +494,9 @@ textarea.ant-pagination-options-quick-jumper input {
 .ant-pagination-rtl .ant-pagination-jump-next {
   margin-right: 0;
   margin-left: 8px;
+}
+.ant-pagination-rtl .ant-pagination-slash {
+  margin: 0 5px 0 10px;
 }
 .ant-pagination-rtl .ant-pagination-options {
   margin-right: 16px;

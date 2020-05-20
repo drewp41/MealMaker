@@ -4,7 +4,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 import Dialog from './Modal';
 import ActionButton from './ActionButton';
-import warning from '../_util/warning';
+import devWarning from '../_util/devWarning';
 
 var ConfirmDialog = function ConfirmDialog(props) {
   var icon = props.icon,
@@ -22,7 +22,7 @@ var ConfirmDialog = function ConfirmDialog(props) {
       okButtonProps = props.okButtonProps,
       cancelText = props.cancelText,
       cancelButtonProps = props.cancelButtonProps;
-  warning(!(typeof icon === 'string' && icon.length > 2), 'Modal', "`icon` is using ReactNode instead of string naming in v4. Please check `".concat(icon, "` at https://ant.design/components/icon")); // 支持传入{ icon: null }来隐藏`Modal.confirm`默认的Icon
+  devWarning(!(typeof icon === 'string' && icon.length > 2), 'Modal', "`icon` is using ReactNode instead of string naming in v4. Please check `".concat(icon, "` at https://ant.design/components/icon")); // 支持传入{ icon: null }来隐藏`Modal.confirm`默认的Icon
 
   var okType = props.okType || 'primary';
   var prefixCls = props.prefixCls || 'ant-modal';

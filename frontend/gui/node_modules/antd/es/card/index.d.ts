@@ -2,7 +2,6 @@ import * as React from 'react';
 import Grid from './Grid';
 import Meta from './Meta';
 import { TabsProps } from '../tabs';
-import { ConfigConsumerProps } from '../config-provider';
 import { Omit } from '../_util/type';
 export { CardGridProps } from './Grid';
 export { CardMetaProps } from './Meta';
@@ -37,11 +36,9 @@ export interface CardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 't
     defaultActiveTabKey?: string;
     tabProps?: TabsProps;
 }
-export default class Card extends React.Component<CardProps, {}> {
-    static Grid: typeof Grid;
-    static Meta: typeof Meta;
-    onTabChange: (key: string) => void;
-    isContainGrid(): undefined;
-    renderCard: ({ getPrefixCls, direction }: ConfigConsumerProps) => JSX.Element;
-    render(): JSX.Element;
+interface CardInterface extends React.FC<CardProps> {
+    Grid: typeof Grid;
+    Meta: typeof Meta;
 }
+declare const Card: CardInterface;
+export default Card;

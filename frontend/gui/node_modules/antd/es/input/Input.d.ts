@@ -54,9 +54,7 @@ declare class Input extends React.Component<InputProps, InputState> {
     onBlur: React.FocusEventHandler<HTMLInputElement>;
     setValue(value: string, callback?: () => void): void;
     handleReset: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
-    renderInput: (prefixCls: string, size: SizeType, input?: {
-        autoComplete?: string | undefined;
-    } | undefined) => JSX.Element;
+    renderInput: (prefixCls: string, size: SizeType | undefined, input?: ConfigConsumerProps['input']) => JSX.Element;
     clearPasswordValueAttribute: () => void;
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;

@@ -12,6 +12,6 @@ export default class Search extends React.Component<TransferSearchProps, any> {
         placeholder: string;
     };
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    handleClear: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
+    handleClear: (e: React.MouseEvent<HTMLAnchorElement>) => void;
     render(): JSX.Element;
 }

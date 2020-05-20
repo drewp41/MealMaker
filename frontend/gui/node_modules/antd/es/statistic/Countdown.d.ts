@@ -15,8 +15,8 @@ declare class Countdown extends React.Component<CountdownProps, {}> {
     syncTimer: () => void;
     startTimer: () => void;
     stopTimer: () => void;
-    formatCountdown: (value: React.ReactText, config: FormatConfig) => string;
-    valueRender: (node: React.ReactElement<HTMLDivElement, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>) => React.ReactElement<HTMLDivElement, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+    formatCountdown: (value: countdownValueType, config: FormatConfig) => string;
+    valueRender: (node: React.ReactElement<HTMLDivElement>) => React.ReactElement<any, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
     render(): JSX.Element;
 }
 export default Countdown;

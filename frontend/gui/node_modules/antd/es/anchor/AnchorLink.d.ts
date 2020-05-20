@@ -18,7 +18,7 @@ declare class AnchorLink extends React.Component<AnchorLinkProps, any, AntAnchor
     componentDidMount(): void;
     componentDidUpdate({ href: prevHref }: AnchorLinkProps): void;
     componentWillUnmount(): void;
-    handleClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+    handleClick: (e: React.MouseEvent<HTMLElement>) => void;
     renderAnchorLink: ({ getPrefixCls }: ConfigConsumerProps) => JSX.Element;
     render(): JSX.Element;
 }

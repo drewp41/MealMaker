@@ -6,7 +6,7 @@ export declare const responsiveMap: BreakpointMap;
 declare type SubscribeFunc = (screens: ScreenMap) => void;
 declare const responsiveObserve: {
     matchHandlers: {};
-    dispatch(pointMap: Partial<Record<Breakpoint, boolean>>): boolean;
+    dispatch(pointMap: ScreenMap): boolean;
     subscribe(func: SubscribeFunc): string;
     unsubscribe(token: string): void;
     unregister(): void;

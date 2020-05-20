@@ -1,7 +1,6 @@
 /// <reference types="react" />
 import { TableProps as RcTableProps } from 'rc-table/lib/Table';
 import { SpinProps } from '../spin';
-import { PaginationConfig } from '../pagination';
 import { TableRowSelection, ColumnsType, TableCurrentDataSource, SorterResult, Key, GetPopupContainer, TablePaginationConfig, SortOrder, TableLocale } from './interface';
 import { SizeType } from '../config-provider/SizeContext';
 export { ColumnsType, TablePaginationConfig };
@@ -14,7 +13,7 @@ export interface TableProps<RecordType> extends Omit<RcTableProps<RecordType>, '
     size?: SizeType;
     bordered?: boolean;
     locale?: TableLocale;
-    onChange?: (pagination: PaginationConfig, filters: Record<string, Key[] | null>, sorter: SorterResult<RecordType> | SorterResult<RecordType>[], extra: TableCurrentDataSource<RecordType>) => void;
+    onChange?: (pagination: TablePaginationConfig, filters: Record<string, Key[] | null>, sorter: SorterResult<RecordType> | SorterResult<RecordType>[], extra: TableCurrentDataSource<RecordType>) => void;
     rowSelection?: TableRowSelection<RecordType>;
     getPopupContainer?: GetPopupContainer;
     scroll?: RcTableProps<RecordType>['scroll'] & {
