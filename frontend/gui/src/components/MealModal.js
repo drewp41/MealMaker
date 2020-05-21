@@ -151,7 +151,9 @@ const MealModal = (props) => {
             width='700px'
             bodyStyle={{}}
         >
-            <b style={{ fontSize: '16px', fontWeight: 400 }}>Ingredients (makes {props.meal.makes} servings):</b>
+            <b style={{ fontSize: '16px', fontWeight: 400 }}>
+                Ingredients (makes {props.meal.makes} {props.meal.makes === 1 ? 'serving' : 'servings'}):
+            </b>
             <div className='space4' />
             {/* need to add keys to help React identify changes */}
             <ul>

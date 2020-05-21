@@ -146,7 +146,15 @@ async function fetchBreakfastMainData(cals, numMeals, carbs, protein, fat) {
         approxCals = Math.floor(cals / numMeals);
     }
 
-    let servings = getServings(approxCals);
+    // if macros aren't enabled, get breakfast servings the "normal" way
+    // else call the other function, which will give more servings thus smaller cal meals
+    let servings = 1;
+    if (carbs === 0 && protein === 0 && fat === 0)
+        servings = getServings(approxCals);
+    else
+        servings = getBreakfastServings(approxCals);
+
+    console.log(servings);
 
     // target = (approxCals - 100) +- 25 
     let avgCals = Math.floor((approxCals - 100) / servings);
@@ -165,12 +173,12 @@ async function fetchBreakfastMainData(cals, numMeals, carbs, protein, fat) {
         let percentCarbs = carbs / (carbs + protein + fat * (9 / 4));
         let percentProtein = protein / (carbs + protein + fat * (9 / 4));
         let percentFat = (fat * (9 / 4)) / (carbs + protein + fat * (9 / 4));
-        minCarbs = Math.floor((avgCals * percentCarbs) / 4) - 10;
-        maxCarbs = Math.floor((avgCals * percentCarbs) / 4) + 10;
-        minProtein = Math.floor((avgCals * percentProtein) / 4) - 10;
-        maxProtein = Math.floor((avgCals * percentProtein) / 4) + 10;
-        minFat = Math.floor((avgCals * percentFat) / 9) - 5;
-        maxFat = Math.floor((avgCals * percentFat) / 9) + 5;
+        minCarbs = Math.floor((avgCals * percentCarbs) / 4) - 12;
+        maxCarbs = Math.floor((avgCals * percentCarbs) / 4) + 12;
+        minProtein = Math.floor((avgCals * percentProtein) / 4) - 12;
+        maxProtein = Math.floor((avgCals * percentProtein) / 4) + 12;
+        minFat = Math.floor((avgCals * percentFat) / 9) - 6;
+        maxFat = Math.floor((avgCals * percentFat) / 9) + 6;
     }
 
     try {
@@ -365,12 +373,12 @@ async function fetchRegularMainData(cals, numMeals, carbs, protein, fat) {
         let percentCarbs = carbs / (carbs + protein + fat * (9 / 4));
         let percentProtein = protein / (carbs + protein + fat * (9 / 4));
         let percentFat = (fat * (9 / 4)) / (carbs + protein + fat * (9 / 4));
-        minCarbs = Math.floor((avgCals * percentCarbs) / 4) - 10;
-        maxCarbs = Math.floor((avgCals * percentCarbs) / 4) + 10;
-        minProtein = Math.floor((avgCals * percentProtein) / 4) - 10;
-        maxProtein = Math.floor((avgCals * percentProtein) / 4) + 10;
-        minFat = Math.floor((avgCals * percentFat) / 9) - 5;
-        maxFat = Math.floor((avgCals * percentFat) / 9) + 5;
+        minCarbs = Math.floor((avgCals * percentCarbs) / 4) - 8;
+        maxCarbs = Math.floor((avgCals * percentCarbs) / 4) + 8;
+        minProtein = Math.floor((avgCals * percentProtein) / 4) - 8;
+        maxProtein = Math.floor((avgCals * percentProtein) / 4) + 8;
+        minFat = Math.floor((avgCals * percentFat) / 9) - 4;
+        maxFat = Math.floor((avgCals * percentFat) / 9) + 4;
         //
         // minCarbs = Math.floor(((3 / 5) * carbs) / servings) - 10;
         // maxCarbs = Math.floor(((3 / 5) * carbs) / servings) + 10;
@@ -503,7 +511,37 @@ function getServings(cals) {
         return (num < 0.40 ? 4 : 3);
     else if (cals < 1600)
         return (num < 0.80 ? 4 : 3);
-    else // cals should be less than 1700 
+    else // cals should be less than 1600 
         return 4;
+}
 
+// this nearly idencial function is needed bc getting a breakfast with macros 
+// is difficult unless you there is a small number of calories
+// try to make all cals in range of 200 - 400ish
+function getBreakfastServings(cals) {
+    let num = Math.random();
+    if (cals < 450)
+        return 1;
+    else if (cals < 700)
+        return 2;
+    else if (cals < 800)
+        return (num < 0.80 ? 3 : 2);
+    else if (cals < 900)
+        return (num < 0.20 ? 4 : 3);
+    else if (cals < 1000)
+        return (num < 0.40 ? 4 : 3);
+    else if (cals < 1100)
+        return (num < 0.60 ? 4 : 3);
+    else if (cals < 1200)
+        return (num < 0.80 ? 4 : 3);
+    else if (cals < 1300)
+        return (num < 0.20 ? 5 : 4);
+    else if (cals < 1400)
+        return (num < 0.40 ? 5 : 4);
+    else if (cals < 1500)
+        return (num < 0.60 ? 5 : 4);
+    else if (cals < 1600)
+        return (num < 0.80 ? 5 : 4);
+    else // cals should be less than 1600 
+        return 5;
 }

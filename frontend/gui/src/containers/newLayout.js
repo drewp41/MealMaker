@@ -727,7 +727,7 @@ const NewLayout = (props) => {
                                     {Math.floor(macros.carbs)} g
                                         </span>
                                 <br />
-                                <Slider defaultValue={45} tipFormatter={val => `${val}%`} min={10} max={80}
+                                <Slider defaultValue={45} tipFormatter={val => `${val}%`} min={15} max={70}
                                     value={Math.floor((macros.carbs * 4) / (calories / 100))}
                                     disabled={macroPinned === 1}
                                     onChange={(percent) => carbSlider(percent)}
@@ -746,7 +746,7 @@ const NewLayout = (props) => {
                                     {Math.floor(macros.protein)} g
                                         </span>
                                 <br />
-                                <Slider defaultValue={30} tipFormatter={val => `${val}%`} min={10} max={80}
+                                <Slider defaultValue={30} tipFormatter={val => `${val}%`} min={15} max={70}
                                     value={Math.floor((macros.protein * 4) / (calories / 100))}
                                     disabled={macroPinned === 2}
                                     onChange={(percent) => proteinSlider(percent)}
@@ -765,7 +765,7 @@ const NewLayout = (props) => {
                                     {Math.floor(macros.fat)} g
                                         </span>
                                 <br />
-                                <Slider defaultValue={25} tipFormatter={val => `${val}%`} min={10} max={80}
+                                <Slider defaultValue={25} tipFormatter={val => `${val}%`} min={15} max={70}
                                     value={Math.floor((macros.fat * 9) / (calories / 100))}
                                     disabled={macroPinned === 3}
                                     onChange={(percent) => fatSlider(percent)}
