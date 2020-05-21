@@ -140,7 +140,6 @@ const NewLayout = (props) => {
         setChangedPrefs(true);
     }
     function onCalorieChange(value) {
-        console.log(value.floatValue);
         if (typeof value.floatValue === 'undefined' || value.floatValue === 0) {
             setCalories(0);
             setChangedPrefs(true);
@@ -165,16 +164,16 @@ const NewLayout = (props) => {
     }
 
     function carbSlider(percent) {
-        let newCarbs = Math.floor((percent * calories) / 400);
+        let newCarbs = Math.round((percent * calories) / 400);
         let diff = newCarbs - macros.carbs;
         // if one of the other macros are zero and youre trying to increase carbs even more
-        if (diff > 0 && ((macros.protein <= (calories * 0.1) / 4) ||
-            (macros.fat <= (calories * 0.1) / 9))) {
+        if (diff > 0 && ((macros.protein <= (calories * 0.15) / 4) ||
+            (macros.fat <= (calories * 0.15) / 9))) {
             return;
         }
         // if one of the other macros are at 80% and youre trying to reduce carbs even more
-        if (diff < 0 && ((macros.protein >= (calories * 0.8) / 4) ||
-            (macros.fat >= (calories * 0.8) / 9))) {
+        if (diff < 0 && ((macros.protein >= (calories * 0.70) / 4) ||
+            (macros.fat >= (calories * 0.70) / 9))) {
             return;
         }
         if (macroPinned === null) {
@@ -206,14 +205,14 @@ const NewLayout = (props) => {
     }
 
     function proteinSlider(percent) {
-        let newProtein = Math.floor((percent * calories) / 400);
+        let newProtein = Math.round((percent * calories) / 400);
         let diff = newProtein - macros.protein;
-        if (diff > 0 && ((macros.carbs <= (calories * 0.1) / 4) ||
-            (macros.fat <= (calories * 0.1) / 9))) {
+        if (diff > 0 && ((macros.carbs <= (calories * 0.15) / 4) ||
+            (macros.fat <= (calories * 0.15) / 9))) {
             return;
         }
-        if (diff < 0 && ((macros.carbs >= (calories * 0.8) / 4) ||
-            (macros.fat >= (calories * 0.8) / 9))) {
+        if (diff < 0 && ((macros.carbs >= (calories * 0.7) / 4) ||
+            (macros.fat >= (calories * 0.7) / 9))) {
             return;
         }
 
@@ -246,22 +245,24 @@ const NewLayout = (props) => {
     }
 
     function fatSlider(percent) {
-        let newFat = Math.floor((percent * calories) / 900);
+        let newFat = Math.round((percent * calories) / 900);
         let diff = newFat - macros.fat;
-        if (diff > 0 && ((macros.carbs <= (calories * 0.1) / 4) ||
-            (macros.protein <= (calories * 0.1) / 4))) {
+        if (diff > 0 && ((macros.carbs <= (calories * 0.155) / 4) ||
+            (macros.protein <= (calories * 0.155) / 4))) {
             return;
         }
-        if (diff < 0 && ((macros.carbs >= (calories * 0.8) / 4) ||
-            (macros.protein >= (calories * 0.8) / 4))) {
+        if (diff < 0 && ((macros.carbs >= (calories * 0.705) / 4) ||
+            (macros.protein >= (calories * 0.705) / 4))) {
             return;
         }
         if (macroPinned === null) {
-            setMacros(prev => ({
-                fat: newFat,
-                carbs: prev.carbs - (diff * 0.5 * (9 / 5)),
-                protein: prev.protein - (diff * 0.5 * (9 / 5)),
-            }));
+            setMacros(prev => (
+                console.log(prev),
+                {
+                    fat: newFat,
+                    carbs: prev.carbs - (diff * 0.5 * (9 / 5)),
+                    protein: prev.protein - (diff * 0.5 * (9 / 5)),
+                }));
             setChangedPrefs(true);
         }
         else if (macroPinned === 1) {
@@ -370,9 +371,9 @@ const NewLayout = (props) => {
                 let proteinVar = 0;
                 let fatVar = 0;
                 if (enableMacros) {
-                    carbVar = Math.floor(macros.carbs);
-                    proteinVar = Math.floor(macros.protein);
-                    fatVar = Math.floor(macros.fat);
+                    carbVar = Math.round(macros.carbs);
+                    proteinVar = Math.round(macros.protein);
+                    fatVar = Math.round(macros.fat);
                 }
                 fetchBreakfast(calories, numMeals,
                     carbVar, proteinVar, fatVar)
@@ -411,9 +412,9 @@ const NewLayout = (props) => {
                 let proteinVar = 0;
                 let fatVar = 0;
                 if (enableMacros) {
-                    carbVar = Math.floor(macros.carbs);
-                    proteinVar = Math.floor(macros.protein);
-                    fatVar = Math.floor(macros.fat);
+                    carbVar = Math.round(macros.carbs);
+                    proteinVar = Math.round(macros.protein);
+                    fatVar = Math.round(macros.fat);
                 }
                 fetchRegular(calories, numMeals,
                     carbVar, proteinVar, fatVar)
@@ -453,9 +454,9 @@ const NewLayout = (props) => {
                 let proteinVar = 0;
                 let fatVar = 0;
                 if (enableMacros) {
-                    carbVar = Math.floor(macros.carbs);
-                    proteinVar = Math.floor(macros.protein);
-                    fatVar = Math.floor(macros.fat);
+                    carbVar = Math.round(macros.carbs);
+                    proteinVar = Math.round(macros.protein);
+                    fatVar = Math.round(macros.fat);
                 }
                 fetchBreakfastMain(calories, numMeals,
                     carbVar, proteinVar, fatVar)
@@ -487,9 +488,9 @@ const NewLayout = (props) => {
                 let proteinVar = 0;
                 let fatVar = 0;
                 if (enableMacros) {
-                    carbVar = Math.floor(macros.carbs);
-                    proteinVar = Math.floor(macros.protein);
-                    fatVar = Math.floor(macros.fat);
+                    carbVar = Math.round(macros.carbs);
+                    proteinVar = Math.round(macros.protein);
+                    fatVar = Math.round(macros.fat);
                 }
                 await fetchRegularMain(calories, numMeals,
                     carbVar, proteinVar, fatVar)
@@ -526,9 +527,9 @@ const NewLayout = (props) => {
                 let proteinVar = 0;
                 let fatVar = 0;
                 if (enableMacros) {
-                    carbVar = Math.floor(macros.carbs);
-                    proteinVar = Math.floor(macros.protein);
-                    fatVar = Math.floor(macros.fat);
+                    carbVar = Math.round(macros.carbs);
+                    proteinVar = Math.round(macros.protein);
+                    fatVar = Math.round(macros.fat);
                 }
                 fetchBreakfastSide(calories, numMeals,
                     carbVar, proteinVar, fatVar)
@@ -560,9 +561,9 @@ const NewLayout = (props) => {
                 let proteinVar = 0;
                 let fatVar = 0;
                 if (enableMacros) {
-                    carbVar = Math.floor(macros.carbs);
-                    proteinVar = Math.floor(macros.protein);
-                    fatVar = Math.floor(macros.fat);
+                    carbVar = Math.round(macros.carbs);
+                    proteinVar = Math.round(macros.protein);
+                    fatVar = Math.round(macros.fat);
                 }
                 await fetchRegularSide(calories, numMeals,
                     carbVar, proteinVar, fatVar)
@@ -606,9 +607,9 @@ const NewLayout = (props) => {
             let proteinVar = 0;
             let fatVar = 0;
             if (enableMacros) {
-                carbVar = Math.floor(macros.carbs);
-                proteinVar = Math.floor(macros.protein);
-                fatVar = Math.floor(macros.fat);
+                carbVar = Math.round(macros.carbs);
+                proteinVar = Math.round(macros.protein);
+                fatVar = Math.round(macros.fat);
             }
             fetchMeals(calories, numMeals,
                 carbVar, proteinVar, fatVar)
@@ -724,11 +725,11 @@ const NewLayout = (props) => {
                                     }
                                 </span>
                                 <span className='mealInput' style={{ float: 'right' }}>
-                                    {Math.floor(macros.carbs)} g
+                                    {Math.round(macros.carbs)} g
                                         </span>
                                 <br />
                                 <Slider defaultValue={45} tipFormatter={val => `${val}%`} min={15} max={70}
-                                    value={Math.floor((macros.carbs * 4) / (calories / 100))}
+                                    value={Math.round((macros.carbs * 4) / (calories / 100))}
                                     disabled={macroPinned === 1}
                                     onChange={(percent) => carbSlider(percent)}
                                 />
@@ -743,11 +744,11 @@ const NewLayout = (props) => {
                                     }
                                 </span>
                                 <span className='mealInput' style={{ float: 'right' }}>
-                                    {Math.floor(macros.protein)} g
+                                    {Math.round(macros.protein)} g
                                         </span>
                                 <br />
                                 <Slider defaultValue={30} tipFormatter={val => `${val}%`} min={15} max={70}
-                                    value={Math.floor((macros.protein * 4) / (calories / 100))}
+                                    value={Math.round((macros.protein * 4) / (calories / 100))}
                                     disabled={macroPinned === 2}
                                     onChange={(percent) => proteinSlider(percent)}
                                 />
@@ -762,11 +763,11 @@ const NewLayout = (props) => {
                                     }
                                 </span>
                                 <span className='mealInput' style={{ float: 'right' }}>
-                                    {Math.floor(macros.fat)} g
+                                    {Math.round(macros.fat)} g
                                         </span>
                                 <br />
                                 <Slider defaultValue={25} tipFormatter={val => `${val}%`} min={15} max={70}
-                                    value={Math.floor((macros.fat * 9) / (calories / 100))}
+                                    value={Math.round((macros.fat * 9) / (calories / 100))}
                                     disabled={macroPinned === 3}
                                     onChange={(percent) => fatSlider(percent)}
                                 />
@@ -800,9 +801,9 @@ const NewLayout = (props) => {
                                     [{
                                         ...pieColors,
                                         data: enableMacros ?
-                                            [Math.floor(macros.carbs * 100 / (macros.carbs + macros.protein + macros.fat * (9 / 4))),
-                                            Math.floor(macros.protein * 100 / (macros.carbs + macros.protein + macros.fat * (9 / 4))),
-                                            Math.floor((macros.fat * (9 / 4) * 100) / (macros.carbs + macros.protein + macros.fat * (9 / 4)))]
+                                            [Math.round(macros.carbs * 100 / (macros.carbs + macros.protein + macros.fat * (9 / 4))),
+                                            Math.round(macros.protein * 100 / (macros.carbs + macros.protein + macros.fat * (9 / 4))),
+                                            Math.round((macros.fat * (9 / 4) * 100) / (macros.carbs + macros.protein + macros.fat * (9 / 4)))]
                                             : [33, 33, 33]
                                     }]
                             }}
