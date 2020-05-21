@@ -85,21 +85,19 @@ export async function fetchBreakfastMain(cals, numMeals, carbs, protein, fat) {
     console.log('Fetching breakfast main');
     return fetchBreakfastMainData(cals, numMeals, carbs, protein, fat)
         .then(d => {
-            const breakfastData = d.data.results;
+            const servings = d[0];
+            const breakfastData = d[1];
 
             // return an array of meals
-            // with each meal of the form
-            // [name of food, calories, carbs, protein, 
-            /// fat, ingredients, instructions, servings]
 
             // ======== BREAKFAST MEALS ========
             let breakfastRes = [];
             breakfastData.forEach(elem => {
                 const name = elem.title;
-                const calories = Math.floor(elem.nutrition[0].amount);
-                const carbs = Math.floor(elem.nutrition[3].amount);
-                const protein = Math.floor(elem.nutrition[1].amount);
-                const fat = Math.floor(elem.nutrition[2].amount);
+                const calories = Math.floor(elem.nutrition[0].amount) * servings;
+                const carbs = Math.floor(elem.nutrition[3].amount) * servings;
+                const protein = Math.floor(elem.nutrition[1].amount) * servings;
+                const fat = Math.floor(elem.nutrition[2].amount) * servings;
                 let instructions = [];
                 let instArr = elem.analyzedInstructions;
                 if (instArr && instArr.length) {
@@ -114,10 +112,11 @@ export async function fetchBreakfastMain(cals, numMeals, carbs, protein, fat) {
                 const makes = elem.servings;
                 const prepTime = elem.preparationMinutes;
                 const cookTime = elem.cookingMinutes;
+
                 const obj = {
                     name: name, calories: calories, carbs: carbs,
                     protein: protein, fat: fat, ingredients: ingredients,
-                    instructions: instructions, servings: 1, makes: makes,
+                    instructions: instructions, servings: servings, makes: makes,
                     prepTime: prepTime, cookTime: cookTime
                 };
 
@@ -141,20 +140,18 @@ async function fetchBreakfastMainData(cals, numMeals, carbs, protein, fat) {
 
     if (numMeals === 1) {
         approxCals = Math.floor(cals / 2) - 300;
-        // target = (approxCals - 100) +- 25
-        minBreakfastCals = approxCals - 125;
-        maxBreakfastCals = approxCals - 75;
     } else if (numMeals === 2) {
         approxCals = Math.floor((2 / 5) * cals);
-        // target = (approxCals - 100) +- 25
-        minBreakfastCals = approxCals - 125;
-        maxBreakfastCals = approxCals - 75;
     } else {
         approxCals = Math.floor(cals / numMeals);
-        // target = (approxCals - 100) +- 25
-        minBreakfastCals = approxCals - 125;
-        maxBreakfastCals = approxCals - 75;
     }
+
+    let servings = getServings(approxCals);
+
+    // target = (approxCals - 100) +- 25 
+    let avgCals = Math.floor((approxCals - 100) / servings);
+    minBreakfastCals = avgCals - 25;
+    maxBreakfastCals = avgCals + 25;
 
     // if they all equal 0, macro preferences are off and make the macros anything
     if (carbs === 0 && protein === 0 && fat === 0) {
@@ -165,12 +162,15 @@ async function fetchBreakfastMainData(cals, numMeals, carbs, protein, fat) {
         minFat = 0;
         maxFat = 1000;
     } else {
-        minCarbs = Math.floor(carbs / numMeals) - 10;
-        maxCarbs = Math.floor(carbs / numMeals) + 10;
-        minProtein = Math.floor(protein / numMeals) - 10;
-        maxProtein = Math.floor(protein / numMeals) + 10;
-        minFat = Math.floor(fat / numMeals) - 5;
-        maxFat = Math.floor(fat / numMeals) + 5;
+        let percentCarbs = carbs / (carbs + protein + fat * (9 / 4));
+        let percentProtein = protein / (carbs + protein + fat * (9 / 4));
+        let percentFat = (fat * (9 / 4)) / (carbs + protein + fat * (9 / 4));
+        minCarbs = Math.floor((avgCals * percentCarbs) / 4) - 10;
+        maxCarbs = Math.floor((avgCals * percentCarbs) / 4) + 10;
+        minProtein = Math.floor((avgCals * percentProtein) / 4) - 10;
+        maxProtein = Math.floor((avgCals * percentProtein) / 4) + 10;
+        minFat = Math.floor((avgCals * percentFat) / 9) - 5;
+        maxFat = Math.floor((avgCals * percentFat) / 9) + 5;
     }
 
     try {
@@ -191,7 +191,7 @@ async function fetchBreakfastMainData(cals, numMeals, carbs, protein, fat) {
                 }
             });
         // will throw an error if we do 'const breakfastMeals' and then 'return breakfastMeals'
-        return breakfastMeals; // get breakfastSides from fetchMeals
+        return [servings, breakfastMeals.data.results]; // return servings each meal has (not makes) with the meals
     } catch (error) {
         console.log(error, "error");
         return emptyMeal;
@@ -201,22 +201,21 @@ async function fetchBreakfastMainData(cals, numMeals, carbs, protein, fat) {
 export async function fetchBreakfastSide(cals, numMeals, carbs, protein, fat) {
     console.log('Fetching breakfast side');
     if (numMeals === 1) {
+        // always two sides with 1 meal 
+        let servings = 2;
         return fetchBreakfastSideData(cals, numMeals, carbs, protein, fat)
             .then(d => {
                 const sidesData = d.data.results;
                 // return an array of meals
-                // with each meal of the form
-                // [name of food, calories, carbs, protein, 
-                /// fat, ingredients, instructions, servings]
 
                 // ======== MAIN SIDES ========
                 let sidesRes = [];
                 sidesData.forEach(elem => {
                     const name = elem.title;
-                    const calories = Math.floor(elem.nutrition[0].amount);
-                    const carbs = Math.floor(elem.nutrition[3].amount);
-                    const protein = Math.floor(elem.nutrition[1].amount);
-                    const fat = Math.floor(elem.nutrition[2].amount);
+                    const calories = Math.floor(elem.nutrition[0].amount) * servings;
+                    const carbs = Math.floor(elem.nutrition[3].amount) * servings;
+                    const protein = Math.floor(elem.nutrition[1].amount) * servings;
+                    const fat = Math.floor(elem.nutrition[2].amount) * servings;
                     let instructions = [];
                     let instArr = elem.analyzedInstructions;
                     if (instArr && instArr.length) {
@@ -234,7 +233,7 @@ export async function fetchBreakfastSide(cals, numMeals, carbs, protein, fat) {
                     const obj = {
                         name: name, calories: calories, carbs: carbs,
                         protein: protein, fat: fat, ingredients: ingredients,
-                        instructions: instructions, servings: 1, makes: makes,
+                        instructions: instructions, servings: servings, makes: makes,
                         prepTime: prepTime, cookTime: cookTime
                     };
 
@@ -289,21 +288,19 @@ export async function fetchRegularMain(cals, numMeals, carbs, protein, fat) {
     console.log('Fetching regular main');
     return fetchRegularMainData(cals, numMeals, carbs, protein, fat)
         .then(d => {
-            const mainData = d.data.results;
+            const servings = d[0]
+            const mainData = d[1];
 
             // return an array of meals
-            // with each meal of the form
-            // [name of food, calories, carbs, protein, 
-            /// fat, ingredients, instructions, servings]
 
             // ======== MAIN MEALS ========
             let mainRes = [];
             mainData.forEach(elem => {
                 const name = elem.title;
-                const calories = Math.floor(elem.nutrition[0].amount);
-                const carbs = Math.floor(elem.nutrition[3].amount);
-                const protein = Math.floor(elem.nutrition[1].amount);
-                const fat = Math.floor(elem.nutrition[2].amount);
+                const calories = Math.floor(elem.nutrition[0].amount) * servings;
+                const carbs = Math.floor(elem.nutrition[3].amount) * servings;
+                const protein = Math.floor(elem.nutrition[1].amount) * servings;
+                const fat = Math.floor(elem.nutrition[2].amount) * servings;
                 let instructions = [];
                 let instArr = elem.analyzedInstructions;
                 if (instArr && instArr.length) {
@@ -321,7 +318,7 @@ export async function fetchRegularMain(cals, numMeals, carbs, protein, fat) {
                 const obj = {
                     name: name, calories: calories, carbs: carbs,
                     protein: protein, fat: fat, ingredients: ingredients,
-                    instructions: instructions, servings: 1, makes: makes,
+                    instructions: instructions, servings: servings, makes: makes,
                     prepTime: prepTime, cookTime: cookTime
                 };
 
@@ -346,17 +343,16 @@ async function fetchRegularMainData(cals, numMeals, carbs, protein, fat) {
     if (numMeals === 2) {
         //just get one dinner
         approxCals = Math.floor((3 / 5) * cals);
-        // target = (approxCals - 150) +- 25 bc guaranteed side
-        minMainCals = approxCals - 175;
-        maxMainCals = approxCals - 125;
     } else { //numMeals === 3-6
         approxCals = Math.floor(cals / numMeals);
-        // target = (approxCals - 75) +- 25
-        minMainCals = approxCals - 100;
-        maxMainCals = approxCals - 50;
-        // macro preferences using a range of +- 15
-        // might have to reduce carbs to account for extra carbs from the sides
     }
+
+    let servings = getServings(approxCals);
+
+    // target = (approxCals - 150) +- 25 bc guaranteed side
+    let avgCals = Math.floor((approxCals - 100) / servings);
+    minMainCals = avgCals - 25;
+    maxMainCals = avgCals + 25;
 
     if (carbs === 0 && protein === 0 && fat === 0) {
         minCarbs = 0;
@@ -366,12 +362,22 @@ async function fetchRegularMainData(cals, numMeals, carbs, protein, fat) {
         minFat = 0;
         maxFat = 1000;
     } else {
-        minCarbs = Math.floor((3 / 5) * carbs) - 10;
-        maxCarbs = Math.floor((3 / 5) * carbs) + 10;
-        minProtein = Math.floor((3 / 5) * protein) - 10;
-        maxProtein = Math.floor((3 / 5) * protein) + 10;
-        minFat = Math.floor((3 / 5) * fat) - 5;
-        maxFat = Math.floor((3 / 5) * fat) + 5;
+        let percentCarbs = carbs / (carbs + protein + fat * (9 / 4));
+        let percentProtein = protein / (carbs + protein + fat * (9 / 4));
+        let percentFat = (fat * (9 / 4)) / (carbs + protein + fat * (9 / 4));
+        minCarbs = Math.floor((avgCals * percentCarbs) / 4) - 10;
+        maxCarbs = Math.floor((avgCals * percentCarbs) / 4) + 10;
+        minProtein = Math.floor((avgCals * percentProtein) / 4) - 10;
+        maxProtein = Math.floor((avgCals * percentProtein) / 4) + 10;
+        minFat = Math.floor((avgCals * percentFat) / 9) - 5;
+        maxFat = Math.floor((avgCals * percentFat) / 9) + 5;
+        //
+        // minCarbs = Math.floor(((3 / 5) * carbs) / servings) - 10;
+        // maxCarbs = Math.floor(((3 / 5) * carbs) / servings) + 10;
+        // minProtein = Math.floor(((3 / 5) * protein) / servings) - 10;
+        // maxProtein = Math.floor(((3 / 5) * protein) / servings) + 10;
+        // minFat = Math.floor(((3 / 5) * fat) / servings) - 5;
+        // maxFat = Math.floor(((3 / 5) * fat) / servings) + 5;
     }
 
     try {
@@ -391,7 +397,7 @@ async function fetchRegularMainData(cals, numMeals, carbs, protein, fat) {
                     number: 6 * (numMeals - 1), //exclude bfast
                 }
             });
-        return main;
+        return [servings, main.data.results];
     } catch (error) {
         console.log(error, "error");
         return [[emptyMeal]];
@@ -402,21 +408,19 @@ export async function fetchRegularSide(cals, numMeals, carbs, protein, fat) {
     console.log('Fetching regular side');
     return fetchRegularSideData(cals, numMeals, carbs, protein, fat)
         .then(d => {
-            const sidesData = d.data.results;
+            const servings = d[0];
+            const sidesData = d[1];
 
             // return an array of meals
-            // with each meal of the form
-            // [name of food, calories, carbs, protein, 
-            /// fat, ingredients, instructions, servings]
 
             // ======== MAIN SIDES ========
             let sidesRes = [];
             sidesData.forEach(elem => {
                 const name = elem.title;
-                const calories = Math.floor(elem.nutrition[0].amount);
-                const carbs = Math.floor(elem.nutrition[3].amount);
-                const protein = Math.floor(elem.nutrition[1].amount);
-                const fat = Math.floor(elem.nutrition[2].amount);
+                const calories = Math.floor(elem.nutrition[0].amount) * servings;
+                const carbs = Math.floor(elem.nutrition[3].amount) * servings;
+                const protein = Math.floor(elem.nutrition[1].amount) * servings;
+                const fat = Math.floor(elem.nutrition[2].amount) * servings;
                 let instructions = [];
                 let instArr = elem.analyzedInstructions;
                 if (instArr && instArr.length) {
@@ -434,7 +438,7 @@ export async function fetchRegularSide(cals, numMeals, carbs, protein, fat) {
                 const obj = {
                     name: name, calories: calories, carbs: carbs,
                     protein: protein, fat: fat, ingredients: ingredients,
-                    instructions: instructions, servings: 1, makes: makes,
+                    instructions: instructions, servings: servings, makes: makes,
                     prepTime: prepTime, cookTime: cookTime
                 };
 
@@ -453,6 +457,7 @@ export async function fetchRegularSide(cals, numMeals, carbs, protein, fat) {
 }
 async function fetchRegularSideData(cals, numMeals, carbs, protein, fat) {
     let maxSideCals = 150;
+    let servings = 1;
 
     try {
         const mainSides = await
@@ -467,22 +472,38 @@ async function fetchRegularSideData(cals, numMeals, carbs, protein, fat) {
                     number: 6 * (numMeals - 1), //exclude bfast
                 }
             });
-        return mainSides;
+        return [servings, mainSides.data.results];
     } catch (error) {
         console.log(error, "error");
         return [[emptyMeal]];
     }
 }
 
+function getServings(cals) {
+    let num = Math.random();
+    if (cals < 600)
+        return 1;
+    else if (cals < 700)
+        return (num < 0.70 ? 2 : 1);
+    else if (cals < 800)
+        return (num < 0.90 ? 2 : 1);
+    else if (cals < 900)
+        return (num < 0.20 ? 3 : 2);
+    else if (cals < 1000)
+        return (num < 0.35 ? 3 : 2);
+    else if (cals < 1100)
+        return (num < 0.70 ? 3 : 2);
+    else if (cals < 1200)
+        return (num < 0.85 ? 3 : 2);
+    else if (cals < 1300)
+        return (num < 0.10 ? 4 : 3);
+    else if (cals < 1400)
+        return (num < 0.25 ? 4 : 3);
+    else if (cals < 1500)
+        return (num < 0.40 ? 4 : 3);
+    else if (cals < 1600)
+        return (num < 0.80 ? 4 : 3);
+    else // cals should be less than 1700 
+        return 4;
 
-// (async function() {
-//     await yourFunction();
-//   })();
-
-//   Or resolve the promise :
-
-//   yourFunction().then(result => {
-//     // ...
-//   }).catch(error => {
-//     // if you have an error
-//   })
+}

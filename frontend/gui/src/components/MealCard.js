@@ -115,7 +115,7 @@ const MealCard = (props) => {
                                     <div className='space2' />
                                     <p className='ant-card-meta-description'>
                                         {props.mealObj.main.servings}
-                                        {props.mealObj.main.servings === 1 ? ' serving' : 'servings'}
+                                        {props.mealObj.main.servings === 1 ? ' serving' : ' servings'}
                                     </p>
                                 </div>
                                 {props.mealObj.side.name &&
@@ -137,7 +137,7 @@ const MealCard = (props) => {
                                         <div className='space2' />
                                         <p className='ant-card-meta-description'>
                                             {props.mealObj.side.servings}
-                                            {props.mealObj.side.servings === 1 ? ' serving' : 'servings'}
+                                            {props.mealObj.side.servings === 1 ? ' serving' : ' servings'}
                                         </p>
                                     </div>}
                             </div>
