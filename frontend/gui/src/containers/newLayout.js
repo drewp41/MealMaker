@@ -139,6 +139,24 @@ const NewLayout = (props) => {
         setEnableMacros(prev => !prev);
         setChangedPrefs(true);
     }
+    function onCalorieChange(value) {
+        if (typeof value.floatValue === 'undefined') {
+            setCalories(0);
+            setChangedPrefs(true);
+            return;
+        }
+        let cals = Math.floor(value.floatValue);
+        let carbPercent = macros.carbs / (macros.carbs + macros.protein + macros.fat * (9 / 4));
+        let proteinPercent = macros.protein / (macros.carbs + macros.protein + macros.fat * (9 / 4));
+        let fatPercent = (macros.fat * (9 / 4)) / (macros.carbs + macros.protein + macros.fat * (9 / 4));
+        setCalories(cals);
+        setMacros({
+            carbs: (cals * carbPercent) / 4,
+            protein: (cals * proteinPercent) / 4,
+            fat: (cals * fatPercent) / 9
+        });
+        setChangedPrefs(true);
+    }
 
     function pinMacro(num) {
         // set the pin to whichever macro is calling it, remove the pin if it already exists
@@ -670,10 +688,7 @@ const NewLayout = (props) => {
                             I want to eat &nbsp;
                             <NumberFormat className='ant-input' id='calorieInput' style={{ width: '126px' }} suffix={' calories'}
                                 defaultValue={2000} allowEmptyFormatting={true}
-                                onValueChange={(value) => {
-                                    setCalories(Math.floor(value.floatValue));
-                                    setChangedPrefs(true);
-                                }}
+                                onValueChange={onCalorieChange}
                             />
                         </span>
                         <div className='space20' />
