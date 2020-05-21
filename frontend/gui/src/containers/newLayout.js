@@ -140,7 +140,8 @@ const NewLayout = (props) => {
         setChangedPrefs(true);
     }
     function onCalorieChange(value) {
-        if (typeof value.floatValue === 'undefined') {
+        console.log(value.floatValue);
+        if (typeof value.floatValue === 'undefined' || value.floatValue === 0) {
             setCalories(0);
             setChangedPrefs(true);
             return;
