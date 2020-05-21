@@ -11,6 +11,20 @@ import MealModal from './MealModal';
 
 const mainTextColor = '#32323c';
 
+// meal consists of: 
+//     name: '', calories: 0, carbs: 0,
+//     protein: 0, fat: 0, ingredients: [],
+//     instructions: [], servings: 0, makes: 0,
+//     prepTime: 0, cookTime: 0
+
+// mealObj consists of:
+//      main: emptyMeal,
+//      side: emptyMeal,
+//      mainLoading: false,
+//      sideLoading: false,
+//      mainPinned: false,
+//      sidePinned: false,
+
 // didn't use yet
 function MealCardTitle(props) {
     return <>
@@ -22,7 +36,6 @@ function MealCardTitle(props) {
         </span>
     </>;
 }
-
 
 const MealCard = (props) => {
 
@@ -101,9 +114,8 @@ const MealCard = (props) => {
                                     </div>
                                     <div className='space2' />
                                     <p className='ant-card-meta-description'>
-                                        C: {props.mealObj.main.carbs}
-                                        , P: {props.mealObj.main.protein}
-                                        , F: {props.mealObj.main.fat}
+                                        {props.mealObj.main.servings}
+                                        {props.mealObj.main.servings === 1 ? ' serving' : 'servings'}
                                     </p>
                                 </div>
                                 {props.mealObj.side.name &&
@@ -124,9 +136,8 @@ const MealCard = (props) => {
                                         </div>
                                         <div className='space2' />
                                         <p className='ant-card-meta-description'>
-                                            C: {props.mealObj.side.carbs}
-                                            , P: {props.mealObj.side.protein}
-                                            , F: {props.mealObj.side.fat}
+                                            {props.mealObj.side.servings}
+                                            {props.mealObj.side.servings === 1 ? ' serving' : 'servings'}
                                         </p>
                                     </div>}
                             </div>
