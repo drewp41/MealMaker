@@ -687,7 +687,7 @@ const NewLayout = (props) => {
                 </div>
                 <div style={{ height: '10px' }} />
                 <div style={{ fontSize: '20px', fontFamily: 'Inter', fontWeight: '400', textAlign: 'center' }}>
-                    Search though over 365,000 recipes
+                    Search though over 365,000 recipes.
                 </div>
 
                 <div className='inputBox'>
@@ -792,7 +792,10 @@ const NewLayout = (props) => {
             </div>
             <div className="mainBodyRow" style={{ minHeight: 200, backgroundColor: 'rgb(242, 242, 242)' }} />
 
-
+            <div className='slantParent'>
+                <div className='slantTop' />
+                <div className='slantBottom' />
+            </div>
 
 
 
