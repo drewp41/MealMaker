@@ -129,8 +129,8 @@ export async function fetchBreakfastMain(cals, numMeals, carbs, protein, fat) {
 
 async function fetchBreakfastMainData(cals, numMeals, carbs, protein, fat) {
     let approxCals = 0;
-    let minBreakfastCals = 0;
-    let maxBreakfastCals = 0;
+    let minCals = 0;
+    let maxCals = 0;
     let minCarbs = 0;
     let maxCarbs = 0;
     let minProtein = 0;
@@ -139,11 +139,11 @@ async function fetchBreakfastMainData(cals, numMeals, carbs, protein, fat) {
     let maxFat = 0;
 
     if (numMeals === 1) {
-        approxCals = Math.floor(cals / 2) - 300;
+        approxCals = cals - 200; // bc guaranteed two sides
     } else if (numMeals === 2) {
-        approxCals = Math.floor((2 / 5) * cals);
+        approxCals = Math.floor((2 / 5) * cals) - 100; // bc one side
     } else {
-        approxCals = Math.floor(cals / numMeals);
+        approxCals = Math.floor(cals / numMeals) - 100; // bc one side
     }
 
     // if macros aren't enabled, get breakfast servings the "normal" way
@@ -154,12 +154,10 @@ async function fetchBreakfastMainData(cals, numMeals, carbs, protein, fat) {
     else
         servings = getBreakfastServings(approxCals);
 
-    console.log(servings);
-
     // target = (approxCals - 100) +- 25 
-    let avgCals = Math.floor((approxCals - 100) / servings);
-    minBreakfastCals = avgCals - 25;
-    maxBreakfastCals = avgCals + 25;
+    let avgCals = Math.floor(approxCals / servings);
+    minCals = avgCals - 25;
+    maxCals = avgCals + 25;
 
     // if they all equal 0, macro preferences are off and make the macros anything
     if (carbs === 0 && protein === 0 && fat === 0) {
@@ -186,8 +184,8 @@ async function fetchBreakfastMainData(cals, numMeals, carbs, protein, fat) {
             instance({ // breakfast (6)
                 "params": {
                     ...defaultParams,
-                    minCalories: minBreakfastCals,
-                    maxCalories: maxBreakfastCals,
+                    minCalories: minCals,
+                    maxCalories: maxCals,
                     minCarbs: minCarbs,
                     maxCarbs: maxCarbs,
                     minProtein: minProtein,
@@ -339,8 +337,8 @@ export async function fetchRegularMain(cals, numMeals, carbs, protein, fat) {
 }
 async function fetchRegularMainData(cals, numMeals, carbs, protein, fat) {
     let approxCals = 0;
-    let minMainCals = 0;
-    let maxMainCals = 0;
+    let minCals = 0;
+    let maxCals = 0;
     let minCarbs = 0;
     let maxCarbs = 0;
     let minProtein = 0;
@@ -350,17 +348,17 @@ async function fetchRegularMainData(cals, numMeals, carbs, protein, fat) {
 
     if (numMeals === 2) {
         //just get one dinner
-        approxCals = Math.floor((3 / 5) * cals);
+        approxCals = Math.floor((3 / 5) * cals) - (100 * randMainSides);
     } else { //numMeals === 3-6
-        approxCals = Math.floor(cals / numMeals);
+        approxCals = Math.floor(cals / numMeals) - (100 * randMainSides);
     }
 
     let servings = getServings(approxCals);
 
     // target = (approxCals - 150) +- 25 bc guaranteed side
-    let avgCals = Math.floor((approxCals - 100) / servings);
-    minMainCals = avgCals - 25;
-    maxMainCals = avgCals + 25;
+    let avgCals = Math.floor(approxCals / servings);
+    minCals = avgCals - 25;
+    maxCals = avgCals + 25;
 
     if (carbs === 0 && protein === 0 && fat === 0) {
         minCarbs = 0;
@@ -379,13 +377,6 @@ async function fetchRegularMainData(cals, numMeals, carbs, protein, fat) {
         maxProtein = Math.floor((avgCals * percentProtein) / 4) + 8;
         minFat = Math.floor((avgCals * percentFat) / 9) - 4;
         maxFat = Math.floor((avgCals * percentFat) / 9) + 4;
-        //
-        // minCarbs = Math.floor(((3 / 5) * carbs) / servings) - 10;
-        // maxCarbs = Math.floor(((3 / 5) * carbs) / servings) + 10;
-        // minProtein = Math.floor(((3 / 5) * protein) / servings) - 10;
-        // maxProtein = Math.floor(((3 / 5) * protein) / servings) + 10;
-        // minFat = Math.floor(((3 / 5) * fat) / servings) - 5;
-        // maxFat = Math.floor(((3 / 5) * fat) / servings) + 5;
     }
 
     try {
@@ -393,8 +384,8 @@ async function fetchRegularMainData(cals, numMeals, carbs, protein, fat) {
             instance({ // main meals (6 * numMeals)
                 "params": {
                     ...defaultParams,
-                    minCalories: minMainCals,
-                    maxCalories: maxMainCals,
+                    minCalories: minCals,
+                    maxCalories: maxCals,
                     minCarbs: minCarbs,
                     maxCarbs: maxCarbs,
                     minProtein: minProtein,
@@ -509,10 +500,12 @@ function getServings(cals) {
         return (num < 0.25 ? 4 : 3);
     else if (cals < 1500)
         return (num < 0.40 ? 4 : 3);
-    else if (cals < 1600)
+    else if (cals < 1700)
         return (num < 0.80 ? 4 : 3);
-    else // cals should be less than 1600 
-        return 4;
+    else if (cals < 1900)
+        return (num < 0.50 ? 5 : 4);
+    else // cals should be less than 2000 
+        return 5;
 }
 
 // this nearly idencial function is needed bc getting a breakfast with macros 
@@ -542,6 +535,8 @@ function getBreakfastServings(cals) {
         return (num < 0.60 ? 5 : 4);
     else if (cals < 1600)
         return (num < 0.80 ? 5 : 4);
-    else // cals should be less than 1600 
-        return 5;
+    else if (cals < 1800)
+        return (num < 0.30 ? 6 : 5);
+    else // cals should be less than 2000 
+        return 6;
 }

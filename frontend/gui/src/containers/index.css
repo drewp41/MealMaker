@@ -51,7 +51,8 @@
 }
 
 .header {
-    background-color: rgb(242, 242, 242);
+    /* background-color: rgb(242, 242, 242); */
+    background-color: white;
     /* background-color: rgb(245, 243, 240); */
     /* box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.08); */
     transition: all .25s ease;
@@ -185,6 +186,35 @@ button {
     }
 }
 
+/*
+=======================================================
+                     NEW TOP BODY
+=======================================================
+*/
+
+.topBody {
+    height: 400;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputBox {
+    background-color: white;
+    /* border: 1px solid #d9d9d9; */
+    border-radius: 2px;
+    width: 800px;
+    height: 300px;
+    margin: 70px 0 -110px 0;
+    /* box-shadow:0 7px 14px 0 rgba(50, 50, 93, .1), 0 3px 6px 0 rgba(0, 0, 0, .07); */
+    box-shadow: 0 13px 27px -5px rgba(50,50,93,.25), 0 8px 16px -8px rgba(0,0,0,.3), 0 -6px 16px -6px rgba(0,0,0,.025);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 /*
 =======================================================
@@ -223,6 +253,11 @@ button {
     margin: 0 90px 0 0px;
 }
 
+/* .ant-input-number-input {
+    padding: 4px 11px;
+    height: auto;
+} */
+
 .pieDiv {
     margin: 0 80px 0 auto;
 }
@@ -245,7 +280,7 @@ button {
     font-size: 16px;
     font-family: 'Camphor';
     font-weight: 300;
-    text-align: left;
+    /* text-align: left; */
 }
 
 .mealInput{
@@ -345,16 +380,22 @@ a:hover, a:active{
 .mealCardMainRow {
     height: 64px;
     /* bc the ant card body doesnt start at the top */
-    margin: -11px -10px 0 -10px;
+    /* margin: -11px -10px 0 -10px; */
+    margin: -13px -12px 2px -12px;
     padding: 5px 10px 0 10px;
     cursor: pointer;
+    transition: border .2s ease;
+    border: 2px solid transparent;
 }
 
 .mealCardSideRow {
     height: 64px;
-    margin: 0 -10px 0 -10px;
+    /* margin: 0 -10px 0 -10px; */
+    margin: -2px -12px -2px -12px;
     padding: 5px 10px 0 10px;
     cursor: pointer;
+    transition: border .2s ease;
+    border: 2px solid transparent;
 }
 
 .mealCardMainRow:hover {
@@ -388,7 +429,7 @@ a:hover, a:active{
 .cardShadow1 {
     box-shadow:0 7px 14px 0 rgba(50, 50, 93, .1), 0 3px 6px 0 rgba(0, 0, 0, .07);
     transition-property: color, background-color, box-shadow, transform;
-    transition-duration: .15s
+    transition-duration: .15s;
 }
 .cardShadow1:hover{
     transform:translateY(-2px);
@@ -416,7 +457,7 @@ a:hover, a:active{
     cursor: default;
 }
 .cardShadow2:active {
-    transform:translateY(2px)
+    transform:translateY(2px);
 }
 
 /* when screen width is small enough, columns are stacked on top of each other */

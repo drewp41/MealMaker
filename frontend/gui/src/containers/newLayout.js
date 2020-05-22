@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
-    Slider, Select,
+    Slider, Select, InputNumber,
     Switch, Collapse
 } from 'antd';
 import {
@@ -673,17 +673,134 @@ const NewLayout = (props) => {
 
     return (
         //  242, 242, 242
-        <div style={{ backgroundColor: 'rgb(242, 242, 242)' }}>
+        // <div style={{ backgroundColor: 'rgb(242, 242, 242)' }}>
+        <div style={{ backgroundColor: 'rgb(252,252,252)' }}>
             {/* <div style={{ backgroundColor: 'rgb(245, 243, 240)' }}> */}
             <div id="topLine"></div>
 
             <Header />
 
-            <div style={{ margin: '55px 0 55px 0', textAlign: 'center' }}>
+            <div className='topBody'>
+                <div style={{ height: '55px' }} />
+                <div style={{ fontSize: '32px', fontFamily: 'Inter', fontWeight: '850', textAlign: 'center' }}>
+                    Create a customized meal plan in seconds.
+                </div>
+                <div style={{ height: '10px' }} />
+                <div style={{ fontSize: '20px', fontFamily: 'Inter', fontWeight: '400', textAlign: 'center' }}>
+                    Search though over 365,000 recipes
+                </div>
+
+                <div className='inputBox'>
+                    <div style={{ textAlign: 'right' }}>
+                        <span className="leftColumnText">
+                            I want to eat &nbsp;
+                            <NumberFormat className='ant-input' id='calorieInput' style={{ width: '126px' }} suffix={' calories'}
+                                defaultValue={2000} allowEmptyFormatting={true}
+                                onValueChange={onCalorieChange}
+                            />
+                        </span>
+                        <div className='space20' />
+                        <span className="leftColumnText"> in &nbsp;
+                            <Select className="mealInput" defaultValue="3" style={{ width: '126px' }}
+                                onChange={(value) => {
+                                    setNumMeals(parseInt(value));
+                                    setChangedPrefs(true);
+                                }}>
+                                <Option className='camphorFont' value="1" style={{ fontSize: '15px' }}>1 meal</Option>
+                                <Option className='camphorFont' value="2" style={{ fontSize: '15px' }}>2 meals</Option>
+                                <Option className='camphorFont' value="3" style={{ fontSize: '15px' }}>3 meals</Option>
+                                <Option className='camphorFont' value="4" style={{ fontSize: '15px' }}>4 meals</Option>
+                                <Option className='camphorFont' value="5" style={{ fontSize: '15px' }}>5 meals</Option>
+                                <Option className='camphorFont' value="6" style={{ fontSize: '15px' }}>6 meals</Option>
+                            </Select>
+                        </span>
+                        <div className='space20' />
+                        <Collapse bordered={true} expandIconPosition='right' activeKey={enableMacros ? 1 : 0}
+                            style={{ width: '257px' }}>
+                            <Panel header={<b id="macroSwitchText">Macro Preferences&nbsp;&nbsp;</b>} showArrow={true} key="1"
+                                extra={<Switch defaultChecked={false} onChange={macroSwitch} style={{ margin: '3px 0 0 0' }} />} >
+                                {/* Carbs */}
+                                <span className='mealInput' style={{ float: 'left' }}>
+                                    Carbs &nbsp;
+                                            {macroPinned === null ?
+                                        <PushpinOutlined className='macroPin' onClick={() => pinMacro(1)} /> :
+                                        (macroPinned === 1 ?
+                                            <PushpinFilled className='macroPin' onClick={() => pinMacro(1)} /> :
+                                            null)
+                                    }
+                                </span>
+                                <span className='mealInput' style={{ float: 'right' }}>
+                                    {Math.round(macros.carbs)} g
+                                        </span>
+                                <br />
+                                <Slider defaultValue={45} tipFormatter={val => `${val}%`} min={15} max={70}
+                                    value={Math.round((macros.carbs * 4) / (calories / 100))}
+                                    disabled={macroPinned === 1}
+                                    onChange={(percent) => carbSlider(percent)}
+                                />
+                                {/* Protein */}
+                                <span className='mealInput' style={{ float: 'left' }}>
+                                    Protein &nbsp;
+                                            {macroPinned === null ?
+                                        <PushpinOutlined className='macroPin' onClick={() => pinMacro(2)} /> :
+                                        (macroPinned === 2 ?
+                                            <PushpinFilled className='macroPin' onClick={() => pinMacro(2)} /> :
+                                            null)
+                                    }
+                                </span>
+                                <span className='mealInput' style={{ float: 'right' }}>
+                                    {Math.round(macros.protein)} g
+                                        </span>
+                                <br />
+                                <Slider defaultValue={30} tipFormatter={val => `${val}%`} min={15} max={70}
+                                    value={Math.round((macros.protein * 4) / (calories / 100))}
+                                    disabled={macroPinned === 2}
+                                    onChange={(percent) => proteinSlider(percent)}
+                                />
+                                {/* Fat */}
+                                <span className='mealInput' style={{ float: 'left' }}>
+                                    Fat &nbsp;
+                                            {macroPinned === null ?
+                                        <PushpinOutlined className='macroPin' onClick={() => pinMacro(3)} /> :
+                                        (macroPinned === 3 ?
+                                            <PushpinFilled className='macroPin' onClick={() => pinMacro(3)} /> :
+                                            null)
+                                    }
+                                </span>
+                                <span className='mealInput' style={{ float: 'right' }}>
+                                    {Math.round(macros.fat)} g
+                                        </span>
+                                <br />
+                                <Slider defaultValue={25} tipFormatter={val => `${val}%`} min={15} max={70}
+                                    value={Math.round((macros.fat * 9) / (calories / 100))}
+                                    disabled={macroPinned === 3}
+                                    onChange={(percent) => fatSlider(percent)}
+                                />
+                            </Panel>
+                        </Collapse>
+
+                        <br />
+
+                    </div>
+                    {/* GENERATE BUTTON */}
+                    <a className='genButton' onClick={onClickGenerateButton} style={{ color: 'white' }}>
+                        {loadingMeals ? <SyncOutlined spin /> : <SyncOutlined />}&nbsp;
+                            GENERATE
+                    </a>
+                </div>
+
+            </div>
+            <div className="mainBodyRow" style={{ minHeight: 200, backgroundColor: 'rgb(242, 242, 242)' }} />
+
+
+
+
+
+            <div style={{ padding: '55px 0 55px 0', textAlign: 'center', backgroundColor: 'rgb(242, 242, 242)' }}>
                 <b id="captionText">Create a customized meal plan in seconds.</b>
             </div>
 
-            <div className="mainBodyRow" style={{ minHeight: 680 }}>
+            <div className="mainBodyRow" style={{ minHeight: 680, backgroundColor: 'rgb(242, 242, 242)' }}>
                 <div className="leftColumn">
                     <div className="inputArea" >
                         <span className="leftColumnText">
@@ -778,8 +895,9 @@ const NewLayout = (props) => {
 
                         {/* GENERATE BUTTON */}
                         <a className='genButton' onClick={onClickGenerateButton} style={{ color: 'white' }}>
-                            {loadingMeals ? <SyncOutlined spin /> : <SyncOutlined />}&nbsp; GENERATE
-                                </a>
+                            {loadingMeals ? <SyncOutlined spin /> : <SyncOutlined />}&nbsp;
+                            GENERATE
+                        </a>
                     </div>
 
                     <br />
@@ -878,4 +996,5 @@ const mapDispatchToProps = dispatch => {
 
 export default withRouter(connect(null, mapDispatchToProps)(NewLayout));
 
-
+// input number
+// return value.toString().match(/[0-9]*/)[0] + ' calories'
