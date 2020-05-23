@@ -674,129 +674,170 @@ const NewLayout = (props) => {
     return (
         //  242, 242, 242
         // <div style={{ backgroundColor: 'rgb(242, 242, 242)' }}>
-        <div style={{ backgroundColor: 'rgb(252,252,252)' }}>
+        <div style={{ backgroundColor: 'white' }}>
             {/* <div style={{ backgroundColor: 'rgb(245, 243, 240)' }}> */}
             <div id="topLine"></div>
 
             <Header />
 
             <div className='topBody'>
-                <div style={{ height: '55px' }} />
-                <div style={{ fontSize: '32px', fontFamily: 'Inter', fontWeight: '850', textAlign: 'center' }}>
-                    Create a customized meal plan in seconds.
-                </div>
-                <div style={{ height: '10px' }} />
-                <div style={{ fontSize: '20px', fontFamily: 'Inter', fontWeight: '400', textAlign: 'center' }}>
-                    Search though over 365,000 recipes.
+                <div className='topBodyText'>
+                    {/* inter 850 and 400, alliance 700 and 300 */}
+                    <div style={{ fontSize: '32px', fontFamily: 'Alliance', fontWeight: '700', textAlign: 'center' }}>
+                        Create a customized meal plan in seconds.
+                    </div>
+                    <div style={{ height: '10px' }} />
+                    <div style={{ fontSize: '20px', fontFamily: 'Alliance', fontWeight: '300', textAlign: 'center' }}>
+                        Search though over 365,000 recipes.
+                    </div>
                 </div>
 
                 <div className='inputBox'>
-                    <div style={{ textAlign: 'right' }}>
-                        <span className="leftColumnText">
-                            I want to eat &nbsp;
+                    <div style={{ display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                        <div style={{ textAlign: 'right' }}>
+                            <span className="leftColumnText">
+                                I want to eat &nbsp;
                             <NumberFormat className='ant-input' id='calorieInput' style={{ width: '126px' }} suffix={' calories'}
-                                defaultValue={2000} allowEmptyFormatting={true}
-                                onValueChange={onCalorieChange}
-                            />
-                        </span>
-                        <div className='space20' />
-                        <span className="leftColumnText"> in &nbsp;
+                                    defaultValue={2000} allowEmptyFormatting={true}
+                                    onValueChange={onCalorieChange}
+                                />
+                            </span>
+                            <div className='space20' />
+                            <span className="leftColumnText"> in &nbsp;
                             <Select className="mealInput" defaultValue="3" style={{ width: '126px' }}
-                                onChange={(value) => {
-                                    setNumMeals(parseInt(value));
-                                    setChangedPrefs(true);
-                                }}>
-                                <Option className='camphorFont' value="1" style={{ fontSize: '15px' }}>1 meal</Option>
-                                <Option className='camphorFont' value="2" style={{ fontSize: '15px' }}>2 meals</Option>
-                                <Option className='camphorFont' value="3" style={{ fontSize: '15px' }}>3 meals</Option>
-                                <Option className='camphorFont' value="4" style={{ fontSize: '15px' }}>4 meals</Option>
-                                <Option className='camphorFont' value="5" style={{ fontSize: '15px' }}>5 meals</Option>
-                                <Option className='camphorFont' value="6" style={{ fontSize: '15px' }}>6 meals</Option>
-                            </Select>
-                        </span>
-                        <div className='space20' />
-                        <Collapse bordered={true} expandIconPosition='right' activeKey={enableMacros ? 1 : 0}
-                            style={{ width: '257px' }}>
-                            <Panel header={<b id="macroSwitchText">Macro Preferences&nbsp;&nbsp;</b>} showArrow={true} key="1"
-                                extra={<Switch defaultChecked={false} onChange={macroSwitch} style={{ margin: '3px 0 0 0' }} />} >
-                                {/* Carbs */}
-                                <span className='mealInput' style={{ float: 'left' }}>
-                                    Carbs &nbsp;
-                                            {macroPinned === null ?
-                                        <PushpinOutlined className='macroPin' onClick={() => pinMacro(1)} /> :
-                                        (macroPinned === 1 ?
-                                            <PushpinFilled className='macroPin' onClick={() => pinMacro(1)} /> :
-                                            null)
-                                    }
-                                </span>
-                                <span className='mealInput' style={{ float: 'right' }}>
-                                    {Math.round(macros.carbs)} g
-                                        </span>
-                                <br />
-                                <Slider defaultValue={45} tipFormatter={val => `${val}%`} min={15} max={70}
-                                    value={Math.round((macros.carbs * 4) / (calories / 100))}
-                                    disabled={macroPinned === 1}
-                                    onChange={(percent) => carbSlider(percent)}
-                                />
-                                {/* Protein */}
-                                <span className='mealInput' style={{ float: 'left' }}>
-                                    Protein &nbsp;
-                                            {macroPinned === null ?
-                                        <PushpinOutlined className='macroPin' onClick={() => pinMacro(2)} /> :
-                                        (macroPinned === 2 ?
-                                            <PushpinFilled className='macroPin' onClick={() => pinMacro(2)} /> :
-                                            null)
-                                    }
-                                </span>
-                                <span className='mealInput' style={{ float: 'right' }}>
-                                    {Math.round(macros.protein)} g
-                                        </span>
-                                <br />
-                                <Slider defaultValue={30} tipFormatter={val => `${val}%`} min={15} max={70}
-                                    value={Math.round((macros.protein * 4) / (calories / 100))}
-                                    disabled={macroPinned === 2}
-                                    onChange={(percent) => proteinSlider(percent)}
-                                />
-                                {/* Fat */}
-                                <span className='mealInput' style={{ float: 'left' }}>
-                                    Fat &nbsp;
-                                            {macroPinned === null ?
-                                        <PushpinOutlined className='macroPin' onClick={() => pinMacro(3)} /> :
-                                        (macroPinned === 3 ?
-                                            <PushpinFilled className='macroPin' onClick={() => pinMacro(3)} /> :
-                                            null)
-                                    }
-                                </span>
-                                <span className='mealInput' style={{ float: 'right' }}>
-                                    {Math.round(macros.fat)} g
-                                        </span>
-                                <br />
-                                <Slider defaultValue={25} tipFormatter={val => `${val}%`} min={15} max={70}
-                                    value={Math.round((macros.fat * 9) / (calories / 100))}
-                                    disabled={macroPinned === 3}
-                                    onChange={(percent) => fatSlider(percent)}
-                                />
-                            </Panel>
-                        </Collapse>
-
-                        <br />
-
-                    </div>
-                    {/* GENERATE BUTTON */}
-                    <a className='genButton' onClick={onClickGenerateButton} style={{ color: 'white' }}>
-                        {loadingMeals ? <SyncOutlined spin /> : <SyncOutlined />}&nbsp;
+                                    onChange={(value) => {
+                                        setNumMeals(parseInt(value));
+                                        setChangedPrefs(true);
+                                    }}>
+                                    <Option className='camphorFont' value="1" style={{ fontSize: '15px' }}>1 meal</Option>
+                                    <Option className='camphorFont' value="2" style={{ fontSize: '15px' }}>2 meals</Option>
+                                    <Option className='camphorFont' value="3" style={{ fontSize: '15px' }}>3 meals</Option>
+                                    <Option className='camphorFont' value="4" style={{ fontSize: '15px' }}>4 meals</Option>
+                                    <Option className='camphorFont' value="5" style={{ fontSize: '15px' }}>5 meals</Option>
+                                    <Option className='camphorFont' value="6" style={{ fontSize: '15px' }}>6 meals</Option>
+                                </Select>
+                            </span>
+                            <div className='space20' />
+                            {/* GENERATE BUTTON */}
+                            <a className='genButton' onClick={onClickGenerateButton} style={{ color: 'white', margin: '0 0 0 auto' }}>
+                                {loadingMeals ? <SyncOutlined spin /> : <SyncOutlined />}&nbsp;
                             GENERATE
-                    </a>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div style={{ borderLeft: '2px solid #f0f0f0', height: '80%' }} />
+
+                    <div style={{ display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+                        <div style={{ width: '200px' }}>
+                            {/* Carbs */}
+                            <span className='mealInput' style={{ float: 'left' }}>
+                                Carbs &nbsp;
+                                            {macroPinned === null ?
+                                    <PushpinOutlined className='macroPin' onClick={() => pinMacro(1)} /> :
+                                    (macroPinned === 1 ?
+                                        <PushpinFilled className='macroPin' onClick={() => pinMacro(1)} /> :
+                                        null)
+                                }
+                            </span>
+                            <span className='mealInput' style={{ float: 'right' }}>
+                                {Math.round(macros.carbs)} g
+                                        </span>
+                            <br />
+                            <Slider defaultValue={45} tipFormatter={val => `${val}%`} min={15} max={70}
+                                value={Math.round((macros.carbs * 4) / (calories / 100))}
+                                disabled={macroPinned === 1}
+                                onChange={(percent) => carbSlider(percent)}
+                            />
+                            {/* Protein */}
+                            <span className='mealInput' style={{ float: 'left' }}>
+                                Protein &nbsp;
+                                            {macroPinned === null ?
+                                    <PushpinOutlined className='macroPin' onClick={() => pinMacro(2)} /> :
+                                    (macroPinned === 2 ?
+                                        <PushpinFilled className='macroPin' onClick={() => pinMacro(2)} /> :
+                                        null)
+                                }
+                            </span>
+                            <span className='mealInput' style={{ float: 'right' }}>
+                                {Math.round(macros.protein)} g
+                                        </span>
+                            <br />
+                            <Slider defaultValue={30} tipFormatter={val => `${val}%`} min={15} max={70}
+                                value={Math.round((macros.protein * 4) / (calories / 100))}
+                                disabled={macroPinned === 2}
+                                onChange={(percent) => proteinSlider(percent)}
+                            />
+                            {/* Fat */}
+                            <span className='mealInput' style={{ float: 'left' }}>
+                                Fat &nbsp;
+                                            {macroPinned === null ?
+                                    <PushpinOutlined className='macroPin' onClick={() => pinMacro(3)} /> :
+                                    (macroPinned === 3 ?
+                                        <PushpinFilled className='macroPin' onClick={() => pinMacro(3)} /> :
+                                        null)
+                                }
+                            </span>
+                            <span className='mealInput' style={{ float: 'right' }}>
+                                {Math.round(macros.fat)} g
+                                        </span>
+                            <br />
+                            <Slider defaultValue={25} tipFormatter={val => `${val}%`} min={15} max={70}
+                                value={Math.round((macros.fat * 9) / (calories / 100))}
+                                disabled={macroPinned === 3}
+                                onChange={(percent) => fatSlider(percent)}
+                            />
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
-            <div className="mainBodyRow" style={{ minHeight: 200, backgroundColor: 'rgb(242, 242, 242)' }} />
+            {/* <div className="mainBodyRow" style={{
+                minHeight: 200, backgroundColor: 'rgb(242, 242, 242)',
+            }} /> */}
+            <div className='colMealCards'>
+                <p style={{ fontFamily: 'Camphor', fontSize: '16px', marginTop: '-41px' }}>
+                    Total calories: {
+                        meal1.main.calories + meal1.side.calories +
+                        (numMeals >= 2 ? meal2.main.calories + meal2.side.calories : 0) +
+                        (numMeals >= 3 ? meal3.main.calories + meal3.side.calories : 0) +
+                        (numMeals >= 4 ? meal4.main.calories + meal4.side.calories : 0) +
+                        (numMeals >= 5 ? meal5.main.calories + meal5.side.calories : 0) +
+                        (numMeals >= 6 ? meal6.main.calories + meal6.side.calories : 0)
+                    }
+                </p>
 
-            <div className='slantParent'>
-                <div className='slantTop' />
-                <div className='slantBottom' />
+                <MealCard mealNum={1} mealObj={meal1} numMeals={numMeals}
+                    displayMeals={displayMeals}
+                    regenMain={regenMain} regenSide={regenSide}
+                    pinMain={pinMain} pinSide={pinSide} />
+
+                <MealCard mealNum={2} mealObj={meal2} numMeals={numMeals}
+                    displayMeals={displayMeals}
+                    regenMain={regenMain} regenSide={regenSide}
+                    pinMain={pinMain} pinSide={pinSide} />
+
+                <MealCard mealNum={3} mealObj={meal3} numMeals={numMeals}
+                    displayMeals={displayMeals}
+                    regenMain={regenMain} regenSide={regenSide}
+                    pinMain={pinMain} pinSide={pinSide} />
+
+                <MealCard mealNum={4} mealObj={meal4} numMeals={numMeals}
+                    displayMeals={displayMeals}
+                    regenMain={regenMain} regenSide={regenSide}
+                    pinMain={pinMain} pinSide={pinSide} />
+
+                <MealCard mealNum={5} mealObj={meal5} numMeals={numMeals}
+                    displayMeals={displayMeals}
+                    regenMain={regenMain} regenSide={regenSide}
+                    pinMain={pinMain} pinSide={pinSide} />
+
+                <MealCard mealNum={6} mealObj={meal6} numMeals={numMeals}
+                    displayMeals={displayMeals}
+                    regenMain={regenMain} regenSide={regenSide}
+                    pinMain={pinMain} pinSide={pinSide} />
             </div>
-
 
 
             <div style={{ padding: '55px 0 55px 0', textAlign: 'center', backgroundColor: 'rgb(242, 242, 242)' }}>
