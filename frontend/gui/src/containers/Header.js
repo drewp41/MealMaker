@@ -21,15 +21,14 @@ function Header(props) {
             <div className='header' style={{ height: headerHeight }} >
                 <div className='rowHeader'>
                     <div className='headerLRSpace'></div>
-                    <div className='logoIcon' style={{ padding: '11px 0 0 0' }}>
+                    <div className='logoIcon' style={{ padding: '10px 0 0 0' }}>
                         <button onClick={rotateIcon} style={{ height: '50px', width: '58px' }}>
                             <img className={rotateClass} src={coloredCarrot} alt="logo" style={{ width: 35, height: 35, margin: '0 -18px 0px 0' }} draggable='false' />
                         </button>
                     </div>
                     {/* shifted down 15px to center it vertically in the header */}
                     <div className='colHeaderL' style={{ padding: '15px 0 0 0' }}>
-                        <button className='logoText'
-                            style={{ height: '50px', width: '160px' }}>
+                        <button className='logoText' style={{ height: '50px', width: '180px' }}>
                             mealmaker.io
                         </button>
                     </div>
@@ -51,7 +50,7 @@ function Header(props) {
                     {/* shifted down 10px to center it vertically in the header */}
                     <div className='colHeaderR' style={{ padding: '15px 0 0 0' }}>
                         <button className="headerText" style={{ height: '50px', width: '110px' }}>
-                            <span id="signInArrow">Sign in</span> <span style={{ fontFamily: 'Inter' }} > →</span>
+                            <span id="signInArrow">Sign in</span> <span style={{ fontFamily: 'Inter' }}> →</span>
                         </button>
                     </div>
 

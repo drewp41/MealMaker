@@ -4,7 +4,8 @@ import {
     Switch, Collapse
 } from 'antd';
 import {
-    SyncOutlined, PushpinOutlined, PushpinFilled
+    SyncOutlined, PushpinOutlined, PushpinFilled,
+    SettingOutlined, SettingFilled
 } from '@ant-design/icons';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -682,19 +683,18 @@ const NewLayout = (props) => {
 
             <div className='topBody'>
                 <div className='topBodyText'>
-                    {/* inter 850 and 400, alliance 700 and 300 */}
-                    <div style={{ fontSize: '32px', fontFamily: 'Alliance', fontWeight: '700', textAlign: 'center' }}>
+                    <div style={{ fontSize: '32px', fontFamily: 'Alliance', fontWeight: '800', textAlign: 'center' }}>
                         Create a customized meal plan in seconds.
                     </div>
                     <div style={{ height: '10px' }} />
-                    <div style={{ fontSize: '20px', fontFamily: 'Alliance', fontWeight: '300', textAlign: 'center' }}>
+                    <div style={{ fontSize: '20px', fontFamily: 'Alliance', fontWeight: '400', textAlign: 'center' }}>
                         Search though over 365,000 recipes.
                     </div>
                 </div>
 
                 <div className='inputBox'>
                     <div style={{ display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <div style={{ textAlign: 'right' }}>
+                        <div style={{ textAlign: 'right', position: 'relative' }}>
                             <span className="leftColumnText">
                                 I want to eat &nbsp;
                             <NumberFormat className='ant-input' id='calorieInput' style={{ width: '126px' }} suffix={' calories'}
@@ -718,10 +718,16 @@ const NewLayout = (props) => {
                                 </Select>
                             </span>
                             <div className='space20' />
+
+                            <a className='genButton' onClick={onClickGenerateButton}
+                                style={{ color: 'white', backgroundColor: '#fff', position: 'absolute', left: 0 }}>
+                                <SettingFilled style={{ color: '#808080' }} />
+                            </a>
+                            {/* <SettingFilled style={{ color: '#808080', position: 'absolute', left: 0, bottom: 10, fontSize: '18px' }} /> */}
                             {/* GENERATE BUTTON */}
-                            <a className='genButton' onClick={onClickGenerateButton} style={{ color: 'white', margin: '0 0 0 auto' }}>
+                            <a className='genButton' onClick={onClickGenerateButton} style={{ color: 'white' }}>
                                 {loadingMeals ? <SyncOutlined spin /> : <SyncOutlined />}&nbsp;
-                            GENERATE
+                                GENERATE
                             </a>
                         </div>
                     </div>
@@ -729,7 +735,7 @@ const NewLayout = (props) => {
                     <div style={{ borderLeft: '2px solid #f0f0f0', height: '80%' }} />
 
                     <div style={{ display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-                        <div style={{ width: '200px' }}>
+                        <div style={{ width: '210px' }}>
                             {/* Carbs */}
                             <span className='mealInput' style={{ float: 'left' }}>
                                 Carbs &nbsp;

@@ -92,11 +92,11 @@
 
 .logoText {
     font-size: 24px;
-    font-family: 'Camphor';
-    font-weight: 700;
-    /* font-family: 'Alliance';
-    font-weight: 700; */
-    color:#484848;
+    /* font-family: 'Camphor'; */
+    font-family: 'Alliance';
+    font-weight: 800;
+    color:#505050;
+    padding: 0 8px 0 0;
 }
 
 .headerText{ 
@@ -245,8 +245,8 @@ button {
     width: 700px;
     height: 250px;
     /* margin: 80px 0 -110px 0; */
-    /* box-shadow:0 7px 14px 0 rgba(50, 50, 93, .1), 0 3px 6px 0 rgba(0, 0, 0, .07); */
     box-shadow: 0 13px 27px -5px rgba(50,50,93,.25), 0 8px 16px -8px rgba(0,0,0,.3), 0 -6px 16px -6px rgba(0,0,0,.025);
+    /* box-shadow: 0 30px 60px -12px rgba(50,50,93,.25), 0 18px 36px -18px rgba(0,0,0,.3); */
     display: flex;
     /* flex-direction: column; */
     justify-content: center;
@@ -378,7 +378,7 @@ button {
     line-height: 40px;
     padding: 0 14px;
     box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
-    background: #47B57A;
+    background-color: #47B57A;
     /* background: #e66761; */
     border-radius: 4px;
     font-size: 14px;

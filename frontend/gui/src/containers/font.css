@@ -55,7 +55,7 @@
   
     src: url('../fonts/AllianceNo1Light.woff2') format('woff2'); /* Modern Browsers */
       
-    font-weight: 200;
+    font-weight: 300;
     font-style: normal;
 }
 
@@ -64,7 +64,7 @@
   
     src: url('../fonts/AllianceNo1Regular.woff2') format('woff2'); /* Modern Browsers */
       
-    font-weight: 300;
+    font-weight: 400;
     font-style: normal;
 }
 
@@ -73,7 +73,7 @@
   
     src: url('../fonts/AllianceNo1Medium.woff2') format('woff2'); /* Modern Browsers */
       
-    font-weight: 400;
+    font-weight: 500;
     font-style: normal;
 }
 
@@ -82,7 +82,7 @@
   
     src: url('../fonts/AllianceNo1SemiBold.woff2') format('woff2'); /* Modern Browsers */
       
-    font-weight: 500;
+    font-weight: 600;
     font-style: normal;
 }
 
@@ -91,7 +91,7 @@
   
     src: url('../fonts/AllianceNo1Bold.woff2') format('woff2'); /* Modern Browsers */
       
-    font-weight: 600;
+    font-weight: 700;
     font-style: normal;
 }
 
@@ -100,7 +100,7 @@
   
     src: url('../fonts/AllianceNo1ExtraBold.woff2') format('woff2'); /* Modern Browsers */
       
-    font-weight: 700;
+    font-weight: 800;
     font-style: normal;
 }
 
@@ -109,6 +109,6 @@
   
     src: url('../fonts/AllianceNo1Black.woff2') format('woff2'); /* Modern Browsers */
       
-    font-weight: 800;
+    font-weight: 900;
     font-style: normal;
 }
