@@ -727,7 +727,7 @@ const NewLayout = (props) => {
                                         <div className='space20' />
 
                                         <a className='genButton' onClick={() => setTabPos('2')}
-                                            style={{ color: 'white', backgroundColor: '#fff', position: 'absolute', left: 0 }}>
+                                            style={{ color: 'white', backgroundColor: '#FFF', position: 'absolute', left: 0 }}>
                                             <SettingFilled style={{ color: '#808080' }} />
                                         </a>
                                         {/* GENERATE BUTTON */}

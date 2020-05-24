@@ -429,14 +429,18 @@ button {
     padding: 0 14px;
     box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
     background-color: #47B57A;
-    /* background: #e66761; */
     border-radius: 4px;
-    font-size: 14px;
+    font-family: 'Camphor';
+    font-size: 15px;
     font-weight: 600;
-    letter-spacing: .04em;
+    letter-spacing: .025em;
+    /* letter-spacing: 0.375px; */
     color: #fff;
     text-decoration: none;
-    transition: all .15s ease
+    transition: all .15s ease;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .genButton:hover, .genButton:focus {
