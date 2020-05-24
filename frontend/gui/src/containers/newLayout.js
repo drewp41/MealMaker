@@ -820,7 +820,7 @@ const NewLayout = (props) => {
                                         Available time&nbsp;&nbsp;
                                         <Select className='mealInput' defaultValue='2'
                                             onChange={(value) => {
-                                                setNumMeals(parseInt(value));
+                                                // set some hook that controls prep and cook time
                                                 setChangedPrefs(true);
                                             }}>
                                             <Option className='camphorFont' value='1' style={{ fontSize: '15px' }}>&lt; 15 min</Option>
