@@ -433,7 +433,7 @@ button {
     font-family: 'Camphor';
     font-size: 15px;
     font-weight: 600;
-    letter-spacing: .025em;
+    letter-spacing: .015em;
     /* letter-spacing: 0.375px; */
     color: #fff;
     text-decoration: none;
@@ -454,13 +454,6 @@ button {
     background-color: #40A66E;
     transform: translateY(1px);
     box-shadow:0 6px 12px -2px rgba(50, 50, 93, .25), 0 3px 7px -3px rgba(0, 0, 0, .3)
-}
-
-a:link, a:visited{
-    color:#707078;
-}
-a:hover, a:active{
-    color: var(--mainTextColor);
 }
 
 .mealCard {
@@ -668,10 +661,57 @@ a:hover, a:active{
 =======================================================
 */
 
-.rowFooter {
+.footer {
+    font-family: 'Camphor';
+    font-size: 16px;
+    background-color: #404040;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.colFooter {
-    flex: 50%;
+.footerBody {
+    height: 200px;
+    margin: 50px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
+
+.footer a {
+    transition: none;
+}
+
+.footer a:link, .footer a:visited{
+    color:#FFF;
+}
+.footer a:hover, .footer a:active{
+    color: #c0c0c0;
+}
+
+.footerLinks {
+    padding: 30px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.footerLinks a {
+    padding: 15px;
+}
+
+.footerSocials {
+    padding: 22px 0 0 0;
+}
+
+.footerSocials a {
+    padding: 15px;
+}
+
+.footerCopyright {
+    padding: 22px 0 0 0;
+    color: #a0a0a0;
+}
+

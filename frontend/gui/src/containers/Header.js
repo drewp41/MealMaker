@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import coloredCarrot from '../coloredCarrot.svg';
+import logo from '../logo.svg';
 
 function Header(props) {
     const [headerHeight, setHeaderHeight] = useState('80px');
@@ -23,7 +23,7 @@ function Header(props) {
                     <div className='headerLRSpace'></div>
                     <div className='logoIcon' style={{ padding: '10px 0 0 0' }}>
                         <button onClick={rotateIcon} style={{ height: '50px', width: '58px' }}>
-                            <img className={rotateClass} src={coloredCarrot} alt="logo" style={{ width: 35, height: 35, margin: '0 -18px 0px 0' }} draggable='false' />
+                            <img className={rotateClass} src={logo} alt="logo" style={{ width: 35, height: 35, margin: '0 -18px 0px 0' }} draggable='false' />
                         </button>
                     </div>
                     {/* shifted down 15px to center it vertically in the header */}

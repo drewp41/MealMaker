@@ -880,13 +880,32 @@ const NewLayout = (props) => {
                     displayMeals={displayMeals}
                     regenMain={regenMain} regenSide={regenSide}
                     pinMain={pinMain} pinSide={pinSide} />
+
+                <div style={{ height: '100px' }} />
             </div>
 
+            <Footer />
 
-            <div style={{ padding: '55px 0 55px 0', textAlign: 'center', backgroundColor: 'rgb(242, 242, 242)' }}>
-                <b id="captionText">Create a customized meal plan in seconds.</b>
-            </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            {/* 
             <div className="mainBodyRow" style={{ minHeight: 680, backgroundColor: 'rgb(242, 242, 242)' }}>
                 <div className="leftColumn">
                     <div className="inputArea" >
@@ -918,7 +937,6 @@ const NewLayout = (props) => {
                             style={{ marginLeft: 'auto', width: '257px' }}>
                             <Panel header={<b id="macroSwitchText">Macro Preferences&nbsp;&nbsp;</b>} showArrow={true} key="1"
                                 extra={<Switch defaultChecked={false} onChange={macroSwitch} style={{ margin: '3px 0 0 0' }} />} >
-                                {/* Carbs */}
                                 <span className='mealInput' style={{ float: 'left' }}>
                                     Carbs &nbsp;
                                             {macroPinned === null ?
@@ -937,7 +955,6 @@ const NewLayout = (props) => {
                                     disabled={macroPinned === 1}
                                     onChange={(percent) => carbSlider(percent)}
                                 />
-                                {/* Protein */}
                                 <span className='mealInput' style={{ float: 'left' }}>
                                     Protein &nbsp;
                                             {macroPinned === null ?
@@ -956,7 +973,6 @@ const NewLayout = (props) => {
                                     disabled={macroPinned === 2}
                                     onChange={(percent) => proteinSlider(percent)}
                                 />
-                                {/* Fat */}
                                 <span className='mealInput' style={{ float: 'left' }}>
                                     Fat &nbsp;
                                             {macroPinned === null ?
@@ -980,7 +996,6 @@ const NewLayout = (props) => {
 
                         <br />
 
-                        {/* GENERATE BUTTON */}
                         <a className='genButton' onClick={onClickGenerateButton} style={{ color: 'white' }}>
                             {loadingMeals ? <SyncOutlined spin /> : <SyncOutlined />}&nbsp;
                             GENERATE
@@ -1064,11 +1079,7 @@ const NewLayout = (props) => {
                         regenMain={regenMain} regenSide={regenSide}
                         pinMain={pinMain} pinSide={pinSide} />
                 </div>
-            </div >
-
-            <div style={{ minHeight: 200 }} />
-
-            <Footer />
+            </div > */}
 
         </div >
     )
