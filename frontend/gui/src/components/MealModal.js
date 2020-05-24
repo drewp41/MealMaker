@@ -85,11 +85,11 @@ const MealModal = (props) => {
                             <div style={{ width: '120px', textAlign: 'left', margin: '0 0 0 20px' }}>
                                 <p> {'Prep: '}
                                     <span style={{ float: 'right' }}>{typeof props.meal.prepTime === 'undefined' ? 'n/a'
-                                        : props.meal.prepTime + ' mins'}</span>
+                                        : props.meal.prepTime + ' min'}</span>
                                 </p>
                                 <p> {'Cook: '}
                                     <span style={{ float: 'right' }}>{typeof props.meal.cookTime === 'undefined' ? 'n/a'
-                                        : props.meal.cookTime + ' mins'}</span>
+                                        : props.meal.cookTime + ' min'}</span>
                                 </p>
                                 <span style={{ fontSize: '18px' }}>
                                     <SyncOutlined />

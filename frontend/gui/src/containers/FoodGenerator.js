@@ -171,12 +171,12 @@ async function fetchBreakfastMainData(cals, numMeals, carbs, protein, fat) {
         let percentCarbs = carbs / (carbs + protein + fat * (9 / 4));
         let percentProtein = protein / (carbs + protein + fat * (9 / 4));
         let percentFat = (fat * (9 / 4)) / (carbs + protein + fat * (9 / 4));
-        minCarbs = Math.floor((avgCals * percentCarbs) / 4) - 12;
-        maxCarbs = Math.floor((avgCals * percentCarbs) / 4) + 12;
-        minProtein = Math.floor((avgCals * percentProtein) / 4) - 12;
-        maxProtein = Math.floor((avgCals * percentProtein) / 4) + 12;
-        minFat = Math.floor((avgCals * percentFat) / 9) - 6;
-        maxFat = Math.floor((avgCals * percentFat) / 9) + 6;
+        minCarbs = Math.floor((avgCals * percentCarbs) / 4) - 13;
+        maxCarbs = Math.floor((avgCals * percentCarbs) / 4) + 13;
+        minProtein = Math.floor((avgCals * percentProtein) / 4) - 13;
+        maxProtein = Math.floor((avgCals * percentProtein) / 4) + 13;
+        minFat = Math.floor((avgCals * percentFat) / 9) - 7;
+        maxFat = Math.floor((avgCals * percentFat) / 9) + 7;
     }
 
     try {
@@ -371,12 +371,12 @@ async function fetchRegularMainData(cals, numMeals, carbs, protein, fat) {
         let percentCarbs = carbs / (carbs + protein + fat * (9 / 4));
         let percentProtein = protein / (carbs + protein + fat * (9 / 4));
         let percentFat = (fat * (9 / 4)) / (carbs + protein + fat * (9 / 4));
-        minCarbs = Math.floor((avgCals * percentCarbs) / 4) - 8;
-        maxCarbs = Math.floor((avgCals * percentCarbs) / 4) + 8;
-        minProtein = Math.floor((avgCals * percentProtein) / 4) - 8;
-        maxProtein = Math.floor((avgCals * percentProtein) / 4) + 8;
-        minFat = Math.floor((avgCals * percentFat) / 9) - 4;
-        maxFat = Math.floor((avgCals * percentFat) / 9) + 4;
+        minCarbs = Math.floor((avgCals * percentCarbs) / 4) - 10;
+        maxCarbs = Math.floor((avgCals * percentCarbs) / 4) + 10;
+        minProtein = Math.floor((avgCals * percentProtein) / 4) - 10;
+        maxProtein = Math.floor((avgCals * percentProtein) / 4) + 10;
+        minFat = Math.floor((avgCals * percentFat) / 9) - 5;
+        maxFat = Math.floor((avgCals * percentFat) / 9) + 5;
     }
 
     try {

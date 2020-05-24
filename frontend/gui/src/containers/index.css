@@ -127,7 +127,7 @@ button {
 }
 
 .headerText:hover #signInArrow {
-    padding: 6px;
+    padding: 5px;
 }
 
 .hamburgerMenu {
@@ -244,11 +244,13 @@ button {
     border-radius: 2px;
     width: 700px;
     height: 250px;
-    /* margin: 80px 0 -110px 0; */
     box-shadow: 0 13px 27px -5px rgba(50,50,93,.25), 0 8px 16px -8px rgba(0,0,0,.3), 0 -6px 16px -6px rgba(0,0,0,.025);
-    /* box-shadow: 0 30px 60px -12px rgba(50,50,93,.25), 0 18px 36px -18px rgba(0,0,0,.3); */
+    /* box-shadow: 0 30px 60px -12px rgba(50,50,93,.25), 0 18px 36px -18px rgba(0,0,0,.3), 0 -12px 36px -8px rgba(0,0,0,.025); */
+}
+
+.inputMain {
+    height: 250px;
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
     flex-direction: row;
@@ -261,6 +263,54 @@ button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+
+.inputSettings {
+    height: 250px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Camphor';
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--mainTextColor);
+}
+
+/* removes the tab bar */
+.ant-tabs-nav-scroll, .ant-tabs-bar{
+    display: none;
+}
+
+.settingsBack {
+    position: absolute;
+    top: 18px;
+    left: 24px;
+    color: var(--mainTextColor);
+    font-family: 'Camphor';
+    font-weight: 300;
+    font-size: 18px;
+}
+
+.settingsBack:hover {
+    color: grey;
+}
+
+/* Back arrow animation */
+.settingsBackText {
+    transition: margin 0.25s;
+}
+.settingsBackArrow {
+    font-family: 'Inter';
+    transition: margin 0.25s;
+}
+.settingsBack:hover .settingsBackText {
+    margin-left: 5px;
+}
+.settingsBack:hover .settingsBackArrow {
+    margin-left: -5px;
 }
 
 /*
