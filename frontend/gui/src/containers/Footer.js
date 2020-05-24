@@ -12,7 +12,13 @@ function Footer(props) {
         <div className='footer'>
             {/* background: rgb(27,28,29) and dividers: rgb(50,51,52) */}
             <div className='footerBody'>
-                <img src={whiteLogo} alt="logo" style={{ width: 30, height: 30 }} draggable='false' />
+                <div style={{ display: 'flex' }}>
+                    <img src={whiteLogo} alt="logo" style={{ width: 32, height: 32, margin: '-5px 0 0 0' }} draggable='false' />
+                    <span className='logoText' style={{ color: '#FFF', padding: '0 0 0 8px' }}>
+                        mealmaker.io
+                    </span>
+                </div>
+
                 <div className='footerLinks'>
                     <a href='#'>Home</a>
                     <a href='#'>How it works</a>
