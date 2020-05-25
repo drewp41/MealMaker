@@ -24,10 +24,11 @@ function SignupPanel(props) {
                 <div className='signupPanelFillerM' />
                 <div className='signupPanelInput'>
                     <Input className='signupPanelEmail' placeholder='Email' size='large' />
-                    <a className='genButton' onClick={() => console.log('hi')}
-                        style={{ color: 'white', fontFamily: 'Camphor', margin: '0 20px 0 0' }}>
+                    <a className={['genButton', 'signupPanelInputButton'].join(' ')}
+                        onClick={() => console.log('hi')}>
                         SIGN UP
                     </a>
+                    <div className='signupPanelInputFiller' />
                 </div>
                 <div className='signupPanelFillerLR' />
             </div>
