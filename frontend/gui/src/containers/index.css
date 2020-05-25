@@ -583,35 +583,35 @@ button {
 }
 
 .signupPanelBody {
-    min-width: 1200px;
+    width: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .signupPanelReadyText {
     font-family: 'Camphor';
-    min-width: 430px;
     font-size: 30px;
     font-weight: 300px;
-    /* color: var(--mainTextColor); */
     color: #404142;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    flex: 1;
+    flex: 0 0 430px;
+    margin: 0 0 0 20px;
+    height: 94px;
 }
 
 .signupPanelInput {
     font-family: 'Camphor';
     font-size: 30px;
     font-weight: 300px;
-    /* color: var(--mainTextColor); */
     color: #404142;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1;
 }
 
 .signupPanelEmail {
@@ -625,11 +625,32 @@ button {
 }
 
 .signupPanelFillerLR {
-    flex: 1;
+    flex: 1 0 0;
 }
 
 .signupPanelFillerM {
-    flex: 1;
+    flex: 0 1 250px;
+}
+
+@media screen and (max-width: 900px) {
+    .signupPanelBody {
+        flex-direction: column;
+        /* helps vertically center it better */
+        margin: -8px 0 0 0;
+    }
+    .signupPanelFillerM {
+        display: none;
+    }
+    .signupPanelInput {
+        justify-content: start;
+        padding: 15px 0 0 0;
+        min-width: 430;
+    }
+    .signupPanelReadyText {
+        flex: 0;
+        margin: 0;
+        align-items: flex-start;
+    }
 }
 
 /*
