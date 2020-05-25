@@ -197,7 +197,8 @@ button {
 .topBody {
     height: 400;
     width: 100%;
-    background-color: #F5F6F7;
+    background-color: #f4f6f9;
+    /* background-color: #f6f9fc; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -256,16 +257,6 @@ button {
     flex-direction: row;
 }
 
-.colMealCards {
-    background-color: #F5F6F7;
-    padding: 120px 0 0 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-
 .inputSettings {
     height: 250px;
     position: relative;
@@ -311,6 +302,280 @@ button {
 }
 .settingsBack:hover .settingsBackArrow {
     margin-left: -5px;
+}
+
+
+/*
+=======================================================
+                  MEAL CARD COLUMN
+=======================================================
+*/
+
+.colMealCards {
+    background-color: #f4f6f9;
+    /* background-color: #f6f9fc; */
+    padding: 120px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.mealCard {
+    font-size: 15px;
+    font-family: 'Camphor';
+    font-weight: 300;
+    color: var(--mainTextColor);
+}
+
+
+
+/* more shadow, same hover */
+/* .cardShadow1 {
+    box-shadow:0 7px 14px 0 rgba(50, 50, 93, .1), 0 3px 6px 0 rgba(0, 0, 0, .07);
+    transition-property: color, background-color, box-shadow, transform;
+    transition-duration: .15s;
+}
+.cardShadow1:hover{
+    transform:translateY(-2px);
+    cursor: pointer;
+}
+.cardShadow1:active, .cardShadow1:hover{
+    box-shadow:0 15px 30px -6px rgba(50, 50, 93, .25), 0 9px 18px -9px rgba(0, 0, 0, .3), 0 -6px 18px -4px rgba(0, 0, 0, .025)
+}
+.cardShadow1:active {
+    transform:translateY(2px)
+} */
+
+/* less shadow, same hover.  This one is in use */
+.cardShadow2 {
+    box-shadow:0 5px 10px 0 rgba(50, 50, 93, .1), 0 2px 4px 0 rgba(0, 0, 0, .07);
+    transition-property: color, background-color, box-shadow, transform;
+    transition-duration: .15s;
+}
+.cardShadow2:hover{
+    transform:translateY(-2px);
+    cursor: pointer;
+}
+.cardShadow2:active, .cardShadow2:hover{
+    box-shadow:0 15px 30px -6px rgba(50, 50, 93, .25), 0 9px 18px -9px rgba(0, 0, 0, .3), 0 -6px 18px -4px rgba(0, 0, 0, .025);
+    cursor: default;
+}
+.cardShadow2:active {
+    transform:translateY(2px);
+}
+
+/* .mealCardTitle {
+    font-size: 15px;
+    font-family: 'Camphor';
+    font-weight: 400;
+    color: var(--mainTextColor);
+} */
+
+.mealCardMainRow {
+    height: 64px;
+    /* bc the ant card body doesnt start at the top */
+    /* margin: -11px -10px 0 -10px; */
+    margin: -13px -12px 2px -12px;
+    padding: 5px 10px 0 10px;
+    cursor: pointer;
+    transition: border .2s ease;
+    border: 2px solid transparent;
+}
+
+.mealCardSideRow {
+    height: 64px;
+    /* margin: 0 -10px 0 -10px; */
+    margin: -2px -12px -2px -12px;
+    padding: 5px 10px 0 10px;
+    cursor: pointer;
+    transition: border .2s ease;
+    border: 2px solid transparent;
+}
+
+.mealCardMainRow:hover {
+    border: 2px solid #e0e0e0;
+    /* add a -2px margin every to cancel the movement from border */
+    /* margin: -13px -12px 2px -12px; */
+}
+
+.mealCardSideRow:hover {
+    border: 2px solid #e0e0e0;
+    /* add a -2px margin every to cancel the movement from border */
+    /* margin: -2px -12px -2px -12px; */
+}
+
+.mealCardIcons {
+    float: right;
+    font-size: 18px;
+    color: #606060;
+}
+
+.regenIcon:hover {
+    color: #202020;
+}
+
+.pinIcon:hover {
+    color: #202020;
+}
+
+
+
+/*
+=======================================================
+                        MEAL MODAL
+=======================================================
+*/
+
+.mealModal {
+    font-family: 'Camphor';
+    font-weight: 300;
+}
+
+.ant-modal-title {
+    text-align: center;
+}
+
+/* Overriding styles for the meal instructions */
+.ant-steps-item-description {
+    color:#595959 !important;
+    font-size: 15px !important;
+}
+.ant-steps-item-tail::after {
+    background: #e0e0e0 !important;
+}
+.ant-steps-item-icon {
+    border-color: #a8a8a8 !important;
+}
+ .ant-steps-icon {
+    color: #a8a8a8 !important;
+}
+
+.rowMM {
+    display: flex;
+    color: #383838;
+}
+
+.colMMIcon {
+    width: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.colMMFiller {
+    flex: 1 1 auto;
+}
+
+.colMMPie {
+    width: 255px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ .underline {
+    text-decoration: none;
+    background-image: linear-gradient(180deg,transparent 60%,rgba(101,101,101,.4) 0);
+}
+
+@media screen and (max-width: 555px) { 
+    .rowMM {
+        flex-flow: column wrap;
+        align-items: center;
+        justify-content: center;
+    }
+    .colMMPie {
+        margin: 30px 0 0 0;
+    }
+    .colMMCals {
+        margin: 30px 0 0 0;
+    }
+}
+ 
+
+/*
+=======================================================
+                      BOTTOM BODY
+=======================================================
+*/
+
+
+.bottomBody {
+    height: 400;
+    width: 100%;
+    background-color: #FFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.bottomBody::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: #F5F6F9;
+    /* -webkit-clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); */
+    /* clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); */
+    /* tan(12*pi/180) / 2 * 100 */
+    /* --center: 45vh; */
+    --center: 130px;
+    --ascend: 6vw; 
+
+    height: calc(var(--center) + var(--ascend));
+
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        100% calc(var(--center) + var(--ascend)),
+        0 calc(var(--center) - var(--ascend))
+    )
+}
+
+.signupPanel {
+    height: 300px;
+    background-color: #eef2f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signupPanelBody {
+    min-width: 1200px;
+    display: flex;
+    flex-direction: row;
+}
+
+.signupPanelReadyText {
+    font-family: 'Camphor';
+    font-size: 30px;
+    font-weight: 300px;
+    /* color: var(--mainTextColor); */
+    color: #404142;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex: 1;
+}
+
+.signupPanelInput {
+    font-family: 'Camphor';
+    font-size: 30px;
+    font-weight: 300px;
+    /* color: var(--mainTextColor); */
+    color: #404142;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
 }
 
 /*
@@ -456,102 +721,6 @@ button {
     box-shadow:0 6px 12px -2px rgba(50, 50, 93, .25), 0 3px 7px -3px rgba(0, 0, 0, .3)
 }
 
-.mealCard {
-    font-size: 15px;
-    font-family: 'Camphor';
-    font-weight: 300;
-    color: var(--mainTextColor);
-}
-
-.mealCardTitle {
-    font-size: 15px;
-    font-family: 'Camphor';
-    font-weight: 400;
-    color: var(--mainTextColor);
-}
-
-.mealCardMainRow {
-    height: 64px;
-    /* bc the ant card body doesnt start at the top */
-    /* margin: -11px -10px 0 -10px; */
-    margin: -13px -12px 2px -12px;
-    padding: 5px 10px 0 10px;
-    cursor: pointer;
-    transition: border .2s ease;
-    border: 2px solid transparent;
-}
-
-.mealCardSideRow {
-    height: 64px;
-    /* margin: 0 -10px 0 -10px; */
-    margin: -2px -12px -2px -12px;
-    padding: 5px 10px 0 10px;
-    cursor: pointer;
-    transition: border .2s ease;
-    border: 2px solid transparent;
-}
-
-.mealCardMainRow:hover {
-    border: 2px solid #e0e0e0;
-    /* add a -2px margin every to cancel the movement from border */
-    /* margin: -13px -12px 2px -12px; */
-}
-
-.mealCardSideRow:hover {
-    border: 2px solid #e0e0e0;
-    /* add a -2px margin every to cancel the movement from border */
-    /* margin: -2px -12px -2px -12px; */
-}
-
-.mealCardIcons {
-    float: right;
-    font-size: 18px;
-    color: #606060;
-}
-
-.regenIcon:hover {
-    color: #202020;
-}
-
-.pinIcon:hover {
-    color: #202020;
-}
- 
-
-/* more shadow, same hover */
-.cardShadow1 {
-    box-shadow:0 7px 14px 0 rgba(50, 50, 93, .1), 0 3px 6px 0 rgba(0, 0, 0, .07);
-    transition-property: color, background-color, box-shadow, transform;
-    transition-duration: .15s;
-}
-.cardShadow1:hover{
-    transform:translateY(-2px);
-    cursor: pointer;
-}
-.cardShadow1:active, .cardShadow1:hover{
-    box-shadow:0 15px 30px -6px rgba(50, 50, 93, .25), 0 9px 18px -9px rgba(0, 0, 0, .3), 0 -6px 18px -4px rgba(0, 0, 0, .025)
-}
-.cardShadow1:active {
-    transform:translateY(2px)
-}
-
-/* less shadow, same hover.  This one is in use */
-.cardShadow2 {
-    box-shadow:0 5px 10px 0 rgba(50, 50, 93, .1), 0 2px 4px 0 rgba(0, 0, 0, .07);
-    transition-property: color, background-color, box-shadow, transform;
-    transition-duration: .15s;
-}
-.cardShadow2:hover{
-    transform:translateY(-2px);
-    cursor: pointer;
-}
-.cardShadow2:active, .cardShadow2:hover{
-    box-shadow:0 15px 30px -6px rgba(50, 50, 93, .25), 0 9px 18px -9px rgba(0, 0, 0, .3), 0 -6px 18px -4px rgba(0, 0, 0, .025);
-    cursor: default;
-}
-.cardShadow2:active {
-    transform:translateY(2px);
-}
 
 /* when screen width is small enough, columns are stacked on top of each other */
 /* ----------- 0px - 937px ----------- */
@@ -584,79 +753,6 @@ button {
 
 /*
 =======================================================
-                        MEAL MODAL
-=======================================================
-*/
-
-.mealModal {
-    font-family: 'Camphor';
-    font-weight: 300;
-}
-
-.ant-modal-title {
-    text-align: center;
-}
-
-/* Overriding styles for the meal instructions */
-.ant-steps-item-description {
-    color:#595959 !important;
-    font-size: 15px !important;
-}
-.ant-steps-item-tail::after {
-    background: #e0e0e0 !important;
-}
-.ant-steps-item-icon {
-    border-color: #a8a8a8 !important;
-}
- .ant-steps-icon {
-    color: #a8a8a8 !important;
-}
-
-.rowMM {
-    display: flex;
-    color: #383838;
-}
-
-.colMMIcon {
-    width: 220px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.colMMFiller {
-    flex: 1 1 auto;
-}
-
-.colMMPie {
-    width: 255px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
- .underline {
-    text-decoration: none;
-    background-image: linear-gradient(180deg,transparent 60%,rgba(101,101,101,.4) 0);
-}
-
-@media screen and (max-width: 555px) { 
-    .rowMM {
-        flex-flow: column wrap;
-        align-items: center;
-        justify-content: center;
-    }
-    .colMMPie {
-        margin: 30px 0 0 0;
-    }
-    .colMMCals {
-        margin: 30px 0 0 0;
-    }
-}
-
-
-/*
-=======================================================
                         FOOTER
 =======================================================
 */
@@ -664,7 +760,8 @@ button {
 .footer {
     font-family: 'Camphor';
     font-size: 16px;
-    background-color: #404040;
+    /* background-color: #384042; */
+    background-color: #343740;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -698,7 +795,7 @@ button {
 }
 
 .footerLinks a {
-    padding: 15px;
+    padding: 10px 15px;
 }
 
 .footerSocials {
@@ -706,7 +803,7 @@ button {
 }
 
 .footerSocials a {
-    padding: 15px;
+    padding: 10px 15px;
 }
 
 .footerCopyright {

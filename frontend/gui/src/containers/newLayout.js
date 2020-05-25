@@ -18,6 +18,7 @@ import NumberFormat from 'react-number-format';
 import MealCard from '../components/MealCard';
 import Header from './Header';
 import Footer from './Footer';
+import SignupPanel from './SignupPanel'
 
 import {
     fetchMeals, fetchBreakfast, fetchRegular,
@@ -881,8 +882,14 @@ const NewLayout = (props) => {
                     regenMain={regenMain} regenSide={regenSide}
                     pinMain={pinMain} pinSide={pinSide} />
 
-                <div style={{ height: '100px' }} />
+                <div style={{ height: '35px' }} />
             </div>
+
+            <div className='bottomBody'>
+                <div style={{ height: '600px' }} />
+            </div>
+
+            <SignupPanel />
 
             <Footer />
 
