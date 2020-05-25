@@ -115,7 +115,6 @@
 button {
     background: none;
 	color: inherit;
-    /* border: 1px solid black; */
     border: none;
 	padding: 0;
 	font: inherit;
@@ -342,7 +341,7 @@ button {
 
 /*
 =======================================================
-                  MEAL CARD COLUMN
+                    MEAL CARDS
 =======================================================
 */
 
@@ -361,7 +360,7 @@ button {
     font-size: 15px;
     font-family: 'Camphor';
     font-weight: 300;
-    color: var(--mainTextColor);
+    /* color: var(--mainTextColor); */
 }
 
 
@@ -398,7 +397,7 @@ button {
     cursor: default;
 }
 .cardShadow2:active {
-    transform:translateY(2px);
+    transform: translateY(2px);
 }
 
 /* .mealCardTitle {
@@ -408,6 +407,10 @@ button {
     color: var(--mainTextColor);
 } */
 
+.ant-card {
+    color: transparent;
+}
+
 .mealCardMainRow {
     height: 64px;
     /* bc the ant card body doesnt start at the top */
@@ -415,8 +418,8 @@ button {
     margin: -13px -12px 2px -12px;
     padding: 5px 10px 0 10px;
     cursor: pointer;
-    transition: border .2s ease;
     border: 2px solid transparent;
+    transition: border-color .2s ease;
 }
 
 .mealCardSideRow {
@@ -425,18 +428,18 @@ button {
     margin: -2px -12px -2px -12px;
     padding: 5px 10px 0 10px;
     cursor: pointer;
-    transition: border .2s ease;
     border: 2px solid transparent;
+    transition: border-color .2s ease;
 }
 
 .mealCardMainRow:hover {
-    border: 2px solid #e0e0e0;
+    border-color: #e0e0e0;
     /* add a -2px margin every to cancel the movement from border */
     /* margin: -13px -12px 2px -12px; */
 }
 
 .mealCardSideRow:hover {
-    border: 2px solid #e0e0e0;
+    border-color: #e0e0e0;
     /* add a -2px margin every to cancel the movement from border */
     /* margin: -2px -12px -2px -12px; */
 }
@@ -594,11 +597,10 @@ button {
 .signupPanelReadyText {
     font-family: 'Camphor';
     font-size: 30px;
-    font-weight: 300px;
     color: #404142;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
     min-width: 430px;
 }
@@ -654,18 +656,11 @@ button {
         display: none;
     }
     .signupPanelInput {
-        /* width: 430px; */
-        /* margin: 0 96px 0 0; */
-        /* flex: 0 1 430px; */
         align-items: flex-start;
         padding: 15px 0 0 0;
     }
     .signupPanelInputFiller {
-        /* flex: 0 1 96px; */
         max-width: 96px;
-    }
-    .signupPanelInputButton {
-        /* margin: 0; */
     }
     .signupPanelEmail {
         width: 190px;
