@@ -407,8 +407,16 @@ button {
     color: var(--mainTextColor);
 } */
 
+/* needed to fix bug with the glitchy side animation */
 .ant-card {
     color: transparent;
+}
+
+.ant-card-meta-title {
+    font-weight: 400;
+}
+.ant-card-meta-description {
+    font-weight: 400;
 }
 
 .mealCardMainRow {
@@ -594,8 +602,8 @@ button {
 }
 
 .infoSquareIcon {
-    width: 48px;
-    height: 48px;
+    width: 45px;
+    height: 45px;
 }
 
 .infoSquareTitle {
@@ -603,14 +611,16 @@ button {
     font-weight: 500;
     line-height: 32px;
     margin-bottom: 10px;
-    color: #303234;
+    /* color: #303234; */
+    color: #323250;
 }
 
 .infoSquareText {
     font-size: 17px;
     font-weight: 400;
     line-height: 28px;
-    color: #606264;
+    /* color: #606264; */
+    color: #525f70;
 }
 
 
@@ -640,6 +650,7 @@ button {
 .signupPanelReadyText {
     font-family: 'Camphor';
     font-size: 30px;
+    font-weight: 500;
     color: #404142;
     display: flex;
     justify-content: center;
@@ -905,6 +916,7 @@ button {
 .footer {
     font-family: 'Camphor';
     font-size: 16px;
+    font-weight: 400;
     /* background-color: #384042; */
     background-color: #343740;
     display: flex;
