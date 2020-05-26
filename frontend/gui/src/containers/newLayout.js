@@ -18,7 +18,8 @@ import NumberFormat from 'react-number-format';
 import MealCard from '../components/MealCard';
 import Header from './Header';
 import Footer from './Footer';
-import SignupPanel from './SignupPanel'
+import SignupPanel from './SignupPanel';
+import InfoPanel from './InfoPanel';
 
 import {
     fetchMeals, fetchBreakfast, fetchRegular,
@@ -962,9 +963,10 @@ const NewLayout = (props) => {
                 <div style={{ height: '35px' }} />
             </div>
 
-            <div className='bottomBody'>
-                <div style={{ height: '600px' }} />
+            <div className='belowCardSlant'>
             </div>
+
+            <InfoPanel />
 
             <SignupPanel />
 

@@ -8,7 +8,7 @@
 @font-face {
     font-family: 'Camphor';
   
-    src: url('../fonts/camphorLight.woff2') format('woff2'); /* Modern Browsers */
+    src: url('../fonts/Camphor300.woff2') format('woff2'); /* Modern Browsers */
       
     font-weight: 300;
     font-style: normal;
@@ -17,7 +17,7 @@
 @font-face {
     font-family: 'Camphor';
   
-    src: url('../fonts/camphorMedium.woff2') format('woff2'); /* Modern Browsers */
+    src: url('../fonts/Camphor400.woff2') format('woff2'); /* Modern Browsers */
       
     font-weight: 400;
     font-style: normal;
@@ -26,7 +26,7 @@
 @font-face {
     font-family: 'Camphor';
   
-    src: url('../fonts/camphorRegular.woff2') format('woff2'); /* Modern Browsers */
+    src: url('../fonts/Camphor500.woff2') format('woff2'); /* Modern Browsers */
       
     font-weight: 500;
     font-style: normal;
@@ -35,7 +35,7 @@
 @font-face {
     font-family: 'Camphor';
   
-    src: url('../fonts/camphorBold.woff2') format('woff2'); /* Modern Browsers */
+    src: url('../fonts/Camphor600.woff2') format('woff2'); /* Modern Browsers */
       
     font-weight: 600;
     font-style: normal;
