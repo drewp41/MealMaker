@@ -8,6 +8,7 @@ function Header(props) {
     const [rotateClass, setRotateClass] = useState('logoIcon');
 
     const rotateIcon = () => {
+        console.log(localStorage);
         if (rotateClass === 'logoIconRotate')
             return;
         setRotateClass('logoIconRotate');
@@ -28,7 +29,8 @@ function Header(props) {
                     </div>
                     {/* shifted down 15px to center it vertically in the header */}
                     <div className='colHeaderL' style={{ padding: '15px 0 0 0' }}>
-                        <button className='logoText' style={{ height: '50px', width: '180px' }}>
+                        <button className='logoText' style={{ height: '50px', width: '180px' }}
+                            onClick={() => localStorage.setItem('score', 12)}>
                             mealmaker.io
                         </button>
                     </div>
