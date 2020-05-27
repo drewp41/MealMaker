@@ -367,7 +367,15 @@ button {
 
 @media screen and (max-width: 500px) { 
     .inputBox {
-        width: 350px;
+        height: 220px;
+        width: 345px;
+        /* width: 100%; */
+    }
+    .inputMain {
+        height: 220px;
+    }
+    .inputSettings {
+        height: 220px;
     }
 }
 
@@ -388,7 +396,7 @@ button {
 }
 
 .mealCard {
-    width: 430px;
+    width: 420px;
     /* head height: 58, body height: 150 */
     height: 208px; 
 }
@@ -514,7 +522,7 @@ button {
 
 @media screen and (max-width: 500px) { 
     .mealCard {
-        width: 350px;
+        width: 345px;
     }
 }
 
@@ -642,10 +650,13 @@ button {
 */
 
 .infoPanel {
-    height: 350px;
+    min-height: 300px;
     display: flex;
     justify-content: center;
     align-self: center;
+}
+.infoPanelSpacer {
+    height: 100px;
 }
 
 .infoSquare {
@@ -674,6 +685,28 @@ button {
     line-height: 28px;
     /* color: #606264; */
     color: #525f70;
+}
+
+@media screen and (max-width: 750px) {
+    .infoPanelSpacer {
+        height: 50px;
+    }
+}
+
+@media screen and (max-width: 705px) {
+    .infoPanel {
+        flex-direction: column;
+    }
+    /* no top padding to the first square */
+    .infoPanel .infoSquare:nth-child(1) {
+        width: 100%;
+        padding: 0 20px 20px 20px;
+    }
+    .infoPanel .infoSquare:nth-child(2),
+    .infoPanel .infoSquare:nth-child(3) {
+        width: 100%;
+        padding: 20px 20px;
+    }
 }
 
 
