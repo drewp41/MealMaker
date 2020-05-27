@@ -689,11 +689,11 @@ const NewLayout = (props) => {
 
             <div className='topBody'>
                 <div className='topBodyText'>
-                    <div style={{ fontSize: '32px', fontFamily: 'Alliance', fontWeight: '800', textAlign: 'center' }}>
+                    <div className='topBodyTitle'>
                         Create a customized meal plan in seconds.
                     </div>
                     <div style={{ height: '10px' }} />
-                    <div style={{ fontSize: '20px', fontFamily: 'Alliance', fontWeight: '400', textAlign: 'center' }}>
+                    <div className='topBodyCaption'>
                         Search though over 365,000 recipes.
                     </div>
                 </div>
@@ -919,7 +919,7 @@ const NewLayout = (props) => {
             </div>
 
             <div className='colMealCards'>
-                <p style={{ fontFamily: 'Camphor', fontSize: '16px', marginTop: '-41px' }}>
+                <p style={{ fontFamily: 'Camphor', fontSize: '16px', fontWeight: 500 }}>
                     Total calories: {
                         meal1.main.calories + meal1.side.calories +
                         (numMeals >= 2 ? meal2.main.calories + meal2.side.calories : 0) +
