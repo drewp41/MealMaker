@@ -706,24 +706,24 @@ const NewLayout = (props) => {
                                     <div style={{ textAlign: 'right', position: 'relative' }}>
                                         <span className="leftColumnText">
                                             I want to eat &nbsp;
-                                            <NumberFormat className='ant-input' id='calorieInput' style={{ width: '126px' }} suffix={' calories'}
+                                            <NumberFormat className='ant-input' id='calorieInput' style={{ width: '135px', fontSize: '17px' }} suffix={' calories'}
                                                 defaultValue={2000} allowEmptyFormatting={true}
                                                 onValueChange={onCalorieChange}
                                             />
                                         </span>
                                         <div className='space20' />
                                         <span className="leftColumnText"> in &nbsp;
-                                            <Select className="mealInput" defaultValue="3" style={{ width: '126px' }}
+                                            <Select className="macroSliderText" defaultValue="3" style={{ width: '135px', fontSize: '17px', color: '#595959' }}
                                                 onChange={(value) => {
                                                     setNumMeals(parseInt(value));
                                                     setChangedPrefs(true);
                                                 }}>
-                                                <Option className='camphorFont' value="1" style={{ fontSize: '15px' }}>1 meal</Option>
-                                                <Option className='camphorFont' value="2" style={{ fontSize: '15px' }}>2 meals</Option>
-                                                <Option className='camphorFont' value="3" style={{ fontSize: '15px' }}>3 meals</Option>
-                                                <Option className='camphorFont' value="4" style={{ fontSize: '15px' }}>4 meals</Option>
-                                                <Option className='camphorFont' value="5" style={{ fontSize: '15px' }}>5 meals</Option>
-                                                <Option className='camphorFont' value="6" style={{ fontSize: '15px' }}>6 meals</Option>
+                                                <Option className='camphorFont' value="1">1 meal</Option>
+                                                <Option className='camphorFont' value="2">2 meals</Option>
+                                                <Option className='camphorFont' value="3">3 meals</Option>
+                                                <Option className='camphorFont' value="4">4 meals</Option>
+                                                <Option className='camphorFont' value="5">5 meals</Option>
+                                                <Option className='camphorFont' value="6">6 meals</Option>
                                             </Select>
                                         </span>
                                         <div className='space20' />
@@ -750,9 +750,9 @@ const NewLayout = (props) => {
                                 <div className='inputBorder' style={{ borderLeft: '2px solid #f0f0f0', height: '80%' }} />
 
                                 <div className='inputMacroSlider'>
-                                    <div style={{ width: '210px' }}>
+                                    <div style={{ width: '220px' }}>
                                         {/* Carbs */}
-                                        <span className='mealInput' style={{ float: 'left' }}>
+                                        <span className='macroSliderText' style={{ float: 'left' }}>
                                             Carbs &nbsp;
                                             {macroPinned === null ?
                                                 <PushpinOutlined className='macroPin' onClick={() => pinMacro(1)} /> :
@@ -761,7 +761,7 @@ const NewLayout = (props) => {
                                                     null)
                                             }
                                         </span>
-                                        <span className='mealInput' style={{ float: 'right' }}>
+                                        <span className='macroSliderText' style={{ float: 'right' }}>
                                             {Math.round(macros.carbs)} g
                                         </span>
                                         <br />
@@ -771,7 +771,7 @@ const NewLayout = (props) => {
                                             onChange={(percent) => carbSlider(percent)}
                                         />
                                         {/* Protein */}
-                                        <span className='mealInput' style={{ float: 'left' }}>
+                                        <span className='macroSliderText' style={{ float: 'left' }}>
                                             Protein &nbsp;
                                             {macroPinned === null ?
                                                 <PushpinOutlined className='macroPin' onClick={() => pinMacro(2)} /> :
@@ -780,7 +780,7 @@ const NewLayout = (props) => {
                                                     null)
                                             }
                                         </span>
-                                        <span className='mealInput' style={{ float: 'right' }}>
+                                        <span className='macroSliderText' style={{ float: 'right' }}>
                                             {Math.round(macros.protein)} g
                                         </span>
                                         <br />
@@ -790,7 +790,7 @@ const NewLayout = (props) => {
                                             onChange={(percent) => proteinSlider(percent)}
                                         />
                                         {/* Fat */}
-                                        <span className='mealInput' style={{ float: 'left' }}>
+                                        <span className='macroSliderText' style={{ float: 'left' }}>
                                             Fat &nbsp;
                                             {macroPinned === null ?
                                                 <PushpinOutlined className='macroPin' onClick={() => pinMacro(3)} /> :
@@ -799,7 +799,7 @@ const NewLayout = (props) => {
                                                     null)
                                             }
                                         </span>
-                                        <span className='mealInput' style={{ float: 'right' }}>
+                                        <span className='macroSliderText' style={{ float: 'right' }}>
                                             {Math.round(macros.fat)} g
                                         </span>
                                         <br />
@@ -827,7 +827,7 @@ const NewLayout = (props) => {
                                     </List.Item>
                                     <List.Item>
                                         Available time&nbsp;&nbsp;
-                                        <Select className='mealInput' defaultValue='2'
+                                        <Select className='macroSliderText' defaultValue='2'
                                             onChange={(value) => {
                                                 // set some hook that controls prep and cook time
                                                 setChangedPrefs(true);
@@ -854,7 +854,7 @@ const NewLayout = (props) => {
                                 <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                     <div style={{ width: '210px' }}>
                                         {/* Carbs */}
-                                        <span className='mealInput' style={{ float: 'left' }}>
+                                        <span className='macroSliderText' style={{ float: 'left' }}>
                                             Carbs &nbsp;
                                             {macroPinned === null ?
                                                 <PushpinOutlined className='macroPin' onClick={() => pinMacro(1)} /> :
@@ -863,7 +863,7 @@ const NewLayout = (props) => {
                                                     null)
                                             }
                                         </span>
-                                        <span className='mealInput' style={{ float: 'right' }}>
+                                        <span className='macroSliderText' style={{ float: 'right' }}>
                                             {Math.round(macros.carbs)} g
                                         </span>
                                         <br />
@@ -873,7 +873,7 @@ const NewLayout = (props) => {
                                             onChange={(percent) => carbSlider(percent)}
                                         />
                                         {/* Protein */}
-                                        <span className='mealInput' style={{ float: 'left' }}>
+                                        <span className='macroSliderText' style={{ float: 'left' }}>
                                             Protein &nbsp;
                                             {macroPinned === null ?
                                                 <PushpinOutlined className='macroPin' onClick={() => pinMacro(2)} /> :
@@ -882,7 +882,7 @@ const NewLayout = (props) => {
                                                     null)
                                             }
                                         </span>
-                                        <span className='mealInput' style={{ float: 'right' }}>
+                                        <span className='macroSliderText' style={{ float: 'right' }}>
                                             {Math.round(macros.protein)} g
                                         </span>
                                         <br />
@@ -892,7 +892,7 @@ const NewLayout = (props) => {
                                             onChange={(percent) => proteinSlider(percent)}
                                         />
                                         {/* Fat */}
-                                        <span className='mealInput' style={{ float: 'left' }}>
+                                        <span className='macroSliderText' style={{ float: 'left' }}>
                                             Fat &nbsp;
                                             {macroPinned === null ?
                                                 <PushpinOutlined className='macroPin' onClick={() => pinMacro(3)} /> :
@@ -901,7 +901,7 @@ const NewLayout = (props) => {
                                                     null)
                                             }
                                         </span>
-                                        <span className='mealInput' style={{ float: 'right' }}>
+                                        <span className='macroSliderText' style={{ float: 'right' }}>
                                             {Math.round(macros.fat)} g
                                         </span>
                                         <br />
@@ -1004,7 +1004,7 @@ const NewLayout = (props) => {
                         </span>
                         <div className='space20' />
                         <span className="leftColumnText"> in &nbsp;
-                            <Select className="mealInput" defaultValue="3" style={{ width: '126px' }}
+                            <Select className="macroSliderText" defaultValue="3" style={{ width: '126px' }}
                                 onChange={(value) => {
                                     setNumMeals(parseInt(value));
                                     setChangedPrefs(true);
@@ -1023,7 +1023,7 @@ const NewLayout = (props) => {
                             style={{ marginLeft: 'auto', width: '257px' }}>
                             <Panel header={<b id="macroSwitchText">Macro Preferences&nbsp;&nbsp;</b>} showArrow={true} key="1"
                                 extra={<Switch defaultChecked={false} onChange={macroSwitch} style={{ margin: '3px 0 0 0' }} />} >
-                                <span className='mealInput' style={{ float: 'left' }}>
+                                <span className='macroSliderText' style={{ float: 'left' }}>
                                     Carbs &nbsp;
                                             {macroPinned === null ?
                                         <PushpinOutlined className='macroPin' onClick={() => pinMacro(1)} /> :
@@ -1032,7 +1032,7 @@ const NewLayout = (props) => {
                                             null)
                                     }
                                 </span>
-                                <span className='mealInput' style={{ float: 'right' }}>
+                                <span className='macroSliderText' style={{ float: 'right' }}>
                                     {Math.round(macros.carbs)} g
                                         </span>
                                 <br />
@@ -1041,7 +1041,7 @@ const NewLayout = (props) => {
                                     disabled={macroPinned === 1}
                                     onChange={(percent) => carbSlider(percent)}
                                 />
-                                <span className='mealInput' style={{ float: 'left' }}>
+                                <span className='macroSliderText' style={{ float: 'left' }}>
                                     Protein &nbsp;
                                             {macroPinned === null ?
                                         <PushpinOutlined className='macroPin' onClick={() => pinMacro(2)} /> :
@@ -1050,7 +1050,7 @@ const NewLayout = (props) => {
                                             null)
                                     }
                                 </span>
-                                <span className='mealInput' style={{ float: 'right' }}>
+                                <span className='macroSliderText' style={{ float: 'right' }}>
                                     {Math.round(macros.protein)} g
                                         </span>
                                 <br />
@@ -1059,7 +1059,7 @@ const NewLayout = (props) => {
                                     disabled={macroPinned === 2}
                                     onChange={(percent) => proteinSlider(percent)}
                                 />
-                                <span className='mealInput' style={{ float: 'left' }}>
+                                <span className='macroSliderText' style={{ float: 'left' }}>
                                     Fat &nbsp;
                                             {macroPinned === null ?
                                         <PushpinOutlined className='macroPin' onClick={() => pinMacro(3)} /> :
@@ -1068,7 +1068,7 @@ const NewLayout = (props) => {
                                             null)
                                     }
                                 </span>
-                                <span className='mealInput' style={{ float: 'right' }}>
+                                <span className='macroSliderText' style={{ float: 'right' }}>
                                     {Math.round(macros.fat)} g
                                         </span>
                                 <br />

@@ -310,8 +310,8 @@ button {
 
 .inputBack {
     position: absolute;
-    top: 18px;
-    left: 20px;
+    top: 14px;
+    left: 18px;
     color: var(--mainTextColor);
     font-family: 'Camphor';
     font-weight: 300;
@@ -352,13 +352,16 @@ button {
         font-size: 22px;
     }
     .inputBox {
-        width: 360px;
+        width: 350px;
     }
     .inputMacroSlider, .inputBorder {
         display: none;
     }
     .inputButtonRow .genButton:nth-child(2) {
         display: block;
+    }
+    .inputBack {
+        font-size: 16px;
     }
 }
 
@@ -811,7 +814,7 @@ button {
 
 
 .leftColumnText{
-    font-size: 20px;
+    font-size: 19px;
     font-family: 'Camphor';
     font-weight: 300;
     color: var(--mainTextColor);
@@ -824,11 +827,17 @@ button {
     /* text-align: left; */
 }
 
-.mealInput{
+.macroSliderText{
     font-size: 16px;
     font-family: 'Camphor';
     font-weight: 300;
     text-align: left; 
+    color: var(--mainTextColor);
+}
+
+.ant-select-item-option-content {
+    font-size: 15px;
+    font-weight: 500;
 }
 
 #macroSwitchText{
@@ -870,7 +879,7 @@ button {
     display: inline-block;
     height: 40px;
     line-height: 40px;
-    padding: 0 14px;
+    padding: 0 14px; /* 0 14px*/
     box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
     background-color: #47B57A;
     border-radius: 4px;
