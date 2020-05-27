@@ -78,7 +78,7 @@ const MealCard = (props) => {
                     {props.mealNum !== 1 && <br />}
                     <MealModal visible={showMainModal} meal={props.mealObj.main} closeModal={closeMainModal} />
                     <MealModal visible={showSideModal} meal={props.mealObj.side} closeModal={closeSideModal} />
-                    <Card className='cardShadow2'
+                    <Card className={['mealCard', 'cardShadow2'].join(' ')}
                         title={
                             props.mealNum === 1 ? (
                                 props.numMeals === 1 ? 'Feast'
@@ -91,13 +91,13 @@ const MealCard = (props) => {
                                         : 'Snack'
                         }
                         extra={props.mealObj.main.calories + props.mealObj.side.calories + ' calories'}
-                        style={{ width: 360, height: 208 }} bordered={false} //head height: 58, body height: 150
+                        bordered={false}
                         headStyle={{ fontFamily: 'Camphor', fontWeight: 500, color: mainTextColor }}>
                         <Skeleton avatar={false} title={false}
                             loading={!props.displayMeals && !props.mealObj.mainPinned && !props.mealObj.sidePinned}
                             active={props.mealObj.mainLoading || props.mealObj.sideLoading}
                             paragraph={{ rows: 3, width: [250] }} >
-                            <div className='mealCard'>
+                            <div className='mealCardBody'>
                                 <div className='mealCardMainRow' onClick={() => setShowMainModal(true)}>
                                     <div className='mealCardIcons'>
                                         {/* show regen icon if the meal isn't pinned */}

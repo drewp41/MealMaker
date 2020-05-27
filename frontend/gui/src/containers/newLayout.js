@@ -706,14 +706,14 @@ const NewLayout = (props) => {
                                     <div style={{ textAlign: 'right', position: 'relative' }}>
                                         <span className="leftColumnText">
                                             I want to eat &nbsp;
-                                            <NumberFormat className='ant-input' id='calorieInput' style={{ width: '135px', fontSize: '17px' }} suffix={' calories'}
+                                            <NumberFormat className='ant-input' id='calorieInput' style={{ width: '132px', fontSize: '17px' }} suffix={' calories'}
                                                 defaultValue={2000} allowEmptyFormatting={true}
                                                 onValueChange={onCalorieChange}
                                             />
                                         </span>
                                         <div className='space20' />
                                         <span className="leftColumnText"> in &nbsp;
-                                            <Select className="macroSliderText" defaultValue="3" style={{ width: '135px', fontSize: '17px', color: '#595959' }}
+                                            <Select className="macroSliderText" defaultValue="3" style={{ width: '132px', fontSize: '17px', color: '#595959' }}
                                                 onChange={(value) => {
                                                     setNumMeals(parseInt(value));
                                                     setChangedPrefs(true);

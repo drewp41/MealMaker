@@ -352,7 +352,7 @@ button {
         font-size: 22px;
     }
     .inputBox {
-        width: 350px;
+        width: 450px;
     }
     .inputMacroSlider, .inputBorder {
         display: none;
@@ -362,6 +362,12 @@ button {
     }
     .inputBack {
         font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 500px) { 
+    .inputBox {
+        width: 350px;
     }
 }
 
@@ -381,15 +387,23 @@ button {
     align-items: center;
 }
 
-
 .mealCard {
+    width: 430px;
+    /* head height: 58, body height: 150 */
+    height: 208px; 
+}
+
+
+.mealCardBody {
     font-size: 15px;
     font-family: 'Camphor';
     font-weight: 300;
     /* color: var(--mainTextColor); */
 }
 
-
+.ant-card-extra {
+    font-weight: 500;
+}
 
 /* more shadow, same hover */
 /* .cardShadow1 {
@@ -491,6 +505,19 @@ button {
 .pinIcon:hover {
     color: #202020;
 }
+
+@media screen and (max-width: 750px) and (min-width: 500px) { 
+    .mealCard {
+        width: 390px;
+    }
+}
+
+@media screen and (max-width: 500px) { 
+    .mealCard {
+        width: 350px;
+    }
+}
+
 
 
 
@@ -862,6 +889,10 @@ button {
     font-size: 15px;
     font-family: 'Camphor';
     font-weight: 300;
+}
+
+.macroPin {
+    color: #606060;
 }
 
 .macroPin:hover {
