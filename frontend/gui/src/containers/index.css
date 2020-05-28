@@ -955,7 +955,7 @@ button {
     display: inline-block;
     height: 40px;
     line-height: 40px;
-    padding: 0 14px; /* 0 14px*/
+    padding: 0 14px;
     box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
     background-color: #47B57A;
     border-radius: 4px;
@@ -1024,16 +1024,51 @@ button {
 .signinPage {
     /* temp */
     height: 100vh;
-    background-color: #f4f6f9;
+    /* background-color: #f4f6f9; */
+    background-color: #f7fafc;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    /* justify-content: center; */
     align-items: center;
 }
 
+.signinLogo {
+    display: flex;
+    padding: 30px 0;
+}
+
 .signinBox {
+    width: 400px;
+    height: 450px;
+    padding: 50px;
     background-color: #fff;
-    width: 450px;
-    height: 500px;
+    border-radius: 4px;
+    box-shadow: 0 13px 27px -5px rgba(50,50,93,.25), 0 8px 16px -8px rgba(0,0,0,.3), 0 -6px 16px -6px rgba(0,0,0,.025);
+    font-family: 'Camphor';
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.signinEmail {
+    margin-top: 8px;
+}
+
+.signinPassword {
+    margin-top: 8px;
+}
+
+.signinButton {
+    white-space: nowrap;
+    display: inline-block;
+    text-align: center;
+    height: 40px;
+    width: 100%;
+    line-height: 40px;
+    padding: 0 14px;
+    background-color: #47B57A;
+    color: #fff !important;
+    border-radius: 2px;
+    font-size: 16px;
 }
 
 
