@@ -561,7 +561,7 @@ button {
 
 .rowMM {
     display: flex;
-    color: #383838;
+    color: #595959;
 }
 
 .colMMIcon {
@@ -656,7 +656,7 @@ button {
     align-self: center;
 }
 .infoPanelSpacer {
-    height: 100px;
+    height: 90px;
 }
 
 .infoSquare {
@@ -689,7 +689,7 @@ button {
 
 @media screen and (max-width: 750px) {
     .infoPanelSpacer {
-        height: 50px;
+        height: 60px;
     }
 }
 
@@ -737,7 +737,7 @@ button {
     font-family: 'Camphor';
     font-size: 30px;
     font-weight: 500;
-    color: #404142;
+    color: #404143;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -803,7 +803,7 @@ button {
     }
     .signupPanelInput {
         align-items: flex-start;
-        padding: 15px 0 0 0;
+        padding: 25px 0 0 0;
     }
     .signupPanelInputFiller {
         max-width: 96px;
@@ -895,7 +895,19 @@ button {
     color: var(--mainTextColor);
 }
 
+.ant-select-selector {
+    height: 36px !important;
+}
+
+.ant-select-selection-item {
+    /* centers it vertically since i modified it*/
+    line-height: 34px !important;
+    /* display: flex !important;
+    align-items: center !important; */
+}
+
 .ant-select-item-option-content {
+    /* any bigger and it looks crowded */
     font-size: 15px;
     font-weight: 500;
 }
@@ -1002,6 +1014,29 @@ button {
         margin: 0 50px 0 auto;
     }
 }
+
+/*
+=======================================================
+                        SIGN IN
+=======================================================
+*/
+
+.signinPage {
+    /* temp */
+    height: 100vh;
+    background-color: #f4f6f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signinBox {
+    background-color: #fff;
+    width: 450px;
+    height: 500px;
+}
+
+
 
 /*
 =======================================================

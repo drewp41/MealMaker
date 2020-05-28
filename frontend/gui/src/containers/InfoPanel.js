@@ -34,7 +34,7 @@ function InfoPanel(props) {
                     <p className='infoSquareText'>
                         You can customize your preferences to fit your needs.
                         Whether you liking snacking throughout the day,
-                        or need to hit your protein intake, Meal Maker has you covered.
+                        or need to hit your daily protein requirement, Meal Maker has you covered.
                 </p>
                 </div>
                 <div className='infoSquare'>

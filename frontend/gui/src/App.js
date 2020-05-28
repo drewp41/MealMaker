@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import 'antd/dist/antd.css';
 // import CustomLayout from './containers/Layout';
-import NewLayout from './containers/newLayout';
+import Home from './containers/Home';
 import * as actions from './store/actions/auth';
 
 class App extends Component {
@@ -26,9 +26,9 @@ class App extends Component {
       // </div>
       <div>
         <Router>
-          <NewLayout {...this.props}>
-            <BaseRouter />
-          </NewLayout>
+          {/* <NewLayout {...this.props}> */}
+          <BaseRouter />
+          {/* </NewLayout> */}
         </Router>
       </div>
     );

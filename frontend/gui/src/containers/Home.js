@@ -683,9 +683,11 @@ const NewLayout = (props) => {
         // <div style={{ backgroundColor: 'rgb(242, 242, 242)' }}>
         <div style={{ backgroundColor: 'white' }}>
             {/* <div style={{ backgroundColor: 'rgb(245, 243, 240)' }}> */}
-            <div id="topLine"></div>
-
             <Header />
+
+            {/* {<Link to="/login/">Log in</Link>} */}
+
+            {/* {props.children} */}
 
             <div className='topBody'>
                 <div className='topBodyText'>
@@ -713,7 +715,8 @@ const NewLayout = (props) => {
                                         </span>
                                         <div className='space20' />
                                         <span className="leftColumnText"> in &nbsp;
-                                            <Select className="macroSliderText" defaultValue="3" style={{ width: '132px', fontSize: '17px', color: '#595959' }}
+                                            <Select className="macroSliderText" defaultValue="3" size='large'
+                                                style={{ width: '132px', height: '36px', fontSize: '17px', color: '#595959' }}
                                                 onChange={(value) => {
                                                     setNumMeals(parseInt(value));
                                                     setChangedPrefs(true);

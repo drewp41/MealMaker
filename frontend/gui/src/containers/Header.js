@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 
+import { Link, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../store/actions/auth';
+
 import logo from '../logo.svg';
 
 function Header(props) {
@@ -19,6 +23,7 @@ function Header(props) {
 
     return (
         <>
+            <div id="topLine" />
             <div className='header' style={{ height: headerHeight }} >
                 <div className='rowHeader'>
                     <div className='headerLRSpace'></div>
@@ -29,31 +34,39 @@ function Header(props) {
                     </div>
                     {/* shifted down 15px to center it vertically in the header */}
                     <div className='colHeaderL' style={{ padding: '15px 0 0 0' }}>
-                        <button className='logoText' style={{ height: '50px', width: '180px' }}
-                            onClick={() => localStorage.setItem('score', 12)}>
-                            mealmaker.io
+                        <Link to='/'>
+                            <button className='logoText' style={{ height: '50px', width: '180px' }}
+                                onClick={() => localStorage.setItem('score', 12)}>
+                                mealmaker.io
                         </button>
+                        </Link>
                     </div>
 
                     <div className='headerCenterLeftSpace'></div>
 
                     {/* shifted down 10px to center it vertically in the header */}
                     <div className='colHeaderMid' style={{ padding: '15px 0 0 0' }}>
-                        <button className="headerText" style={{ height: '50px', width: '135px' }}>
-                            How it works
-                        </button>
-                        <button className="headerText" style={{ height: '50px', width: '85px' }}>
-                            About
-                        </button>
+                        <Link to='/howitworks'>
+                            <button className="headerText" style={{ height: '50px', width: '135px' }}>
+                                How it works
+                            </button>
+                        </Link>
+                        <Link to='/about'>
+                            <button className="headerText" style={{ height: '50px', width: '85px' }}>
+                                About
+                            </button>
+                        </Link>
                     </div>
 
                     <div className='headerCenterRightSpace'></div>
 
                     {/* shifted down 10px to center it vertically in the header */}
                     <div className='colHeaderR' style={{ padding: '15px 0 0 0' }}>
-                        <button className="headerText" style={{ height: '50px', width: '110px' }}>
-                            <span id="signInArrow">Sign in</span> <span style={{ fontFamily: 'Inter' }}> →</span>
-                        </button>
+                        <Link to='/signin'>
+                            <button className="headerText" style={{ height: '50px', width: '110px' }}>
+                                <span id="signInArrow">Sign in</span> <span style={{ fontFamily: 'Inter' }}> →</span>
+                            </button>
+                        </Link>
                     </div>
 
                     {/* shifted down 30px to center it vertically in the header */}
@@ -82,8 +95,17 @@ function Header(props) {
             </div>
 
             <div className='headerBorder' />
+
+            {props.children}
+
         </>
     )
 }
 
-export default Header;
+const mapDispatchToProps = dispatch => {
+    return {
+        logout: () => dispatch(actions.logout())
+    }
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(Header));
