@@ -1189,6 +1189,22 @@ button {
     padding: 10px 15px;
 }
 
+.footerEmail {
+    color: white;
+    padding: 10px 15px;
+}
+
+.footerEmail:hover {
+    cursor: pointer;
+    color: #c0c0c0;
+}
+
+.footerEmailText {
+    padding: 25px 0 0 0;
+    color: #fff;
+    text-align: center;
+}
+
 .footerCopyright {
     padding: 25px 0 0 0;
     color: #a0a0a0;
