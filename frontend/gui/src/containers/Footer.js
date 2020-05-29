@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Alert } from 'antd';
-
 import {
     GithubOutlined, LinkedinFilled,
     MailOutlined, CheckCircleOutlined

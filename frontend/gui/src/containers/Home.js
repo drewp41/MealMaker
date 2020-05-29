@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
     Slider, Select, List,
-    Switch, Collapse, Tabs
+    Switch, Collapse, Tabs, message
 } from 'antd';
 import {
     SyncOutlined, PushpinOutlined, PushpinFilled,
@@ -118,6 +118,7 @@ const NewLayout = (props) => {
     const [changedPrefs, setChangedPrefs] = useState(true);
     const [macroPinned, setMacroPinned] = useState(null);
     const [tabPos, setTabPos] = useState('1');
+    const [validInput, setValidInput] = useState(true);
 
     const [breakfastIter, setBreakfastIter] = useAsyncState(null);
     const breakfastRef = useRef(breakfastIter);
@@ -359,6 +360,28 @@ const NewLayout = (props) => {
         }));
     }
 
+    function validateInput() {
+        // true for valid, false for invalid
+        if (numMeals === 1) {
+
+        } else if (numMeals === 2) {
+
+        } else if (numMeals === 3) {
+            if (calories < 400)
+                return false;
+            else
+                return true;
+
+        } else if (numMeals === 4) {
+
+        } else if (numMeals === 5) {
+
+        } else if (numMeals === 6) {
+
+        }
+        return true;
+    }
+
     function updateMeal(num) {
         const setMealVar = 'setMeal' + num.toString();
 
@@ -595,6 +618,14 @@ const NewLayout = (props) => {
         if (loadingMeals)
             return;
 
+        if (!validateInput()) {
+            message.error(`For ${numMeals} meals, please enter between 500 and 1000 calories`, 4);
+            setValidInput(false);
+            return;
+        } else {
+            setValidInput(true);
+        }
+
         // set the unpinned meals to loading
         for (let i = 1; i <= numMeals; i++) {
             eval(`setMeal${i}`)(prev => ({
@@ -708,10 +739,19 @@ const NewLayout = (props) => {
                                     <div style={{ textAlign: 'right', position: 'relative' }}>
                                         <span className="leftColumnText">
                                             I want to eat &nbsp;
-                                            <NumberFormat className='ant-input' id='calorieInput' style={{ width: '132px', fontSize: '17px' }} suffix={' calories'}
-                                                defaultValue={2000} allowEmptyFormatting={true}
-                                                onValueChange={onCalorieChange}
-                                            />
+                                            {validInput ?
+                                                <NumberFormat className={['ant-input', 'inputValid'].join(' ')} id='calorieInput'
+                                                    style={{ width: '132px', fontSize: '17px' }} suffix={' calories'}
+                                                    defaultValue={2000} allowEmptyFormatting={true}
+                                                    onValueChange={onCalorieChange}
+                                                />
+                                                :
+                                                <NumberFormat className={['ant-input', 'inputInvalid'].join(' ')} id='calorieInput'
+                                                    style={{ width: '132px', fontSize: '17px' }} suffix={' calories'}
+                                                    defaultValue={2000} allowEmptyFormatting={true}
+                                                    onValueChange={onCalorieChange}
+                                                />
+                                            }
                                         </span>
                                         <div className='space20' />
                                         <span className="leftColumnText"> in &nbsp;
