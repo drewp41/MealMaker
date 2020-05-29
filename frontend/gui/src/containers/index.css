@@ -177,7 +177,7 @@ button {
     .hamburgerMenu {
         display: block !important;
     }
-    .logoText {
+    .header .logoText {
         display: block !important;
     }
 }
@@ -1023,13 +1023,14 @@ button {
 
 .signinPage {
     /* temp */
-    height: 100vh;
+    min-height: 100vh;
     /* background-color: #f4f6f9; */
     background-color: #f7fafc;
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
+    position: relative;
 }
 
 .signinLogo {
@@ -1049,11 +1050,15 @@ button {
     font-weight: 500;
 }
 
-.signinEmail {
-    margin-top: 8px;
+.signinPage .logoText {
+    color: #585858;
 }
 
-.signinPassword {
+.signinPage .logoText:hover {
+    color: #404040;
+}
+
+.signinField {
     margin-top: 8px;
 }
 
@@ -1102,10 +1107,30 @@ button {
     border-color: #40A66E !important;
 }
 
+.signinBottomText {
+    color: #40a66e;
+}
+
+.signinBottomText:hover {
+    color: #404040;
+}
+
 .signinPage a {
     transition: none;
 }
 
+.signinCopyright {
+    padding: 32px;
+    position: absolute;
+    bottom: 0px;
+    color: #808080;
+}
+
+@media screen and (max-width: 440px) {
+    .signinBox {
+        width: 100%;
+    }
+}
 
 
 /*

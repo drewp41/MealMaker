@@ -1,173 +1,86 @@
-import React from 'react';
-import {
-    Form,
-    Input,
-    Select,
-    Button
-} from 'antd';
-import { UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
-import * as actions from '../store/actions/auth';
-import { connect } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Input, Checkbox } from 'antd';
 
-const { Option } = Select;
-const formItemLayout = {
-    labelCol: {
-        xs: {
-            span: 24,
-        },
-        sm: {
-            span: 8,
-        },
-    },
-    wrapperCol: {
-        xs: {
-            span: 24,
-        },
-        sm: {
-            span: 16,
-        },
-    },
-};
-const tailFormItemLayout = {
-    wrapperCol: {
-        xs: {
-            span: 24,
-            offset: 0,
-        },
-        sm: {
-            span: 16,
-            offset: 8,
-        },
-    },
-};
+import logo from '../logo.svg';
 
-class RegistrationForm extends React.Component {
-    //[form] = Form.useForm();
+// green text: #40a66e
 
-    onFinish = values => {
-        //console.log('Received values of form: ', values);
-        this.props.onAuth(
-            values.username,
-            values.email,
-            values.password,
-            values.confirm);
-        // navigates us to the home page after logging in
-        this.props.history.push('/');
-    };
 
-    prefixSelector = (
-        <Form.Item name="prefix" noStyle>
-            <Select
-                style={{
-                    width: 70,
-                }}
-            >
-                <Option value="86">+86</Option>
-                <Option value="87">+87</Option>
-            </Select>
-        </Form.Item>
-    );
+function SignIn() {
 
-    render() {
-        return (
-            <Form
-                {...formItemLayout}
-                //form={form}
-                //form={Form.useForm()}
-                name="register"
-                onFinish={this.onFinish}
-                initialValues={{
-                    prefix: '86'
-                }}
-                scrollToFirstError
-            >
-                <Form.Item
-                    name="email"
-                    rules={[
-                        {
-                            type: 'email',
-                            message: 'The input is not valid E-mail!',
-                        },
-                        {
-                            required: true,
-                            message: 'Please input your E-mail!',
-                        },
-                    ]}
-                >
-                    <Input prefix={<MailOutlined className="site-form-item-icon" />} placeholder="E-mail" />
-                </Form.Item>
+    let emailRef = React.createRef();
+    let userRef = React.createRef();
+    let passRef = React.createRef();
+    let confirmPassRef = React.createRef();
 
-                <Form.Item
-                    name="username"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input your Username!',
-                        },
-                    ]}
-                >
-                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
-                </Form.Item>
+    return (
+        <div className='signinPage'>
+            <div style={{ height: '60px' }} />
+            <div className='signinLogo'>
+                {/* <Link to='/'>
+                    <img src={logo} alt="logo" style={{ width: 32, height: 32, margin: '-5px 0 0 0' }} draggable='false' />
+                </Link>
+                <Link to='/'>
+                    <span className='logoText' style={{ color: '#585858', padding: '0 0 0 8px' }}>
+                        mealmaker.io
+                    </span>
+                </Link> */}
+            </div>
+            <div className='signinBox'>
+                {/* padding centers it a little better */}
+                <div style={{ textAlign: 'center', padding: '0 6px 0 0' }}>
+                    <Link to='/'>
+                        <img src={logo} alt="logo" style={{ width: 32, height: 32, margin: '-20px 0 0 0' }} draggable='false' />
+                    </Link>
+                    <Link to='/'>
+                        <span className='logoText' style={{ padding: '0 0 0 8px' }}>
+                            mealmaker.io
+                        </span>
+                    </Link>
+                </div>
+                <div className='space20' />
 
-                <Form.Item
-                    name="password"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input your password!',
-                        },
-                    ]}
-                    hasFeedback
-                >
-                    <Input.Password prefix={<LockOutlined className="site-form-item-icon" />} placeholder="Password" />
-                </Form.Item>
+                <a className='signinTextAbove' onClick={() => emailRef.current.focus()}>Email</a>
+                <Input className='signinField' size='middle' ref={emailRef} />
+                <div className='space20' />
 
-                <Form.Item
-                    name="confirm"
-                    dependencies={['password']}
-                    hasFeedback
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please confirm your password!',
-                        },
-                        ({ getFieldValue }) => ({
-                            validator(rule, value) {
-                                if (!value || getFieldValue('password') === value) {
-                                    return Promise.resolve();
-                                }
+                <a className='signinTextAbove' onClick={() => userRef.current.focus()}>Username</a>
+                <Input className='signinField' size='middle' ref={userRef} />
+                <div className='space20' />
 
-                                return Promise.reject('The two passwords that you entered do not match!');
-                            },
-                        }),
-                    ]}
-                >
-                    <Input.Password prefix={<MailOutlined className="site-form-item-icon" />} placeholder="Confirm Password" />
-                </Form.Item>
+                <a className='signinTextAbove' onClick={() => passRef.current.focus()}>Password</a>
+                <Input.Password className='signinField' size='middle' ref={passRef} visibilityToggle={false} />
+                <div className='space20' />
 
-                <Form.Item {...tailFormItemLayout}>
-                    <Button type="primary" htmlType="submit">
-                        Sign Up
-        </Button>
-                </Form.Item>
-            </Form >
-        );
-    }
-};
+                <a className='signinTextAbove' onClick={() => confirmPassRef.current.focus()}>Confirm password</a>
+                <Input.Password className='signinField' size='middle' ref={confirmPassRef} visibilityToggle={false} />
+                <div className='space20' />
 
-// required for connect
-const mapStateToProps = (state) => {
-    return {
-        loading: state.loading,
-        error: state.error
-    }
+                {/* <Checkbox className='signinCheckbox' defaultChecked={true} onChange={() => console.log('check')}>
+                    Stay signed in
+                </Checkbox>
+                <div className='space32' /> */}
+
+                <a className='signinButton' style={{ color: '#47B57A' }} onClick={() => console.log('sign in')}>
+                    Create Account
+                </a>
+                <div className='space20' />
+
+                <div style={{ textAlign: 'center' }}>
+                    <span>Have an account?</span>
+                    <Link to='/signin'>
+                        <a className='signinBottomText' onClick={() => console.log('make account')}>&nbsp;&nbsp;Sign in</a>
+                    </Link>
+                </div>
+            </div>
+            <div className='space64' />
+            <div className='space64' />
+            <div className='signinCopyright'>
+                © 2020 Andrew Paul
+            </div>
+        </div >
+    )
 }
 
-// dispatch because we're calling on onAuth with the username and password
-const mapDispatchToProps = dispatch => {
-    return {
-        onAuth: (username, email, password1, password2) => dispatch(actions.authSignup(username, email, password1, password2))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(RegistrationForm)
+export default SignIn;
