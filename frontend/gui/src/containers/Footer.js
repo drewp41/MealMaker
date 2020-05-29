@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import {
     GithubOutlined, LinkedinFilled,
@@ -21,14 +22,16 @@ function Footer(props) {
 
                 <div className='footerLinks'>
                     <a href='#'>Home</a>
-                    <a href='#'>How it works</a>
+                    <Link to='/howitworks/#'>
+                        <a href='#'>How it works</a>
+                    </Link>
                     <a href='#'>About</a>
                     <a href='#'>Feedback</a>
-                    <a href='#'>Source code</a>
+                    <a href='https://github.com/drewp41/MealMaker'>Source code</a>
                 </div>
                 <div className='footerSocials'>
-                    <a href='#'> <GithubOutlined style={{ fontSize: '26px' }} /> </a>
-                    <a href='#'> <LinkedinFilled style={{ fontSize: '26px' }} /> </a>
+                    <a href='https://github.com/drewp41'> <GithubOutlined style={{ fontSize: '26px' }} /> </a>
+                    <a href='https://www.linkedin.com/in/andrew-paul-5a5036178/'> <LinkedinFilled style={{ fontSize: '26px' }} /> </a>
                     <a href='#'> <MailOutlined style={{ fontSize: '26px' }} /> </a>
                 </div>
                 <div className='footerCopyright'>

@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import 'antd/dist/antd.css';
 // import CustomLayout from './containers/Layout';
 import Home from './containers/Home';
+import ScrollToTop from './components/ScrollToTop';
 import * as actions from './store/actions/auth';
 
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
       // </div>
       <div>
         <Router>
+          <ScrollToTop />
           {/* <NewLayout {...this.props}> */}
           <BaseRouter />
           {/* </NewLayout> */}
