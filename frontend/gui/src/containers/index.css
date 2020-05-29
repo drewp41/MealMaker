@@ -1039,8 +1039,8 @@ button {
 
 .signinBox {
     width: 400px;
-    height: 450px;
-    padding: 50px;
+    /* height: 500px; */
+    padding: 50px 50px 50px 50px;
     background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 13px 27px -5px rgba(50,50,93,.25), 0 8px 16px -8px rgba(0,0,0,.3), 0 -6px 16px -6px rgba(0,0,0,.025);
@@ -1057,6 +1057,24 @@ button {
     margin-top: 8px;
 }
 
+.signinForgot {
+    float: right;
+    color: #40a66e;
+}
+
+.signinForgot:hover {
+    color: #404040;
+}
+
+.signinTextAbove {
+    color: #585858;
+}
+
+.signinTextAbove:hover {
+    color: #404040;
+}
+
+
 .signinButton {
     white-space: nowrap;
     display: inline-block;
@@ -1069,6 +1087,23 @@ button {
     color: #fff !important;
     border-radius: 2px;
     font-size: 16px;
+}
+
+.signinButton:active {
+    background-color: #40A66E;
+}
+
+.signinCheckbox:hover {
+    color: #404040;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner {
+    background-color: #47B57A;
+    border-color: #40A66E !important;
+}
+
+.signinPage a {
+    transition: none;
 }
 
 
