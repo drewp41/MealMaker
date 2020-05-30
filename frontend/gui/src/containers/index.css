@@ -265,6 +265,32 @@ button {
     /* box-shadow: 0 30px 60px -12px rgba(50,50,93,.25), 0 18px 36px -18px rgba(0,0,0,.3), 0 -12px 36px -8px rgba(0,0,0,.025); */
 }
 
+#inputBoxShake {
+    animation: shake .6s ease both;
+}
+
+@keyframes shake {
+    0%, to {
+        transform:translateX(0)
+    }
+
+    20% {
+        transform:translateX(-15px)
+    }
+
+    40% {
+        transform:translateX(15px)
+    }
+
+    60% {
+        transform:translateX(-10px)
+    }
+
+    80% {
+        transform:translateX(10px)
+    }
+}
+
 .inputMain {
     height: 250px;
     display: flex;

@@ -96,6 +96,16 @@ const pieColors = {
     ],
 }
 
+const calBounds = {
+    // num meals: [lower bounds, upper bound]
+    1: [500, 2000],
+    2: [700, 2500],
+    3: [900, 3000],
+    4: [1200, 3500],
+    5: [1500, 4000],
+    6: [1800, 5000],
+}
+
 function useAsyncState(initialValue) {
     const [value, setValue] = useState(initialValue);
     const setter = x =>
@@ -119,6 +129,7 @@ const NewLayout = (props) => {
     const [macroPinned, setMacroPinned] = useState(null);
     const [tabPos, setTabPos] = useState('1');
     const [validInput, setValidInput] = useState(true);
+    const [inputBoxShake, setInputBoxShake] = useState(false);
 
     const [breakfastIter, setBreakfastIter] = useAsyncState(null);
     const breakfastRef = useRef(breakfastIter);
@@ -619,8 +630,14 @@ const NewLayout = (props) => {
             return;
 
         if (!validateInput()) {
-            message.error(`For ${numMeals} meals, please enter between 500 and 1000 calories`, 4);
+            // message.config({ top: 90, duration: 4, });
+            message.error(`For ${numMeals} meals, 
+                please enter between ${calBounds[numMeals][0]} and ${calBounds[numMeals][1]} calories.`, 4);
             setValidInput(false);
+            setInputBoxShake(true);
+            setTimeout(() => {
+                setInputBoxShake(false);
+            }, 600)
             return;
         } else {
             setValidInput(true);
@@ -712,13 +729,9 @@ const NewLayout = (props) => {
     return (
         //  242, 242, 242
         // <div style={{ backgroundColor: 'rgb(242, 242, 242)' }}>
-        <div style={{ backgroundColor: 'white' }}>
+        <div style={{ backgroundColor: '#fff' }}>
             {/* <div style={{ backgroundColor: 'rgb(245, 243, 240)' }}> */}
             <Header />
-
-            {/* {<Link to="/login/">Log in</Link>} */}
-
-            {/* {props.children} */}
 
             <div className='topBody'>
                 <div className='topBodyText'>
@@ -731,7 +744,7 @@ const NewLayout = (props) => {
                     </div>
                 </div>
 
-                <div className='inputBox'>
+                <div className='inputBox' id={inputBoxShake ? 'inputBoxShake' : ''}>
                     <Tabs activeKey={tabPos}>
                         <TabPane tab='Tab 1' key='1'>
                             <div className='inputMain'>
@@ -869,7 +882,7 @@ const NewLayout = (props) => {
                                         </div>
                                     </List.Item>
                                     <List.Item>
-                                        Available time&nbsp;&nbsp;
+                                        Time per meal&nbsp;&nbsp;
                                         <Select className='macroSliderText' defaultValue='2'
                                             onChange={(value) => {
                                                 // set some hook that controls prep and cook time
