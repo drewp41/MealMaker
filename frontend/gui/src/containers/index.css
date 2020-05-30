@@ -233,7 +233,7 @@ button {
 }
 
 .topBodyText {
-    padding: 80px 0;
+    padding: 80px 0 0 0;
     z-index: 2;
 }
 
@@ -251,6 +251,25 @@ button {
     font-family: 'Alliance';
     font-weight: 400;
     text-align: center;
+}
+
+.calErrorDiv {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    font-family: 'Camphor';
+}
+
+.calErrorAlert {
+    font-size: 15px;
+    transition: all 0.1s;
+}
+
+.calErrorAlert .ant-alert-icon{
+    /* centers it vertically better since i changed the font and the size */
+    top: 11px;
 }
 
 .inputBox {

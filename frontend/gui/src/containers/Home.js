@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
-    Slider, Select, List,
-    Switch, Collapse, Tabs, message
+    Slider, Select, List, Alert,
+    Switch, Collapse, Tabs
 } from 'antd';
 import {
     SyncOutlined, PushpinOutlined, PushpinFilled,
@@ -630,9 +630,6 @@ const NewLayout = (props) => {
             return;
 
         if (!validateInput()) {
-            // message.config({ top: 90, duration: 4, });
-            message.error(`For ${numMeals} meals, 
-                please enter between ${calBounds[numMeals][0]} and ${calBounds[numMeals][1]} calories.`, 4);
             setValidInput(false);
             setInputBoxShake(true);
             setTimeout(() => {
@@ -742,6 +739,12 @@ const NewLayout = (props) => {
                     <div className='topBodyCaption'>
                         Search though over 365,000 recipes.
                     </div>
+                </div>
+
+                <div className='calErrorDiv'>
+                    <Alert className='calErrorAlert' style={{ opacity: validInput ? 0 : 1 }}
+                        message={`For ${numMeals} meals, please enter between ${calBounds[numMeals][0]} and ${calBounds[numMeals][1]} calories.`}
+                        type="error" showIcon />
                 </div>
 
                 <div className='inputBox' id={inputBoxShake ? 'inputBoxShake' : ''}>
