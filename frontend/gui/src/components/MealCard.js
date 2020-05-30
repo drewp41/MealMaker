@@ -78,7 +78,7 @@ const MealCard = (props) => {
                     {props.mealNum !== 1 && <br />}
                     <MealModal visible={showMainModal} meal={props.mealObj.main} closeModal={closeMainModal} />
                     <MealModal visible={showSideModal} meal={props.mealObj.side} closeModal={closeSideModal} />
-                    <Card className={['mealCard', 'cardShadow2'].join(' ')}
+                    <Card className={['mealCard', 'cardShadow2', props.displayMeals ? '' : 'mealCardSkeletonPadding'].join(' ')}
                         title={
                             props.mealNum === 1 ? (
                                 props.numMeals === 1 ? 'Feast'
@@ -96,7 +96,7 @@ const MealCard = (props) => {
                         <Skeleton avatar={false} title={false}
                             loading={!props.displayMeals && !props.mealObj.mainPinned && !props.mealObj.sidePinned}
                             active={props.mealObj.mainLoading || props.mealObj.sideLoading}
-                            paragraph={{ rows: 3, width: [250] }} >
+                            paragraph={{ rows: 3, width: ['75%', '100%', '60%'] }} >
                             <div className='mealCardBody'>
                                 <div className='mealCardMainRow' onClick={() => setShowMainModal(true)}>
                                     <div className='mealCardIcons'>
