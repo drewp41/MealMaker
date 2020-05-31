@@ -14,7 +14,6 @@ import 'antd/dist/antd.css';
 import './index.css';
 import { Pie, defaults } from 'react-chartjs-2';
 import 'chartjs-plugin-datalabels';
-import NumberFormat from 'react-number-format';
 import MealCard from '../components/MealCard';
 import Header from './Header';
 import Footer from './Footer';
@@ -128,7 +127,6 @@ const NewLayout = (props) => {
     const [displayMeals, setDisplayMeals] = useState(false);
     const [changedPrefs, setChangedPrefs] = useState(true);
     const [macroPinned, setMacroPinned] = useState(null);
-    const [tabPos, setTabPos] = useState('1');
     const [validInput, setValidInput] = useState(true);
     const [inputBoxShake, setInputBoxShake] = useState(false);
 
@@ -748,7 +746,10 @@ const NewLayout = (props) => {
                         type="error" showIcon />
                 </div>
 
-                <InputBox />
+                <InputBox inputBoxShake={inputBoxShake} validInput={validInput} onCalorieChange={onCalorieChange}
+                    setNumMeals={setNumMeals} setChangedPrefs={setChangedPrefs} onClickGenerateButton={onClickGenerateButton}
+                    calories={calories} macros={macros} carbSlider={carbSlider} proteinSlider={proteinSlider} fatSlider={fatSlider}
+                    macroSwitch={macroSwitch} loadingMeals={loadingMeals} macroPinned={macroPinned} pinMacro={pinMacro} />
 
                 {/* <div className='inputBox' id={inputBoxShake ? 'inputBoxShake' : ''}>
                     <Tabs activeKey={tabPos}>

@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
 import {
-    Tabs, Select, Switch
+    Tabs, Select, Switch, List
 } from 'antd';
 import {
-    PushpinOutlined, PushpinFilled
+    SyncOutlined, SettingFilled, SlidersFilled, CalculatorFilled
 } from '@ant-design/icons';
-
+import NumberFormat from 'react-number-format';
 import Sliders from './Sliders';
 
+const mainTextColor = '#32323c';
+
 const { Option } = Select;
+const { TabPane } = Tabs;
 
 const InputBox = (props) => {
 
+    const [tabPos, setTabPos] = useState('1');
+
     return (
-        <div className='inputBox' id={inputBoxShake ? 'inputBoxShake' : ''}>
+        <div className='inputBox' id={props.inputBoxShake ? 'inputBoxShake' : ''}>
             <Tabs activeKey={tabPos}>
                 <TabPane tab='Tab 1' key='1'>
                     <div className='inputMain'>
@@ -21,17 +26,17 @@ const InputBox = (props) => {
                             <div style={{ textAlign: 'right', position: 'relative' }}>
                                 <span className="leftColumnText">
                                     I want to eat &nbsp;
-                                            {validInput ?
+                                            {props.validInput ?
                                         <NumberFormat className={['ant-input', 'inputValid'].join(' ')} id='calorieInput'
                                             style={{ width: '132px', fontSize: '17px' }} suffix={' calories'}
                                             defaultValue={2000} allowEmptyFormatting={true}
-                                            onValueChange={onCalorieChange}
+                                            onValueChange={props.onCalorieChange}
                                         />
                                         :
                                         <NumberFormat className={['ant-input', 'inputInvalid'].join(' ')} id='calorieInput'
                                             style={{ width: '132px', fontSize: '17px' }} suffix={' calories'}
                                             defaultValue={2000} allowEmptyFormatting={true}
-                                            onValueChange={onCalorieChange}
+                                            onValueChange={props.onCalorieChange}
                                         />
                                     }
                                 </span>
@@ -40,8 +45,8 @@ const InputBox = (props) => {
                                             <Select className="macroSliderText" defaultValue="3" size='large'
                                         style={{ width: '132px', height: '36px', fontSize: '17px', color: '#595959' }}
                                         onChange={(value) => {
-                                            setNumMeals(parseInt(value));
-                                            setChangedPrefs(true);
+                                            props.setNumMeals(parseInt(value));
+                                            props.setChangedPrefs(true);
                                         }}>
                                         <Option className='camphorFont' value="1">1 meal</Option>
                                         <Option className='camphorFont' value="2">2 meals</Option>
@@ -64,18 +69,18 @@ const InputBox = (props) => {
                                     </a>
 
                                     {/* GENERATE BUTTON */}
-                                    <a className='genButton' onClick={onClickGenerateButton} style={{ color: 'white' }}>
-                                        {loadingMeals ? <SyncOutlined spin /> : <SyncOutlined />}&nbsp;
-                                                GENERATE
-                                            </a>
+                                    <a className='genButton' onClick={props.onClickGenerateButton} style={{ color: 'white' }}>
+                                        {props.loadingMeals ? <SyncOutlined spin /> : <SyncOutlined />}&nbsp;
+                                        GENERATE
+                                    </a>
                                 </div>
                             </div>
                         </div>
 
                         <div className='inputBorder' style={{ borderLeft: '2px solid #f0f0f0', height: '80%' }} />
 
-                        <Sliders macros={macros} macroPinned={macroPinned} calories={calories} pinMacro={pinMacro}
-                            carbSlider={carbSlider} proteinSlider={proteinSlider} fatSlider={fatSlider} />
+                        <Sliders macros={props.macros} macroPinned={props.macroPinned} calories={props.calories} pinMacro={props.pinMacro}
+                            carbSlider={props.carbSlider} proteinSlider={props.proteinSlider} fatSlider={props.fatSlider} />
 
                     </div>
                 </TabPane>
@@ -89,7 +94,7 @@ const InputBox = (props) => {
                             <List.Item>
                                 <div style={{ display: 'flex', alignItems: 'center' }}>
                                     Macro preferences&nbsp;&nbsp;
-                                            <Switch defaultChecked={true} onChange={macroSwitch} />
+                                            <Switch defaultChecked={true} onChange={props.macroSwitch} />
                                 </div>
                             </List.Item>
                             <List.Item>
@@ -97,7 +102,7 @@ const InputBox = (props) => {
                                         <Select className='macroSliderText' defaultValue='2'
                                     onChange={(value) => {
                                         // set some hook that controls prep and cook time
-                                        setChangedPrefs(true);
+                                        props.setChangedPrefs(true);
                                     }}>
                                     <Option className='camphorFont' value='1' style={{ fontSize: '15px' }}>&lt; 15 min</Option>
                                     <Option className='camphorFont' value='2' style={{ fontSize: '15px' }}>&lt; 30 min</Option>
@@ -106,7 +111,7 @@ const InputBox = (props) => {
                             </List.Item>
                             <List.Item>
                                 TDEE calculator&nbsp;&nbsp;
-                                        <CalculatorFilled style={{ color: '#606060' }} />
+                                <CalculatorFilled style={{ color: '#606060' }} />
                             </List.Item>
                         </List>
                     </div>
@@ -120,8 +125,8 @@ const InputBox = (props) => {
                         </a>
                         {/* make hight bigger than actual height (220px) so it gets vertically alligned lower */}
                         <div style={{ height: '250px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                            <Sliders macros={macros} macroPinned={macroPinned} calories={calories} pinMacro={pinMacro}
-                                carbSlider={carbSlider} proteinSlider={proteinSlider} fatSlider={fatSlider} />
+                            <Sliders macros={props.macros} macroPinned={props.macroPinned} calories={props.calories} pinMacro={props.pinMacro}
+                                carbSlider={props.carbSlider} proteinSlider={props.proteinSlider} fatSlider={props.fatSlider} />
                         </div>
                     </div>
                 </TabPane>
