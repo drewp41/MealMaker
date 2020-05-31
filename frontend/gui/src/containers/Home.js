@@ -20,7 +20,7 @@ import Header from './Header';
 import Footer from './Footer';
 import SignupPanel from './SignupPanel';
 import InfoPanel from './InfoPanel';
-import Sliders from './Sliders';
+import InputBox from './InputBox';
 
 import {
     fetchMeals, fetchBreakfast, fetchRegular,
@@ -748,7 +748,9 @@ const NewLayout = (props) => {
                         type="error" showIcon />
                 </div>
 
-                <div className='inputBox' id={inputBoxShake ? 'inputBoxShake' : ''}>
+                <InputBox />
+
+                {/* <div className='inputBox' id={inputBoxShake ? 'inputBoxShake' : ''}>
                     <Tabs activeKey={tabPos}>
                         <TabPane tab='Tab 1' key='1'>
                             <div className='inputMain'>
@@ -798,7 +800,6 @@ const NewLayout = (props) => {
                                                 <SlidersFilled style={{ color: '#5ca9f8' }} />
                                             </a>
 
-                                            {/* GENERATE BUTTON */}
                                             <a className='genButton' onClick={onClickGenerateButton} style={{ color: 'white' }}>
                                                 {loadingMeals ? <SyncOutlined spin /> : <SyncOutlined />}&nbsp;
                                                 GENERATE
@@ -812,64 +813,6 @@ const NewLayout = (props) => {
                                 <Sliders macros={macros} macroPinned={macroPinned} calories={calories} pinMacro={pinMacro}
                                     carbSlider={carbSlider} proteinSlider={proteinSlider} fatSlider={fatSlider} />
 
-                                {/* <div className='inputMacroSlider'>
-                                    <div style={{ width: '220px' }}>
-                                        <span className='macroSliderText' style={{ float: 'left' }}>
-                                            Carbs &nbsp;
-                                            {macroPinned === null ?
-                                                <PushpinOutlined className='macroPin' onClick={() => pinMacro(1)} /> :
-                                                (macroPinned === 1 ?
-                                                    <PushpinFilled className='macroPin' onClick={() => pinMacro(1)} /> :
-                                                    null)
-                                            }
-                                        </span>
-                                        <span className='macroSliderText' style={{ float: 'right' }}>
-                                            {Math.round(macros.carbs)} g
-                                        </span>
-                                        <br />
-                                        <Slider defaultValue={45} tipFormatter={val => `${val}%`} min={15} max={70}
-                                            value={Math.round((macros.carbs * 4) / (calories / 100))}
-                                            disabled={macroPinned === 1}
-                                            onChange={(percent) => carbSlider(percent)}
-                                        />
-                                        <span className='macroSliderText' style={{ float: 'left' }}>
-                                            Protein &nbsp;
-                                            {macroPinned === null ?
-                                                <PushpinOutlined className='macroPin' onClick={() => pinMacro(2)} /> :
-                                                (macroPinned === 2 ?
-                                                    <PushpinFilled className='macroPin' onClick={() => pinMacro(2)} /> :
-                                                    null)
-                                            }
-                                        </span>
-                                        <span className='macroSliderText' style={{ float: 'right' }}>
-                                            {Math.round(macros.protein)} g
-                                        </span>
-                                        <br />
-                                        <Slider defaultValue={30} tipFormatter={val => `${val}%`} min={15} max={70}
-                                            value={Math.round((macros.protein * 4) / (calories / 100))}
-                                            disabled={macroPinned === 2}
-                                            onChange={(percent) => proteinSlider(percent)}
-                                        />
-                                        <span className='macroSliderText' style={{ float: 'left' }}>
-                                            Fat &nbsp;
-                                            {macroPinned === null ?
-                                                <PushpinOutlined className='macroPin' onClick={() => pinMacro(3)} /> :
-                                                (macroPinned === 3 ?
-                                                    <PushpinFilled className='macroPin' onClick={() => pinMacro(3)} /> :
-                                                    null)
-                                            }
-                                        </span>
-                                        <span className='macroSliderText' style={{ float: 'right' }}>
-                                            {Math.round(macros.fat)} g
-                                        </span>
-                                        <br />
-                                        <Slider defaultValue={25} tipFormatter={val => `${val}%`} min={15} max={70}
-                                            value={Math.round((macros.fat * 9) / (calories / 100))}
-                                            disabled={macroPinned === 3}
-                                            onChange={(percent) => fatSlider(percent)}
-                                        />
-                                    </div>
-                                </div> */}
                             </div>
                         </TabPane>
                         <TabPane tab='Tab 2' key='2'>
@@ -889,7 +832,6 @@ const NewLayout = (props) => {
                                         Time per meal&nbsp;&nbsp;
                                         <Select className='macroSliderText' defaultValue='2'
                                             onChange={(value) => {
-                                                // set some hook that controls prep and cook time
                                                 setChangedPrefs(true);
                                             }}>
                                             <Option className='camphorFont' value='1' style={{ fontSize: '15px' }}>&lt; 15 min</Option>
@@ -904,78 +846,20 @@ const NewLayout = (props) => {
                                 </List>
                             </div>
                         </TabPane>
-                        {/* For the macro sliders when the screen width is too narrow */}
                         <TabPane tab='Tab 3' key='3'>
                             <div className='macroTab'>
                                 <a className='inputBack' onClick={() => setTabPos('1')}>
                                     <span className='inputBackArrow'>← </span>
                                     <span className='inputBackText'>Back</span>
                                 </a>
-                                <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                    <div style={{ width: '210px' }}>
-                                        {/* Carbs */}
-                                        <span className='macroSliderText' style={{ float: 'left' }}>
-                                            Carbs &nbsp;
-                                            {macroPinned === null ?
-                                                <PushpinOutlined className='macroPin' onClick={() => pinMacro(1)} /> :
-                                                (macroPinned === 1 ?
-                                                    <PushpinFilled className='macroPin' onClick={() => pinMacro(1)} /> :
-                                                    null)
-                                            }
-                                        </span>
-                                        <span className='macroSliderText' style={{ float: 'right' }}>
-                                            {Math.round(macros.carbs)} g
-                                        </span>
-                                        <br />
-                                        <Slider defaultValue={45} tipFormatter={val => `${val}%`} min={15} max={70}
-                                            value={Math.round((macros.carbs * 4) / (calories / 100))}
-                                            disabled={macroPinned === 1}
-                                            onChange={(percent) => carbSlider(percent)}
-                                        />
-                                        {/* Protein */}
-                                        <span className='macroSliderText' style={{ float: 'left' }}>
-                                            Protein &nbsp;
-                                            {macroPinned === null ?
-                                                <PushpinOutlined className='macroPin' onClick={() => pinMacro(2)} /> :
-                                                (macroPinned === 2 ?
-                                                    <PushpinFilled className='macroPin' onClick={() => pinMacro(2)} /> :
-                                                    null)
-                                            }
-                                        </span>
-                                        <span className='macroSliderText' style={{ float: 'right' }}>
-                                            {Math.round(macros.protein)} g
-                                        </span>
-                                        <br />
-                                        <Slider defaultValue={30} tipFormatter={val => `${val}%`} min={15} max={70}
-                                            value={Math.round((macros.protein * 4) / (calories / 100))}
-                                            disabled={macroPinned === 2}
-                                            onChange={(percent) => proteinSlider(percent)}
-                                        />
-                                        {/* Fat */}
-                                        <span className='macroSliderText' style={{ float: 'left' }}>
-                                            Fat &nbsp;
-                                            {macroPinned === null ?
-                                                <PushpinOutlined className='macroPin' onClick={() => pinMacro(3)} /> :
-                                                (macroPinned === 3 ?
-                                                    <PushpinFilled className='macroPin' onClick={() => pinMacro(3)} /> :
-                                                    null)
-                                            }
-                                        </span>
-                                        <span className='macroSliderText' style={{ float: 'right' }}>
-                                            {Math.round(macros.fat)} g
-                                        </span>
-                                        <br />
-                                        <Slider defaultValue={25} tipFormatter={val => `${val}%`} min={15} max={70}
-                                            value={Math.round((macros.fat * 9) / (calories / 100))}
-                                            disabled={macroPinned === 3}
-                                            onChange={(percent) => fatSlider(percent)}
-                                        />
-                                    </div>
+                                <div style={{ height: '250px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                    <Sliders macros={macros} macroPinned={macroPinned} calories={calories} pinMacro={pinMacro}
+                                        carbSlider={carbSlider} proteinSlider={proteinSlider} fatSlider={fatSlider} />
                                 </div>
                             </div>
                         </TabPane>
                     </Tabs>
-                </div>
+                </div> */}
             </div>
 
             <div className='colMealCards'>

@@ -399,7 +399,7 @@ button {
     .inputBox {
         width: 450px;
     }
-    .inputMacroSlider, .inputBorder {
+    .inputMain .inputMacroSlider, .inputBorder {
         display: none;
     }
     .inputButtonRow .genButton:nth-child(2) {
