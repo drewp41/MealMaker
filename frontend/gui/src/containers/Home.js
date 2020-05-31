@@ -20,6 +20,7 @@ import Header from './Header';
 import Footer from './Footer';
 import SignupPanel from './SignupPanel';
 import InfoPanel from './InfoPanel';
+import Sliders from './Sliders';
 
 import {
     fetchMeals, fetchBreakfast, fetchRegular,
@@ -808,9 +809,11 @@ const NewLayout = (props) => {
 
                                 <div className='inputBorder' style={{ borderLeft: '2px solid #f0f0f0', height: '80%' }} />
 
-                                <div className='inputMacroSlider'>
+                                <Sliders macros={macros} macroPinned={macroPinned} calories={calories} pinMacro={pinMacro}
+                                    carbSlider={carbSlider} proteinSlider={proteinSlider} fatSlider={fatSlider} />
+
+                                {/* <div className='inputMacroSlider'>
                                     <div style={{ width: '220px' }}>
-                                        {/* Carbs */}
                                         <span className='macroSliderText' style={{ float: 'left' }}>
                                             Carbs &nbsp;
                                             {macroPinned === null ?
@@ -829,7 +832,6 @@ const NewLayout = (props) => {
                                             disabled={macroPinned === 1}
                                             onChange={(percent) => carbSlider(percent)}
                                         />
-                                        {/* Protein */}
                                         <span className='macroSliderText' style={{ float: 'left' }}>
                                             Protein &nbsp;
                                             {macroPinned === null ?
@@ -848,7 +850,6 @@ const NewLayout = (props) => {
                                             disabled={macroPinned === 2}
                                             onChange={(percent) => proteinSlider(percent)}
                                         />
-                                        {/* Fat */}
                                         <span className='macroSliderText' style={{ float: 'left' }}>
                                             Fat &nbsp;
                                             {macroPinned === null ?
@@ -868,7 +869,7 @@ const NewLayout = (props) => {
                                             onChange={(percent) => fatSlider(percent)}
                                         />
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </TabPane>
                         <TabPane tab='Tab 2' key='2'>

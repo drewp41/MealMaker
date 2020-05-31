@@ -82,7 +82,7 @@ const MealModal = (props) => {
             className='mealModal'
             title={
                 <>
-                    <b style={{ fontWeight: 400, fontSize: '18px' }}>{props.meal.name}</b>
+                    <b style={{ fontWeight: 500, fontSize: '18px' }}>{props.meal.name}</b>
                     <br />
                     <br />
                     <div className='rowMM'>
@@ -93,17 +93,26 @@ const MealModal = (props) => {
                             </div>
                             <div style={{ width: '120px', textAlign: 'left', margin: '0 0 0 20px' }}>
                                 <p> {'Prep: '}
-                                    <span style={{ float: 'right' }}>{typeof props.meal.prepTime === 'undefined' ? 'n/a'
-                                        : props.meal.prepTime + ' min'}</span>
+                                    <span style={{ float: 'right' }}>
+                                        {typeof props.meal.prepTime === 'undefined' ? 'n/a'
+                                            : props.meal.prepTime + ' min'}
+                                    </span>
                                 </p>
                                 <p> {'Cook: '}
-                                    <span style={{ float: 'right' }}>{typeof props.meal.cookTime === 'undefined' ? 'n/a'
-                                        : props.meal.cookTime + ' min'}</span>
+                                    <span style={{ float: 'right' }}>
+                                        {typeof props.meal.cookTime === 'undefined' ? 'n/a'
+                                            : props.meal.cookTime + ' min'}
+                                    </span>
                                 </p>
                                 <span style={{ fontSize: '18px' }}>
-                                    {!props.pinned && (props.loading ?
-                                        <SyncOutlined className='regenIcon' spin onClick={(e) => regen(e)} /> :
-                                        <SyncOutlined className='regenIcon' onClick={(e) => regen(e)} />)}
+                                    {/* make regen icon invisible (if it's pinned)
+                                     so it doesnt disappear and shift all the other icons */}
+                                    {!props.pinned ?
+                                        (props.loading ?
+                                            <SyncOutlined className='regenIcon' spin onClick={(e) => regen(e)} /> :
+                                            <SyncOutlined className='regenIcon' onClick={(e) => regen(e)} />)
+                                        :
+                                        <SyncOutlined style={{ opacity: 0 }} />}
                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                     {props.pinned ?
                                         <PushpinFilled className='pinIcon' onClick={(e) => pin(e, true)} /> :

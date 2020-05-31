@@ -555,11 +555,7 @@ button {
     color: #606060;
 }
 
-.regenIcon:hover {
-    color: #202020;
-}
-
-.pinIcon:hover {
+.regenIcon:hover, .pinIcon:hover, .heartIcon:hover  {
     color: #202020;
 }
 
