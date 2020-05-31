@@ -68,6 +68,15 @@ const MealModal = (props) => {
         props.closeModal();
     }
 
+    function regen(e) {
+        // send in a true parameter so it doesn't run the e.stopPropagation();
+        props.regen(e, true);
+    }
+
+    function pin(e) {
+        props.pin(e, true);
+    }
+
     return (
         <Modal
             className='mealModal'
@@ -92,9 +101,13 @@ const MealModal = (props) => {
                                         : props.meal.cookTime + ' min'}</span>
                                 </p>
                                 <span style={{ fontSize: '18px' }}>
-                                    <SyncOutlined />
+                                    {!props.pinned && (props.loading ?
+                                        <SyncOutlined className='regenIcon' spin onClick={(e) => regen(e)} /> :
+                                        <SyncOutlined className='regenIcon' onClick={(e) => regen(e)} />)}
                                     &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <PushpinOutlined />
+                                    {props.pinned ?
+                                        <PushpinFilled className='pinIcon' onClick={(e) => pin(e, true)} /> :
+                                        <PushpinOutlined className='pinIcon' onClick={(e) => pin(e, true)} />}
                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                     <HeartOutlined />
                                 </span>

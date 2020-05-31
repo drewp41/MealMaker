@@ -50,9 +50,10 @@ const MealCard = (props) => {
         setShowSideModal(false);
     }
 
-    function regenMain(e) {
+    function regenMain(e, child) {
         // prevents the meal modal from opening when clicking an icon
-        e.stopPropagation();
+        if (!child)
+            e.stopPropagation();
         props.regenMain(props.mealNum);
     }
 
@@ -76,8 +77,10 @@ const MealCard = (props) => {
             {props.numMeals >= props.mealNum &&
                 <>
                     {props.mealNum !== 1 && <br />}
-                    <MealModal visible={showMainModal} meal={props.mealObj.main} closeModal={closeMainModal} />
-                    <MealModal visible={showSideModal} meal={props.mealObj.side} closeModal={closeSideModal} />
+                    <MealModal visible={showMainModal} meal={props.mealObj.main} closeModal={closeMainModal}
+                        regen={regenMain} pin={pinMain} pinned={props.mealObj.mainPinned} loading={props.mealObj.mainLoading} />
+                    <MealModal visible={showSideModal} meal={props.mealObj.side} closeModal={closeSideModal}
+                        regen={regenSide} pin={pinSide} pinned={props.mealObj.sidePinned} loading={props.mealObj.sideLoading} />
                     <Card className={['mealCard', 'cardShadow2', props.displayMeals ? '' : 'mealCardSkeletonPadding'].join(' ')}
                         title={
                             props.mealNum === 1 ? (
@@ -102,12 +105,12 @@ const MealCard = (props) => {
                                     <div className='mealCardIcons'>
                                         {/* show regen icon if the meal isn't pinned */}
                                         {!props.mealObj.mainPinned && (props.mealObj.mainLoading ?
-                                            <SyncOutlined spin className='regenIcon' onClick={(e) => regenMain(e)} /> :
-                                            <SyncOutlined className='regenIcon' onClick={(e) => regenMain(e)} />)}
+                                            <SyncOutlined spin className='regenIcon' onClick={(e) => regenMain(e, false)} /> :
+                                            <SyncOutlined className='regenIcon' onClick={(e) => regenMain(e, false)} />)}
                                         &nbsp;&nbsp;&nbsp;
                                         {props.mealObj.mainPinned ?
-                                            <PushpinFilled className='pinIcon' onClick={(e) => pinMain(e)} /> :
-                                            <PushpinOutlined className='pinIcon' onClick={(e) => pinMain(e)} />}
+                                            <PushpinFilled className='pinIcon' onClick={(e) => pinMain(e, false)} /> :
+                                            <PushpinOutlined className='pinIcon' onClick={(e) => pinMain(e, false)} />}
                                     </div>
                                     <div className='ant-card-meta-title'>
                                         {props.mealObj.main.name}
@@ -123,12 +126,12 @@ const MealCard = (props) => {
                                         <div className='mealCardIcons'>
                                             {/* show regen icon if the meal isn't pinned */}
                                             {!props.mealObj.sidePinned && (props.mealObj.sideLoading ?
-                                                <SyncOutlined spin className='regenIcon' onClick={(e) => regenSide(e)} /> :
-                                                <SyncOutlined className='regenIcon' onClick={(e) => regenSide(e)} />)}
+                                                <SyncOutlined spin className='regenIcon' onClick={(e) => regenSide(e, false)} /> :
+                                                <SyncOutlined className='regenIcon' onClick={(e) => regenSide(e, false)} />)}
                                             &nbsp;&nbsp;&nbsp;
                                             {props.mealObj.sidePinned ?
-                                                <PushpinFilled className='pinIcon' onClick={(e) => pinSide(e)} /> :
-                                                <PushpinOutlined className='pinIcon' onClick={(e) => pinSide(e)} />}
+                                                <PushpinFilled className='pinIcon' onClick={(e) => pinSide(e, false)} /> :
+                                                <PushpinOutlined className='pinIcon' onClick={(e) => pinSide(e, false)} />}
                                         </div>
 
                                         <div className='ant-card-meta-title'>
