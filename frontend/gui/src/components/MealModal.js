@@ -112,13 +112,13 @@ const MealModal = (props) => {
                                             <SyncOutlined className='regenIcon' spin onClick={(e) => regen(e)} /> :
                                             <SyncOutlined className='regenIcon' onClick={(e) => regen(e)} />)
                                         :
-                                        <SyncOutlined style={{ opacity: 0 }} />}
+                                        <SyncOutlined className='regenIcon' style={{ opacity: 0 }} />}
                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                     {props.pinned ?
                                         <PushpinFilled className='pinIcon' onClick={(e) => pin(e, true)} /> :
                                         <PushpinOutlined className='pinIcon' onClick={(e) => pin(e, true)} />}
                                     &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <HeartOutlined />
+                                    <HeartOutlined className='heartIcon' />
                                 </span>
                             </div>
                         </div>

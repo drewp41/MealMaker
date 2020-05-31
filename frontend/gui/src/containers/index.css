@@ -440,6 +440,51 @@ button {
     align-items: center;
 }
 
+.nutritionCard {
+    width: 420px;
+    font-family: 'Camphor';
+    font-weight: 500;
+}
+
+.nutritionCard .ant-collapse, .nutritionCard .ant-collapse-item {
+    border: none;
+}
+
+.nutritionCard .ant-collapse-header {
+    color: var(--mainTextColor) !important;
+    font-size: 16px;
+    cursor: pointer !important;
+    border-radius: 2px !important;
+    padding: 12px 40px 12px 24px !important;
+}
+
+.nutritionCard .ant-collapse-content-box {
+    padding: 24px;
+}
+
+.nutritionCardBody {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nutritionPieBody {
+    /* flex: 1; */
+    flex-basis: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nutritionFacts {
+    /* flex: 1; */
+    flex-basis: 50%;
+    font-size: 16px;
+    padding: 0 24px;
+}
+
+
 .mealCard {
     width: 420px;
     /* head height: 58, body height: 150 */
@@ -480,7 +525,7 @@ button {
 } */
 
 /* less shadow, same hover.  This one is in use */
-.cardShadow2 {
+.cardShadow2, .nutritionShadow {
     box-shadow:0 5px 10px 0 rgba(50, 50, 93, .1), 0 2px 4px 0 rgba(0, 0, 0, .07);
     transition-property: color, background-color, box-shadow, transform;
     transition-duration: .15s;
@@ -555,6 +600,10 @@ button {
     color: #606060;
 }
 
+.regenIcon {
+    transition: opacity 0.1s;
+}
+
 .regenIcon:hover, .pinIcon:hover, .heartIcon:hover  {
     color: #202020;
 }
@@ -563,11 +612,21 @@ button {
     .mealCard {
         width: 390px;
     }
+    .nutritionCard {
+        width: 390px;
+    }
 }
 
 @media screen and (max-width: 500px) { 
     .mealCard {
         width: 345px;
+    }
+    .nutritionCard {
+        width: 345px;
+    }
+    /* so it's not crammed with the pie chart */
+    .nutritionFacts {
+        padding: 0 6px 0 24px;
     }
 }
 
@@ -907,10 +966,6 @@ button {
     height: auto;
 } */
 
-.pieDiv {
-    margin: 0 80px 0 auto;
-}
-
 /* override collape component color */
  .ant-collapse-header {
     background-color:white !important;
@@ -1062,10 +1117,6 @@ button {
     .inputArea {
         /* centers it a little better */
         margin: 0 45px 0 0;
-    }
-
-    .pieDiv {
-        margin: 0 50px 0 auto;
     }
 }
 

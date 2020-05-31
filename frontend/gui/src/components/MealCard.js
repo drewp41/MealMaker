@@ -103,9 +103,11 @@ const MealCard = (props) => {
                                 <div className='mealCardMainRow' onClick={() => setShowMainModal(true)}>
                                     <div className='mealCardIcons'>
                                         {/* show regen icon if the meal isn't pinned */}
-                                        {!props.mealObj.mainPinned && (props.mealObj.mainLoading ?
-                                            <SyncOutlined spin className='regenIcon' onClick={(e) => regenMain(e)} /> :
-                                            <SyncOutlined className='regenIcon' onClick={(e) => regenMain(e)} />)}
+                                        {!props.mealObj.mainPinned ?
+                                            (props.mealObj.mainLoading ?
+                                                <SyncOutlined spin className='regenIcon' onClick={(e) => regenMain(e)} /> :
+                                                <SyncOutlined className='regenIcon' onClick={(e) => regenMain(e)} />)
+                                            : <SyncOutlined className='regenIcon' style={{ opacity: 0 }} />}
                                         &nbsp;&nbsp;&nbsp;
                                         {props.mealObj.mainPinned ?
                                             <PushpinFilled className='pinIcon' onClick={(e) => pinMain(e)} /> :
@@ -124,9 +126,11 @@ const MealCard = (props) => {
                                     <div className='mealCardSideRow' onClick={() => setShowSideModal(true)}>
                                         <div className='mealCardIcons'>
                                             {/* show regen icon if the meal isn't pinned */}
-                                            {!props.mealObj.sidePinned && (props.mealObj.sideLoading ?
-                                                <SyncOutlined spin className='regenIcon' onClick={(e) => regenSide(e)} /> :
-                                                <SyncOutlined className='regenIcon' onClick={(e) => regenSide(e)} />)}
+                                            {!props.mealObj.sidePinned ?
+                                                (props.mealObj.sideLoading ?
+                                                    <SyncOutlined spin className='regenIcon' onClick={(e) => regenSide(e)} /> :
+                                                    <SyncOutlined className='regenIcon' onClick={(e) => regenSide(e)} />)
+                                                : <SyncOutlined className='regenIcon' style={{ opacity: 0 }} />}
                                             &nbsp;&nbsp;&nbsp;
                                             {props.mealObj.sidePinned ?
                                                 <PushpinFilled className='pinIcon' onClick={(e) => pinSide(e)} /> :
