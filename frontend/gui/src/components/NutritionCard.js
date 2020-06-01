@@ -34,6 +34,19 @@ const pieOptions = {
     responsive: false,
 }
 
+const smallPieOptions = {
+    maintainAspectRatio: false,
+    responsive: false,
+    tooltips: { enabled: false },
+    hover: { mode: null },
+    plugins: {
+        datalabels: { display: false }
+    },
+    elements: {
+        arc: { borderWidth: 1 }
+    },
+}
+
 const pieColors = {
     backgroundColor: [
         '#5B8FF9',
@@ -49,6 +62,7 @@ const pieColors = {
     ],
 }
 
+
 defaults.global.legend.display = false;
 
 const { Panel } = Collapse;
@@ -58,7 +72,27 @@ const NutritionCard = (props) => {
     return (
         <div className={['nutritionCard', 'nutritionShadow'].join(' ')}>
             <Collapse expandIconPosition='right' onChange={() => console.log('open nutrition')}>
-                <Panel header={'Calories: ' + props.calories} key="1">
+                <Panel header={<div style={{ display: 'flex' }}>
+                    <Pie
+                        width={30}
+                        height={30}
+                        data={{
+                            datasets:
+                                [{
+                                    ...pieColors,
+                                    // data: [Math.round(props.carbs * 100 / (props.carbs + props.protein + props.fat * (9 / 4))),
+                                    // Math.round(props.protein * 100 / (props.carbs + props.protein + props.fat * (9 / 4))),
+                                    // Math.round((props.fat * (9 / 4) * 100) / (props.carbs + props.protein + props.fat * (9 / 4)))]
+                                    data: [33, 33, 33]
+                                }]
+                        }}
+                        options={smallPieOptions}
+                    />
+                    &nbsp;&nbsp;&nbsp;
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                        {props.calories} calories
+                    </div>
+                </div>} key="1">
                     <div className='nutritionCardBody'>
                         <div className='nutritionPieBody'>
                             <Pie
