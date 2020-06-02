@@ -414,7 +414,6 @@ button {
     position: relative;
 }
 
-
 @media screen and (max-width: 750px) { 
     .topBodyTitle {
         font-size: 30px;
@@ -503,6 +502,34 @@ button {
     width: 174px;
     font-family: 'Camphor';
     font-weight: 400;
+}
+
+/* hides the little arrows on the type='number' */
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+/* when given invalid input */
+.calorieCalcModal .inputInvalid .ant-input{
+    /* rgb(255, 77, 79) */
+    border-color: #ff4d4f;
+}
+.calorieCalcModal .inputInvalid .ant-input:focus {
+    box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
+}
+.calorieCalcModal .inputInvalid .ant-radio-button-wrapper{
+    /* rgb(255, 77, 79) */
+    border-color: #ff4d4f;
+}
+.calorieCalcModal .inputInvalid .ant-radio-button-wrapper::before {
+    background: #ff4d4f !important;
+}
+.calorieCalcModal .inputInvalid .ant-radio-button-wrapper:focus{
+    box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
 }
 
 /* switch form to have the labels above the fields */

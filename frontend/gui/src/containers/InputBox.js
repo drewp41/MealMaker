@@ -34,19 +34,12 @@ const InputBox = (props) => {
                                 <div style={{ textAlign: 'right', position: 'relative' }}>
                                     <span className="leftColumnText">
                                         I want to eat &nbsp;
-                                            {props.validInput ?
-                                            <NumberFormat className={['ant-input', 'inputValid'].join(' ')} id='calorieInput'
-                                                style={{ width: '132px', fontSize: '17px' }} suffix={' calories'}
-                                                defaultValue={2000} allowEmptyFormatting={true}
-                                                onValueChange={props.onCalorieChange}
-                                            />
-                                            :
-                                            <NumberFormat className={['ant-input', 'inputInvalid'].join(' ')} id='calorieInput'
-                                                style={{ width: '132px', fontSize: '17px' }} suffix={' calories'}
-                                                defaultValue={2000} allowEmptyFormatting={true}
-                                                onValueChange={props.onCalorieChange}
-                                            />
-                                        }
+                                        <NumberFormat id='calorieInput'
+                                            className={['ant-input', props.validInput ? '' : 'inputInvalid'].join(' ')}
+                                            style={{ width: '132px', fontSize: '17px' }} suffix={' calories'}
+                                            defaultValue={2000} allowEmptyFormatting={true}
+                                            onValueChange={props.onCalorieChange}
+                                        />
                                     </span>
                                     <div className='space20' />
                                     <span className="leftColumnText"> in &nbsp;
