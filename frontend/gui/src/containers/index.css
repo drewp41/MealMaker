@@ -532,6 +532,32 @@ input::-webkit-inner-spin-button {
     box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
 }
 
+#buttonShake {
+    animation: shakee .6s ease both;
+}
+
+@keyframes shakee {
+    0%, to {
+        transform:translateX(0)
+    }
+
+    20% {
+        transform:translateX(-15px)
+    }
+
+    40% {
+        transform:translateX(15px)
+    }
+
+    60% {
+        transform:translateX(-10px)
+    }
+
+    80% {
+        transform:translateX(10px)
+    }
+}
+
 /* switch form to have the labels above the fields */
 @media screen and (max-width: 620px) {
     .calorieCalcRow {

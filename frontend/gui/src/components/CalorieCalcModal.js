@@ -27,14 +27,64 @@ const CalorieCalcModal = (props) => {
     const [validAge, setValidAge] = useState(true);
     const [validWeight, setValidWeight] = useState(true);
 
+    const [buttonShake, setButtonShake] = useState(false);
+
     function handleCancel() {
         props.closeModal();
+    }
+
+    function calculate() {
+        let valid = true;
+        if (!gender) {
+            setValidGender(false);
+            valid = false;
+        }
+        else
+            setValidGender(true);
+
+        if (!feet || feet < 1 || feet > 8) {
+            setValidFeet(false);
+            valid = false;
+        }
+        else
+            setValidFeet(true);
+
+        if (!inches || inches < 0 || inches > 12) {
+            setValidInches(false);
+            valid = false;
+        }
+        else
+            setValidInches(true);
+
+        if (!age || age < 1 || age > 122) {
+            setValidAge(false);
+            valid = false;
+        }
+        else
+            setValidAge(true);
+
+        if (!weight || weight < 1 || weight > 1000) {
+            setValidWeight(false);
+            valid = false;
+        }
+        else
+            setValidWeight(true);
+
+        if (!valid) {
+            setButtonShake(true);
+            setTimeout(() => {
+                setButtonShake(false);
+            }, 600)
+        } else {
+            setButtonShake(false);
+        }
+
     }
 
     return (
         <Modal
             className='calorieCalcModal'
-            title={'Calorie Estimator'}
+            title={'Calorie Calculator'}
             visible={props.visible}
             onCancel={handleCancel}
             footer={null}
@@ -42,11 +92,8 @@ const CalorieCalcModal = (props) => {
             bodyStyle={{}}
         >
             <p>
-                This calculates your TDEE (Total Daily Energy Expenditure),
+                This calculator estimates your TDEE (Total Daily Energy Expenditure),
                 or the number of calories you need to burn each day in order to maintain your current weight.
-            </p>
-            <p>
-                Although this is an estimate, it is a good starting point for your meal plan.
             </p>
             <div style={{ width: '100%', borderBottom: '1px solid #eeeeee' }} />
             <div className='space24' />
@@ -107,33 +154,8 @@ const CalorieCalcModal = (props) => {
                 </Select>
             </div>
             <div style={{ width: '100%', display: 'flex', justifyContent: 'center', margin: '10px 0 0 0' }}>
-                <a className='genButton' onClick={() => {
-                    if (!gender)
-                        setValidGender(false);
-                    else
-                        setValidGender(true);
-
-                    if (!feet || feet < 1 || feet > 8)
-                        setValidFeet(false);
-                    else
-                        setValidFeet(true);
-
-                    if (!inches || inches < 0 || inches > 12)
-                        setValidInches(false);
-                    else
-                        setValidInches(true);
-
-                    if (!age || age < 1 || age > 122)
-                        setValidAge(false);
-                    else
-                        setValidAge(true);
-
-                    if (!weight || weight < 1 || weight > 1000)
-                        setValidWeight(false);
-                    else
-                        setValidWeight(true);
-
-                }} style={{ color: 'white' }}>
+                <a className='genButton' id={buttonShake ? 'buttonShake' : ''}
+                    onClick={calculate} style={{ color: 'white' }}>
                     <CalculatorFilled />&nbsp;
                     CALCULATE
                 </a>

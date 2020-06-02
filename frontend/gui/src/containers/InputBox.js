@@ -115,7 +115,7 @@ const InputBox = (props) => {
                                     {/* style={{ margin: '0 0 0 -22px', display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }} */}
                                     {/* <InfoCircleOutlined className='inputSettingsCalcIcon' style={{ color: '#606060', fontSize: '14px' }} />&nbsp; */}
                                     <div className='inputSettingsCalc' onClick={() => setShowCalcModal(true)}>
-                                        Calorie estimator&nbsp;&nbsp;
+                                        Calorie calculator&nbsp;&nbsp;
                                     <CalculatorFilled className='inputSettingsCalcIcon' />
                                     </div>
                                 </List.Item>
