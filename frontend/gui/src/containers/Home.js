@@ -107,7 +107,6 @@ const NewLayout = (props) => {
 
     function macroSwitch() {
         setEnableMacros(prev => {
-            console.log(!prev);
             return !prev;
         });
         setChangedPrefs(true);
@@ -705,7 +704,7 @@ const NewLayout = (props) => {
                         type="error" showIcon />
                 </div>
 
-                <InputBox inputBoxShake={inputBoxShake} validInput={validInput} onCalorieChange={onCalorieChange}
+                <InputBox inputBoxShake={inputBoxShake} validInput={validInput} onCalorieChange={onCalorieChange} enableMacros={enableMacros}
                     setNumMeals={setNumMeals} setChangedPrefs={setChangedPrefs} onClickGenerateButton={onClickGenerateButton}
                     calories={calories} macros={macros} carbSlider={carbSlider} proteinSlider={proteinSlider} fatSlider={fatSlider}
                     macroSwitch={macroSwitch} loadingMeals={loadingMeals} macroPinned={macroPinned} pinMacro={pinMacro} />

@@ -79,8 +79,9 @@ const InputBox = (props) => {
 
                         <div className='inputBorder' style={{ borderLeft: '2px solid #f0f0f0', height: '80%' }} />
 
-                        <Sliders macros={props.macros} macroPinned={props.macroPinned} calories={props.calories} pinMacro={props.pinMacro}
-                            carbSlider={props.carbSlider} proteinSlider={props.proteinSlider} fatSlider={props.fatSlider} />
+                        <Sliders macros={props.macros} macroPinned={props.macroPinned} calories={props.calories}
+                            pinMacro={props.pinMacro} carbSlider={props.carbSlider} proteinSlider={props.proteinSlider}
+                            fatSlider={props.fatSlider} enableMacros={props.enableMacros} />
 
                     </div>
                 </TabPane>
@@ -94,7 +95,7 @@ const InputBox = (props) => {
                             <List.Item>
                                 <div style={{ display: 'flex', alignItems: 'center' }}>
                                     Macro preferences&nbsp;&nbsp;
-                                            <Switch defaultChecked={true} onChange={props.macroSwitch} />
+                                    <Switch defaultChecked={true} onChange={props.macroSwitch} />
                                 </div>
                             </List.Item>
                             <List.Item>
@@ -125,8 +126,9 @@ const InputBox = (props) => {
                         </a>
                         {/* make hight bigger than actual height (220px) so it gets vertically alligned lower */}
                         <div style={{ height: '250px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                            <Sliders macros={props.macros} macroPinned={props.macroPinned} calories={props.calories} pinMacro={props.pinMacro}
-                                carbSlider={props.carbSlider} proteinSlider={props.proteinSlider} fatSlider={props.fatSlider} />
+                            <Sliders macros={props.macros} macroPinned={props.macroPinned} calories={props.calories}
+                                pinMacro={props.pinMacro} carbSlider={props.carbSlider} proteinSlider={props.proteinSlider}
+                                fatSlider={props.fatSlider} enableMacros={props.enableMacros} />
                         </div>
                     </div>
                 </TabPane>
