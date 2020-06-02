@@ -39,7 +39,7 @@ const CalorieCalcModal = (props) => {
 
             <div className={['calorieCalcRow', 'calorieCalcGoal'].join(' ')}>
                 <div className='calorieCalcFieldText' onClick={() => { }}>I want to</div>
-                <Radio.Group size='large' buttonStyle="solid" defaultValue='b'>
+                <Radio.Group className='calorieCalcRadioSmall' size='large' buttonStyle="solid" defaultValue='b' >
                     <Radio.Button value="a">Lose Weight</Radio.Button>
                     <Radio.Button value="b">Maintain</Radio.Button>
                     <Radio.Button value="c">Build Muscle</Radio.Button>
@@ -47,16 +47,18 @@ const CalorieCalcModal = (props) => {
             </div>
             <div className={['calorieCalcRow', 'calorieCalcGender'].join(' ')}>
                 <div className='calorieCalcFieldText' onClick={() => { }}>Gender</div>
-                <Radio.Group size='large' buttonStyle="solid">
+                <Radio.Group className='calorieCalcRadioSmall' size='large' buttonStyle="solid">
                     <Radio.Button value="a">Male</Radio.Button>
                     <Radio.Button value="b">Female</Radio.Button>
                 </Radio.Group>
             </div>
             <div className='calorieCalcRow'>
                 <div className='calorieCalcFieldText' onClick={() => { }}>Height</div>
-                <Input className='calorieCalcField' addonAfter="ft" size='large' />
-                <div style={{ width: '16px' }} />
-                <Input className='calorieCalcField' addonAfter="in" size='large' />
+                <div className='calorieCalcHeight' >
+                    <Input className='calorieCalcFieldHeight' addonAfter="ft" size='large' />
+                    <div style={{ width: '24px' }} />
+                    <Input className='calorieCalcFieldHeight' addonAfter="in" size='large' />
+                </div>
             </div>
             <div className='calorieCalcRow'>
                 <div className='calorieCalcFieldText' onClick={() => { }}>Age</div>

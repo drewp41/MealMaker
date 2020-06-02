@@ -467,6 +467,7 @@ button {
 /* field: 372 */
 .calorieCalcRow {
     display: flex;
+    flex-direction: row;
     align-items: center;
     padding: 0 0 24px 0;
 }
@@ -479,19 +480,71 @@ button {
 }
 
 .calorieCalcField {
-    width: 178px;
+    width: 174px;
     font-family: 'Camphor';
     font-weight: 400;
 }
 
 .calorieCalcGoal .ant-radio-button-wrapper {
-    width: 124px;
+    width: calc(372px/3);
     text-align: center;
 }
 
 .calorieCalcGender .ant-radio-button-wrapper {
-    width: 186px;
+    width: calc(372px/2);
     text-align: center;
+}
+
+.calorieCalcHeight {
+    display: flex;
+}
+
+.calorieCalcFieldHeight {
+    width: 174px;
+    font-family: 'Camphor';
+    font-weight: 400;
+}
+
+/* switch form to have the labels above the fields */
+@media screen and (max-width: 620px) {
+    .calorieCalcRow {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .calorieCalcFieldText {
+        padding: 0 0 4px 0;
+    }
+
+    .calorieCalcField {
+        width: 100%;
+    }
+
+    /* so the raido icons can expand to the entire width of the screen */
+    .calorieCalcRadioSmall {
+        width: 100%;
+    }
+    .ant-radio-group-large, .ant-radio-button-wrapper {
+        font-size: 14px;
+        padding: 0;
+    }
+
+    .calorieCalcGoal .ant-radio-button-wrapper {
+        width: calc(100%/3);
+    }
+
+    .calorieCalcGender .ant-radio-button-wrapper {
+        width: calc(100%/2);
+    }
+
+    .calorieCalcHeight {
+        width: 100%;
+    }
+
+    .calorieCalcFieldHeight {
+        width: 50%;
+    }
 }
 
 
