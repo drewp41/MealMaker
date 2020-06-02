@@ -4,6 +4,10 @@ import { Collapse } from 'antd';
 import { Pie, defaults } from 'react-chartjs-2';
 import 'chartjs-plugin-datalabels';
 
+import {
+    SyncOutlined
+} from '@ant-design/icons';
+
 const pieOptions = {
     plugins: {
         datalabels: {
@@ -62,7 +66,6 @@ const pieColors = {
     ],
 }
 
-
 defaults.global.legend.display = false;
 
 const { Panel } = Collapse;
@@ -70,72 +73,96 @@ const mainTextColor = '#32323c';
 
 const NutritionCard = (props) => {
     return (
-        <div className={['nutritionCard', 'nutritionShadow'].join(' ')}>
-            <Collapse expandIconPosition='right' onChange={() => console.log('open nutrition')}>
-                <Panel header={<div style={{ display: 'flex' }}>
-                    <Pie
-                        width={30}
-                        height={30}
-                        data={{
-                            datasets:
-                                [{
-                                    ...pieColors,
-                                    // data: [Math.round(props.carbs * 100 / (props.carbs + props.protein + props.fat * (9 / 4))),
-                                    // Math.round(props.protein * 100 / (props.carbs + props.protein + props.fat * (9 / 4))),
-                                    // Math.round((props.fat * (9 / 4) * 100) / (props.carbs + props.protein + props.fat * (9 / 4)))]
-                                    data: [33, 33, 33]
-                                }]
-                        }}
-                        options={smallPieOptions}
-                    />
-                    &nbsp;&nbsp;&nbsp;
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                        {props.calories} calories
-                    </div>
-                </div>} key="1">
-                    <div className='nutritionCardBody'>
-                        <div className='nutritionPieBody'>
-                            <Pie
-                                width={150}
-                                height={150}
-                                data={{
-                                    labels: ['Carbs', 'Protein', 'Fat'],
-                                    datasets:
-                                        [{
-                                            ...pieColors,
-                                            // data: [Math.round(props.carbs * 100 / (props.carbs + props.protein + props.fat * (9 / 4))),
-                                            // Math.round(props.protein * 100 / (props.carbs + props.protein + props.fat * (9 / 4))),
-                                            // Math.round((props.fat * (9 / 4) * 100) / (props.carbs + props.protein + props.fat * (9 / 4)))]
-                                            data: [33, 33, 33]
-                                        }]
-                                }}
-                                options={pieOptions}
-                            />
-                        </div>
-                        <div className='nutritionFacts'>
-                            <span>{'Calories: '}
-                                <span style={{ float: 'right' }}>{props.calories}</span>
-                            </span>
-                            <div className='space6' />
-                            <div style={{ width: '25px', borderBottom: '2px solid #a0a0a0' }} />
-                            <div className='space8' />
-                            <span> {'Carbs: '}
-                                <span style={{ float: 'right' }}>{props.carbs}{'g'}</span>
-                            </span>
-                            <div className='space6' />
-                            <span> {'Protein: '}
-                                <span style={{ float: 'right' }}>{props.protein}{'g'}</span>
-                            </span>
-                            <div className='space6' />
-                            <span> {'Fat: '}
-                                <span style={{ float: 'right' }}>{props.fat}{'g'}</span>
-                            </span>
-                        </div>
-                    </div>
-                </Panel>
-            </Collapse>
-        </div >
+        <>
 
+            {props.calories === 0 ? null
+                :
+                <>
+                    <div className='nutritionCardHeader'>
+                        Today's Meal Plan
+                        {props.changedPrefs ? null :
+                            <span className='nutritionCardHeaderRegen' onClick={() => props.onClickGenerateButton(true)}>
+                                {props.otherRegenLoadingMeals ? <SyncOutlined spin /> : <SyncOutlined />}&nbsp;
+                                Regenerate
+                            </span>
+                        }
+                    </div>
+                    <div className='space8' />
+                    <div className='nutritionCard'>
+                        <Collapse expandIconPosition='right' onChange={() => console.log('open nutrition')}>
+                            <Panel header={
+                                // <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
+                                //     <div className='mealCardsHeader'>
+                                //         Today's Meal Plan
+                                //     </div>
+                                //     <div className='space4' />
+                                <div style={{ display: 'flex' }}>
+
+                                    <Pie
+                                        width={30}
+                                        height={30}
+                                        data={{
+                                            datasets: [{
+                                                ...pieColors,
+                                                data: [Math.round(props.carbs * 100 / (props.carbs + props.protein + props.fat * (9 / 4))),
+                                                Math.round(props.protein * 100 / (props.carbs + props.protein + props.fat * (9 / 4))),
+                                                Math.round((props.fat * (9 / 4) * 100) / (props.carbs + props.protein + props.fat * (9 / 4)))]
+                                                // data: [33, 33, 33]
+                                            }]
+                                        }}
+                                        options={smallPieOptions}
+                                    />
+                                &nbsp;&nbsp;&nbsp;
+                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                        {props.calories} calories
+                                </div>
+                                    {/* </div> */}
+                                </div>} key="1">
+                                <div className='nutritionCardBody'>
+                                    <div className='nutritionPieBody'>
+                                        <Pie
+                                            width={150}
+                                            height={150}
+                                            data={{
+                                                labels: ['Carbs', 'Protein', 'Fat'],
+                                                datasets:
+                                                    [{
+                                                        ...pieColors,
+                                                        data: [Math.round(props.carbs * 100 / (props.carbs + props.protein + props.fat * (9 / 4))),
+                                                        Math.round(props.protein * 100 / (props.carbs + props.protein + props.fat * (9 / 4))),
+                                                        Math.round((props.fat * (9 / 4) * 100) / (props.carbs + props.protein + props.fat * (9 / 4)))]
+                                                        // data: [33, 33, 33]
+                                                    }]
+                                            }}
+                                            options={pieOptions}
+                                        />
+                                    </div>
+                                    <div className='nutritionFacts'>
+                                        <span>{'Calories: '}
+                                            <span style={{ float: 'right' }}>{props.calories}</span>
+                                        </span>
+                                        <div className='space6' />
+                                        <div style={{ width: '25px', borderBottom: '2px solid #a0a0a0' }} />
+                                        <div className='space8' />
+                                        <span> {'Carbs: '}
+                                            <span style={{ float: 'right' }}>{props.carbs}{'g'}</span>
+                                        </span>
+                                        <div className='space6' />
+                                        <span> {'Protein: '}
+                                            <span style={{ float: 'right' }}>{props.protein}{'g'}</span>
+                                        </span>
+                                        <div className='space6' />
+                                        <span> {'Fat: '}
+                                            <span style={{ float: 'right' }}>{props.fat}{'g'}</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </Panel>
+                        </Collapse>
+                    </div >
+                </>
+            }
+        </>
     )
 }
 

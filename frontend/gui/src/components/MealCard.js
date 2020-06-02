@@ -98,7 +98,7 @@ const MealCard = (props) => {
                         <Skeleton avatar={false} title={false}
                             loading={!props.displayMeals && !props.mealObj.mainPinned && !props.mealObj.sidePinned}
                             active={props.mealObj.mainLoading || props.mealObj.sideLoading}
-                            paragraph={{ rows: 3, width: ['75%', '100%', '60%'] }} >
+                            paragraph={{ rows: 3, width: ['80%', '100%', '60%'] }} >
                             <div className='mealCardBody'>
                                 <div className='mealCardMainRow' onClick={() => setShowMainModal(true)}>
                                     <div className='mealCardIcons'>

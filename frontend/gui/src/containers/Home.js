@@ -81,6 +81,7 @@ const NewLayout = (props) => {
     const [macroPinned, setMacroPinned] = useState(null);
     const [validInput, setValidInput] = useState(true);
     const [inputBoxShake, setInputBoxShake] = useState(false);
+    const [otherRegenLoadingMeals, setOtherRegenLoadingMeals] = useState(false);
 
     const [breakfastIter, setBreakfastIter] = useAsyncState(null);
     const breakfastRef = useRef(breakfastIter);
@@ -575,10 +576,13 @@ const NewLayout = (props) => {
         }
     }
 
-    async function onClickGenerateButton() {
+    // recieves another parameter if the "regenerate" button above the meal cards, calls this function
+    async function onClickGenerateButton(otherRegenButton) {
         // if it's already loading a meal, return (prevents spam clicking)
-        if (loadingMeals)
+        if (loadingMeals || otherRegenLoadingMeals)
             return;
+
+        console.log(otherRegenButton);
 
         if (!validateInput()) {
             setValidInput(false);
@@ -601,7 +605,10 @@ const NewLayout = (props) => {
         }
 
         setDisplayMeals(false);
-        setLoadingMeals(true);
+        if (otherRegenButton)
+            setOtherRegenLoadingMeals(true);
+        else
+            setLoadingMeals(true);
 
         if (changedPrefs) {
             // get the meal data with the given preferences
@@ -643,6 +650,7 @@ const NewLayout = (props) => {
                                     }
                                     setDisplayMeals(true);
                                     setLoadingMeals(false);
+                                    setOtherRegenLoadingMeals(false);
                                     setChangedPrefs(false);
                                 }))));
                 });
@@ -670,7 +678,8 @@ const NewLayout = (props) => {
                 }
                 setDisplayMeals(true);
                 setLoadingMeals(false);
-            }, 500);
+                setOtherRegenLoadingMeals(false);
+            }, 400); // 400 so with the delay and everything, it'll spin for half a second/rotation
         }
     };
 
@@ -705,8 +714,8 @@ const NewLayout = (props) => {
             </div>
 
             <div className='colMealCards'>
-                {/* macros={macros} */}
-                <NutritionCard enableMacros={enableMacros}
+                <NutritionCard otherRegenLoadingMeals={otherRegenLoadingMeals}
+                    onClickGenerateButton={onClickGenerateButton} changedPrefs={changedPrefs}
                     calories={meal1.main.calories + meal1.side.calories +
                         (numMeals >= 2 ? meal2.main.calories + meal2.side.calories : 0) +
                         (numMeals >= 3 ? meal3.main.calories + meal3.side.calories : 0) +
@@ -731,16 +740,6 @@ const NewLayout = (props) => {
                         (numMeals >= 4 ? meal4.main.fat + meal4.side.fat : 0) +
                         (numMeals >= 5 ? meal5.main.fat + meal5.side.fat : 0) +
                         (numMeals >= 6 ? meal6.main.fat + meal6.side.fat : 0)} />
-                {/* <p style={{ fontFamily: 'Camphor', fontSize: '16px', fontWeight: 500 }}>
-                    Total calories: {
-                        meal1.main.calories + meal1.side.calories +
-                        (numMeals >= 2 ? meal2.main.calories + meal2.side.calories : 0) +
-                        (numMeals >= 3 ? meal3.main.calories + meal3.side.calories : 0) +
-                        (numMeals >= 4 ? meal4.main.calories + meal4.side.calories : 0) +
-                        (numMeals >= 5 ? meal5.main.calories + meal5.side.calories : 0) +
-                        (numMeals >= 6 ? meal6.main.calories + meal6.side.calories : 0)
-                    }
-                </p> */}
                 <br />
 
                 <MealCard mealNum={1} mealObj={meal1} numMeals={numMeals}

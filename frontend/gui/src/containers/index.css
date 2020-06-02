@@ -433,11 +433,32 @@ button {
 .colMealCards {
     background-color: #f4f6f9;
     /* background-color: #f6f9fc; */
-    padding: 110px 0 0 0;
+    padding: 100px 0 0 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.nutritionCardHeader {
+    width: 420px;
+    font-family: 'Camphor';
+    font-size: 20px;
+    font-weight: 400;
+    color: #404040;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nutritionCardHeaderRegen {
+    font-size: 16px;
+    color: #787878;
+}
+
+.nutritionCardHeaderRegen:hover {
+    cursor: pointer;
+    color: #202020;
 }
 
 .nutritionCard {
@@ -447,7 +468,7 @@ button {
 }
 
 .nutritionCard .ant-collapse, .nutritionCard .ant-collapse-item {
-    border: none;
+    /* border: none; */
 }
 
 .nutritionCard .ant-collapse-header {
@@ -456,15 +477,17 @@ button {
     font-size: 16px;
     cursor: pointer !important;
     border-radius: 2px !important;
-    height: 50px;
+    height: 48px;
+    /* height: 90px; */
     display: flex;
     align-items: center;
     padding: 0 40px 0 20px !important;
-    /* padding: 8px 40px 8px 20px !important; */
+    background-color: #f4f6f9 !important;
 }
 
 .nutritionCard .ant-collapse-content-box {
     padding: 24px;
+    background-color: #f4f6f9;
 }
 
 .nutritionCardBody {
@@ -530,7 +553,7 @@ button {
 } */
 
 /* less shadow, same hover.  This one is in use */
-.cardShadow2, .nutritionShadow {
+.cardShadow2 {
     box-shadow:0 5px 10px 0 rgba(50, 50, 93, .1), 0 2px 4px 0 rgba(0, 0, 0, .07);
     transition-property: color, background-color, box-shadow, transform;
     transition-duration: .15s;
