@@ -383,7 +383,7 @@ button {
 .inputBack {
     position: absolute;
     top: 14px;
-    left: 18px;
+    left: 20px;
     color: var(--mainTextColor);
     font-family: 'Camphor';
     font-weight: 300;
@@ -462,6 +462,38 @@ button {
     font-size: 16px;
     line-height: 28px;
 }
+/* total row width: 552 */
+/* text: 180 */
+/* field: 372 */
+.calorieCalcRow {
+    display: flex;
+    align-items: center;
+    padding: 0 0 24px 0;
+}
+
+.calorieCalcFieldText {
+    color: #585858;
+    width: 180px;
+    font-family: 'Camphor';
+    font-weight: 400;
+}
+
+.calorieCalcField {
+    width: 178px;
+    font-family: 'Camphor';
+    font-weight: 400;
+}
+
+.calorieCalcGoal .ant-radio-button-wrapper {
+    width: 124px;
+    text-align: center;
+}
+
+.calorieCalcGender .ant-radio-button-wrapper {
+    width: 186px;
+    text-align: center;
+}
+
 
 
 /*

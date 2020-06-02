@@ -79,8 +79,8 @@ const InputBox = (props) => {
                                         {/* GENERATE BUTTON */}
                                         <a className='genButton' onClick={() => props.onClickGenerateButton(false)} style={{ color: 'white' }}>
                                             {props.loadingMeals ? <SyncOutlined spin /> : <SyncOutlined />}&nbsp;
-                                        GENERATE
-                                    </a>
+                                            GENERATE
+                                        </a>
                                     </div>
                                 </div>
                             </div>
