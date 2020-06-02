@@ -348,6 +348,33 @@ button {
     color: var(--mainTextColor);
 }
 
+.inputSettingsList {
+    font-family: 'Camphor';
+    font-size: 18px;
+    color: var(--mainTextColor); 
+}
+
+.inputSettingsCalc {
+    border-bottom: 1px solid transparent;
+    transition: border-color .15s;
+}
+
+.inputSettingsCalcIcon {
+    color: #606060;
+    transition: color .15s;
+}
+
+.inputSettingsCalc:hover {
+    cursor: pointer;
+    color: #202020;
+    border-bottom: 1px solid var(--mainTextColor);
+}
+
+.inputSettingsCalc:hover .inputSettingsCalcIcon {
+    color: #202020;
+}
+
+
 /* removes the tab bar */
 .ant-tabs-nav-scroll, .ant-tabs-bar{
     display: none;
@@ -420,9 +447,22 @@ button {
         height: 220px;
     }
     .inputSettings {
-        height: 220px;
+        /* to make the settings be lower than center so it's not crammed with the back button */
+        height: 250px;
     }
 }
+
+/*
+=======================================================
+                 CALORIE CALC MODAL
+=======================================================
+*/
+
+.calorieCalcModal .ant-modal-body{
+    font-size: 16px;
+    line-height: 28px;
+}
+
 
 /*
 =======================================================
