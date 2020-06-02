@@ -75,8 +75,40 @@ const CalorieCalcModal = (props) => {
             setTimeout(() => {
                 setButtonShake(false);
             }, 600)
-        } else {
+        }
+        // IF VALID
+        else {
             setButtonShake(false);
+            // metric
+            // male: BMR = 88.362 + (13.397 × weight in kg) + (4.799 × height in cm) - (5.677 × age in years)
+            // female: BMR = 447.593 + (9.247 × weight in kg) + (3.098 × height in cm) - (4.330 × age in years)
+
+            // imperial
+            // male: BMR = 88.362 + (6.077 × weight in lbs) + (12.189 × height in in) - (5.677 × age in years)
+            // female: BMR = 447.593 + (4.194 × weight in lbs) + (7.869 × height in in) - (4.330 × age in years)
+            let cals = 0;
+            if (gender === 'a')
+                cals = 88.362 + (6.077 * weight) + (12.189 * (feet * 12 + inches)) - (5.677 * age);
+            else
+                cals = 447.593 + (4.194 * weight) + (7.869 * (feet * 12 + inches)) - (4.330 * age);
+
+            if (activity === 'a')
+                cals *= 1.2;
+            else if (activity === 'b')
+                cals *= 1.35;
+            else if (activity === 'c')
+                cals *= 1.5;
+            else if (activity === 'd')
+                cals *= 1.7;
+            else
+                cals *= 1.9;
+
+            if (goal === 'a')
+                cals = cals * 0.85
+            else if (goal === 'c')
+                cals = cals * 1.15
+            cals = Math.round(cals);
+            console.log(cals);
         }
 
     }
@@ -121,24 +153,24 @@ const CalorieCalcModal = (props) => {
                 <div className='calorieCalcHeight' >
                     <Input type='number' className={['calorieCalcFieldHeight', validFeet ? '' : 'inputInvalid'].join(' ')}
                         addonAfter="ft" size='large'
-                        onChange={(e) => setFeet(e.target.value)} />
+                        onChange={(e) => setFeet(parseInt(e.target.value))} />
                     <div style={{ width: '24px' }} />
                     <Input type='number' className={['calorieCalcFieldHeight', validInches ? '' : 'inputInvalid'].join(' ')}
                         addonAfter="in" size='large'
-                        onChange={(e) => setInches(e.target.value)} />
+                        onChange={(e) => setInches(parseInt(e.target.value))} />
                 </div>
             </div>
             <div className='calorieCalcRow'>
                 <div className='calorieCalcFieldText'>Age</div>
                 <Input type='number' className={['calorieCalcField', validAge ? '' : 'inputInvalid'].join(' ')}
                     addonAfter="years" size='large'
-                    onChange={(e) => setAge(e.target.value)} />
+                    onChange={(e) => setAge(parseInt(e.target.value))} />
             </div>
             <div className='calorieCalcRow'>
                 <div className='calorieCalcFieldText'>Weight</div>
                 <Input type='number' className={['calorieCalcField', validWeight ? '' : 'inputInvalid'].join(' ')}
                     addonAfter="lbs" size='large'
-                    onChange={(e) => setWeight(e.target.value)} />
+                    onChange={(e) => setWeight(parseInt(e.target.value))} />
             </div>
             <div className='calorieCalcRow'>
                 <div className='calorieCalcFieldText'>Activity level</div>
