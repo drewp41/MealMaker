@@ -440,6 +440,10 @@ button {
     align-items: center;
 }
 
+.nutritionCardToggle {
+    transition: height .3s, opacity .3s;
+}
+
 .nutritionCardHeader {
     width: 420px;
     font-family: 'Camphor';
@@ -468,7 +472,8 @@ button {
 }
 
 .nutritionCard .ant-collapse, .nutritionCard .ant-collapse-item {
-    /* border: none; */
+    /* border-color: #e0e0e0;
+    border-width: 2px; */
 }
 
 .nutritionCard .ant-collapse-header {

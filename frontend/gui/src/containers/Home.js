@@ -582,8 +582,6 @@ const NewLayout = (props) => {
         if (loadingMeals || otherRegenLoadingMeals)
             return;
 
-        console.log(otherRegenButton);
-
         if (!validateInput()) {
             setValidInput(false);
             setInputBoxShake(true);
