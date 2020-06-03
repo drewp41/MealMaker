@@ -94,15 +94,15 @@ const MealCard = (props) => {
                                         : 'Snack'
                         }
                         extra={props.mealObj.main.calories + props.mealObj.side.calories + ' calories'}
-                        bordered={false}
-                        headStyle={{ fontFamily: 'Alliance', fontWeight: 500, color: mainTextColor, fontSize: '15px' }}>
+                        bordered={false}>
                         <Skeleton avatar={false} title={false}
                             loading={!props.displayMeals && !props.mealObj.mainPinned && !props.mealObj.sidePinned}
                             active={props.mealObj.mainLoading || props.mealObj.sideLoading}
                             paragraph={{ rows: 3, width: ['80%', '100%', '60%'] }} >
                             <div className='mealCardBody'>
-                                <div className='mealCardMainRow' onClick={() => setShowMainModal(true)}>
-                                    <div className='mealCardIcons'>
+                                <div className='mealCardMainRow'
+                                    onClick={() => props.mealObj.main.name !== 'Network Error :(' ? setShowMainModal(true) : {}}>
+                                    {props.mealObj.main.name !== 'Network Error :(' && <div className='mealCardIcons'>
                                         {/* show regen icon if the meal isn't pinned */}
                                         {!props.mealObj.mainPinned ?
                                             (props.mealObj.mainLoading ?
@@ -113,19 +113,20 @@ const MealCard = (props) => {
                                         {props.mealObj.mainPinned ?
                                             <PushpinFilled className='pinIcon' onClick={(e) => pinMain(e)} /> :
                                             <PushpinOutlined className='pinIcon' onClick={(e) => pinMain(e)} />}
-                                    </div>
+                                    </div>}
                                     <div className='ant-card-meta-title'>
                                         {props.mealObj.main.name}
                                     </div>
                                     <div className='space2' />
-                                    <p className='ant-card-meta-description'>
+                                    {props.mealObj.main.name !== 'Network Error :(' && <p className='ant-card-meta-description'>
                                         {props.mealObj.main.servings}
                                         {props.mealObj.main.servings === 1 ? ' serving' : ' servings'}
-                                    </p>
+                                    </p>}
                                 </div>
                                 {props.mealObj.side.name &&
-                                    <div className='mealCardSideRow' onClick={() => setShowSideModal(true)}>
-                                        <div className='mealCardIcons'>
+                                    <div className='mealCardSideRow'
+                                        onClick={() => props.mealObj.side.name !== 'Network Error :(' ? setShowSideModal(true) : {}}>
+                                        {props.mealObj.side.name !== 'Network Error :(' && <div className='mealCardIcons'>
                                             {/* show regen icon if the meal isn't pinned */}
                                             {!props.mealObj.sidePinned ?
                                                 (props.mealObj.sideLoading ?
@@ -136,16 +137,16 @@ const MealCard = (props) => {
                                             {props.mealObj.sidePinned ?
                                                 <PushpinFilled className='pinIcon' onClick={(e) => pinSide(e)} /> :
                                                 <PushpinOutlined className='pinIcon' onClick={(e) => pinSide(e)} />}
-                                        </div>
+                                        </div>}
 
                                         <div className='ant-card-meta-title'>
                                             {props.mealObj.side.name}
                                         </div>
                                         <div className='space2' />
-                                        <p className='ant-card-meta-description'>
+                                        {props.mealObj.side.name !== 'Network Error :(' && <p className='ant-card-meta-description'>
                                             {props.mealObj.side.servings}
                                             {props.mealObj.side.servings === 1 ? ' serving' : ' servings'}
-                                        </p>
+                                        </p>}
                                     </div>}
                             </div>
                         </Skeleton>

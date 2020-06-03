@@ -93,14 +93,15 @@
     font-size: 24px;
     font-family: 'Alliance';
     font-weight: 800;
-    color:#505050;
+    color:#474c52;;
     padding: 0 8px 0 0;
 }
 
 .headerText{ 
     font-size: 16px;
-    font-weight: 300;
-    color: var(--mainTextColor);
+    font-weight: 400;
+    color: #404040;
+    /* color: var(--mainTextColor); */
 }
 
 #signInArrow{ 
@@ -230,6 +231,8 @@ button {
 
 .topBodyText {
     padding: 80px 0 0 0;
+    /* color: #505050; */
+    color: #474c52;
     z-index: 2;
 }
 
@@ -247,6 +250,7 @@ button {
     font-family: 'Alliance';
     font-weight: 400;
     text-align: center;
+    color: #5a636d;
 }
 
 .calErrorDiv {
@@ -366,6 +370,10 @@ button {
     color: #202020;
 }
 
+.inputBorder {
+    border-left: 2px solid #f0f0f0;
+    height: 80%; 
+}
 
 /* removes the tab bar */
 .ant-tabs-nav-scroll, .ant-tabs-bar{
@@ -683,6 +691,18 @@ input::-webkit-inner-spin-button {
     height: 208px; 
 }
 
+.mealCard .ant-card-head {
+    font-family: 'Alliance';
+    font-weight: 500;
+    color: mainTextColor;
+    font-size: 15px;
+}
+
+.mealCard .ant-card-extra {
+    font-size: 14px;
+    font-weight: 500;
+}
+
 .mealCardSkeletonPadding .ant-card-body {
     padding: 30px 24px 24px 24px;
 }
@@ -695,13 +715,6 @@ input::-webkit-inner-spin-button {
     /* color: var(--mainTextColor); */
 }
 
-.ant-card-meta-title {
-    font-size: 15px;
-}
-
-.ant-card-extra {
-    font-weight: 500;
-}
 
 /* more shadow, same hover */
 /* .cardShadow1 {
@@ -750,9 +763,13 @@ input::-webkit-inner-spin-button {
 }
 
 .ant-card-meta-title {
+    font-size: 15px;
     font-weight: 400;
+    padding-top: 1px;
 }
+
 .ant-card-meta-description {
+    font-size: 15px;
     font-weight: 400;
 }
 
@@ -793,6 +810,7 @@ input::-webkit-inner-spin-button {
     float: right;
     font-size: 18px;
     color: #606060;
+    /* margin-top: -1px; */
 }
 
 .regenIcon {
@@ -1193,9 +1211,19 @@ input::-webkit-inner-spin-button {
     box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
 }
 
-#calorieInput{
+.inputMainCalInput {
+    width: 132px;
+    font-size: 16px;
+    font-family: 'Alliance';
+    font-weight: 400;
+}
+
+.inputMainMealSelect {
     font-size: 16px;
     font-weight: 400;
+    text-align: left; 
+    width: 132px;
+    height: 36px;
 }
 
 .macroSliderText{
@@ -1215,7 +1243,7 @@ input::-webkit-inner-spin-button {
     font-size: 15px;
     font-weight: 300;
     text-align: left; 
-    color: var(--mainTextColor);
+    /* color: var(--mainTextColor); */
 }
 
 .ant-select-selector {
@@ -1300,6 +1328,7 @@ input::-webkit-inner-spin-button {
 
 .genButton:hover, .genButton:focus {
     background-color: #51BC83;
+    color: #fff;
     transform: translateY(-1px);
     /* box-shadow: 0 13px 27px -5px rgba(50, 50, 93, .25), 0 8px 16px -8px rgba(0, 0, 0, .3), 0 -6px 16px -6px rgba(0, 0, 0, .025); */
     box-shadow:0 7px 14px rgba(50, 50, 93, .1), 0 3px 6px rgba(0, 0, 0, .08)

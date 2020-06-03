@@ -36,8 +36,8 @@ const defaultParams = {
     sort: 'random',
 }
 
-const emptyMeal = {
-    name: '', calories: 0, carbs: 0,
+const errorMeal = {
+    name: 'Network Error :(', calories: 0, carbs: 0,
     protein: 0, fat: 0, ingredients: [],
     instructions: [], servings: 0, makes: 0,
     prepTime: 0, cookTime: 0
@@ -87,6 +87,10 @@ export async function fetchBreakfastMain(cals, numMeals, carbs, protein, fat) {
         .then(d => {
             const servings = d[0];
             const breakfastData = d[1];
+
+            // error handling
+            if (servings === 0)
+                return [[errorMeal]];
 
             // return an array of meals
 
@@ -199,8 +203,8 @@ async function fetchBreakfastMainData(cals, numMeals, carbs, protein, fat) {
         // will throw an error if we do 'const breakfastMeals' and then 'return breakfastMeals'
         return [servings, breakfastMeals.data.results]; // return servings each meal has (not makes) with the meals
     } catch (error) {
-        console.log(error, "error");
-        return emptyMeal;
+        console.log(error);
+        return [0, [errorMeal]];
     }
 }
 
@@ -212,6 +216,10 @@ export async function fetchBreakfastSide(cals, numMeals, carbs, protein, fat) {
         return fetchBreakfastSideData(cals, numMeals, carbs, protein, fat)
             .then(d => {
                 const sidesData = d.data.results;
+
+                // error handling
+                if (sidesData === 0)
+                    return [[errorMeal]];
                 // return an array of meals
 
                 // ======== MAIN SIDES ========
@@ -275,8 +283,8 @@ async function fetchBreakfastSideData(cals, numMeals, carbs, protein, fat) {
                 });
             return sides;
         } catch (error) {
-            console.log(error, "error");
-            return [[emptyMeal]];
+            console.log(error);
+            return { sides: { results: 0 } };
         }
     }
     else {
@@ -296,6 +304,10 @@ export async function fetchRegularMain(cals, numMeals, carbs, protein, fat) {
         .then(d => {
             const servings = d[0]
             const mainData = d[1];
+
+            // error handling
+            if (servings === 0)
+                return [[errorMeal]];
 
             // return an array of meals
 
@@ -398,8 +410,8 @@ async function fetchRegularMainData(cals, numMeals, carbs, protein, fat) {
             });
         return [servings, main.data.results];
     } catch (error) {
-        console.log(error, "error");
-        return [[emptyMeal]];
+        console.log(error);
+        return [0, [errorMeal]];
     }
 }
 
@@ -409,6 +421,10 @@ export async function fetchRegularSide(cals, numMeals, carbs, protein, fat) {
         .then(d => {
             const servings = d[0];
             const sidesData = d[1];
+
+            // error handling
+            if (servings === 0)
+                return [[errorMeal]];
 
             // return an array of meals
 
@@ -447,7 +463,7 @@ export async function fetchRegularSide(cals, numMeals, carbs, protein, fat) {
                     if (Math.random() < randMainSides)
                         sidesRes.push(obj);
                     else
-                        sidesRes.push(emptyMeal);
+                        sidesRes.push(errorMeal);
                 }
             })
 
@@ -473,8 +489,8 @@ async function fetchRegularSideData(cals, numMeals, carbs, protein, fat) {
             });
         return [servings, mainSides.data.results];
     } catch (error) {
-        console.log(error, "error");
-        return [[emptyMeal]];
+        console.log(error);
+        return [0, [errorMeal]];
     }
 }
 
