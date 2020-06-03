@@ -113,11 +113,14 @@ const NewLayout = (props) => {
     }
     function onCalorieChange(value) {
         let cals = 0
+        console.log(value);
         if (typeof value === 'object') {
             cals = Math.floor(value.floatValue);
-            if (typeof value.floatValue === 'undefined') {
-                setCalories(0);
+            if (typeof value.floatValue === 'undefined' || cals === 0) {
                 setChangedPrefs(true);
+                return;
+            }
+            if (cals < 0) {
                 return;
             }
         }
@@ -139,7 +142,6 @@ const NewLayout = (props) => {
             fat: (cals * fatPercent) / 9
         });
         setChangedPrefs(true);
-        console.log(cals);
     }
 
     function pinMacro(num) {
