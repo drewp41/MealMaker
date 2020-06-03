@@ -3,7 +3,7 @@ import {
     Modal, Form, Input, Radio, Select
 } from 'antd';
 import {
-    CalculatorFilled
+    CalculatorFilled, CheckOutlined
 } from '@ant-design/icons';
 
 import NumberFormat from 'react-number-format';
@@ -28,9 +28,16 @@ const CalorieCalcModal = (props) => {
     const [validWeight, setValidWeight] = useState(true);
 
     const [buttonShake, setButtonShake] = useState(false);
+    const [calories, setCalories] = useState(0);
 
     function handleCancel() {
         props.closeModal();
+    }
+
+    function apply() {
+        props.onCalorieChange(calories);
+        props.gotoMainTab();
+        handleCancel();
     }
 
     function calculate() {
@@ -108,7 +115,7 @@ const CalorieCalcModal = (props) => {
             else if (goal === 'c')
                 cals = cals * 1.15
             cals = Math.round(cals);
-            console.log(cals);
+            setCalories(cals);
         }
 
     }
@@ -185,12 +192,29 @@ const CalorieCalcModal = (props) => {
                     <Option className='camphorFont' value="e">Extremely Active</Option>
                 </Select>
             </div>
-            <div style={{ width: '100%', display: 'flex', justifyContent: 'center', margin: '10px 0 0 0' }}>
+            <div className='calorieCalcButtonRow'>
                 <a className='genButton' id={buttonShake ? 'buttonShake' : ''}
-                    onClick={calculate} style={{ color: 'white' }}>
+                    onClick={calculate} style={{ color: 'white', textAlign: 'center', width: '340px' }}>
                     <CalculatorFilled />&nbsp;
                     CALCULATE
                 </a>
+            </div>
+            <div className='calorieCalcApplyRow' style={{ opacity: calories === 0 ? 0 : 1, height: calories === 0 ? 0 : '40px' }}>
+                <div style={{ width: '340px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ display: 'flex' }}>
+                        <div  >
+                            Suggested calories:&nbsp;&nbsp;
+                            </div>
+                        <span className='underline' style={{ fontWeight: 500 }}>
+                            {calories}
+                        </span>
+                    </div>
+                    <a className='genButton' id={buttonShake ? 'buttonShake' : ''}
+                        onClick={apply} style={{ color: 'white', backgroundColor: '#1890ff' }}>
+                        <CheckOutlined />&nbsp;
+                            APPLY
+                        </a>
+                </div>
             </div>
 
         </Modal >

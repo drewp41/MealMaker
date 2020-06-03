@@ -23,9 +23,14 @@ const InputBox = (props) => {
         setShowCalcModal(false);
     }
 
+    function gotoMainTab() {
+        setTabPos('1');
+    }
+
     return (
         <>
-            <CalorieCalcModal visible={showCalcModal} closeModal={closeCalcModal} />
+            <CalorieCalcModal visible={showCalcModal} closeModal={closeCalcModal}
+                onCalorieChange={props.onCalorieChange} gotoMainTab={gotoMainTab} />
             <div className='inputBox' id={props.inputBoxShake ? 'inputBoxShake' : ''}>
                 <Tabs activeKey={tabPos}>
                     <TabPane tab='Tab 1' key='1'>
@@ -39,6 +44,7 @@ const InputBox = (props) => {
                                             style={{ width: '132px', fontSize: '17px' }} suffix={' calories'}
                                             defaultValue={2000} allowEmptyFormatting={true}
                                             onValueChange={props.onCalorieChange}
+                                            value={props.calories}
                                         />
                                     </span>
                                     <div className='space20' />
@@ -116,7 +122,7 @@ const InputBox = (props) => {
                                     {/* <InfoCircleOutlined className='inputSettingsCalcIcon' style={{ color: '#606060', fontSize: '14px' }} />&nbsp; */}
                                     <div className='inputSettingsCalc' onClick={() => setShowCalcModal(true)}>
                                         Calorie calculator&nbsp;&nbsp;
-                                    <CalculatorFilled className='inputSettingsCalcIcon' />
+                                        <CalculatorFilled className='inputSettingsCalcIcon' />
                                     </div>
                                 </List.Item>
                             </List>

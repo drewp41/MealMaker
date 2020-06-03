@@ -503,10 +503,25 @@ button {
     font-family: 'Camphor';
     font-weight: 400;
 }
+/* button has width of 300px */
+.calorieCalcButtonRow {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0 0 0;
+}
+
+.calorieCalcApplyRow {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 0 0;
+    transition: height .3s, opacity .3s;
+}
 
 /* hides the little arrows on the type='number' */
 input[type='number'] {
-    -moz-appearance:textfield;
+    -moz-appearance: textfield;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -876,8 +891,12 @@ input::-webkit-inner-spin-button {
 }
 
  .underline {
-    text-decoration: none;
-    background-image: linear-gradient(180deg,transparent 60%,rgba(101,101,101,.4) 0);
+     /* font-size: 18px; */
+    /* text-decoration: none; */
+    /* padding: 0 0 -4px; */
+    border-bottom: 2px solid rgba(24, 144, 255, 0.5);
+    /* background-image: linear-gradient(transparent 40%,rgba(101,101,101,.4) 90%); */
+    /* background-image: linear-gradient(transparent 0%, transparent 60%, rgba(24, 144, 255, 0.5)  60%, rgba(24, 144, 255, 0.5)  100%); */
 }
 
 @media screen and (max-width: 555px) { 
@@ -1255,7 +1274,7 @@ input::-webkit-inner-spin-button {
     line-height: 40px;
     padding: 0 14px;
     box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
-    background-color: #47B57A;
+    background-color: #47b57a;
     border-radius: 4px;
     font-family: 'Camphor';
     font-size: 15px;

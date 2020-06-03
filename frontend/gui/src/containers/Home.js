@@ -112,12 +112,23 @@ const NewLayout = (props) => {
         setChangedPrefs(true);
     }
     function onCalorieChange(value) {
-        if (typeof value.floatValue === 'undefined' || value.floatValue === 0) {
-            setCalories(0);
-            setChangedPrefs(true);
-            return;
+        let cals = 0
+        if (typeof value === 'object') {
+            cals = Math.floor(value.floatValue);
+            if (typeof value.floatValue === 'undefined') {
+                setCalories(0);
+                setChangedPrefs(true);
+                return;
+            }
         }
-        let cals = Math.floor(value.floatValue);
+        else {
+            cals = Math.floor(value);
+            if (cals === 0) {
+                setCalories(0);
+                setChangedPrefs(true);
+                return;
+            }
+        }
         let carbPercent = macros.carbs / (macros.carbs + macros.protein + macros.fat * (9 / 4));
         let proteinPercent = macros.protein / (macros.carbs + macros.protein + macros.fat * (9 / 4));
         let fatPercent = (macros.fat * (9 / 4)) / (macros.carbs + macros.protein + macros.fat * (9 / 4));
@@ -128,6 +139,7 @@ const NewLayout = (props) => {
             fat: (cals * fatPercent) / 9
         });
         setChangedPrefs(true);
+        console.log(cals);
     }
 
     function pinMacro(num) {
