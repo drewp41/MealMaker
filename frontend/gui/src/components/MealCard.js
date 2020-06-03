@@ -95,7 +95,7 @@ const MealCard = (props) => {
                         }
                         extra={props.mealObj.main.calories + props.mealObj.side.calories + ' calories'}
                         bordered={false}
-                        headStyle={{ fontFamily: 'Camphor', fontWeight: 500, color: mainTextColor }}>
+                        headStyle={{ fontFamily: 'Alliance', fontWeight: 500, color: mainTextColor, fontSize: '15px' }}>
                         <Skeleton avatar={false} title={false}
                             loading={!props.displayMeals && !props.mealObj.mainPinned && !props.mealObj.sidePinned}
                             active={props.mealObj.mainLoading || props.mealObj.sideLoading}

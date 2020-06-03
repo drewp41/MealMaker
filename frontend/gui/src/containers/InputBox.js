@@ -37,11 +37,11 @@ const InputBox = (props) => {
                         <div className='inputMain'>
                             <div style={{ display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                                 <div style={{ textAlign: 'right', position: 'relative' }}>
-                                    <span className="leftColumnText">
+                                    <span className="leftColumnText" >
                                         I want to eat &nbsp;
                                         <NumberFormat id='calorieInput'
                                             className={['ant-input', props.validInput ? '' : 'inputInvalid'].join(' ')}
-                                            style={{ width: '132px', fontSize: '17px' }} suffix={' calories'}
+                                            style={{ width: '132px', fontSize: '16px', fontFamily: 'Alliance', fontWeight: 400 }} suffix={' calories'}
                                             defaultValue={2000} allowEmptyFormatting={true}
                                             onValueChange={props.onCalorieChange}
                                             value={props.calories}
@@ -50,7 +50,10 @@ const InputBox = (props) => {
                                     <div className='space20' />
                                     <span className="leftColumnText"> in &nbsp;
                                             <Select className="macroSliderText" defaultValue="3" size='large'
-                                            style={{ width: '132px', height: '36px', fontSize: '17px', color: '#595959' }}
+                                            style={{
+                                                width: '132px', height: '36px', fontSize: '16px', color: '#595959',
+                                                fontFamily: 'Alliance', fontWeight: 400
+                                            }}
                                             onChange={(value) => {
                                                 props.setNumMeals(parseInt(value));
                                                 props.setChangedPrefs(true);

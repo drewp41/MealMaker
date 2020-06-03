@@ -112,3 +112,48 @@
     font-weight: 900;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'OpenSans';
+  
+    src: url('../fonts/OpenSans300.woff2') format('woff2'); /* Modern Browsers */
+      
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OpenSans';
+  
+    src: url('../fonts/OpenSans400.woff2') format('woff2'); /* Modern Browsers */
+      
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OpenSans';
+  
+    src: url('../fonts/OpenSans600.woff2') format('woff2'); /* Modern Browsers */
+      
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OpenSans';
+  
+    src: url('../fonts/OpenSans700.woff2') format('woff2'); /* Modern Browsers */
+      
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OpenSans';
+  
+    src: url('../fonts/OpenSans800.woff2') format('woff2'); /* Modern Browsers */
+      
+    font-weight: 800;
+    font-style: normal;
+}
