@@ -19,6 +19,7 @@ import axios from "axios";
 const instance = axios.create({
     method: 'get',
     baseURL: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch',
+    timeout: 15000,
     headers: {
         'content-type': 'application/octet-stream',
         'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',

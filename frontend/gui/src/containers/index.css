@@ -4,10 +4,15 @@
 
 :root{
     --mainTextColor: #32323c;
+    --inputBoxTextColor: #4b5257;
+    /* #474c52; */
 }
 
 * {
     font-family: 'Alliance', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    /* text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; */
 }
 
 /* orange: #ff8200 */
@@ -93,14 +98,14 @@
     font-size: 24px;
     font-family: 'Alliance';
     font-weight: 800;
-    color:#474c52;;
+    color:#474c52;
     padding: 0 8px 0 0;
 }
 
 .headerText{ 
     font-size: 16px;
     font-weight: 400;
-    color: #404040;
+    color: #474c52;
     /* color: var(--mainTextColor); */
 }
 
@@ -281,6 +286,9 @@ button {
     height: 250px;
     box-shadow: 0 13px 27px -5px rgba(50,50,93,.25), 0 8px 16px -8px rgba(0,0,0,.3), 0 -6px 16px -6px rgba(0,0,0,.025);
     /* box-shadow: 0 30px 60px -12px rgba(50,50,93,.25), 0 18px 36px -18px rgba(0,0,0,.3), 0 -12px 36px -8px rgba(0,0,0,.025); */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 #inputBoxShake {
@@ -341,13 +349,12 @@ button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-weight: 300;
-    color: var(--mainTextColor);
 }
 
 .inputSettingsList {
     font-size: 17px;
-    color: var(--mainTextColor); 
+    font-weight: 400;
+    color: var(--inputBoxTextColor);
 }
 
 .inputSettingsCalc {
@@ -384,8 +391,8 @@ button {
     position: absolute;
     top: 14px;
     left: 20px;
-    color: var(--mainTextColor);
-    font-weight: 300;
+    color: var(--inputBoxTextColor);
+    font-weight: 400;
     font-size: 17px;
 }
 
@@ -1200,6 +1207,7 @@ input::-webkit-inner-spin-button {
     font-family: 'Alliance';
     font-weight: 400;
     /* color: var(--mainTextColor); */
+    color: var(--inputBoxTextColor);
 }
 
 /* when given invalid calorie input */
@@ -1212,18 +1220,20 @@ input::-webkit-inner-spin-button {
 }
 
 .inputMainCalInput {
-    width: 132px;
+    width: 133px;
     font-size: 16px;
     font-family: 'Alliance';
     font-weight: 400;
+    color: var(--inputBoxTextColor);
 }
 
 .inputMainMealSelect {
     font-size: 16px;
     font-weight: 400;
     text-align: left; 
-    width: 132px;
+    width: 133px;
     height: 36px;
+    color: var(--inputBoxTextColor);
 }
 
 .macroSliderText{
@@ -1232,18 +1242,17 @@ input::-webkit-inner-spin-button {
     font-size: 15.5px;
     font-weight: 400;
     text-align: left; 
+    color: var(--inputBoxTextColor);
     /* color: var(--mainTextColor); */
     /* adjusts it better vertically */
     margin: 2px 0 0 0;
 }
 
 .inputSelect {
-    /* font-size: 16px;
-    font-family: 'Camphor'; */
     font-size: 15px;
-    font-weight: 300;
+    font-weight: 400;
     text-align: left; 
-    /* color: var(--mainTextColor); */
+    color: var(--inputBoxTextColor);
 }
 
 .ant-select-selector {
