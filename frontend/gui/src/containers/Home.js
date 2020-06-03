@@ -50,12 +50,12 @@ const emptyObj = {
 
 const calBounds = {
     // num meals: [lower bounds, upper bound]
-    1: [500, 2000],
-    2: [700, 2500],
-    3: [900, 3000],
-    4: [1200, 3500],
-    5: [1500, 4000],
-    6: [1800, 5000],
+    1: [400, 2100],
+    2: [600, 4200],
+    3: [800, 6300],
+    4: [1110, 8400],
+    5: [1400, 10600],
+    6: [1600, 12800],
 }
 
 function useAsyncState(initialValue) {
@@ -338,24 +338,10 @@ const NewLayout = (props) => {
 
     function validateInput() {
         // true for valid, false for invalid
-        if (numMeals === 1) {
-
-        } else if (numMeals === 2) {
-
-        } else if (numMeals === 3) {
-            if (calories < 400)
-                return false;
-            else
-                return true;
-
-        } else if (numMeals === 4) {
-
-        } else if (numMeals === 5) {
-
-        } else if (numMeals === 6) {
-
-        }
-        return true;
+        if (calories < calBounds[numMeals][0] || calories > calBounds[numMeals][1])
+            return false;
+        else
+            return true;
     }
 
     function updateMeal(num) {
