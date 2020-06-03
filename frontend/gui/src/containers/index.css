@@ -1,10 +1,6 @@
 @import url("font.css");
-/* Camphor font weight: 300-700, 500 is bugged */
 
-/* @import url("coolLinks.css"); */
-/* <nav class="cl-effect-3">
-                        <a href="#">Hello</a>
-                    </nav> */
+/* Alliance font weights: 300-900 */
 
 :root{
     --mainTextColor: #32323c;
@@ -23,7 +19,7 @@
 }
 
 .camphorFont{
-    font-family: 'Camphor';
+    /* font-family: 'Camphor'; */
 }
 
 .space2 { height: 2px; }
@@ -78,7 +74,6 @@
 
 .condensedHeaderText {
     font-size: 18px;
-    font-family: 'Camphor';
     font-weight: 300;
     color: var(--mainTextColor);
     text-align: left;
@@ -96,7 +91,6 @@
 
 .logoText {
     font-size: 24px;
-    /* font-family: 'Camphor'; */
     font-family: 'Alliance';
     font-weight: 800;
     color:#505050;
@@ -104,8 +98,7 @@
 }
 
 .headerText{ 
-    font-size: 17px;
-    font-family: 'Camphor';
+    font-size: 16px;
     font-weight: 300;
     color: var(--mainTextColor);
 }
@@ -262,7 +255,6 @@ button {
     justify-content: center;
     align-items: center;
     z-index: 2;
-    font-family: 'Camphor';
 }
 
 .calErrorAlert {
@@ -345,15 +337,12 @@ button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: 'Camphor';
-    font-size: 18px;
     font-weight: 300;
     color: var(--mainTextColor);
 }
 
 .inputSettingsList {
-    font-family: 'Camphor';
-    font-size: 18px;
+    font-size: 17px;
     color: var(--mainTextColor); 
 }
 
@@ -388,9 +377,8 @@ button {
     top: 14px;
     left: 20px;
     color: var(--mainTextColor);
-    font-family: 'Camphor';
     font-weight: 300;
-    font-size: 18px;
+    font-size: 17px;
 }
 
 .inputBack:hover {
@@ -477,24 +465,24 @@ button {
 .calorieCalcFieldText {
     color: #585858;
     width: 180px;
-    font-family: 'Camphor';
     font-weight: 400;
 }
 
 .calorieCalcField {
     width: 174px;
-    font-family: 'Camphor';
     font-weight: 400;
 }
 
 .calorieCalcGoal .ant-radio-button-wrapper {
     width: calc(372px/3);
     text-align: center;
+    font-size: 15px;
 }
 
 .calorieCalcGender .ant-radio-button-wrapper {
     width: calc(372px/2);
     text-align: center;
+    font-size: 15px;
 }
 
 .calorieCalcHeight {
@@ -503,7 +491,6 @@ button {
 
 .calorieCalcFieldHeight {
     width: 174px;
-    font-family: 'Camphor';
     font-weight: 400;
 }
 /* button has width of 300px */
@@ -620,8 +607,7 @@ input::-webkit-inner-spin-button {
 
 .nutritionCardHeader {
     width: 420px;
-    font-family: 'Camphor';
-    font-size: 20px;
+    font-size: 19px;
     font-weight: 400;
     color: #404040;
     display: flex;
@@ -630,7 +616,7 @@ input::-webkit-inner-spin-button {
 }
 
 .nutritionCardHeaderRegen {
-    font-size: 16px;
+    font-size: 15px;
     color: #787878;
 }
 
@@ -641,7 +627,6 @@ input::-webkit-inner-spin-button {
 
 .nutritionCard {
     width: 420px;
-    font-family: 'Camphor';
     font-weight: 500;
 }
 
@@ -653,7 +638,7 @@ input::-webkit-inner-spin-button {
 .nutritionCard .ant-collapse-header {
     /* color: var(--mainTextColor) !important; */
     color: #484848 !important;
-    font-size: 16px;
+    font-size: 15px;
     cursor: pointer !important;
     border-radius: 2px !important;
     height: 48px;
@@ -687,7 +672,7 @@ input::-webkit-inner-spin-button {
 .nutritionFacts {
     /* flex: 1; */
     flex-basis: 50%;
-    font-size: 16px;
+    font-size: 15px;
     padding: 0 24px;
 }
 
@@ -755,7 +740,6 @@ input::-webkit-inner-spin-button {
 
 /* .mealCardTitle {
     font-size: 15px;
-    font-family: 'Camphor';
     font-weight: 400;
     color: var(--mainTextColor);
 } */
@@ -858,7 +842,6 @@ input::-webkit-inner-spin-button {
 */
 
 .mealModal {
-    font-family: 'Camphor';
     font-weight: 300;
 }
 
@@ -988,7 +971,6 @@ input::-webkit-inner-spin-button {
 .infoSquare {
     width: 350px;
     padding: 0 20px;
-    font-family: 'Camphor';
 }
 
 .infoSquareIcon {
@@ -997,7 +979,7 @@ input::-webkit-inner-spin-button {
 }
 
 .infoSquareTitle {
-    font-size: 19px;
+    font-size: 18px;
     font-weight: 500;
     line-height: 32px;
     margin-bottom: 10px;
@@ -1006,7 +988,7 @@ input::-webkit-inner-spin-button {
 }
 
 .infoSquareText {
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 28px;
     /* color: #606264; */
@@ -1060,8 +1042,7 @@ input::-webkit-inner-spin-button {
 }
 
 .signupPanelReadyText {
-    font-family: 'Camphor';
-    font-size: 30px;
+    font-size: 29px;
     font-weight: 500;
     color: #404143;
     display: flex;
@@ -1072,9 +1053,6 @@ input::-webkit-inner-spin-button {
 }
 
 .signupPanelInput {
-    font-family: 'Camphor';
-    font-size: 30px;
-    font-weight: 300px;
     color: #404142;
     display: flex;
     justify-content: center;
@@ -1085,7 +1063,6 @@ input::-webkit-inner-spin-button {
     width: 220px;
     height: 40px;
     margin: 0 25px 0 0;
-    font-family: 'Camphor';
     border: none;
     border-radius: 4px;
     box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
@@ -1155,7 +1132,6 @@ input::-webkit-inner-spin-button {
 
 #captionText{
     font-size: 25px;
-    font-family: 'Camphor';
     font-weight: 300;
     color: var(--mainTextColor);
 }
@@ -1195,7 +1171,7 @@ input::-webkit-inner-spin-button {
  }
 
 
-.leftColumnText{
+.inputMainBody{
     /* font-size: 19px;
     font-family: 'Camphor';
     font-weight: 300; */
@@ -1209,24 +1185,34 @@ input::-webkit-inner-spin-button {
 }
 
 /* when given invalid calorie input */
-.leftColumnText .inputInvalid {
+.inputMainBody .inputInvalid {
     /* rgb(255, 77, 79) */
     border-color: #ff4d4f;
 }
-.leftColumnText .inputInvalid:focus {
+.inputMainBody .inputInvalid:focus {
     box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
 }
 
 #calorieInput{
     font-size: 16px;
-    font-family: 'Camphor';
-    font-weight: 300;
-    /* text-align: left; */
+    font-weight: 400;
 }
 
 .macroSliderText{
-    font-size: 16px;
-    font-family: 'Camphor';
+    /* font-size: 16px;
+    font-family: 'Camphor'; */
+    font-size: 15.5px;
+    font-weight: 400;
+    text-align: left; 
+    /* color: var(--mainTextColor); */
+    /* adjusts it better vertically */
+    margin: 2px 0 0 0;
+}
+
+.inputSelect {
+    /* font-size: 16px;
+    font-family: 'Camphor'; */
+    font-size: 15px;
     font-weight: 300;
     text-align: left; 
     color: var(--mainTextColor);
@@ -1262,14 +1248,12 @@ input::-webkit-inner-spin-button {
 
 .macroText{
     font-size: 16px;
-    font-family: 'Camphor';
     font-weight: 300;
     color: var(--mainTextColor);
 }
 
 #macroNumbers{
     font-size: 15px;
-    font-family: 'Camphor';
     font-weight: 300;
 }
 
@@ -1478,7 +1462,6 @@ input::-webkit-inner-spin-button {
 */
 
 .footer {
-    font-family: 'Camphor';
     font-size: 16px;
     font-weight: 400;
     /* background-color: #384042; */

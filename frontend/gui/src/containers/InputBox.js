@@ -37,7 +37,7 @@ const InputBox = (props) => {
                         <div className='inputMain'>
                             <div style={{ display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                                 <div style={{ textAlign: 'right', position: 'relative' }}>
-                                    <span className="leftColumnText" >
+                                    <span className="inputMainBody" >
                                         I want to eat &nbsp;
                                         <NumberFormat id='calorieInput'
                                             className={['ant-input', props.validInput ? '' : 'inputInvalid'].join(' ')}
@@ -48,8 +48,8 @@ const InputBox = (props) => {
                                         />
                                     </span>
                                     <div className='space20' />
-                                    <span className="leftColumnText"> in &nbsp;
-                                            <Select className="macroSliderText" defaultValue="3" size='large'
+                                    <span className="inputMainBody"> in &nbsp;
+                                            <Select className="inputSelect" defaultValue="3" size='large'
                                             style={{
                                                 width: '132px', height: '36px', fontSize: '16px', color: '#595959',
                                                 fontFamily: 'Alliance', fontWeight: 400
@@ -58,12 +58,12 @@ const InputBox = (props) => {
                                                 props.setNumMeals(parseInt(value));
                                                 props.setChangedPrefs(true);
                                             }}>
-                                            <Option className='camphorFont' value="1">1 meal</Option>
-                                            <Option className='camphorFont' value="2">2 meals</Option>
-                                            <Option className='camphorFont' value="3">3 meals</Option>
-                                            <Option className='camphorFont' value="4">4 meals</Option>
-                                            <Option className='camphorFont' value="5">5 meals</Option>
-                                            <Option className='camphorFont' value="6">6 meals</Option>
+                                            <Option value="1">1 meal</Option>
+                                            <Option value="2">2 meals</Option>
+                                            <Option value="3">3 meals</Option>
+                                            <Option value="4">4 meals</Option>
+                                            <Option value="5">5 meals</Option>
+                                            <Option value="6">6 meals</Option>
                                         </Select>
                                     </span>
                                     <div className='space20' />
@@ -110,14 +110,14 @@ const InputBox = (props) => {
                                 </List.Item>
                                 <List.Item>
                                     Time per meal&nbsp;&nbsp;
-                                        <Select className='macroSliderText' defaultValue='2'
+                                    <Select className='inputSelect' defaultValue='2'
                                         onChange={(value) => {
                                             // set some hook that controls prep and cook time
                                             props.setChangedPrefs(true);
                                         }}>
-                                        <Option className='camphorFont' value='1' style={{ fontSize: '15px' }}>&lt; 15 min</Option>
-                                        <Option className='camphorFont' value='2' style={{ fontSize: '15px' }}>&lt; 30 min</Option>
-                                        <Option className='camphorFont' value='3' style={{ fontSize: '15px' }}>&lt; 45 min</Option>
+                                        <Option value='1' style={{ fontSize: '15px' }}>&lt; 15 min</Option>
+                                        <Option value='2' style={{ fontSize: '15px' }}>&lt; 30 min</Option>
+                                        <Option value='3' style={{ fontSize: '15px' }}>&lt; 45 min</Option>
                                     </Select>
                                 </List.Item>
                                 <List.Item>

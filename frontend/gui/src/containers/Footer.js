@@ -9,12 +9,13 @@ import {
 import whiteLogo from '../whiteLogo.svg';
 
 function copyToClipboard(text) {
+    // from good ol' stack overflow
     var dummy = document.createElement("textarea");
-    // to avoid breaking orgain page when copying more words
+    // to avoid breaking origin page when copying more words
     // cant copy when adding below this code
     // dummy.style.display = 'none'
     document.body.appendChild(dummy);
-    //Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
+    //Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea".
     dummy.value = text;
     dummy.select();
     document.execCommand("copy");
@@ -68,16 +69,6 @@ function Footer(props) {
                         drewpaul4141@gmail.com
                     </div>
                 }
-                {/* {displayEmail &&
-                    <Alert
-                        message="Copied to clipboard"
-                        description="drewpaul4141@gmail.com"
-                        type="success"
-                        showIcon
-                        closable
-                        onClose={() => setDisplayEmail(false)}
-                    />
-                } */}
                 <div className='footerCopyright'>
                     © 2020 Andrew Paul
                 </div>

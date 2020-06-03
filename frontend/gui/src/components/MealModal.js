@@ -82,7 +82,7 @@ const MealModal = (props) => {
             className='mealModal'
             title={
                 <>
-                    <b style={{ fontWeight: 500, fontSize: '18px' }}>{props.meal.name}</b>
+                    <b style={{ fontWeight: 500, fontSize: '17px' }}>{props.meal.name}</b>
                     <br />
                     <br />
                     <div className='rowMM'>
@@ -91,7 +91,7 @@ const MealModal = (props) => {
                                 <img src={groceries} alt={props.meal.name + 'image'}
                                     style={{ width: 100, height: 100 }} />
                             </div>
-                            <div style={{ width: '120px', textAlign: 'left', margin: '0 0 0 20px' }}>
+                            <div style={{ width: '120px', textAlign: 'left', margin: '0 0 0 20px', fontSize: '15px' }}>
                                 <p> {'Prep: '}
                                     <span style={{ float: 'right' }}>
                                         {typeof props.meal.prepTime === 'undefined' ? 'n/a'
@@ -143,7 +143,7 @@ const MealModal = (props) => {
                                     options={pieOptions}
                                 />
                             </div>
-                            <div style={{ width: '145px', textAlign: 'left', margin: '0 0 0 35px' }}>
+                            <div style={{ width: '145px', textAlign: 'left', margin: '0 0 0 35px', fontSize: '15px' }}>
                                 <span>{'Calories: '}
                                     <span style={{ float: 'right' }}>{props.meal.calories}</span>
                                 </span>
