@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
     Slider, Select, List, Alert,
-    Switch, Collapse, Tabs
+    Switch, Collapse, Tabs, message
 } from 'antd';
 import {
     SyncOutlined, PushpinOutlined, PushpinFilled,
@@ -104,6 +104,13 @@ const NewLayout = (props) => {
     const [meal6, setMeal6] = useState(emptyObj);
 
     const { TabPane } = Tabs;
+
+    // useEffect(() => {
+    //     if (meal1.main.name === 'Network Error :(' ||
+    //         props.mealObj.side.name === 'Network Error :(') {
+    //         message.error('Network error: Cannot load meals.');
+    //     }
+    // }, [props.mealObj])
 
     function macroSwitch() {
         setEnableMacros(prev => {
@@ -370,6 +377,8 @@ const NewLayout = (props) => {
                 fetchBreakfast(calories, numMeals,
                     carbVar, proteinVar, fatVar)
                     .then(res => {
+                        if (res[0][0].name === 'Network Error :(')
+                            message.error('Network error: Cannot load meals.');
                         setBreakfastIter(res[0][Symbol.iterator]()).then(a => {
                             setBreakfastSideIter(res[1][Symbol.iterator]()).then(b => {
                                 // now that the iters are loaded, set the meal with the new data
@@ -411,6 +420,8 @@ const NewLayout = (props) => {
                 fetchRegular(calories, numMeals,
                     carbVar, proteinVar, fatVar)
                     .then(res => {
+                        if (res[0][0].name === 'Network Error :(')
+                            message.error('Network error: Cannot load meals.');
                         setRegularIter(res[0][Symbol.iterator]());
                         setRegularSideIter(res[1][Symbol.iterator]());
                         // now that the iters are loaded, set the meal with the new data
@@ -453,6 +464,8 @@ const NewLayout = (props) => {
                 fetchBreakfastMain(calories, numMeals,
                     carbVar, proteinVar, fatVar)
                     .then(res => {
+                        if (res[0][0].name === 'Network Error :(')
+                            message.error('Network error: Cannot load meals.');
                         setBreakfastIter(res[0][Symbol.iterator]()).then(a => {
                             // now that the iter is loaded, set the meal with the new data
                             eval(setMealVar)(prev => ({
@@ -487,6 +500,8 @@ const NewLayout = (props) => {
                 await fetchRegularMain(calories, numMeals,
                     carbVar, proteinVar, fatVar)
                     .then(res => {
+                        if (res[0][0].name === 'Network Error :(')
+                            message.error('Network error: Cannot load meals.');
                         setRegularIter(res[0][Symbol.iterator]()).then(a => {
                             // now that the iter is loaded, set the meal with the new data
                             eval(setMealVar)(prev => ({
@@ -526,6 +541,8 @@ const NewLayout = (props) => {
                 fetchBreakfastSide(calories, numMeals,
                     carbVar, proteinVar, fatVar)
                     .then(res => {
+                        if (res[0][0].name === 'Network Error :(')
+                            message.error('Network error: Cannot load meals.');
                         setBreakfastSideIter(res[0][Symbol.iterator]()).then(b => {
                             // now that the iters are loaded, set the meal with the new data
                             eval(setMealVar)(prev => ({
@@ -560,6 +577,8 @@ const NewLayout = (props) => {
                 await fetchRegularSide(calories, numMeals,
                     carbVar, proteinVar, fatVar)
                     .then(res => {
+                        if (res[0][0].name === 'Network Error :(')
+                            message.error('Network error: Cannot load meals.');
                         setRegularSideIter(res[0][Symbol.iterator]()).then(a => {
                             // now that the iter is loaded, set the meal with the new data
                             eval(setMealVar)(prev => ({
@@ -621,6 +640,8 @@ const NewLayout = (props) => {
             fetchMeals(calories, numMeals,
                 carbVar, proteinVar, fatVar)
                 .then(res => {
+                    if (res[0][0].name === 'Network Error :(')
+                        message.error('Network error: Cannot load meals.');
                     console.log(`Getting all meals: ${calories}, ${numMeals}, ${carbVar}, ${proteinVar}, ${fatVar}`);
                     console.log(res);
                     setBreakfastIter(res[0][Symbol.iterator]()).then(a =>

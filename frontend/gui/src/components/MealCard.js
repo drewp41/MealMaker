@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-    Card, Skeleton
+    Card, Skeleton, message
 } from 'antd';
 import {
     SyncOutlined,
@@ -41,6 +41,13 @@ const MealCard = (props) => {
 
     const [showMainModal, setShowMainModal] = useState(false);
     const [showSideModal, setShowSideModal] = useState(false);
+
+    // useEffect(() => {
+    //     if (props.mealObj.main.name === 'Network Error :(' ||
+    //         props.mealObj.side.name === 'Network Error :(') {
+    //         message.error('Network error: Cannot load meals.');
+    //     }
+    // }, [props.mealObj])
 
     function closeMainModal() {
         setShowMainModal(false);

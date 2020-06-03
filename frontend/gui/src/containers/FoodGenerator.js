@@ -36,6 +36,13 @@ const defaultParams = {
     sort: 'random',
 }
 
+const emptyMeal = {
+    name: '', calories: 0, carbs: 0,
+    protein: 0, fat: 0, ingredients: [],
+    instructions: [], servings: 0, makes: 0,
+    prepTime: 0, cookTime: 0
+}
+
 const errorMeal = {
     name: 'Network Error :(', calories: 0, carbs: 0,
     protein: 0, fat: 0, ingredients: [],
@@ -463,7 +470,7 @@ export async function fetchRegularSide(cals, numMeals, carbs, protein, fat) {
                     if (Math.random() < randMainSides)
                         sidesRes.push(obj);
                     else
-                        sidesRes.push(errorMeal);
+                        sidesRes.push(emptyMeal);
                 }
             })
 
