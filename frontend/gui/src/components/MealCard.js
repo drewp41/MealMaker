@@ -80,7 +80,8 @@ const MealCard = (props) => {
                         regen={regenMain} pin={pinMain} pinned={props.mealObj.mainPinned} loading={props.mealObj.mainLoading} />
                     <MealModal visible={showSideModal} meal={props.mealObj.side} closeModal={closeSideModal}
                         regen={regenSide} pin={pinSide} pinned={props.mealObj.sidePinned} loading={props.mealObj.sideLoading} />
-                    <Card className={['mealCard', 'cardShadow2', props.displayMeals ? '' : 'mealCardSkeletonPadding'].join(' ')}
+                    <Card className={['mealCard', 'cardShadow2',
+                        (!props.displayMeals && !props.mealObj.mainPinned && !props.mealObj.sidePinned) ? 'mealCardSkeletonPadding' : ''].join(' ')}
                         title={
                             props.mealNum === 1 ? (
                                 props.numMeals === 1 ? 'Feast'
