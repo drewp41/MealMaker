@@ -819,6 +819,10 @@ input::-webkit-inner-spin-button {
     .nutritionCard {
         width: 390px;
     }
+    .nutritionCardHeader {
+        width: 390px;
+    }
+    
 }
 
 @media screen and (max-width: 500px) { 
@@ -826,6 +830,9 @@ input::-webkit-inner-spin-button {
         width: 345px;
     }
     .nutritionCard {
+        width: 345px;
+    }
+    .nutritionCardHeader {
         width: 345px;
     }
     /* so it's not crammed with the pie chart */
