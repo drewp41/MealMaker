@@ -61,14 +61,14 @@ function Footer(props) {
                         <MailOutlined style={{ fontSize: '26px' }} />
                     </span>
                 </div>
-                {displayEmail &&
-                    <div className='footerEmailText'>
-                        {copyToClipboard('drewpaul4141@gmail.com')}
-                        <CheckCircleOutlined />&nbsp; Copied to clipboard
+                <div className='footerEmailText'
+                    style={{ height: displayEmail ? '83px' : 0, opacity: displayEmail ? 1 : 0 }}>
+                    <div style={{ height: '25px' }} />
+                    {copyToClipboard('drewpaul4141@gmail.com')}
+                    <CheckCircleOutlined />&nbsp; Copied to clipboard
                         <div className='space8' />
                         drewpaul4141@gmail.com
                     </div>
-                }
                 <div className='footerCopyright'>
                     © 2020 Andrew Paul
                 </div>

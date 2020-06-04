@@ -117,6 +117,8 @@ const NewLayout = (props) => {
         if (s_enableMacros) setEnableMacros(JSON.parse(s_enableMacros) === true);
         const s_displayMeals = localStorage.getItem('displayMeals');
         if (s_displayMeals) setDisplayMeals(JSON.parse(s_displayMeals) === true);
+        const s_changedPrefs = localStorage.getItem('changedPrefs');
+        if (s_changedPrefs) setChangedPrefs(JSON.parse(s_changedPrefs) === true);
 
         const s_meal1 = JSON.parse(localStorage.getItem('meal1'));
         if (s_meal1) setMeal1(s_meal1);
@@ -150,6 +152,7 @@ const NewLayout = (props) => {
         localStorage.setItem('macros', JSON.stringify(macros));
         localStorage.setItem('enableMacros', String(enableMacros));
         localStorage.setItem('displayMeals', String(displayMeals));
+        localStorage.setItem('changedPrefs', String(changedPrefs));
 
         localStorage.setItem('meal1', JSON.stringify(meal1));
         localStorage.setItem('meal2', JSON.stringify(meal2));
@@ -164,6 +167,7 @@ const NewLayout = (props) => {
         return props.history.listen((location) => {
             // console.log(`You changed the page to: ${location.pathname}`);
             console.log('leaving');
+            // sends it in as an array
             localStorage.setItem('breakfastIter', JSON.stringify([...breakfastRef.current]));
             localStorage.setItem('breakfastSideIter', JSON.stringify([...breakfastSideRef.current]));
             localStorage.setItem('regularIter', JSON.stringify([...regularRef.current]));
@@ -177,10 +181,10 @@ const NewLayout = (props) => {
         window.onbeforeunload = (e) => {
             // sends it in as an array
             console.log('closing or refreshing');
-            localStorage.setItem('breakfastIter', JSON.stringify([...breakfastIter]));
-            localStorage.setItem('breakfastSideIter', JSON.stringify([...breakfastSideIter]));
-            localStorage.setItem('regularIter', JSON.stringify([...regularIter]));
-            localStorage.setItem('regularSideIter', JSON.stringify([...regularSideIter]));
+            localStorage.setItem('breakfastIter', JSON.stringify([...breakfastRef.current]));
+            localStorage.setItem('breakfastSideIter', JSON.stringify([...breakfastSideRef.current]));
+            localStorage.setItem('regularIter', JSON.stringify([...regularRef.current]));
+            localStorage.setItem('regularSideIter', JSON.stringify([...regularSideRef.current]));
         };
     });
 
