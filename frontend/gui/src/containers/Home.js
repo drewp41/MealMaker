@@ -188,12 +188,15 @@ const NewLayout = (props) => {
         };
     });
 
+    let isEmpty = a => Array.isArray(a) && a.every(isEmpty);
+
     function macroSwitch() {
         setEnableMacros(prev => {
             return !prev;
         });
         setChangedPrefs(true);
     }
+
     function onCalorieChange(value) {
         let cals = 0;
         if (typeof value === 'object') {

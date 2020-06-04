@@ -42,13 +42,6 @@ const MealCard = (props) => {
     const [showMainModal, setShowMainModal] = useState(false);
     const [showSideModal, setShowSideModal] = useState(false);
 
-    // useEffect(() => {
-    //     if (props.mealObj.main.name === 'Network Error :(' ||
-    //         props.mealObj.side.name === 'Network Error :(') {
-    //         message.error('Network error: Cannot load meals.');
-    //     }
-    // }, [props.mealObj])
-
     function closeMainModal() {
         setShowMainModal(false);
     }

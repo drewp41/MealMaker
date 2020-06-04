@@ -88,9 +88,15 @@ function Header(props) {
                     <div className='headerLRSpace'></div>
                 </div>
                 <div className='condensedHeader'>
-                    <button className='condensedHeaderText' style={{ height: '45px', width: '120px' }}>How it works</button>
-                    <button className='condensedHeaderText' style={{ height: '45px', width: '70px' }}>About</button>
-                    <button className='condensedHeaderText' style={{ height: '45px', width: '80px' }}>Sign in</button>
+                    <Link to='/howitworks'>
+                        <button className='condensedHeaderText' style={{ height: '45px', width: '120px' }}>How it works</button>
+                    </Link>
+                    <Link to='about'>
+                        <button className='condensedHeaderText' style={{ height: '45px', width: '70px' }}>About</button>
+                    </Link>
+                    <Link to='signin'>
+                        <button className='condensedHeaderText' style={{ height: '45px', width: '80px' }}>Sign in</button>
+                    </Link>
                 </div>
             </div>
 

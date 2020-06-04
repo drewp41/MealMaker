@@ -178,7 +178,7 @@ const MealModal = (props) => {
             </b>
             <div className='space4' />
             {/* need to add keys to help React identify changes */}
-            <ul>
+            <ul className='mealModalIngredients'>
                 {props.meal.ingredients.map((elem, idx) =>
                     <li style={{ fontSize: '15px' }} key={idx}>{elem}</li>
                 )}

@@ -464,7 +464,7 @@ button {
 */
 
 .calorieCalcModal .ant-modal-body{
-    font-size: 16px;
+    font-size: 15px;
     line-height: 28px;
 }
 /* total row width: 552 */
@@ -486,6 +486,7 @@ button {
 .calorieCalcField {
     width: 174px;
     font-weight: 400;
+    font-size: 15px;
 }
 
 .calorieCalcGoal .ant-radio-button-wrapper {
@@ -874,7 +875,14 @@ input::-webkit-inner-spin-button {
     text-align: center;
 }
 
+.mealModalIngredients {
+    line-height: 26px;
+}
+
 /* Overriding styles for the meal instructions */
+.ant-steps-item-description{
+    line-height: 26px !important;
+}
 .ant-steps-item-description {
     color:#595959 !important;
     font-size: 15px !important;
@@ -1560,9 +1568,9 @@ input::-webkit-inner-spin-button {
 }
 
 .footerEmailText {
+    padding: 25px 0 0 0;
     color: #fff;
     text-align: center;
-    transition: height .3s, opacity 0.3s;
 }
 
 .footerCopyright {

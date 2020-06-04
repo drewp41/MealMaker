@@ -44,6 +44,13 @@ const emptyMeal = {
     prepTime: 0, cookTime: 0
 }
 
+const noMeal = {
+    name: 'No meals found :(', calories: 0, carbs: 0,
+    protein: 0, fat: 0, ingredients: [],
+    instructions: [], servings: 0, makes: 0,
+    prepTime: 0, cookTime: 0
+}
+
 const errorMeal = {
     name: 'Network Error :(', calories: 0, carbs: 0,
     protein: 0, fat: 0, ingredients: [],
@@ -99,6 +106,11 @@ export async function fetchBreakfastMain(cals, numMeals, carbs, protein, fat) {
             // error handling
             if (servings === 0)
                 return [[errorMeal]];
+
+            // if no meals were found
+            if (!Array.isArray(breakfastData) || !breakfastData.length) {
+                return [[noMeal]];
+            }
 
             // return an array of meals
 
@@ -228,6 +240,12 @@ export async function fetchBreakfastSide(cals, numMeals, carbs, protein, fat) {
                 // error handling
                 if (sidesData === 0)
                     return [[errorMeal]];
+
+                // if no meals were found
+                if (!Array.isArray(sidesData) || !sidesData.length) {
+                    return [[noMeal]];
+                }
+
                 // return an array of meals
 
                 // ======== MAIN SIDES ========
@@ -316,6 +334,11 @@ export async function fetchRegularMain(cals, numMeals, carbs, protein, fat) {
             // error handling
             if (servings === 0)
                 return [[errorMeal]];
+
+            // if no meals were found
+            if (!Array.isArray(mainData) || !mainData.length) {
+                return [[noMeal]];
+            }
 
             // return an array of meals
 
@@ -433,6 +456,11 @@ export async function fetchRegularSide(cals, numMeals, carbs, protein, fat) {
             // error handling
             if (servings === 0)
                 return [[errorMeal]];
+
+            // if no meals were found
+            if (!Array.isArray(sidesData) || !sidesData.length) {
+                return [[noMeal]];
+            }
 
             // return an array of meals
 
