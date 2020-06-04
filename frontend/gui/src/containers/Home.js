@@ -7,7 +7,7 @@ import {
     SyncOutlined, PushpinOutlined, PushpinFilled,
     SettingFilled, CalculatorFilled, SlidersFilled
 } from '@ant-design/icons';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter, useHistory, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/auth';
 import 'antd/dist/antd.css';
@@ -140,18 +140,8 @@ const NewLayout = (props) => {
         if (s_regularIter) setRegularIter(s_regularIter[Symbol.iterator]());
         const s_regularSideIter = JSON.parse(localStorage.getItem('regularSideIter'));
         if (s_regularSideIter) setRegularSideIter(s_regularSideIter[Symbol.iterator]());
+        console.log('entering');
     }, []);
-
-    // waits for page to refresh
-    useEffect(() => {
-        window.onbeforeunload = (e) => {
-            // sends it in as an array
-            localStorage.setItem('breakfastIter', JSON.stringify([...breakfastIter]));
-            localStorage.setItem('breakfastSideIter', JSON.stringify([...breakfastSideIter]));
-            localStorage.setItem('regularIter', JSON.stringify([...regularIter]));
-            localStorage.setItem('regularSideIter', JSON.stringify([...regularSideIter]));
-        };
-    });
 
     // should split this up into multiple useEffects
     useEffect(() => {
@@ -169,9 +159,30 @@ const NewLayout = (props) => {
         localStorage.setItem('meal6', JSON.stringify(meal6));
     })
 
-    function iterToArray() {
+    // Changing routes
+    useEffect(() => {
+        return props.history.listen((location) => {
+            // console.log(`You changed the page to: ${location.pathname}`);
+            console.log('leaving');
+            localStorage.setItem('breakfastIter', JSON.stringify([...breakfastRef.current]));
+            localStorage.setItem('breakfastSideIter', JSON.stringify([...breakfastSideRef.current]));
+            localStorage.setItem('regularIter', JSON.stringify([...regularRef.current]));
+            localStorage.setItem('regularSideIter', JSON.stringify([...regularSideRef.current]));
+        })
+    }, [props.history])
 
-    }
+    // Page refresh or close window
+    // does same as above
+    useEffect(() => {
+        window.onbeforeunload = (e) => {
+            // sends it in as an array
+            console.log('closing or refreshing');
+            localStorage.setItem('breakfastIter', JSON.stringify([...breakfastIter]));
+            localStorage.setItem('breakfastSideIter', JSON.stringify([...breakfastSideIter]));
+            localStorage.setItem('regularIter', JSON.stringify([...regularIter]));
+            localStorage.setItem('regularSideIter', JSON.stringify([...regularSideIter]));
+        };
+    });
 
     function macroSwitch() {
         setEnableMacros(prev => {

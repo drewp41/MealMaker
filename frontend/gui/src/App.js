@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, useHistory, useLocation } from 'react-router-dom';
 import BaseRouter from './routes';
 import { connect } from 'react-redux';
 
@@ -9,32 +9,57 @@ import Home from './containers/Home';
 import ScrollToTop from './components/ScrollToTop';
 import * as actions from './store/actions/auth';
 
-class App extends Component {
+// Create history object.
+import createHistory from 'history/createBrowserHistory';
+const history = createHistory();
 
-  componentDidMount() {
-    this.props.onTryAutoSignup();
-  }
+// Listen to history changes.
+// You can unlisten by calling the constant (`unlisten()`).
+const unlisten = history.listen((location, action) => {
+  console.log(action, location.pathname, location.state);
+});
 
-  render() {
+function usePageViews() {
+  let location = useLocation();
+  React.useEffect(() => {
+    console.log('yooo');
+  }, [location]);
+}
 
-    return (
-      // <div>
-      //   <Router>
-      //     <CustomLayout {...this.props}>
-      //       <BaseRouter />
-      //     </CustomLayout>
-      //   </Router>
-      // </div>
-      <div>
-        <Router>
-          <ScrollToTop />
-          {/* <NewLayout {...this.props}> */}
-          <BaseRouter />
-          {/* </NewLayout> */}
-        </Router>
-      </div>
-    );
-  }
+
+
+const App = (props) => {
+
+  // const history = useHistory();
+  // useEffect(() => {
+  //   console.log('in here');
+  // }, [history.location.pathname]);
+  // usePageViews()
+
+  // unmount
+  useEffect(() => {
+    return () => {
+      props.onTryAutoSignup();
+    }
+  }, [])
+
+  return (
+    // <div>
+    //   <Router>
+    //     <CustomLayout {...this.props}>
+    //       <BaseRouter />
+    //     </CustomLayout>
+    //   </Router>
+    // </div>
+    <div>
+      <Router history={history}>
+        <ScrollToTop />
+        {/* <NewLayout {...this.props}> */}
+        <BaseRouter {...props} />
+        {/* </NewLayout> */}
+      </Router>
+    </div>
+  );
 }
 
 // turns the state into a prop so we can use it in our application
