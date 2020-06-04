@@ -113,14 +113,65 @@ const NewLayout = (props) => {
         if (s_numMeals) setNumMeals(s_numMeals);
         const s_macros = JSON.parse(localStorage.getItem('macros'));
         if (s_macros) setMacros(s_macros);
-    }, [])
+        const s_enableMacros = localStorage.getItem('enableMacros');
+        if (s_enableMacros) setEnableMacros(JSON.parse(s_enableMacros) === true);
+        const s_displayMeals = localStorage.getItem('displayMeals');
+        if (s_displayMeals) setDisplayMeals(JSON.parse(s_displayMeals) === true);
 
+        const s_meal1 = JSON.parse(localStorage.getItem('meal1'));
+        if (s_meal1) setMeal1(s_meal1);
+        const s_meal2 = JSON.parse(localStorage.getItem('meal2'));
+        if (s_meal2) setMeal2(s_meal2);
+        const s_meal3 = JSON.parse(localStorage.getItem('meal3'));
+        if (s_meal3) setMeal3(s_meal3);
+        const s_meal4 = JSON.parse(localStorage.getItem('meal4'));
+        if (s_meal4) setMeal4(s_meal4);
+        const s_meal5 = JSON.parse(localStorage.getItem('meal5'));
+        if (s_meal5) setMeal5(s_meal5);
+        const s_meal6 = JSON.parse(localStorage.getItem('meal6'));
+        if (s_meal6) setMeal6(s_meal6);
+
+        // "takes in" an array and turn it back into an iterator
+        const s_breakfastIter = JSON.parse(localStorage.getItem('breakfastIter'));
+        if (s_breakfastIter) setBreakfastIter(s_breakfastIter[Symbol.iterator]());
+        const s_breakfastSideIter = JSON.parse(localStorage.getItem('breakfastSideIter'));
+        if (s_breakfastSideIter) setBreakfastSideIter(s_breakfastSideIter[Symbol.iterator]());
+        const s_regularIter = JSON.parse(localStorage.getItem('regularIter'));
+        if (s_regularIter) setRegularIter(s_regularIter[Symbol.iterator]());
+        const s_regularSideIter = JSON.parse(localStorage.getItem('regularSideIter'));
+        if (s_regularSideIter) setRegularSideIter(s_regularSideIter[Symbol.iterator]());
+    }, []);
+
+    // waits for page to refresh
     useEffect(() => {
-        console.log('refresh');
+        window.onbeforeunload = (e) => {
+            // sends it in as an array
+            localStorage.setItem('breakfastIter', JSON.stringify([...breakfastIter]));
+            localStorage.setItem('breakfastSideIter', JSON.stringify([...breakfastSideIter]));
+            localStorage.setItem('regularIter', JSON.stringify([...regularIter]));
+            localStorage.setItem('regularSideIter', JSON.stringify([...regularSideIter]));
+        };
+    });
+
+    // should split this up into multiple useEffects
+    useEffect(() => {
         localStorage.setItem('calories', String(calories));
         localStorage.setItem('numMeals', String(numMeals));
         localStorage.setItem('macros', JSON.stringify(macros));
+        localStorage.setItem('enableMacros', String(enableMacros));
+        localStorage.setItem('displayMeals', String(displayMeals));
+
+        localStorage.setItem('meal1', JSON.stringify(meal1));
+        localStorage.setItem('meal2', JSON.stringify(meal2));
+        localStorage.setItem('meal3', JSON.stringify(meal3));
+        localStorage.setItem('meal4', JSON.stringify(meal4));
+        localStorage.setItem('meal5', JSON.stringify(meal5));
+        localStorage.setItem('meal6', JSON.stringify(meal6));
     })
+
+    function iterToArray() {
+
+    }
 
     function macroSwitch() {
         setEnableMacros(prev => {
@@ -129,7 +180,7 @@ const NewLayout = (props) => {
         setChangedPrefs(true);
     }
     function onCalorieChange(value) {
-        let cals = 0
+        let cals = 0;
         if (typeof value === 'object') {
             cals = Math.floor(value.floatValue);
             if (typeof value.floatValue === 'undefined' || cals === 0) {

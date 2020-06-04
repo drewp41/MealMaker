@@ -102,7 +102,7 @@ const InputBox = (props) => {
                                 <List.Item>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
                                         Macro preferences&nbsp;&nbsp;
-                                    <Switch defaultChecked={true} onChange={props.macroSwitch} />
+                                    <Switch checked={props.enableMacros} onChange={props.macroSwitch} />
                                     </div>
                                 </List.Item>
                                 <List.Item>
