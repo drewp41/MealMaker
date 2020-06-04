@@ -1220,7 +1220,7 @@ input::-webkit-inner-spin-button {
 }
 
 .inputMainCalInput {
-    width: 133px;
+    width: 128px;
     font-size: 16px;
     font-family: 'Alliance';
     font-weight: 400;
@@ -1231,7 +1231,7 @@ input::-webkit-inner-spin-button {
     font-size: 16px;
     font-weight: 400;
     text-align: left; 
-    width: 133px;
+    width: 128px;
     height: 36px;
     color: var(--inputBoxTextColor);
 }

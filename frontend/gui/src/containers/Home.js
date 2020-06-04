@@ -105,12 +105,22 @@ const NewLayout = (props) => {
 
     const { TabPane } = Tabs;
 
-    // useEffect(() => {
-    //     if (meal1.main.name === 'Network Error :(' ||
-    //         props.mealObj.side.name === 'Network Error :(') {
-    //         message.error('Network error: Cannot load meals.');
-    //     }
-    // }, [props.mealObj])
+    // run on initial render only
+    useEffect(() => {
+        const s_calories = localStorage.getItem('calories');
+        if (s_calories) setCalories(s_calories);
+        const s_numMeals = localStorage.getItem('numMeals');
+        if (s_numMeals) setNumMeals(s_numMeals);
+        const s_macros = JSON.parse(localStorage.getItem('macros'));
+        if (s_macros) setMacros(s_macros);
+    }, [])
+
+    useEffect(() => {
+        console.log('refresh');
+        localStorage.setItem('calories', String(calories));
+        localStorage.setItem('numMeals', String(numMeals));
+        localStorage.setItem('macros', JSON.stringify(macros));
+    })
 
     function macroSwitch() {
         setEnableMacros(prev => {
@@ -120,7 +130,6 @@ const NewLayout = (props) => {
     }
     function onCalorieChange(value) {
         let cals = 0
-        console.log(value);
         if (typeof value === 'object') {
             cals = Math.floor(value.floatValue);
             if (typeof value.floatValue === 'undefined' || cals === 0) {
@@ -728,7 +737,7 @@ const NewLayout = (props) => {
                 <InputBox inputBoxShake={inputBoxShake} validInput={validInput} onCalorieChange={onCalorieChange} enableMacros={enableMacros}
                     setNumMeals={setNumMeals} setChangedPrefs={setChangedPrefs} onClickGenerateButton={onClickGenerateButton}
                     calories={calories} macros={macros} carbSlider={carbSlider} proteinSlider={proteinSlider} fatSlider={fatSlider}
-                    macroSwitch={macroSwitch} loadingMeals={loadingMeals} macroPinned={macroPinned} pinMacro={pinMacro} />
+                    macroSwitch={macroSwitch} loadingMeals={loadingMeals} macroPinned={macroPinned} pinMacro={pinMacro} numMeals={numMeals} />
             </div>
 
             <div className='colMealCards'>

@@ -50,11 +50,11 @@ function SignIn() {
                 <div className='space20' />
 
                 <a className='signinTextAbove' onClick={() => passRef.current.focus()}>Password</a>
-                <Input.Password className='signinField' size='middle' ref={passRef} visibilityToggle={false} />
+                <Input.Password className='signinField' size='middle' ref={passRef} />
                 <div className='space20' />
 
                 <a className='signinTextAbove' onClick={() => confirmPassRef.current.focus()}>Confirm password</a>
-                <Input.Password className='signinField' size='middle' ref={confirmPassRef} visibilityToggle={false} />
+                <Input.Password className='signinField' size='middle' ref={confirmPassRef} />
                 <div className='space20' />
 
                 {/* <Checkbox className='signinCheckbox' defaultChecked={true} onChange={() => console.log('check')}>

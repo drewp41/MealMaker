@@ -54,13 +54,13 @@ const InputBox = (props) => {
                                     <span className="inputMainBody">
                                         in &nbsp;
                                         <Select className='inputMainMealSelect' defaultValue="3" size='large'
-                                            onChange={onChangeMeals} >
-                                            <Option value="1">1 meal</Option>
-                                            <Option value="2">2 meals</Option>
-                                            <Option value="3">3 meals</Option>
-                                            <Option value="4">4 meals</Option>
-                                            <Option value="5">5 meals</Option>
-                                            <Option value="6">6 meals</Option>
+                                            onChange={onChangeMeals} value={String(props.numMeals)} >
+                                            <Option value='1'>1 meal</Option>
+                                            <Option value='2'>2 meals</Option>
+                                            <Option value='3'>3 meals</Option>
+                                            <Option value='4'>4 meals</Option>
+                                            <Option value='5'>5 meals</Option>
+                                            <Option value='6'>6 meals</Option>
                                         </Select>
                                     </span>
                                     <div className='space20' />
