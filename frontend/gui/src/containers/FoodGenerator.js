@@ -33,7 +33,7 @@ const defaultParams = {
     addRecipeInformation: true,
     fillIngredients: true,
     maxAlcohol: 0,
-    maxReadyTime: 31,
+    // maxReadyTime: 31,
     sort: 'random',
 }
 
@@ -62,43 +62,43 @@ const errorMeal = {
 const randMainSides = 0.7;
 
 // ========== Fetch all meals ==========
-export async function fetchMeals(cals, numMeals, carbs, protein, fat) {
+export async function fetchMeals(cals, numMeals, carbs, protein, fat, availableTime) {
     console.log('Fetching all meals');
     if (numMeals === 1) {
-        const feast = await fetchBreakfast(cals, numMeals, carbs, protein, fat);
+        const feast = await fetchBreakfast(cals, numMeals, carbs, protein, fat, availableTime);
         return [...feast, [], []];
     } else {
         const [breakfast, main] = await Promise.all([
-            fetchBreakfast(cals, numMeals, carbs, protein, fat),
-            fetchRegular(cals, numMeals, carbs, protein, fat),
+            fetchBreakfast(cals, numMeals, carbs, protein, fat, availableTime),
+            fetchRegular(cals, numMeals, carbs, protein, fat, availableTime),
         ]);
         return [...breakfast, ...main];
     }
 }
 
 // ========== Fetch both breakfast main and side ==========
-export async function fetchBreakfast(cals, numMeals, carbs, protein, fat) {
+export async function fetchBreakfast(cals, numMeals, carbs, protein, fat, availableTime) {
     console.log('Fetching all breakfast');
     const [main, side] = await Promise.all([
-        fetchBreakfastMain(cals, numMeals, carbs, protein, fat),
-        fetchBreakfastSide(cals, numMeals, carbs, protein, fat),
+        fetchBreakfastMain(cals, numMeals, carbs, protein, fat, availableTime),
+        fetchBreakfastSide(cals, numMeals, carbs, protein, fat, availableTime),
     ]);
     return [...main, ...side];
 }
 
 // ========== Fetch both breakfast main and side ==========
-export async function fetchRegular(cals, numMeals, carbs, protein, fat) {
+export async function fetchRegular(cals, numMeals, carbs, protein, fat, availableTime) {
     console.log('Fetching all regular');
     const [main, side] = await Promise.all([
-        fetchRegularMain(cals, numMeals, carbs, protein, fat),
-        fetchRegularSide(cals, numMeals, carbs, protein, fat),
+        fetchRegularMain(cals, numMeals, carbs, protein, fat, availableTime),
+        fetchRegularSide(cals, numMeals, carbs, protein, fat, availableTime),
     ]);
     return [...main, ...side];
 }
 
-export async function fetchBreakfastMain(cals, numMeals, carbs, protein, fat) {
+export async function fetchBreakfastMain(cals, numMeals, carbs, protein, fat, availableTime) {
     console.log('Fetching breakfast main');
-    return fetchBreakfastMainData(cals, numMeals, carbs, protein, fat)
+    return fetchBreakfastMainData(cals, numMeals, carbs, protein, fat, availableTime)
         .then(d => {
             const servings = d[0];
             const breakfastData = d[1];
@@ -151,7 +151,7 @@ export async function fetchBreakfastMain(cals, numMeals, carbs, protein, fat) {
         })
 }
 
-async function fetchBreakfastMainData(cals, numMeals, carbs, protein, fat) {
+async function fetchBreakfastMainData(cals, numMeals, carbs, protein, fat, availableTime) {
     let approxCals = 0;
     let minCals = 0;
     let maxCals = 0;
@@ -217,6 +217,7 @@ async function fetchBreakfastMainData(cals, numMeals, carbs, protein, fat) {
                     minFat: minFat,
                     maxFat: maxFat,
                     type: (numMeals > 1) ? 'breakfast' : 'main+course',
+                    maxReadyTime: availableTime,
                     number: 6,
                 }
             });
@@ -228,12 +229,12 @@ async function fetchBreakfastMainData(cals, numMeals, carbs, protein, fat) {
     }
 }
 
-export async function fetchBreakfastSide(cals, numMeals, carbs, protein, fat) {
+export async function fetchBreakfastSide(cals, numMeals, carbs, protein, fat, availableTime) {
     console.log('Fetching breakfast side');
     if (numMeals === 1) {
         // always two sides with 1 meal 
         let servings = 2;
-        return fetchBreakfastSideData(cals, numMeals, carbs, protein, fat)
+        return fetchBreakfastSideData(cals, numMeals, carbs, protein, fat, availableTime)
             .then(d => {
                 const sidesData = d.data.results;
 
@@ -290,7 +291,7 @@ export async function fetchBreakfastSide(cals, numMeals, carbs, protein, fat) {
     }
 }
 
-async function fetchBreakfastSideData(cals, numMeals, carbs, protein, fat) {
+async function fetchBreakfastSideData(cals, numMeals, carbs, protein, fat, availableTime) {
     if (numMeals === 1) {
         let maxSideCals = 150;
 
@@ -304,6 +305,7 @@ async function fetchBreakfastSideData(cals, numMeals, carbs, protein, fat) {
                         minProtein: 0,
                         minFat: 0,
                         type: 'side+dish',
+                        maxReadyTime: availableTime,
                         number: 6
                     }
                 });
@@ -324,9 +326,9 @@ async function fetchBreakfastSideData(cals, numMeals, carbs, protein, fat) {
     }
 }
 
-export async function fetchRegularMain(cals, numMeals, carbs, protein, fat) {
+export async function fetchRegularMain(cals, numMeals, carbs, protein, fat, availableTime) {
     console.log('Fetching regular main');
-    return fetchRegularMainData(cals, numMeals, carbs, protein, fat)
+    return fetchRegularMainData(cals, numMeals, carbs, protein, fat, availableTime)
         .then(d => {
             const servings = d[0]
             const mainData = d[1];
@@ -378,7 +380,7 @@ export async function fetchRegularMain(cals, numMeals, carbs, protein, fat) {
         })
 
 }
-async function fetchRegularMainData(cals, numMeals, carbs, protein, fat) {
+async function fetchRegularMainData(cals, numMeals, carbs, protein, fat, availableTime) {
     let approxCals = 0;
     let minCals = 0;
     let maxCals = 0;
@@ -436,6 +438,7 @@ async function fetchRegularMainData(cals, numMeals, carbs, protein, fat) {
                     minFat: minFat,
                     maxFat: maxFat,
                     type: 'main+course',
+                    maxReadyTime: availableTime,
                     number: 6 * (numMeals - 1), //exclude bfast
                 }
             });
@@ -446,9 +449,9 @@ async function fetchRegularMainData(cals, numMeals, carbs, protein, fat) {
     }
 }
 
-export async function fetchRegularSide(cals, numMeals, carbs, protein, fat) {
+export async function fetchRegularSide(cals, numMeals, carbs, protein, fat, availableTime) {
     console.log('Fetching regular side');
-    return fetchRegularSideData(cals, numMeals, carbs, protein, fat)
+    return fetchRegularSideData(cals, numMeals, carbs, protein, fat, availableTime)
         .then(d => {
             const servings = d[0];
             const sidesData = d[1];
@@ -506,7 +509,7 @@ export async function fetchRegularSide(cals, numMeals, carbs, protein, fat) {
             return [sidesRes];
         })
 }
-async function fetchRegularSideData(cals, numMeals, carbs, protein, fat) {
+async function fetchRegularSideData(cals, numMeals, carbs, protein, fat, availableTime) {
     let maxSideCals = 150;
     let servings = 1;
 
@@ -520,6 +523,7 @@ async function fetchRegularSideData(cals, numMeals, carbs, protein, fat) {
                     minProtein: 0,
                     minFat: 0,
                     type: 'side+dish',
+                    maxReadyTime: availableTime,
                     number: 6 * (numMeals - 1), //exclude bfast
                 }
             });

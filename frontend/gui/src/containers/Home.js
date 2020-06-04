@@ -73,6 +73,7 @@ const NewLayout = (props) => {
     const [calories, setCalories] = useState(2000);
     const [macros, setMacros] = useState({ carbs: 225, protein: 150, fat: 55 });
     const [numMeals, setNumMeals] = useState(3);
+    const [availableTime, setAvailableTime] = useState(31); // 16, 31, or 46
 
     const [enableMacros, setEnableMacros] = useState(true);
     const [loadingMeals, setLoadingMeals] = useState(false); // used for gen button
@@ -195,6 +196,7 @@ const NewLayout = (props) => {
             return !prev;
         });
         setChangedPrefs(true);
+        console.log(availableTime);
     }
 
     function onCalorieChange(value) {
@@ -453,7 +455,7 @@ const NewLayout = (props) => {
                     fatVar = Math.round(macros.fat);
                 }
                 fetchBreakfast(calories, numMeals,
-                    carbVar, proteinVar, fatVar)
+                    carbVar, proteinVar, fatVar, availableTime)
                     .then(res => {
                         if (res[0][0].name === 'Network Error :(')
                             message.error('Network error: Cannot load meals.');
@@ -496,7 +498,7 @@ const NewLayout = (props) => {
                     fatVar = Math.round(macros.fat);
                 }
                 fetchRegular(calories, numMeals,
-                    carbVar, proteinVar, fatVar)
+                    carbVar, proteinVar, fatVar, availableTime)
                     .then(res => {
                         if (res[0][0].name === 'Network Error :(')
                             message.error('Network error: Cannot load meals.');
@@ -540,7 +542,7 @@ const NewLayout = (props) => {
                     fatVar = Math.round(macros.fat);
                 }
                 fetchBreakfastMain(calories, numMeals,
-                    carbVar, proteinVar, fatVar)
+                    carbVar, proteinVar, fatVar, availableTime)
                     .then(res => {
                         console.log(res);
                         if (res[0][0].name === 'Network Error :(')
@@ -577,7 +579,7 @@ const NewLayout = (props) => {
                     fatVar = Math.round(macros.fat);
                 }
                 await fetchRegularMain(calories, numMeals,
-                    carbVar, proteinVar, fatVar)
+                    carbVar, proteinVar, fatVar, availableTime)
                     .then(res => {
                         if (res[0][0].name === 'Network Error :(')
                             message.error('Network error: Cannot load meals.');
@@ -618,7 +620,7 @@ const NewLayout = (props) => {
                     fatVar = Math.round(macros.fat);
                 }
                 fetchBreakfastSide(calories, numMeals,
-                    carbVar, proteinVar, fatVar)
+                    carbVar, proteinVar, fatVar, availableTime)
                     .then(res => {
                         if (res[0][0].name === 'Network Error :(')
                             message.error('Network error: Cannot load meals.');
@@ -654,7 +656,7 @@ const NewLayout = (props) => {
                     fatVar = Math.round(macros.fat);
                 }
                 await fetchRegularSide(calories, numMeals,
-                    carbVar, proteinVar, fatVar)
+                    carbVar, proteinVar, fatVar, availableTime)
                     .then(res => {
                         if (res[0][0].name === 'Network Error :(')
                             message.error('Network error: Cannot load meals.');
@@ -717,7 +719,7 @@ const NewLayout = (props) => {
                 fatVar = Math.round(macros.fat);
             }
             fetchMeals(calories, numMeals,
-                carbVar, proteinVar, fatVar)
+                carbVar, proteinVar, fatVar, availableTime)
                 .then(res => {
                     if (res[0][0].name === 'Network Error :(')
                         message.error('Network error: Cannot load meals.');
@@ -807,7 +809,8 @@ const NewLayout = (props) => {
                 <InputBox inputBoxShake={inputBoxShake} validInput={validInput} onCalorieChange={onCalorieChange} enableMacros={enableMacros}
                     setNumMeals={setNumMeals} setChangedPrefs={setChangedPrefs} onClickGenerateButton={onClickGenerateButton}
                     calories={calories} macros={macros} carbSlider={carbSlider} proteinSlider={proteinSlider} fatSlider={fatSlider}
-                    macroSwitch={macroSwitch} loadingMeals={loadingMeals} macroPinned={macroPinned} pinMacro={pinMacro} numMeals={numMeals} />
+                    macroSwitch={macroSwitch} loadingMeals={loadingMeals} macroPinned={macroPinned} pinMacro={pinMacro}
+                    numMeals={numMeals} setAvailableTime={setAvailableTime} />
             </div>
 
             <div className='colMealCards'>
