@@ -542,6 +542,7 @@ const NewLayout = (props) => {
                 fetchBreakfastMain(calories, numMeals,
                     carbVar, proteinVar, fatVar)
                     .then(res => {
+                        console.log(res);
                         if (res[0][0].name === 'Network Error :(')
                             message.error('Network error: Cannot load meals.');
                         setBreakfastIter(res[0][Symbol.iterator]()).then(a => {
