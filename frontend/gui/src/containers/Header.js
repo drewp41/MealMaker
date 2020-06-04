@@ -65,7 +65,7 @@ function Header(props) {
                         {props.isAuthenticated ?
                             <button className="headerText" style={{ height: '50px', width: '110px' }} onClick={() => {
                                 console.log('hi');
-                                return props.logout;
+                                return props.logout();
                             }}>
                                 <span id="signInArrow">Sign out</span> <span style={{ fontFamily: 'Inter' }}> →</span>
                             </button>
