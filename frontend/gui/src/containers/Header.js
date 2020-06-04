@@ -62,11 +62,19 @@ function Header(props) {
 
                     {/* shifted down 10px to center it vertically in the header */}
                     <div className='colHeaderR' style={{ padding: '15px 0 0 0' }}>
-                        <Link to='/signin'>
-                            <button className="headerText" style={{ height: '50px', width: '110px' }}>
-                                <span id="signInArrow">Sign in</span> <span style={{ fontFamily: 'Inter' }}> →</span>
+                        {props.isAuthenticated ?
+                            <button className="headerText" style={{ height: '50px', width: '110px' }} onClick={() => {
+                                console.log('hi');
+                                return props.logout;
+                            }}>
+                                <span id="signInArrow">Sign out</span> <span style={{ fontFamily: 'Inter' }}> →</span>
                             </button>
-                        </Link>
+                            :
+                            <Link to='/signin'>
+                                <button className="headerText" style={{ height: '50px', width: '110px' }}>
+                                    <span id="signInArrow">Sign in</span> <span style={{ fontFamily: 'Inter' }}> →</span>
+                                </button>
+                            </Link>}
                     </div>
 
                     {/* shifted down 30px to center it vertically in the header */}
@@ -102,7 +110,7 @@ function Header(props) {
 
             <div className='headerBorder' />
 
-            {props.children}
+            {/* {props.children} */}
 
         </>
     )

@@ -22,14 +22,17 @@ const BaseRouter = (props) => {
 
     return (
         <div>
+            {/* old */}
+            {/* <Route exact path='/' component={FoodList} />
+            <Route exact path='/foods/:foodID/' component={FoodDetail} />
+            <Route exact path='/login/' component={Login} />
+            <Route exact path='/signup/' component={SignupOld} /> */}
+
             <Route exact path='/' render={(routeProps) => (<Home {...props} />)} />
             <Route exact path='/howitworks/' component={HowItWorks} />
             <Route exact path='/about/' component={About} />
-            <Route exact path='/signin/' component={SignIn} />
+            <Route exact path='/signin/' render={(routeProps) => (<SignIn {...props} />)} />
             <Route exact path='/signup/' component={SignUp} />
-            {/* <Route exact path='/' component={FoodList} /> */}
-            {/* <Route exact path='/foods/:foodID/' component={FoodDetail} /> */}
-            {/* <Route exact path='/signupOld/' component={SignupOld} /> */}
         </div>
     )
 };

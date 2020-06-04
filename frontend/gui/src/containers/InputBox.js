@@ -107,14 +107,15 @@ const InputBox = (props) => {
                                 </List.Item>
                                 <List.Item>
                                     Time per meal&nbsp;&nbsp;
-                                    <Select className='inputSelect' defaultValue='2'
+                                    <Select className='inputSelect'
+                                        defaultValue='2' value={'< ' + String(props.availableTime) + ' min'}
                                         onChange={(value) => {
                                             if (value === '1')
-                                                props.setAvailableTime(16);
+                                                props.setAvailableTime(15);
                                             else if (value === '2')
-                                                props.setAvailableTime(31);
+                                                props.setAvailableTime(30);
                                             else
-                                                props.setAvailableTime(46);
+                                                props.setAvailableTime(45);
                                             props.setChangedPrefs(true);
                                         }}>
                                         <Option value='1'>&lt; 15 min</Option>

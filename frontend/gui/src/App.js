@@ -4,7 +4,7 @@ import BaseRouter from './routes';
 import { connect } from 'react-redux';
 
 import 'antd/dist/antd.css';
-// import CustomLayout from './containers/Layout';
+import CustomLayout from './containers/Layout';
 import Home from './containers/Home';
 import ScrollToTop from './components/ScrollToTop';
 import * as actions from './store/actions/auth';
@@ -30,12 +30,6 @@ function usePageViews() {
 
 const App = (props) => {
 
-  // const history = useHistory();
-  // useEffect(() => {
-  //   console.log('in here');
-  // }, [history.location.pathname]);
-  // usePageViews()
-
   // unmount
   useEffect(() => {
     return () => {
@@ -46,7 +40,7 @@ const App = (props) => {
   return (
     // <div>
     //   <Router>
-    //     <CustomLayout {...this.props}>
+    //     <CustomLayout {...props}>
     //       <BaseRouter />
     //     </CustomLayout>
     //   </Router>

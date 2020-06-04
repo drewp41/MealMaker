@@ -73,7 +73,7 @@ const NewLayout = (props) => {
     const [calories, setCalories] = useState(2000);
     const [macros, setMacros] = useState({ carbs: 225, protein: 150, fat: 55 });
     const [numMeals, setNumMeals] = useState(3);
-    const [availableTime, setAvailableTime] = useState(31); // 16, 31, or 46
+    const [availableTime, setAvailableTime] = useState(30); // 15, 30, or 45
 
     const [enableMacros, setEnableMacros] = useState(true);
     const [loadingMeals, setLoadingMeals] = useState(false); // used for gen button
@@ -120,6 +120,8 @@ const NewLayout = (props) => {
         if (s_displayMeals) setDisplayMeals(JSON.parse(s_displayMeals) === true);
         const s_changedPrefs = localStorage.getItem('changedPrefs');
         if (s_changedPrefs) setChangedPrefs(JSON.parse(s_changedPrefs) === true);
+        const s_availableTime = localStorage.getItem('availableTime');
+        if (s_availableTime) setAvailableTime(s_availableTime);
 
         const s_meal1 = JSON.parse(localStorage.getItem('meal1'));
         if (s_meal1) setMeal1(s_meal1);
@@ -154,6 +156,7 @@ const NewLayout = (props) => {
         localStorage.setItem('enableMacros', String(enableMacros));
         localStorage.setItem('displayMeals', String(displayMeals));
         localStorage.setItem('changedPrefs', String(changedPrefs));
+        localStorage.setItem('availableTime', String(availableTime));
 
         localStorage.setItem('meal1', JSON.stringify(meal1));
         localStorage.setItem('meal2', JSON.stringify(meal2));
@@ -196,7 +199,7 @@ const NewLayout = (props) => {
             return !prev;
         });
         setChangedPrefs(true);
-        console.log(availableTime);
+        console.log(props.isAuthenticated);
     }
 
     function onCalorieChange(value) {
@@ -787,7 +790,7 @@ const NewLayout = (props) => {
         // <div style={{ backgroundColor: 'rgb(242, 242, 242)' }}>
         <div style={{ backgroundColor: '#fff' }}>
             {/* <div style={{ backgroundColor: 'rgb(245, 243, 240)' }}> */}
-            <Header />
+            <Header {...props} />
 
             <div className='topBody'>
                 <div className='topBodyText'>
@@ -810,7 +813,7 @@ const NewLayout = (props) => {
                     setNumMeals={setNumMeals} setChangedPrefs={setChangedPrefs} onClickGenerateButton={onClickGenerateButton}
                     calories={calories} macros={macros} carbSlider={carbSlider} proteinSlider={proteinSlider} fatSlider={fatSlider}
                     macroSwitch={macroSwitch} loadingMeals={loadingMeals} macroPinned={macroPinned} pinMacro={pinMacro}
-                    numMeals={numMeals} setAvailableTime={setAvailableTime} />
+                    numMeals={numMeals} setAvailableTime={setAvailableTime} availableTime={availableTime} />
             </div>
 
             <div className='colMealCards'>

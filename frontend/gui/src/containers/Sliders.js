@@ -39,7 +39,11 @@ const Sliders = (props) => {
                         pinMacro={props.pinMacro} enableMacros={props.enableMacros} />
                 </span>
                 <span className='macroSliderText' style={{ float: 'right' }}>
-                    {Math.round(props.macros.carbs)} g
+                    {props.enableMacros ?
+                        Math.round(props.macros.carbs) + ' g'
+                        :
+                        'n/a'
+                    }
                 </span>
                 <br />
                 <Slider defaultValue={45} tipFormatter={val => `${val}%`} min={props.enableMacros ? 15 : 0} max={70}
@@ -54,7 +58,11 @@ const Sliders = (props) => {
                         pinMacro={props.pinMacro} enableMacros={props.enableMacros} />
                 </span>
                 <span className='macroSliderText' style={{ float: 'right' }}>
-                    {Math.round(props.macros.protein)} g
+                    {props.enableMacros ?
+                        Math.round(props.macros.protein) + ' g'
+                        :
+                        'n/a'
+                    }
                 </span>
                 <br />
                 <Slider defaultValue={30} tipFormatter={val => `${val}%`} min={props.enableMacros ? 15 : 0} max={70}
@@ -69,7 +77,11 @@ const Sliders = (props) => {
                         pinMacro={props.pinMacro} enableMacros={props.enableMacros} />
                 </span>
                 <span className='macroSliderText' style={{ float: 'right' }}>
-                    {Math.round(props.macros.fat)} g
+                    {props.enableMacros ?
+                        Math.round(props.macros.fat) + ' g'
+                        :
+                        'n/a'
+                    }
                 </span>
                 <br />
                 <Slider defaultValue={25} tipFormatter={val => `${val}%`} min={props.enableMacros ? 15 : 0} max={70}

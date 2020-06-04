@@ -7,7 +7,7 @@ import logo from '../logo.svg';
 // green text: #40a66e
 
 
-function SignIn() {
+function SignUp() {
 
     let emailRef = React.createRef();
     let userRef = React.createRef();
@@ -83,4 +83,4 @@ function SignIn() {
     )
 }
 
-export default SignIn;
+export default SignUp;
