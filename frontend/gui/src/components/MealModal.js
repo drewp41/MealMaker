@@ -129,7 +129,7 @@ const MealModal = (props) => {
                                             : props.meal.cookTime + ' min'}
                                     </span>
                                 </p>
-                                <span style={{ fontSize: '18px' }}>
+                                {props.useIcons && <span style={{ fontSize: '18px' }}>
                                     {/* make regen icon invisible (if it's pinned)
                                      so it doesnt disappear and shift all the other icons */}
                                     {!props.pinned ?
@@ -149,7 +149,7 @@ const MealModal = (props) => {
                                         <HeartOutlined className='heartIconOutline' onClick={onClickHeart} />
                                     }
 
-                                </span>
+                                </span>}
                             </div>
                         </div>
                         <div className='colMMFiller' />

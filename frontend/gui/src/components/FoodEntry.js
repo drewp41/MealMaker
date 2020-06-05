@@ -15,9 +15,8 @@ function FoodEntry(props) {
 
     return (
         <>
-            <MealModal visible={showModal} meal={props.meal} closeModal={closeModal}
-                regen={null} pin={null} pinned={null}
-                loading={null} isAuthenticated={props.isAuthenticated} />
+            <MealModal visible={showModal} meal={props.meal}
+                closeModal={closeModal} useIcons={false} />
             <List.Item key={props.item.title} style={{ cursor: 'pointer' }}
                 onClick={() => setShowModal(true)}>
                 <List.Item.Meta
