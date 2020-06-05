@@ -173,7 +173,7 @@ const MealModal = (props) => {
             width='700px'
             bodyStyle={{}}
         >
-            <b style={{ fontSize: '16px', fontWeight: 400 }}>
+            <b style={{ fontSize: '16px', fontWeight: 400, color: '#383a3c' }}>
                 Ingredients (makes {props.meal.makes} {props.meal.makes === 1 ? 'serving' : 'servings'}):
             </b>
             <div className='space4' />
@@ -184,7 +184,7 @@ const MealModal = (props) => {
                 )}
             </ul>
             <br />
-            <b style={{ fontSize: '16px', fontWeight: 400 }}>Instructions:</b>
+            <b style={{ fontSize: '16px', fontWeight: 400, color: '#383a3c' }}>Instructions:</b>
             <div className='space8' />
             <Steps direction='vertical' size='small' current={-1} >
                 {props.meal.instructions.map((elem, idx) =>

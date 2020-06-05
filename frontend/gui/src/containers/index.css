@@ -641,7 +641,7 @@ input::-webkit-inner-spin-button {
     width: 420px;
     font-size: 19px;
     font-weight: 400;
-    color: #404040;
+    color: #3a3c3e;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -669,7 +669,7 @@ input::-webkit-inner-spin-button {
 
 .nutritionCard .ant-collapse-header {
     /* color: var(--mainTextColor) !important; */
-    color: #484848 !important;
+    color: #46484a !important;
     font-size: 15px;
     cursor: pointer !important;
     border-radius: 2px !important;
@@ -718,13 +718,14 @@ input::-webkit-inner-spin-button {
 .mealCard .ant-card-head {
     font-family: 'Alliance';
     font-weight: 500;
-    color: mainTextColor;
     font-size: 15px;
+    color: #222426;
 }
 
 .mealCard .ant-card-extra {
     font-size: 14px;
     font-weight: 500;
+    color: #57595b;
 }
 
 .mealCardSkeletonPadding .ant-card-body {
@@ -790,11 +791,13 @@ input::-webkit-inner-spin-button {
     font-size: 15px;
     font-weight: 400;
     padding-top: 1px;
+    color: #222426;
 }
 
 .ant-card-meta-description {
     font-size: 15px;
     font-weight: 400;
+    color: #8a8c8e;
 }
 
 .mealCardMainRow {
@@ -885,10 +888,12 @@ input::-webkit-inner-spin-button {
 
 .mealModal {
     font-weight: 300;
+    color: #57595b;
 }
 
 .ant-modal-title {
     text-align: center;
+    color: #282a2c;
 }
 
 .mealModalIngredients {
@@ -900,7 +905,7 @@ input::-webkit-inner-spin-button {
     line-height: 26px !important;
 }
 .ant-steps-item-description {
-    color:#595959 !important;
+    color:#57595b !important;
     font-size: 15px !important;
 }
 .ant-steps-item-tail::after {
@@ -915,7 +920,7 @@ input::-webkit-inner-spin-button {
 
 .rowMM {
     display: flex;
-    color: #595959;
+    color: #57595b;
 }
 
 .colMMIcon {

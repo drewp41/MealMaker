@@ -27,6 +27,8 @@ import {
 } from './FoodGenerator.js';
 
 import './hamb/hamburgers.scss';
+import axios from 'axios';
+
 
 const { Option } = Select;
 const { Panel } = Collapse;
@@ -199,7 +201,16 @@ const NewLayout = (props) => {
             return !prev;
         });
         setChangedPrefs(true);
-        console.log(props);
+        console.log(localStorage.getItem('token'));
+        // axios.get('http://127.0.0.1:8000/rest-auth/user/', {
+        //     headers: { 'Authorization': `Token ${localStorage.getItem('token')}` }
+        // })
+        //     .then(res => {
+        //         console.log(res);
+        //     })
+        //     .catch(error => {
+        //         console.log(error);
+        //     })
     }
 
     function onCalorieChange(value) {
