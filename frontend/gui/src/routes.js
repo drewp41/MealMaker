@@ -37,7 +37,7 @@ const BaseRouter = (props) => {
             <Route exact path='/signup/' render={(routeProps) => (<SignUp {...props} />)} />
             <Route exact path='/profile/' render={(routeProps) => (<Profile {...props} />)} />
             <Route exact path='/profile/saved/' render={(routeProps) => (<Saved {...props} />)} />
-            <Route path='*' render={(routeProps) => (<Home {...props} />)} />
+            {/* <Route path='*' render={(routeProps) => (<Home {...props} />)} /> */}
 
         </div>
     )

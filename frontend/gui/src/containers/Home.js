@@ -110,6 +110,7 @@ const NewLayout = (props) => {
 
     // run on initial render only
     useEffect(() => {
+        console.log('on render');
         const s_calories = localStorage.getItem('calories');
         if (s_calories) setCalories(s_calories);
         const s_numMeals = localStorage.getItem('numMeals');
@@ -117,11 +118,11 @@ const NewLayout = (props) => {
         const s_macros = JSON.parse(localStorage.getItem('macros'));
         if (s_macros) setMacros(s_macros);
         const s_enableMacros = localStorage.getItem('enableMacros');
-        if (s_enableMacros) setEnableMacros(JSON.parse(s_enableMacros) === true);
+        if (typeof s_enableMacros === 'string') setEnableMacros(JSON.parse(s_enableMacros) === true);
         const s_displayMeals = localStorage.getItem('displayMeals');
-        if (s_displayMeals) setDisplayMeals(JSON.parse(s_displayMeals) === true);
+        if (typeof s_displayMeals === 'string') setDisplayMeals(JSON.parse(s_displayMeals) === true);
         const s_changedPrefs = localStorage.getItem('changedPrefs');
-        if (s_changedPrefs) setChangedPrefs(JSON.parse(s_changedPrefs) === true);
+        if (typeof s_changedPrefs === 'string') setChangedPrefs(JSON.parse(s_changedPrefs) === true)
         const s_availableTime = localStorage.getItem('availableTime');
         if (s_availableTime) setAvailableTime(s_availableTime);
 
@@ -147,7 +148,6 @@ const NewLayout = (props) => {
         if (s_regularIter) setRegularIter(s_regularIter[Symbol.iterator]());
         const s_regularSideIter = JSON.parse(localStorage.getItem('regularSideIter'));
         if (s_regularSideIter) setRegularSideIter(s_regularSideIter[Symbol.iterator]());
-        console.log('entering');
     }, []);
 
     // should split this up into multiple useEffects
@@ -172,7 +172,6 @@ const NewLayout = (props) => {
     useEffect(() => {
         return props.history.listen((location) => {
             // console.log(`You changed the page to: ${location.pathname}`);
-            console.log('leaving');
             // sends it in as an array
             localStorage.setItem('breakfastIter', JSON.stringify([...breakfastRef.current]));
             localStorage.setItem('breakfastSideIter', JSON.stringify([...breakfastSideRef.current]));
