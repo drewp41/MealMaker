@@ -1,78 +1,156 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Input, Checkbox } from 'antd';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { Input, Checkbox, Form, Button, Alert } from 'antd';
+import { connect } from 'react-redux';
+import * as actions from '../store/actions/auth';
 
 import logo from '../logo.svg';
 
 // green text: #40a66e
 
+// custom hook
+const useDidMountEffect = (func, deps) => {
+    const didMount = useRef(false);
 
-function SignUp() {
+    useEffect(() => {
+        if (didMount.current) func();
+        else didMount.current = true;
+    }, deps);
+}
+
+const SignUp = (props) => {
+
+    const [signinShake, setSigninShake] = useState(false);
+    const [invalidCreds, setInvalidCreds] = useState(false);
 
     let emailRef = React.createRef();
     let userRef = React.createRef();
     let passRef = React.createRef();
     let confirmPassRef = React.createRef();
 
+    let history = useHistory();
+
+    // runs except on initial render
+    useDidMountEffect(() => {
+        if (props.type === 'AUTH_FAIL') {
+            setSigninShake(true);
+            setInvalidCreds(true);
+            setTimeout(() => {
+                setSigninShake(false);
+            }, 600)
+        }
+        if (props.type === 'AUTH_SUCCESS') {
+            setInvalidCreds(false);
+            history.goBack();
+        }
+    }, [props.type])
+
+    const onFinish = values => {
+        console.log('Received values of form: ', values);
+        props.onAuth(
+            values.username,
+            values.email,
+            values.password,
+            values.confirm);
+    }
+
     return (
-        <div className='signinPage'>
+        <div className='signinPage' >
             <div style={{ height: '60px' }} />
             <div className='signinLogo'>
-                {/* <Link to='/'>
-                    <img src={logo} alt="logo" style={{ width: 32, height: 32, margin: '-5px 0 0 0' }} draggable='false' />
-                </Link>
-                <Link to='/'>
-                    <span className='logoText' style={{ color: '#585858', padding: '0 0 0 8px' }}>
-                        mealmaker.io
-                    </span>
-                </Link> */}
             </div>
-            <div className='signinBox'>
-                {/* padding centers it a little better */}
-                <div style={{ textAlign: 'center', padding: '0 6px 0 0' }}>
-                    <Link to='/'>
-                        <img src={logo} alt="logo" style={{ width: 32, height: 32, margin: '-20px 0 0 0' }} draggable='false' />
-                    </Link>
-                    <Link to='/'>
-                        <span className='logoText' style={{ padding: '0 0 0 8px' }}>
-                            mealmaker.io
+
+            {props.error && <p>{props.error.message}</p>}
+
+            <Alert className='signinAlert' style={{ opacity: invalidCreds ? 1 : 0 }}
+                message={'Registration failed, try again with different input'}
+                type="error" showIcon />
+
+            <div className={['signinBox', signinShake ? 'signinShake' : ''].join(' ')}>
+                <Form
+                    name="normal_login"
+                    className="login-form"
+                    initialValues={{
+                        remember: true,
+                    }}
+                    onFinish={onFinish}
+                // onFinishFailed={this.onFinishFailed}
+                >
+                    {/* padding centers it a little better */}
+                    <div style={{ textAlign: 'center', padding: '0 6px 0 0' }}>
+                        <Link to='/'>
+                            <img src={logo} alt="logo" style={{ width: 32, height: 32, margin: '-20px 0 0 0' }} draggable='false' />
+                        </Link>
+                        <Link to='/'>
+                            <span className='logoText' style={{ padding: '0 0 0 8px' }}>
+                                mealmaker.io
                         </span>
-                    </Link>
-                </div>
-                <div className='space20' />
+                        </Link>
+                    </div>
+                    <div className='space20' />
 
-                <a className='signinTextAbove' onClick={() => emailRef.current.focus()}>Email</a>
-                <Input className='signinField' size='middle' ref={emailRef} />
-                <div className='space20' />
+                    <a className='signinTextAbove' onClick={() => emailRef.current.focus()}>Email</a>
+                    <Form.Item
+                        name="email"
+                        rules={[
+                            { required: true, message: 'Input an email' },
+                            { type: 'email', message: 'Enter a valid email' }
+                        ]}
+                    >
+                        <Input className='signinField' size='middle' ref={emailRef} />
+                    </Form.Item>
+                    <div className='space20' />
 
-                <a className='signinTextAbove' onClick={() => userRef.current.focus()}>Username</a>
-                <Input className='signinField' size='middle' ref={userRef} />
-                <div className='space20' />
+                    <a className='signinTextAbove' onClick={() => userRef.current.focus()}>Username</a>
+                    <Form.Item
+                        name="username"
+                        rules={[{ required: true, message: 'Input a username' }]}
+                    >
+                        <Input className='signinField' size='middle' ref={userRef} />
+                    </Form.Item>
+                    <div className='space20' />
 
-                <a className='signinTextAbove' onClick={() => passRef.current.focus()}>Password</a>
-                <Input.Password className='signinField' size='middle' ref={passRef} />
-                <div className='space20' />
+                    <a className='signinTextAbove' onClick={() => passRef.current.focus()}>Password</a>
+                    <Form.Item
+                        name="password"
+                        rules={[{ required: true, message: 'Input a password' }]}
+                    >
+                        <Input.Password className='signinField' size='middle' ref={passRef} />
+                    </Form.Item>
+                    <div className='space20' />
 
-                <a className='signinTextAbove' onClick={() => confirmPassRef.current.focus()}>Confirm password</a>
-                <Input.Password className='signinField' size='middle' ref={confirmPassRef} />
-                <div className='space20' />
+                    <a className='signinTextAbove' onClick={() => confirmPassRef.current.focus()}>Confirm password</a>
+                    <Form.Item
+                        name="confirm"
+                        dependencies={['password']}
+                        rules={[
+                            { required: true, message: 'Confirm your password' },
+                            ({ getFieldValue }) => ({
+                                validator(rule, value) {
+                                    if (!value || getFieldValue('password') === value) {
+                                        return Promise.resolve();
+                                    }
+                                    return Promise.reject('The two passwords do not match');
+                                },
+                            }),
+                        ]}
+                    >
+                        <Input.Password className='signinField' size='middle' ref={confirmPassRef} />
+                    </Form.Item>
+                    <div className='space20' />
 
-                {/* <Checkbox className='signinCheckbox' defaultChecked={true} onChange={() => console.log('check')}>
-                    Stay signed in
-                </Checkbox>
-                <div className='space32' /> */}
+                    <Button type='primary' className='signinButton' htmlType="submit" loading={props.loading} >
+                        Create account
+                    </Button>
+                    <div className='space20' />
 
-                <a className='signinButton' style={{ color: '#47B57A' }} onClick={() => console.log('sign in')}>
-                    Create Account
-                </a>
-                <div className='space20' />
-
-                <div style={{ textAlign: 'center' }}>
-                    <span>Have an account?</span>
-                    <Link to='/signin'>
-                        <a className='signinBottomText' onClick={() => console.log('make account')}>&nbsp;&nbsp;Sign in</a>
-                    </Link>
-                </div>
+                    <div style={{ textAlign: 'center' }}>
+                        <span>Have an account?</span>
+                        <Link to='/signin'>
+                            <button className='signinBottomText' onClick={() => console.log('make account')}>&nbsp;&nbsp;Sign in</button>
+                        </Link>
+                    </div>
+                </Form>
             </div>
             <div className='space64' />
             <div className='space64' />
@@ -83,4 +161,19 @@ function SignUp() {
     )
 }
 
-export default SignUp;
+// required for connect
+const mapStateToProps = (state) => {
+    return {
+        loading: state.loading,
+        error: state.error
+    }
+}
+
+// dispatch because we're calling on onAuth with the username and password
+const mapDispatchToProps = dispatch => {
+    return {
+        onAuth: (username, email, password1, password2) => dispatch(actions.authSignup(username, email, password1, password2))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

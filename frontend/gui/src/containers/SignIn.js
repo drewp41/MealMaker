@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { Input, Checkbox, Form, Button, Alert } from 'antd';
+import { Input, Checkbox, Form, Button, Alert, message } from 'antd';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/auth';
 
@@ -18,13 +18,12 @@ const useDidMountEffect = (func, deps) => {
     }, deps);
 }
 
-
 const SignIn = (props) => {
 
     const [signinShake, setSigninShake] = useState(false);
     const [invalidCreds, setInvalidCreds] = useState(false);
 
-    let emailRef = React.createRef();
+    let userRef = React.createRef();
     let passRef = React.createRef();
 
     let history = useHistory();
@@ -62,14 +61,13 @@ const SignIn = (props) => {
                 message={'Username or password is incorrect'}
                 type="error" showIcon />
 
-            <div className='signinBox' id={signinShake ? 'signinShake' : ''}>
+            <div className={['signinBox', signinShake ? 'signinShake' : ''].join(' ')}>
                 <Form
                     name="normal_login"
                     className="login-form"
                     initialValues={{
                         remember: true,
                     }}
-                    //onFinish={this.handleSubmit}
                     onFinish={onFinish}
                 // onFinishFailed={this.onFinishFailed}
                 >
@@ -86,23 +84,22 @@ const SignIn = (props) => {
                     </div>
                     <div className='space32' />
 
-                    <a className='signinTextAbove' onClick={() => {
-                        emailRef.current.focus();
-                        console.log(props);
-                    }}>Email</a>
+                    <a className='signinTextAbove' onClick={() => userRef.current.focus()}>Username</a>
                     <Form.Item
                         name="username"
-                        rules={[{ required: true, message: 'Please input your email' }]}
+                        rules={[{ required: true, message: 'Input an username' }]}
                     >
-                        <Input className='signinField' size='large' ref={emailRef} />
+                        <Input className='signinField' size='large' ref={userRef} />
                     </Form.Item>
                     <div className='space32' />
 
                     <a className='signinTextAbove' onClick={() => passRef.current.focus()}>Password</a>
-                    <a className='signinForgot' onClick={() => console.log('forgot')}>Forgot your password?</a>
+                    <a className='signinForgot' onClick={() => message.info('This feature is not currently supported.  Stay tuned!', 5)}>
+                        Forgot your password?
+                    </a>
                     <Form.Item
                         name="password"
-                        rules={[{ required: true, message: 'Please input your password' }]}
+                        rules={[{ required: true, message: 'Input a password' }]}
                     >
                         <Input.Password type="password" className='signinField' size='large' ref={passRef} />
                     </Form.Item>
@@ -114,9 +111,9 @@ const SignIn = (props) => {
                     </Checkbox>
                     <div className='space32' />
 
-                    <button className='signinButton' htmltype="submit" loading={props} >
+                    <Button type='primary' className='signinButton' htmlType="submit" loading={props.loading} >
                         Sign in
-                    </button>
+                    </Button>
                     <div className='space32' />
 
 
@@ -143,8 +140,7 @@ const SignIn = (props) => {
 const mapStateToProps = (state) => {
     return {
         loading: state.loading,
-        error: state.error,
-        token: state.token
+        error: state.error
     }
 }
 

@@ -1418,7 +1418,7 @@ input::-webkit-inner-spin-button {
     position: relative;
 }
 
-#signinShake {
+.signinShake {
     animation: shake .6s ease both;
 }
 
@@ -1487,18 +1487,21 @@ input::-webkit-inner-spin-button {
     line-height: 40px;
     padding: 0 14px;
     background-color: #47B57A;
+    border-color: #47B57A;
     color: #fff !important;
     border-radius: 2px;
     font-size: 16px;
-    transition: background-color .15s;
 }
 
 .signinButton:hover {
     background-color: #5DC08C;
+    border-color: #5DC08C;
+
 }
 
-.signinButton:active {
+.signinButton:active, .signinButton:focus {
     background-color: #40A66E;
+    border-color: #40A66E;
 }
 
 .signinCheckbox:hover {
