@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-    Modal, Steps
+    Modal, Steps, message
 } from 'antd';
 import {
-    SyncOutlined, HeartOutlined, HeartFilled,
+    SyncOutlined, HeartOutlined, HeartTwoTone,
     PushpinOutlined, PushpinFilled
 } from '@ant-design/icons';
 
@@ -64,6 +64,20 @@ const { Step } = Steps;
 
 const MealModal = (props) => {
 
+    const [favorite, setFavorite] = useState(false);
+
+    useEffect(() => {
+        setFavorite(false);
+    }, [props.meal, props.isAuthenticated]);
+
+    function onClickHeart() {
+        if (!props.isAuthenticated) {
+            message.warning('Make an account to save your favorite meals', 4);
+        } else {
+            setFavorite(prev => !prev);
+        }
+    }
+
     function handleCancel() {
         props.closeModal();
     }
@@ -118,7 +132,12 @@ const MealModal = (props) => {
                                         <PushpinFilled className='pinIcon' onClick={(e) => pin(e, true)} /> :
                                         <PushpinOutlined className='pinIcon' onClick={(e) => pin(e, true)} />}
                                     &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <HeartOutlined className='heartIcon' />
+                                    {favorite ?
+                                        <HeartTwoTone className='heartIconFilled' twoToneColor='#eb2f96' onClick={onClickHeart} />
+                                        :
+                                        <HeartOutlined className='heartIconOutline' onClick={onClickHeart} />
+                                    }
+
                                 </span>
                             </div>
                         </div>

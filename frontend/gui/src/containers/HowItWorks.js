@@ -4,7 +4,6 @@ import Footer from './Footer';
 
 
 function HowItWorks(props) {
-    console.log(props);
     return (
         <>
             <Header {...props} />

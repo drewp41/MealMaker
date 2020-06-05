@@ -43,7 +43,6 @@ class App extends Component {
 
 // turns the state into a prop so we can use it in our application
 const mapStateToProps = state => {
-  console.log(state);
   return {
     isAuthenticated: state.token !== null,
     type: state.type

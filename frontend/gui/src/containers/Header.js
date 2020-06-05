@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { Menu, Dropdown } from 'antd';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/auth';
 
@@ -16,6 +16,8 @@ function Header(props) {
     const [hamburger, setHamburger] = useState(false);
     const [rotateClass, setRotateClass] = useState('logoIcon');
 
+    const history = useHistory();
+
     const rotateIcon = () => {
         localStorage.clear();
         if (rotateClass === 'logoIconRotate')
@@ -28,9 +30,9 @@ function Header(props) {
 
     const onMenuClick = (event) => {
         if (event.key === '1') {
-
+            history.push('/profile/saved/');
         } else if (event.key === '2') {
-
+            history.push('/profile/');
         } else {
             return props.logout();
         }
@@ -86,11 +88,11 @@ function Header(props) {
                             // </button>
                             <Dropdown className='headerAccountIcon' placement="bottomRight"
                                 overlay={
-                                    <Menu>
+                                    <Menu onClick={onMenuClick}>
                                         <Menu.ItemGroup title="Account">
                                             <Menu.Item key="1">Saved meals</Menu.Item>
                                             <Menu.Item key="2">Preferences</Menu.Item>
-                                            <Menu.Item key="3" onClick={() => props.logout()}>
+                                            <Menu.Item key="3">
                                                 Sign out →
                                             </Menu.Item>
                                         </Menu.ItemGroup>
@@ -100,18 +102,6 @@ function Header(props) {
                                     <UserOutlined style={{ fontSize: '18px' }} />
                                 </a>
                             </Dropdown>
-                            // <Menu selectedKeys={[1]} mode="horizontal">
-                            //     <SubMenu title="Navigation Three - Submenu">
-                            //         <Menu.ItemGroup title="Item 1">
-                            //             <Menu.Item key="setting:1">Option 1</Menu.Item>
-                            //             <Menu.Item key="setting:2">Option 2</Menu.Item>
-                            //         </Menu.ItemGroup>
-                            //         <Menu.ItemGroup title="Item 2">
-                            //             <Menu.Item key="setting:3">Option 3</Menu.Item>
-                            //             <Menu.Item key="setting:4">Option 4</Menu.Item>
-                            //         </Menu.ItemGroup>
-                            //     </SubMenu>
-                            // </Menu>
                             :
                             <Link to='/signin'>
                                 <button className="headerText" style={{ height: '50px', width: '110px' }}>

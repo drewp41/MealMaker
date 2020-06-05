@@ -866,32 +866,32 @@ const NewLayout = (props) => {
                 <br />
 
                 <MealCard mealNum={1} mealObj={meal1} numMeals={numMeals}
-                    displayMeals={displayMeals}
+                    displayMeals={displayMeals} isAuthenticated={props.isAuthenticated}
                     regenMain={regenMain} regenSide={regenSide}
                     pinMain={pinMain} pinSide={pinSide} />
 
                 <MealCard mealNum={2} mealObj={meal2} numMeals={numMeals}
-                    displayMeals={displayMeals}
+                    displayMeals={displayMeals} isAuthenticated={props.isAuthenticated}
                     regenMain={regenMain} regenSide={regenSide}
                     pinMain={pinMain} pinSide={pinSide} />
 
                 <MealCard mealNum={3} mealObj={meal3} numMeals={numMeals}
-                    displayMeals={displayMeals}
+                    displayMeals={displayMeals} isAuthenticated={props.isAuthenticated}
                     regenMain={regenMain} regenSide={regenSide}
                     pinMain={pinMain} pinSide={pinSide} />
 
                 <MealCard mealNum={4} mealObj={meal4} numMeals={numMeals}
-                    displayMeals={displayMeals}
+                    displayMeals={displayMeals} isAuthenticated={props.isAuthenticated}
                     regenMain={regenMain} regenSide={regenSide}
                     pinMain={pinMain} pinSide={pinSide} />
 
                 <MealCard mealNum={5} mealObj={meal5} numMeals={numMeals}
-                    displayMeals={displayMeals}
+                    displayMeals={displayMeals} isAuthenticated={props.isAuthenticated}
                     regenMain={regenMain} regenSide={regenSide}
                     pinMain={pinMain} pinSide={pinSide} />
 
                 <MealCard mealNum={6} mealObj={meal6} numMeals={numMeals}
-                    displayMeals={displayMeals}
+                    displayMeals={displayMeals} isAuthenticated={props.isAuthenticated}
                     regenMain={regenMain} regenSide={regenSide}
                     pinMain={pinMain} pinSide={pinSide} />
 

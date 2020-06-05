@@ -836,7 +836,7 @@ input::-webkit-inner-spin-button {
 .mealCardIcons {
     float: right;
     font-size: 18px;
-    color: #606060;
+    color: #5e6062;
     /* margin-top: -1px; */
 }
 
@@ -844,9 +844,14 @@ input::-webkit-inner-spin-button {
     transition: opacity 0.1s;
 }
 
-.regenIcon:hover, .pinIcon:hover, .heartIcon:hover  {
-    color: #202020;
+.regenIcon:hover, .pinIcon:hover  {
+    color: #1e2022;
 }
+
+.heartIconOutline:hover {
+    color: rgb(224, 36, 94);
+}
+
 
 @media screen and (max-width: 750px) and (min-width: 500px) { 
     .mealCard {
