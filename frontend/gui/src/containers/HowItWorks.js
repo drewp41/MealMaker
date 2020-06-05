@@ -4,9 +4,10 @@ import Footer from './Footer';
 
 
 function HowItWorks(props) {
+    console.log(props);
     return (
         <>
-            <Header />
+            <Header {...props} />
             <p style={{ fontSize: '30px' }}>How It Works</p>
             <div style={{ height: '500px' }} />
             <Footer />

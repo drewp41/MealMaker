@@ -5,5 +5,5 @@ export const updateObject = (oldObject, updatedProperties) => {
         // replace all the shared keys in the oldObject
         ...oldObject,
         ...updatedProperties
-    }
-}
+    };
+};

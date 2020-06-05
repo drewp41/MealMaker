@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, useHistory, useLocation } from 'react-router-dom';
+import React, { Component } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import BaseRouter from './routes';
 import { connect } from 'react-redux';
 
 import 'antd/dist/antd.css';
-import CustomLayout from './containers/Layout';
+// import CustomLayout from './containers/Layout';
 import Home from './containers/Home';
 import ScrollToTop from './components/ScrollToTop';
 import * as actions from './store/actions/auth';
@@ -13,53 +13,40 @@ import * as actions from './store/actions/auth';
 import createHistory from 'history/createBrowserHistory';
 const history = createHistory();
 
-// Listen to history changes.
-// You can unlisten by calling the constant (`unlisten()`).
-const unlisten = history.listen((location, action) => {
-  console.log(action, location.pathname, location.state);
-});
+class App extends Component {
 
-function usePageViews() {
-  let location = useLocation();
-  React.useEffect(() => {
-    console.log('yooo');
-  }, [location]);
-}
+  componentDidMount() {
+    this.props.onTryAutoSignup();
+  }
 
+  render() {
 
-
-const App = (props) => {
-
-  // unmount
-  useEffect(() => {
-    return () => {
-      props.onTryAutoSignup();
-    }
-  }, [])
-
-  return (
-    // <div>
-    //   <Router>
-    //     <CustomLayout {...props}>
-    //       <BaseRouter />
-    //     </CustomLayout>
-    //   </Router>
-    // </div>
-    <div>
-      <Router history={history}>
-        <ScrollToTop />
-        {/* <NewLayout {...this.props}> */}
-        <BaseRouter {...props} />
-        {/* </NewLayout> */}
-      </Router>
-    </div>
-  );
+    return (
+      // <div>
+      //   <Router>
+      //     <CustomLayout {...this.props}>
+      //       <BaseRouter />
+      //     </CustomLayout>
+      //   </Router>
+      // </div>
+      <div>
+        <Router history={history}>
+          <ScrollToTop />
+          {/* <NewLayout {...this.props}> */}
+          <BaseRouter {...this.props} />
+          {/* </NewLayout> */}
+        </Router>
+      </div>
+    );
+  }
 }
 
 // turns the state into a prop so we can use it in our application
 const mapStateToProps = state => {
+  console.log(state);
   return {
-    isAuthenticated: state.token !== null
+    isAuthenticated: state.token !== null,
+    type: state.type
   }
 }
 
@@ -72,3 +59,4 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+

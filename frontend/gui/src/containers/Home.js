@@ -199,7 +199,7 @@ const NewLayout = (props) => {
             return !prev;
         });
         setChangedPrefs(true);
-        console.log(props.isAuthenticated);
+        console.log(props);
     }
 
     function onCalorieChange(value) {

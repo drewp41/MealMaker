@@ -78,9 +78,9 @@
 }
 
 .condensedHeaderText {
-    font-size: 18px;
-    font-weight: 300;
-    color: var(--mainTextColor);
+    font-size: 17px;
+    font-weight: 400;
+    color: #474c52;
     text-align: left;
 }
 
@@ -125,7 +125,7 @@ button {
 }
 
 .headerText:hover, .condensedHeaderText:hover { 
-    color: grey 
+    color: grey; 
 }
 
 .headerText:hover #signInArrow {
@@ -146,6 +146,9 @@ button {
 
 .colHeaderR {
     min-width: 110px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .headerLRSpace {
@@ -164,6 +167,17 @@ button {
     border-top: 2px solid #f0f0f0;
     width: 1060px;
     margin: 0 auto;
+}
+
+.headerAccountIcon {
+    color: #474c52;
+}
+.headerAccountIcon:hover {
+    color: grey;
+}
+.ant-dropdown, .ant-dropdown-menu-item {
+    /* font-size: 15px;
+    padding: 10px 12px; */
 }
 
 /* Condenses the width of the header border */
@@ -1404,6 +1418,16 @@ input::-webkit-inner-spin-button {
     position: relative;
 }
 
+#signinShake {
+    animation: shake .6s ease both;
+}
+
+.signinAlert {
+    position: absolute;
+    top: 60px;
+    transition: opacity 0.1s;
+}
+
 .ant-form, .ant-form-item {
     all: unset;
 }
@@ -1454,7 +1478,6 @@ input::-webkit-inner-spin-button {
     color: #404040;
 }
 
-
 .signinButton {
     white-space: nowrap;
     display: inline-block;
@@ -1467,6 +1490,7 @@ input::-webkit-inner-spin-button {
     color: #fff !important;
     border-radius: 2px;
     font-size: 16px;
+    transition: background-color .15s;
 }
 
 .signinButton:hover {

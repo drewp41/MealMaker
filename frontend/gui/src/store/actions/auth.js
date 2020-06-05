@@ -20,7 +20,7 @@ export const authFail = error => {
     return {
         type: actionTypes.AUTH_FAIL,
         token: null,
-        error: error
+        error: 34
     }
 }
 

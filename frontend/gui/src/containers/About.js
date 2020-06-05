@@ -6,7 +6,7 @@ import Footer from './Footer';
 function About(props) {
     return (
         <>
-            <Header />
+            <Header {...props} />
             <p style={{ fontSize: '30px' }}>Hello</p>
             <div style={{ height: '500px' }} />
             <Footer />

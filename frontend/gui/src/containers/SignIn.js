@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Input, Checkbox, Form, Button } from 'antd';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { Input, Checkbox, Form, Button, Alert } from 'antd';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/auth';
 
@@ -8,17 +8,41 @@ import logo from '../logo.svg';
 
 // green text: #40a66e
 
+// custom hook
+const useDidMountEffect = (func, deps) => {
+    const didMount = useRef(false);
+
+    useEffect(() => {
+        if (didMount.current) func();
+        else didMount.current = true;
+    }, deps);
+}
+
 
 const SignIn = (props) => {
 
-    let [showPass, setShowPass] = useState(false);
+    const [signinShake, setSigninShake] = useState(false);
+    const [invalidCreds, setInvalidCreds] = useState(false);
 
     let emailRef = React.createRef();
     let passRef = React.createRef();
 
-    function onClickSignin() {
-        console.log(passRef);
-    }
+    let history = useHistory();
+
+    // runs except on initial render
+    useDidMountEffect(() => {
+        if (props.type === 'AUTH_FAIL') {
+            setSigninShake(true);
+            setInvalidCreds(true);
+            setTimeout(() => {
+                setSigninShake(false);
+            }, 600)
+        }
+        if (props.type === 'AUTH_SUCCESS') {
+            setInvalidCreds(false);
+            history.goBack();
+        }
+    }, [props.type])
 
     const onFinish = values => {
         console.log('Received values of form: ', values);
@@ -26,24 +50,19 @@ const SignIn = (props) => {
     }
 
     return (
+
         <div className='signinPage'>
             <div style={{ height: '60px' }} />
             <div className='signinLogo'>
-
             </div>
-            <div className='signinBox'>
-                {/* padding centers it a little better */}
-                <div style={{ textAlign: 'center', padding: '0 6px 0 0' }}>
-                    <Link to='/'>
-                        <img src={logo} alt="logo" style={{ width: 32, height: 32, margin: '-20px 0 0 0' }} draggable='false' />
-                    </Link>
-                    <Link to='/'>
-                        <span className='logoText' style={{ padding: '0 0 0 8px' }}>
-                            mealmaker.io
-                        </span>
-                    </Link>
-                </div>
-                <div className='space32' />
+
+            {props.error && <p>{props.error.message}</p>}
+
+            <Alert className='signinAlert' style={{ opacity: invalidCreds ? 1 : 0 }}
+                message={'Username or password is incorrect'}
+                type="error" showIcon />
+
+            <div className='signinBox' id={signinShake ? 'signinShake' : ''}>
                 <Form
                     name="normal_login"
                     className="login-form"
@@ -54,14 +73,26 @@ const SignIn = (props) => {
                     onFinish={onFinish}
                 // onFinishFailed={this.onFinishFailed}
                 >
+                    {/* padding centers it a little better */}
+                    <div style={{ textAlign: 'center', padding: '0 6px 0 0' }}>
+                        <Link to='/'>
+                            <img src={logo} alt="logo" style={{ width: 32, height: 32, margin: '-20px 0 0 0' }} draggable='false' />
+                        </Link>
+                        <Link to='/'>
+                            <span className='logoText' style={{ padding: '0 0 0 8px' }}>
+                                mealmaker.io
+                        </span>
+                        </Link>
+                    </div>
+                    <div className='space32' />
 
                     <a className='signinTextAbove' onClick={() => {
                         emailRef.current.focus();
-                        console.log(props.isAuthenticated);
+                        console.log(props);
                     }}>Email</a>
                     <Form.Item
                         name="username"
-                        rules={[{ required: true, message: 'Please input your Username!' }]}
+                        rules={[{ required: true, message: 'Please input your email' }]}
                     >
                         <Input className='signinField' size='large' ref={emailRef} />
                     </Form.Item>
@@ -71,39 +102,40 @@ const SignIn = (props) => {
                     <a className='signinForgot' onClick={() => console.log('forgot')}>Forgot your password?</a>
                     <Form.Item
                         name="password"
-                        rules={[{ required: true, message: 'Please input your Password!' }]}
+                        rules={[{ required: true, message: 'Please input your password' }]}
                     >
-                        <Input type="password" className='signinField' size='large' ref={passRef} />
+                        <Input.Password type="password" className='signinField' size='large' ref={passRef} />
                     </Form.Item>
                     <div className='space32' />
-                    <Button type="primary" htmlType="submit" className="login-form-button">
-                        Log in
-                    </Button>
+
+
+                    <Checkbox className='signinCheckbox' defaultChecked={true} onChange={() => console.log('check')}>
+                        Stay signed in
+                    </Checkbox>
+                    <div className='space32' />
+
+                    <button className='signinButton' htmltype="submit" loading={props} >
+                        Sign in
+                    </button>
+                    <div className='space32' />
+
+
+                    <div style={{ textAlign: 'center' }}>
+                        <span>Don't have an account?</span>
+                        <Link to='/signup'>
+                            <button className='signinBottomText' onClick={() => console.log('make account')}>
+                                &nbsp;&nbsp;Sign up
+                            </button>
+                        </Link>
+                    </div>
                 </Form>
-
-                <Checkbox className='signinCheckbox' defaultChecked={true} onChange={() => console.log('check')}>
-                    Stay signed in
-                </Checkbox>
-                <div className='space32' />
-
-                <a className='signinButton' style={{ color: '#47B57A' }} onClick={onClickSignin}>
-                    Sign in
-                </a>
-                <div className='space32' />
-
-                <div style={{ textAlign: 'center' }}>
-                    <span>Don't have an account?</span>
-                    <Link to='/signup'>
-                        <a className='signinBottomText' onClick={() => console.log('make account')}>&nbsp;&nbsp;Sign up</a>
-                    </Link>
-                </div>
             </div>
             <div className='space64' />
             <div className='space64' />
             <div className='signinCopyright'>
                 © 2020 Andrew Paul
             </div>
-        </div >
+        </div>
     )
 }
 
@@ -111,7 +143,8 @@ const SignIn = (props) => {
 const mapStateToProps = (state) => {
     return {
         loading: state.loading,
-        error: state.error
+        error: state.error,
+        token: state.token
     }
 }
 

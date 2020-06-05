@@ -29,10 +29,10 @@ const BaseRouter = (props) => {
             <Route exact path='/signup/' component={SignupOld} /> */}
 
             <Route exact path='/' render={(routeProps) => (<Home {...props} />)} />
-            <Route exact path='/howitworks/' component={HowItWorks} />
-            <Route exact path='/about/' component={About} />
+            <Route exact path='/howitworks/' render={() => (<HowItWorks {...props} />)} />
+            <Route exact path='/about/' render={(routeProps) => (<About {...props} />)} />
             <Route exact path='/signin/' render={(routeProps) => (<SignIn {...props} />)} />
-            <Route exact path='/signup/' component={SignUp} />
+            <Route exact path='/signup/' render={(routeProps) => (<SignUp {...props} />)} />
         </div>
     )
 };
