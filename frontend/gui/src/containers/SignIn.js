@@ -26,7 +26,7 @@ const SignIn = (props) => {
     let userRef = React.createRef();
     let passRef = React.createRef();
 
-    let history = useHistory();
+    const history = useHistory();
 
     // runs except on initial render
     useDidMountEffect(() => {
@@ -39,7 +39,7 @@ const SignIn = (props) => {
         }
         if (props.type === 'AUTH_SUCCESS') {
             setInvalidCreds(false);
-            history.goBack();
+            history.push('/');
         }
     }, [props.type])
 
