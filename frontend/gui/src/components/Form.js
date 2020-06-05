@@ -2,6 +2,7 @@ import React from 'react';
 import { Form, Input, Button } from 'antd';
 import axios from 'axios';
 
+
 class CustomForm extends React.Component {
   // requestType = post or put
   handleFormSubmit = (event, requestType, foodID) => {
@@ -10,6 +11,7 @@ class CustomForm extends React.Component {
     const carb = event.target.elements.carb.value;
     const protein = event.target.elements.protein.value;
     const fat = event.target.elements.fat.value;
+    const meal = event.target.elements.meal.value;
 
     switch (requestType) {
       case 'post':
@@ -17,7 +19,8 @@ class CustomForm extends React.Component {
           calories: calories,
           carb: carb,
           protein: protein,
-          fat: fat
+          fat: fat,
+          meal: meal,
         })
           .then(res => console.log(res))
           .catch(error => console.err(error));
@@ -26,7 +29,8 @@ class CustomForm extends React.Component {
           calories: calories,
           carb: carb,
           protein: protein,
-          fat: fat
+          fat: fat,
+          meal: meal
         })
           .then(res => console.log(res))
           .catch(error => console.err(error));
@@ -51,6 +55,9 @@ class CustomForm extends React.Component {
           </Form.Item>
           <Form.Item label="Fat">
             <Input name="fat" placeholder="65" />
+          </Form.Item>
+          <Form.Item label="Meal">
+            <Input name="meal" placeholder="Chicken" />
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit">{this.props.btnText}</Button>

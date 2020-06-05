@@ -29,15 +29,20 @@ function Saved(props) {
     return (
         <>
             <Header {...props} />
-            <p style={{ fontSize: '30px' }}>Saved meals</p>
-            <Foods data={foods} />
-            <br />
-            <h2>Create a meal plan</h2>
-            <CustomForm
-                requestType="post"
-                foodID={null}
-                btnText="Create" />
-            <div style={{ height: '500px' }} />
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', maxWidth: '1000px' }}>
+                    <br />
+                    <p style={{ fontSize: '30px' }}>Saved meals</p>
+                    <Foods data={foods} />
+                    {/* <br />
+                    <h2>Create a meal plan</h2>
+                    <CustomForm
+                        requestType="post"
+                        foodID={null}
+                        btnText="Create" /> */}
+                    <div style={{ height: '200px' }} />
+                </div>
+            </div>
             <Footer />
         </>
     )

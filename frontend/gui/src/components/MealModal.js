@@ -6,6 +6,7 @@ import {
     SyncOutlined, HeartOutlined, HeartTwoTone,
     PushpinOutlined, PushpinFilled
 } from '@ant-design/icons';
+import axios from 'axios';
 
 import groceries from '../FoodIcons/groceries.svg';
 
@@ -66,6 +67,7 @@ const MealModal = (props) => {
 
     const [favorite, setFavorite] = useState(false);
 
+    // remove the heart icon on a new meal or the user is signed out
     useEffect(() => {
         setFavorite(false);
     }, [props.meal, props.isAuthenticated]);
@@ -75,7 +77,16 @@ const MealModal = (props) => {
             message.warning('Make an account to save your favorite meals', 4);
         } else {
             setFavorite(prev => !prev);
+            saveFood()
         }
+    }
+
+    async function saveFood() {
+        return axios.post('http://127.0.0.1:8000/api/', {
+            meal: JSON.stringify(props.meal)
+        })
+            .then(res => console.log(res))
+            .catch(error => console.log(error));
     }
 
     function handleCancel() {

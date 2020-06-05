@@ -200,7 +200,7 @@ const NewLayout = (props) => {
             return !prev;
         });
         setChangedPrefs(true);
-        console.log(localStorage.getItem('token'));
+        console.log(JSON.stringify(meal1));
         // axios.get('http://127.0.0.1:8000/rest-auth/user/', {
         //     headers: { 'Authorization': `Token ${localStorage.getItem('token')}` }
         // })

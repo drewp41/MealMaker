@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { List, Avatar } from 'antd';
 import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
+
+import MealModal from './MealModal';
+import FoodEntry from './FoodEntry';
+
+import groceries from '../FoodIcons/groceries.svg';
+
+
+// const emptyMeal = {
+//     name: '', calories: 0, carbs: 0,
+//     protein: 0, fat: 0, ingredients: [],
+//     instructions: [], servings: 0, makes: 0,
+//     prepTime: 0, cookTime: 0
+// }
 
 
 const IconText = ({ icon, text }) => (
@@ -11,43 +24,39 @@ const IconText = ({ icon, text }) => (
 );
 
 const Foods = (props) => {
+
     return (
         <List
             itemLayout="vertical"
             size="large"
             pagination={{
                 onChange: page => {
-                    console.log(page);
+                    // console.log(page);
                 },
-                pageSize: 3,
+                pageSize: 6,
             }}
             dataSource={props.data}
-            renderItem={item => (
-                <List.Item
-                    key={item.title}
-                    actions={[
-                        <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
-                        <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
-                        <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />,
-                    ]}
-                    extra={
-                        <img
-                            width={272}
-                            alt="logo"
-                            src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-                        />
-                    }
-                >
-                    <List.Item.Meta
-                        avatar={<Avatar src={item.avatar} />}
-                        title={<a href={`/foods/${item.id}`}>{'Calories: ' + item.calories}</a>}
-                        //title={'Calories: ' + item.calories}
-                        description={'Protein: ' + item.protein
-                            + ' Carbs: ' + item.carb + ' Fats: ' + item.fat}
-                    />
-                    {item.content}
-                </List.Item>
-            )}
+
+            renderItem={item => {
+                let parsed = JSON.parse(item.meal);
+                return (
+                    <FoodEntry meal={parsed} item={item}
+                        isAuthenticated={props.isAuthenticated} />
+                    // <>
+                    //     <MealModal visible={showModal} meal={parsed} closeModal={closeModal}
+                    //         regen={null} pin={null} pinned={null}
+                    //         loading={null} isAuthenticated={props.isAuthenticated} />
+                    //     <List.Item key={item.title} style={{ cursor: 'pointer' }}
+                    //         onClick={() => setShowModal(true)}>
+                    //         <List.Item.Meta
+                    //             avatar={<Avatar src={groceries} />}
+                    //             title={parsed.name}
+                    //             description={parsed.calories + ' calories'}
+                    //         />
+                    //     </List.Item>
+                    // </>
+                )
+            }}
         />
     )
 }
