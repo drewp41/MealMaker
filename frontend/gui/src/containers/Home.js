@@ -396,7 +396,7 @@ const NewLayout = (props) => {
             sideLoading: true,
         }));
 
-        updateSide(num);
+        updateSide(num, true);
 
         setTimeout(() => {
             eval(setMealVar)(prev => ({
@@ -434,6 +434,7 @@ const NewLayout = (props) => {
             return true;
     }
 
+    // not used, but it's to update both the meal and the side
     function updateMeal(num) {
         const setMealVar = 'setMeal' + num.toString();
 
@@ -442,7 +443,7 @@ const NewLayout = (props) => {
             // iterator returns {value, done}
             const mealObj = breakfastRef.current.next();
             const sideObj = breakfastSideRef.current.next();
-            if (!mealObj.done) { // mealObj and sideObj are on the same "index", so if one is done, the other is too
+            if (!mealObj.done) {
                 eval(setMealVar)(prev => ({
                     ...prev,
                     main: mealObj.value,
@@ -485,7 +486,7 @@ const NewLayout = (props) => {
             // iterator returns {value, done}
             const mealObj = regularRef.current.next();
             const sideObj = regularSideRef.current.next();
-            if (!mealObj.done) { // mealObj and sideObj are on the same "index", so if one is done, the other is too
+            if (!mealObj.done) {
                 eval(setMealVar)(prev => ({
                     ...prev,
                     main: mealObj.value,
@@ -530,7 +531,7 @@ const NewLayout = (props) => {
         if (num === 1) {
             // iterator returns {value, done}
             const mealObj = breakfastRef.current.next();
-            if (!mealObj.done) { // mealObj and sideObj are on the same "index", so if one is done, the other is too
+            if (!mealObj.done) {
                 eval(setMealVar)(prev => ({
                     ...prev,
                     main: mealObj.value,
@@ -567,7 +568,7 @@ const NewLayout = (props) => {
         else {
             // iterator returns {value, done}
             const mealObj = regularRef.current.next();
-            if (!mealObj.done) { // mealObj and sideObj are on the same "index", so if one is done, the other is too
+            if (!mealObj.done) {
                 eval(setMealVar)(prev => ({
                     ...prev,
                     main: mealObj.value,
@@ -601,14 +602,18 @@ const NewLayout = (props) => {
         }
     }
 
-    async function updateSide(num) {
+    async function updateSide(num, fromRegen = false) {
+        console.log(fromRegen);
         const setMealVar = 'setMeal' + num.toString();
-
         // IF BREAKFAST
         if (num === 1) {
             // iterator returns {value, done}
             const sideObj = breakfastSideRef.current.next();
-            if (!sideObj.done) { // mealObj and sideObj are on the same "index", so if one is done, the other is too
+            if (!sideObj.done) {
+                // skips empty meals if it's from a regen
+                if (fromRegen && sideObj.value.name === '') { // empty meal
+                    return updateSide(num, true);
+                }
                 eval(setMealVar)(prev => ({
                     ...prev,
                     side: sideObj.value,
@@ -644,7 +649,11 @@ const NewLayout = (props) => {
         else {
             // iterator returns {value, done}
             const sideObj = regularSideRef.current.next();
-            if (!sideObj.done) { // mealObj and sideObj are on the same "index", so if one is done, the other is too
+            if (!sideObj.done) {
+                // skips empty meals if it's from a regen
+                if (fromRegen && sideObj.value.name === '') { // empty meal
+                    return updateSide(num, true);
+                }
                 eval(setMealVar)(prev => ({
                     ...prev,
                     side: sideObj.value
