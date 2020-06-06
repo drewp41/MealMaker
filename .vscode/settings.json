@@ -5,7 +5,8 @@
         "--ignore=E501"
     ],
     "git.ignoreLimitWarning": true,
-    "maven.view": "flat"
+    "maven.view": "flat",
+    "editor.minimap.enabled": false,
     /*"editor.formatOnSave": true,
     "python.linting.pycodestyleEnabled": true,
     "python.linting.pylintPath": "/path/to/pylint",

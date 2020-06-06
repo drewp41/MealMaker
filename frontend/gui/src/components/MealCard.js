@@ -78,10 +78,10 @@ const MealCard = (props) => {
                     {props.mealNum !== 1 && <br />}
                     <MealModal visible={showMainModal} meal={props.mealObj.main} closeModal={closeMainModal}
                         regen={regenMain} pin={pinMain} pinned={props.mealObj.mainPinned} useIcons={true}
-                        loading={props.mealObj.mainLoading} isAuthenticated={props.isAuthenticated} />
+                        loading={props.mealObj.mainLoading} isAuthenticated={props.isAuthenticated} username={props.username} />
                     <MealModal visible={showSideModal} meal={props.mealObj.side} closeModal={closeSideModal}
                         regen={regenSide} pin={pinSide} pinned={props.mealObj.sidePinned} useIcons={true}
-                        loading={props.mealObj.sideLoading} isAuthenticated={props.isAuthenticated} />
+                        loading={props.mealObj.sideLoading} isAuthenticated={props.isAuthenticated} username={props.username} />
                     <Card className={['mealCard', 'cardShadow2',
                         (!props.displayMeals && !props.mealObj.mainPinned && !props.mealObj.sidePinned) ? 'mealCardSkeletonPadding' : ''].join(' ')}
                         title={

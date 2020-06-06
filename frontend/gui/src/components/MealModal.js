@@ -83,6 +83,7 @@ const MealModal = (props) => {
 
     async function saveFood() {
         return axios.post('http://127.0.0.1:8000/api/', {
+            created_by: props.username,
             meal: JSON.stringify(props.meal)
         })
             .then(res => message.success('Meal saved to favorites', 3))

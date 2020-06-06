@@ -16,10 +16,13 @@ function Saved(props) {
 
     // Redirect the user back to the home page if they aren't logged in
     useEffect(() => {
-        if (!props.isAuthenticated)
+        if (!props.isAuthenticated) {
             history.push('/');
-
-        axios.get('http://127.0.0.1:8000/api/')
+            return;
+        }
+        axios.get('http://127.0.0.1:8000/api/', {
+            headers: { 'Authorization': `Token ${localStorage.getItem('token')}` }
+        })
             .then(res => {
                 setFoods(res.data);
                 console.log(res.data);

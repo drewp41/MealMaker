@@ -106,11 +106,25 @@ const NewLayout = (props) => {
     const [meal5, setMeal5] = useState(emptyObj);
     const [meal6, setMeal6] = useState(emptyObj);
 
+    const [username, setUsername] = useState(null);
+
     const { TabPane } = Tabs;
 
     // run on initial render only
     useEffect(() => {
         console.log('on render');
+        // get the username to be sent with the GET request when saving a meal
+        if (props.isAuthenticated) {
+            axios.get('http://127.0.0.1:8000/rest-auth/user/', {
+                headers: { 'Authorization': `Token ${localStorage.getItem('token')}` }
+            })
+                .then(res => {
+                    setUsername(res.data.username);
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        }
         const s_calories = localStorage.getItem('calories');
         if (s_calories) setCalories(s_calories);
         const s_numMeals = localStorage.getItem('numMeals');
@@ -200,16 +214,6 @@ const NewLayout = (props) => {
             return !prev;
         });
         setChangedPrefs(true);
-        console.log(availableTime);
-        // axios.get('http://127.0.0.1:8000/rest-auth/user/', {
-        //     headers: { 'Authorization': `Token ${localStorage.getItem('token')}` }
-        // })
-        //     .then(res => {
-        //         console.log(res);
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //     })
     }
 
     function onCalorieChange(value) {
@@ -865,32 +869,32 @@ const NewLayout = (props) => {
 
                 <MealCard mealNum={1} mealObj={meal1} numMeals={numMeals}
                     displayMeals={displayMeals} isAuthenticated={props.isAuthenticated}
-                    regenMain={regenMain} regenSide={regenSide}
+                    regenMain={regenMain} regenSide={regenSide} username={username}
                     pinMain={pinMain} pinSide={pinSide} />
 
                 <MealCard mealNum={2} mealObj={meal2} numMeals={numMeals}
                     displayMeals={displayMeals} isAuthenticated={props.isAuthenticated}
-                    regenMain={regenMain} regenSide={regenSide}
+                    regenMain={regenMain} regenSide={regenSide} username={username}
                     pinMain={pinMain} pinSide={pinSide} />
 
                 <MealCard mealNum={3} mealObj={meal3} numMeals={numMeals}
                     displayMeals={displayMeals} isAuthenticated={props.isAuthenticated}
-                    regenMain={regenMain} regenSide={regenSide}
+                    regenMain={regenMain} regenSide={regenSide} username={username}
                     pinMain={pinMain} pinSide={pinSide} />
 
                 <MealCard mealNum={4} mealObj={meal4} numMeals={numMeals}
                     displayMeals={displayMeals} isAuthenticated={props.isAuthenticated}
-                    regenMain={regenMain} regenSide={regenSide}
+                    regenMain={regenMain} regenSide={regenSide} username={username}
                     pinMain={pinMain} pinSide={pinSide} />
 
                 <MealCard mealNum={5} mealObj={meal5} numMeals={numMeals}
                     displayMeals={displayMeals} isAuthenticated={props.isAuthenticated}
-                    regenMain={regenMain} regenSide={regenSide}
+                    regenMain={regenMain} regenSide={regenSide} username={username}
                     pinMain={pinMain} pinSide={pinSide} />
 
                 <MealCard mealNum={6} mealObj={meal6} numMeals={numMeals}
                     displayMeals={displayMeals} isAuthenticated={props.isAuthenticated}
-                    regenMain={regenMain} regenSide={regenSide}
+                    regenMain={regenMain} regenSide={regenSide} username={username}
                     pinMain={pinMain} pinSide={pinSide} />
 
                 <div style={{ height: '35px' }} />
