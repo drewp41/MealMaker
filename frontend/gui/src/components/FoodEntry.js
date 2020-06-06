@@ -33,28 +33,28 @@ const FoodEntry = (props) => {
 
     return (
         <>
+            <MealModal visible={showModal} meal={props.meal}
+                closeModal={closeModal} useIcons={false} />
             {showEntry &&
-                <MealModal visible={showModal} meal={props.meal}
-                    closeModal={closeModal} useIcons={false} />
-                &&
+
                 <List.Item key={props.item.title}
                     actions={[
                         <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" onConfirm={removeEntry} >
                             <span>
                                 <CloseCircleOutlined style={{ marginRight: '8px' }} />
-                            Remove
-                        </span>
-                            {/* <IconText icon={CloseCircleOutlined} text="Remove" key="deleteItem" /> */}
-                        </Popconfirm>,
-                        // <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
-                        // <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />,
+                                Remove
+                            </span>
+                        </Popconfirm>
                     ]}>
                     <List.Item.Meta
                         avatar={<Avatar src={groceries} />}
                         title={props.meal.name}
                         description={props.meal.calories + ' calories'}
                         style={{ cursor: 'pointer' }}
-                        onClick={() => setShowModal(true)}
+                        onClick={() => {
+                            setShowModal(true);
+                            console.log(showModal);
+                        }}
                     />
                 </List.Item>
             }

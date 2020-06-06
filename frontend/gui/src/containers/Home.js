@@ -124,7 +124,7 @@ const NewLayout = (props) => {
         const s_changedPrefs = localStorage.getItem('changedPrefs');
         if (typeof s_changedPrefs === 'string') setChangedPrefs(JSON.parse(s_changedPrefs) === true)
         const s_availableTime = localStorage.getItem('availableTime');
-        if (s_availableTime) setAvailableTime(s_availableTime);
+        if (s_availableTime) setAvailableTime(parseInt(s_availableTime));
 
         const s_meal1 = JSON.parse(localStorage.getItem('meal1'));
         if (s_meal1) setMeal1(s_meal1);
@@ -200,6 +200,7 @@ const NewLayout = (props) => {
             return !prev;
         });
         setChangedPrefs(true);
+        console.log(availableTime);
         // axios.get('http://127.0.0.1:8000/rest-auth/user/', {
         //     headers: { 'Authorization': `Token ${localStorage.getItem('token')}` }
         // })
@@ -612,7 +613,6 @@ const NewLayout = (props) => {
     }
 
     async function updateSide(num, fromRegen = false) {
-        console.log(fromRegen);
         const setMealVar = 'setMeal' + num.toString();
         // IF BREAKFAST
         if (num === 1) {

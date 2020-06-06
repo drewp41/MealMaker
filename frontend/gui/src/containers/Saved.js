@@ -34,15 +34,14 @@ function Saved(props) {
                     <br />
                     <p style={{ fontSize: '24px', padding: '0 16px' }}>Saved meals</p>
                     <Foods data={foods} />
-                    {/* <br />
-                    <h2>Create a meal plan</h2>
-                    <CustomForm
+                    {/*<CustomForm
                         requestType="post"
                         foodID={null}
                         btnText="Create" /> */}
-                    <div style={{ height: '200px' }} />
                 </div>
             </div>
+            <div style={{ height: '420px' }} />
+
             <Footer />
         </>
     )

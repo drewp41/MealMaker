@@ -63,6 +63,7 @@ const randMainSides = 0.7;
 // ========== Fetch all meals ==========
 export async function fetchMeals(cals, numMeals, carbs, protein, fat, availableTime) {
     console.log('Fetching all meals');
+    console.log(typeof availableTime);
     if (numMeals === 1) {
         const feast = await fetchBreakfast(cals, numMeals, carbs, protein, fat, availableTime);
         return [...feast, [], []];
@@ -216,7 +217,7 @@ async function fetchBreakfastMainData(cals, numMeals, carbs, protein, fat, avail
                     minFat: minFat,
                     maxFat: maxFat,
                     type: (numMeals > 1) ? 'breakfast' : 'main+course',
-                    maxReadyTime: availableTime + 1,
+                    maxReadyTime: availableTime,
                     number: 6,
                 }
             });
@@ -304,7 +305,7 @@ async function fetchBreakfastSideData(cals, numMeals, carbs, protein, fat, avail
                         minProtein: 0,
                         minFat: 0,
                         type: 'side+dish',
-                        maxReadyTime: availableTime + 1,
+                        maxReadyTime: availableTime,
                         number: 6
                     }
                 });
@@ -437,7 +438,7 @@ async function fetchRegularMainData(cals, numMeals, carbs, protein, fat, availab
                     minFat: minFat,
                     maxFat: maxFat,
                     type: 'main+course',
-                    maxReadyTime: availableTime + 1,
+                    maxReadyTime: availableTime,
                     number: 6 * (numMeals - 1), //exclude bfast
                 }
             });
@@ -522,7 +523,7 @@ async function fetchRegularSideData(cals, numMeals, carbs, protein, fat, availab
                     minProtein: 0,
                     minFat: 0,
                     type: 'side+dish',
-                    maxReadyTime: availableTime + 1,
+                    maxReadyTime: availableTime,
                     number: 6 * (numMeals - 1), //exclude bfast
                 }
             });

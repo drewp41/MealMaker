@@ -85,7 +85,7 @@ const MealModal = (props) => {
         return axios.post('http://127.0.0.1:8000/api/', {
             meal: JSON.stringify(props.meal)
         })
-            .then(res => console.log(res))
+            .then(res => message.success('Meal saved to favorites', 3))
             .catch(error => console.log(error));
     }
 
