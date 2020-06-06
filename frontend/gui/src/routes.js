@@ -31,7 +31,7 @@ const BaseRouter = (props) => {
             <Route exact path='/signup/' component={SignupOld} /> */}
 
             <Route exact path='/' render={(routeProps) => (<Home {...props} />)} />
-            <Route exact path='/howitworks/' render={() => (<HowItWorks {...props} />)} />
+            <Route exact path='/howitworks/' render={(routeProps) => (<HowItWorks {...props} />)} />
             <Route exact path='/about/' render={(routeProps) => (<About {...props} />)} />
             <Route exact path='/signin/' render={(routeProps) => (<SignIn {...props} />)} />
             <Route exact path='/signup/' render={(routeProps) => (<SignUp {...props} />)} />

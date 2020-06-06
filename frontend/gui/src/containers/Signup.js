@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as actions from '../store/actions/auth';
 
 import logo from '../logo.svg';
+import { formatCountdown } from 'antd/lib/statistic/utils';
 
 // green text: #40a66e
 
@@ -22,6 +23,7 @@ const SignUp = (props) => {
 
     const [signinShake, setSigninShake] = useState(false);
     const [invalidCreds, setInvalidCreds] = useState(false);
+    const [email, setEmail] = useState('');
 
     let emailRef = React.createRef();
     let userRef = React.createRef();
@@ -29,6 +31,8 @@ const SignUp = (props) => {
     let confirmPassRef = React.createRef();
 
     const history = useHistory();
+
+    const [form] = Form.useForm();
 
     // runs except on initial render
     useDidMountEffect(() => {
@@ -45,6 +49,13 @@ const SignUp = (props) => {
         }
     }, [props.type])
 
+    useEffect(() => {
+        if (window.location.hash !== '') {
+            // setEmail(window.location.hash.substr(1));
+            form.setFieldsValue({ email: window.location.hash.substr(1) });
+        }
+    }, [])
+
     const onFinish = values => {
         console.log('Received values of form: ', values);
         props.onAuth(
@@ -52,6 +63,11 @@ const SignUp = (props) => {
             values.email,
             values.password,
             values.confirm);
+    }
+
+    const onEmailChange = (e) => {
+        form.setFieldsValue({ email: e.target.value });
+        return;
     }
 
     return (
@@ -74,6 +90,7 @@ const SignUp = (props) => {
                         remember: true,
                     }}
                     onFinish={onFinish}
+                    form={form}
                 // onFinishFailed={this.onFinishFailed}
                 >
                     {/* padding centers it a little better */}
@@ -97,7 +114,7 @@ const SignUp = (props) => {
                             { type: 'email', message: 'Enter a valid email' }
                         ]}
                     >
-                        <Input className='signinField' size='middle' ref={emailRef} />
+                        <Input className='signinField' size='middle' ref={emailRef} onChange={onEmailChange} />
                     </Form.Item>
                     <div className='space20' />
 

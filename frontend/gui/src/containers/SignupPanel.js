@@ -1,6 +1,6 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 import { Input } from 'antd';
+import { useHistory } from 'react-router-dom';
 
 import {
     GithubOutlined, LinkedinFilled,
@@ -11,6 +11,11 @@ import {
 {/* It does everything but make the sandwich. */ }
 
 function SignupPanel(props) {
+
+    const [email, setEmail] = useState('');
+
+    const history = useHistory();
+
     return (
         <div className='signupPanel'>
             <div className='signupPanelBody'>
@@ -23,9 +28,12 @@ function SignupPanel(props) {
                 </div>
                 <div className='signupPanelFillerM' />
                 <div className='signupPanelInput'>
-                    <Input className='signupPanelEmail' placeholder='Email' size='large' />
+                    <Input className='signupPanelEmail' placeholder='Email' size='large'
+                        value={email} onChange={(e) => setEmail(e.target.value)} />
                     <a className={['genButton', 'signupPanelInputButton'].join(' ')}
-                        onClick={() => console.log('hi')}>
+                        onClick={() => {
+                            history.push(`/signup#${email}`);
+                        }}>
                         SIGN UP
                     </a>
                     <div className='signupPanelInputFiller' />
