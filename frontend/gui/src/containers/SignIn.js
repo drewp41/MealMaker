@@ -43,6 +43,10 @@ const SignIn = (props) => {
         }
     }, [props.type])
 
+    useEffect(() => {
+        userRef.current.focus();
+    })
+
     const onFinish = values => {
         console.log('Received values of form: ', values);
         props.onAuth(values.username, values.password);

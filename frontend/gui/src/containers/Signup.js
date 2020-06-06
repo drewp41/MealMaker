@@ -53,6 +53,9 @@ const SignUp = (props) => {
         if (window.location.hash !== '') {
             // setEmail(window.location.hash.substr(1));
             form.setFieldsValue({ email: window.location.hash.substr(1) });
+            userRef.current.focus();
+        } else {
+            emailRef.current.focus();
         }
     }, [])
 
