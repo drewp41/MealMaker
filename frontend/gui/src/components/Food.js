@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { List, Avatar } from 'antd';
-import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
+import { List } from 'antd';
 
 import MealModal from './MealModal';
 import FoodEntry from './FoodEntry';
@@ -15,14 +14,6 @@ import groceries from '../FoodIcons/groceries.svg';
 //     prepTime: 0, cookTime: 0
 // }
 
-
-const IconText = ({ icon, text }) => (
-    <span>
-        {React.createElement(icon, { style: { marginRight: 8 } })}
-        {text}
-    </span>
-);
-
 const Foods = (props) => {
 
     return (
@@ -33,14 +24,14 @@ const Foods = (props) => {
                 onChange: page => {
                     // console.log(page);
                 },
-                pageSize: 6,
+                pageSize: 5,
             }}
             dataSource={props.data}
 
             renderItem={item => {
                 let parsed = JSON.parse(item.meal);
                 return (
-                    <FoodEntry meal={parsed} item={item}
+                    <FoodEntry meal={parsed} item={item} id={item.id}
                         isAuthenticated={props.isAuthenticated} />
                     // <>
                     //     <MealModal visible={showModal} meal={parsed} closeModal={closeModal}

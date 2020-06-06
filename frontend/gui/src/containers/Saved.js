@@ -29,10 +29,10 @@ function Saved(props) {
     return (
         <>
             <Header {...props} />
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <div className='savedMeals' style={{ display: 'flex', justifyContent: 'center' }}>
                 <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', maxWidth: '1000px' }}>
                     <br />
-                    <p style={{ fontSize: '30px' }}>Saved meals</p>
+                    <p style={{ fontSize: '24px', padding: '0 16px' }}>Saved meals</p>
                     <Foods data={foods} />
                     {/* <br />
                     <h2>Create a meal plan</h2>
