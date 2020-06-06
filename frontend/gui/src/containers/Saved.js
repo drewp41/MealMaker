@@ -27,10 +27,10 @@ function Saved(props) {
     }, [])
 
     return (
-        <>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
             <Header {...props} />
             <div className='savedMeals' style={{ display: 'flex', justifyContent: 'center' }}>
-                <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', maxWidth: '1000px' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', minWidth: '320px' }}>
                     <br />
                     <p style={{ fontSize: '24px', padding: '0 16px' }}>Saved meals</p>
                     <Foods data={foods} />
@@ -40,10 +40,10 @@ function Saved(props) {
                         btnText="Create" /> */}
                 </div>
             </div>
-            <div style={{ height: '420px' }} />
+            <div style={{ minHeight: '50vh' }} />
 
             <Footer />
-        </>
+        </div>
     )
 }
 
