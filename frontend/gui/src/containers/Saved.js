@@ -43,7 +43,7 @@ function Saved(props) {
                         btnText="Create" /> */}
                 </div>
             </div>
-            <div style={{ minHeight: '50vh' }} />
+            {/* <div style={{ minHeight: '50vh' }} /> */}
 
             <Footer />
         </div>

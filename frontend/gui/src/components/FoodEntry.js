@@ -37,25 +37,43 @@ const FoodEntry = (props) => {
                 closeModal={closeModal} useIcons={false} />
             {showEntry &&
 
-                <List.Item key={props.item.title}
-                    actions={[
-                        <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" onConfirm={removeEntry} >
-                            <span>
-                                <CloseCircleOutlined style={{ marginRight: '8px' }} />
-                                Remove
-                            </span>
-                        </Popconfirm>
-                    ]}>
+                <List.Item key={props.item.title} style={{ display: 'flex' }}
+                // actions={[
+                //     <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" onConfirm={removeEntry} >
+                //         <CloseCircleOutlined style={{ marginRight: '8px' }} />
+
+                //         <span>
+                //             Remove
+                //         </span>
+                //     </Popconfirm>
+                // ]}
+                >
                     <List.Item.Meta
                         avatar={<Avatar src={groceries} />}
-                        title={props.meal.name}
+                        title={<>
+                            {props.meal.name}
+                            <span style={{ float: 'right' }}>
+                                6/3/2020
+                            </span>
+                        </>}
                         description={props.meal.calories + ' calories'}
-                        style={{ cursor: 'pointer' }}
+                        style={{ cursor: 'pointer', paddingRight: '10px', width: '500px' }}
                         onClick={() => {
                             setShowModal(true);
                             console.log(showModal);
                         }}
                     />
+                    {/* <div>
+                        6/3/2020
+                        <br />
+                        <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" onConfirm={removeEntry}>
+                            <a style={{ color: '#595959' }}>
+                                <CloseCircleOutlined style={{ marginRight: '8px' }} />
+                                Remove
+                            </a>
+                        </Popconfirm>
+
+                    </div> */}
                 </List.Item>
             }
         </>

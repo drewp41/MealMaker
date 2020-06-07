@@ -1576,6 +1576,11 @@ input::-webkit-inner-spin-button {
     padding-top: 2px;
 }
 
+.ant-pagination-item a{
+    /* ugly but it fixes an ant design bug causing the list numbers to be off center with my other font */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+}
+
 /*
 =======================================================
                         FOOTER
