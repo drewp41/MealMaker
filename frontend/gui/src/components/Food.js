@@ -27,13 +27,11 @@ const Foods = (props) => {
             }}
             dataSource={props.data}
             style={{ height: '1000px' }}
-
             renderItem={item => {
-                let parsed = JSON.parse(item.meal);
                 return (
-                    <FoodEntry meal={parsed} item={item} id={item.id}
+                    <FoodEntry meal={item} item={item}
                         isAuthenticated={props.isAuthenticated} />
-                )
+                );
             }}
         />
     )

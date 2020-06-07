@@ -37,17 +37,7 @@ const FoodEntry = (props) => {
                 closeModal={closeModal} useIcons={false} />
             {showEntry &&
 
-                <List.Item key={props.item.title} style={{ display: 'flex' }}
-                // actions={[
-                //     <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" onConfirm={removeEntry} >
-                //         <CloseCircleOutlined style={{ marginRight: '8px' }} />
-
-                //         <span>
-                //             Remove
-                //         </span>
-                //     </Popconfirm>
-                // ]}
-                >
+                <List.Item style={{ display: 'flex' }}>
                     <List.Item.Meta
                         avatar={<Avatar src={groceries} />}
                         title={props.meal.name}
@@ -59,10 +49,10 @@ const FoodEntry = (props) => {
                         }}
                     />
                     <div style={{ paddingLeft: '16px', textAlign: 'right' }}>
-                        <h4 class="ant-list-item-meta-title" style={{ color: 'rgba(0, 0, 0, 0.45)' }}>
+                        <h4 className="ant-list-item-meta-title" style={{ fontWeight: 400, color: 'rgba(0, 0, 0, 0.45)' }}>
                             6/3/2020
                         </h4>
-                        <div class="ant-list-item-meta-description">
+                        <div className="ant-list-item-meta-description">
                             <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" onConfirm={removeEntry}>
                                 <a className='profileRemoveMeal'>
                                     <CloseCircleOutlined style={{ marginRight: '8px' }} />

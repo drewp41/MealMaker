@@ -13,6 +13,9 @@ const { Search } = Input;
 
 function Saved(props) {
 
+    // all the saved meals from the user
+    const [allFoods, setAllFoods] = useState([]);
+    // the current meals from the search box
     const [foods, setFoods] = useState([]);
 
     const history = useHistory();
@@ -27,10 +30,26 @@ function Saved(props) {
             headers: { 'Authorization': `Token ${localStorage.getItem('token')}` }
         })
             .then(res => {
-                setFoods(res.data);
                 console.log(res.data);
+                const parsedFoods = res.data.map(elem => {
+                    return JSON.parse(elem.meal);
+                })
+                setAllFoods(parsedFoods);
+                setFoods(parsedFoods);
             })
     }, [])
+
+    function onChangeSearch(e) {
+        const query = e.target.value;
+        // true to keep element, false to remove it
+        const newFoods = allFoods.filter(elem => {
+            if (!query)
+                return true;
+            else
+                return (elem.name.toLowerCase().includes(query.toLowerCase()));
+        })
+        setFoods(newFoods);
+    }
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -42,7 +61,9 @@ function Saved(props) {
                         <div style={{ width: '500px' }}>
                             Saved meals
                         </div>
-                        <Search className='savedMealsSearchBar' placeholder="Search meals" onSearch={value => console.log(value)} />
+                        <Search className='savedMealsSearchBar' placeholder="Search meals"
+                            onSearch={value => console.log('searched ' + value)}
+                            onChange={onChangeSearch} />
                     </div>
                     <div className='space8' />
                     <Foods data={foods} />
