@@ -40,7 +40,8 @@ function Saved(props) {
     }, [])
 
     function onChangeSearch(e) {
-        const query = e.target.value;
+        // removes whitespace at the end of a search
+        const query = e.target.value.replace(/\s*$/, "");
         // true to keep element, false to remove it
         const newFoods = allFoods.filter(elem => {
             if (!query)
