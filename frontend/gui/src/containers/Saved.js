@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { Input } from 'antd';
 
 import Header from './Header';
 import Footer from './Footer';
 import Foods from '../components/Food';
 import CustomForm from '../components/Form';
+
+const { Search } = Input;
 
 
 function Saved(props) {
@@ -33,9 +36,15 @@ function Saved(props) {
         <div style={{ display: 'flex', flexDirection: 'column' }}>
             <Header {...props} />
             <div className='savedMeals' style={{ display: 'flex', justifyContent: 'center' }}>
-                <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', minWidth: '320px' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '600px' }}>
                     <br />
-                    <p style={{ fontSize: '24px', padding: '0 16px' }}>Saved meals</p>
+                    <div style={{ display: 'flex', fontSize: '24px', padding: '0 24px', alignItems: 'center' }}>
+                        <div style={{ width: '500px' }}>
+                            Saved meals
+                        </div>
+                        <Search className='savedMealsSearchBar' placeholder="Search meals" onSearch={value => console.log(value)} />
+                    </div>
+                    <div className='space8' />
                     <Foods data={foods} />
                     {/*<CustomForm
                         requestType="post"
@@ -43,8 +52,6 @@ function Saved(props) {
                         btnText="Create" /> */}
                 </div>
             </div>
-            {/* <div style={{ minHeight: '50vh' }} /> */}
-
             <Footer />
         </div>
     )

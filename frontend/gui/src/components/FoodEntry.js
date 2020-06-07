@@ -50,12 +50,7 @@ const FoodEntry = (props) => {
                 >
                     <List.Item.Meta
                         avatar={<Avatar src={groceries} />}
-                        title={<>
-                            {props.meal.name}
-                            <span style={{ float: 'right' }}>
-                                6/3/2020
-                            </span>
-                        </>}
+                        title={props.meal.name}
                         description={props.meal.calories + ' calories'}
                         style={{ cursor: 'pointer', paddingRight: '10px', width: '500px' }}
                         onClick={() => {
@@ -63,17 +58,20 @@ const FoodEntry = (props) => {
                             console.log(showModal);
                         }}
                     />
-                    {/* <div>
-                        6/3/2020
-                        <br />
-                        <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" onConfirm={removeEntry}>
-                            <a style={{ color: '#595959' }}>
-                                <CloseCircleOutlined style={{ marginRight: '8px' }} />
-                                Remove
-                            </a>
-                        </Popconfirm>
+                    <div style={{ paddingLeft: '16px', textAlign: 'right' }}>
+                        <h4 class="ant-list-item-meta-title" style={{ color: 'rgba(0, 0, 0, 0.45)' }}>
+                            6/3/2020
+                        </h4>
+                        <div class="ant-list-item-meta-description">
+                            <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" onConfirm={removeEntry}>
+                                <a className='profileRemoveMeal'>
+                                    <CloseCircleOutlined style={{ marginRight: '8px' }} />
+                                    Remove
+                                </a>
+                            </Popconfirm>
+                        </div>
 
-                    </div> */}
+                    </div>
                 </List.Item>
             }
         </>
