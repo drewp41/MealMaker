@@ -60,7 +60,7 @@ const SignUp = (props) => {
     }, [])
 
     const onFinish = values => {
-        console.log('Received values of form: ', values);
+        // console.log('Received values of form: ', values);
         props.onAuth(
             values.username,
             values.email,

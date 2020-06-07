@@ -24,9 +24,14 @@ const FoodEntry = (props) => {
     }
 
     function removeEntry() {
-        axios.delete(`http://127.0.0.1:8000/api/${props.id}/`)
+        axios.delete(`http://127.0.0.1:8000/api/${props.id}/`, {
+            headers: { 'Authorization': `Token ${localStorage.getItem('token')}` }
+        })
             .then(res => {
                 console.log('success');
+            })
+            .catch(error => {
+                console.log(error);
             })
         setShowEntry(false);
     }

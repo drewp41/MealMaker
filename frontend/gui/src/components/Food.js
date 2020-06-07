@@ -29,7 +29,7 @@ const Foods = (props) => {
             style={{ height: '1000px' }}
             renderItem={item => {
                 return (
-                    <FoodEntry meal={item} item={item}
+                    <FoodEntry id={item[0]} meal={item[1]}
                         isAuthenticated={props.isAuthenticated} />
                 );
             }}

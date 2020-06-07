@@ -13,9 +13,9 @@ const { Search } = Input;
 
 function Saved(props) {
 
-    // all the saved meals from the user
+    // all the saved meals from the user --- [id, meal JSON]
     const [allFoods, setAllFoods] = useState([]);
-    // the current meals from the search box
+    // the current meals from the search box --- [id, meal JSON]
     const [foods, setFoods] = useState([]);
 
     const history = useHistory();
@@ -32,10 +32,13 @@ function Saved(props) {
             .then(res => {
                 console.log(res.data);
                 const parsedFoods = res.data.map(elem => {
-                    return JSON.parse(elem.meal);
+                    return [elem.id, JSON.parse(elem.meal)];
                 })
                 setAllFoods(parsedFoods);
                 setFoods(parsedFoods);
+            })
+            .catch(error => {
+                console.log(error);
             })
     }, [])
 
@@ -44,10 +47,11 @@ function Saved(props) {
         const query = e.target.value.replace(/\s*$/, "");
         // true to keep element, false to remove it
         const newFoods = allFoods.filter(elem => {
+            const name = elem[1].name;
             if (!query)
                 return true;
             else
-                return (elem.name.toLowerCase().includes(query.toLowerCase()));
+                return (name.toLowerCase().includes(query.toLowerCase()));
         })
         setFoods(newFoods);
     }
