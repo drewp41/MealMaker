@@ -82,7 +82,7 @@ const SignUp = (props) => {
             {props.error && <p>{props.error.message}</p>}
 
             <Alert className='signinAlert' style={{ opacity: invalidCreds ? 1 : 0 }}
-                message={'Registration failed, try again with different input'}
+                message={'Registration failed.  Most likely, your password is either too common, or is it derived from your username or email.'}
                 type="error" showIcon />
 
             <div className={['signinBox', signinShake ? 'signinShake' : ''].join(' ')}>
@@ -133,7 +133,25 @@ const SignUp = (props) => {
                     <a className='signinTextAbove' onClick={() => passRef.current.focus()}>Password</a>
                     <Form.Item
                         name="password"
-                        rules={[{ required: true, message: 'Input a password' }]}
+                        rules={[
+                            // Django settings:
+                            // must be 9 characters 
+                            // must not be similar to their name, email, etc.
+                            // not be a common one
+                            // must not be all numeric
+                            { required: true, message: 'Input a password' },
+                            { min: 4, message: 'Password must be at least 9 characters' },
+                            ({ getFieldValue }) => ({
+                                validator(rule, value) {
+                                    if (/^\d+$/.test(value)) {
+                                        return Promise.reject('Password cannot be all numeric');
+                                    }
+                                    else {
+                                        return Promise.resolve();
+                                    }
+                                },
+                            }),
+                        ]}
                     >
                         <Input.Password className='signinField' size='middle' ref={passRef} />
                     </Form.Item>

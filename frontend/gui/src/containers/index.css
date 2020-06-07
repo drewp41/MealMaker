@@ -1435,6 +1435,7 @@ input::-webkit-inner-spin-button {
 .signinAlert {
     position: absolute;
     top: 60px;
+    /* margin: 0 15px; */
     transition: opacity 0.1s;
 }
 
@@ -1539,14 +1540,25 @@ input::-webkit-inner-spin-button {
     padding: 32px;
     position: absolute;
     bottom: 0px;
-    color: #808080;
+    color: #0a0909;
+}
+
+/* when alert goes to two lines */
+@media screen and (max-width: 783px) {
+    .signinAlert {
+        top: 40px;
+    }
 }
 
 @media screen and (max-width: 440px) {
     .signinBox {
         width: 100%;
     }
+    .signinAlert {
+        top: 20px;
+    }
 }
+
 
 /*
 =======================================================
