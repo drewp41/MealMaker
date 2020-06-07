@@ -82,7 +82,7 @@ const SignUp = (props) => {
             {props.error && <p>{props.error.message}</p>}
 
             <Alert className='signinAlert' style={{ opacity: invalidCreds ? 1 : 0 }}
-                message={'Registration failed.  Most likely, your password is either too common, or is it derived from your username or email.'}
+                message={'Registration failed.  Most likely, your password is either too common, or it is derived from your username or email.'}
                 type="error" showIcon />
 
             <div className={['signinBox', signinShake ? 'signinShake' : ''].join(' ')}>
@@ -140,7 +140,7 @@ const SignUp = (props) => {
                             // not be a common one
                             // must not be all numeric
                             { required: true, message: 'Input a password' },
-                            { min: 4, message: 'Password must be at least 9 characters' },
+                            { min: 9, message: 'Password must be at least 9 characters' },
                             ({ getFieldValue }) => ({
                                 validator(rule, value) {
                                     if (/^\d+$/.test(value)) {

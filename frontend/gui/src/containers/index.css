@@ -1554,6 +1554,7 @@ input::-webkit-inner-spin-button {
     .signinBox {
         width: 100%;
     }
+    /* when alert goes to three lines */
     .signinAlert {
         top: 20px;
     }
