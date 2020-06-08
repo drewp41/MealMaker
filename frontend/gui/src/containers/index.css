@@ -1563,7 +1563,7 @@ input::-webkit-inner-spin-button {
 
 /*
 =======================================================
-                        PROFILE
+                       SAVED MEALS
 =======================================================
 */
 
@@ -1608,6 +1608,47 @@ input::-webkit-inner-spin-button {
     transform: translateY(-1px);
     box-shadow: 0 7px 14px rgba(50, 50, 93, .1), 0 3px 6px rgba(0, 0, 0, .08) !important;
 } */
+
+/*
+=======================================================
+                        PROFILE
+=======================================================
+*/
+
+.profile {
+    display: flex;
+    justify-content: center;
+    padding-top: 24px;
+}
+
+.profileBody {
+    width: 700px;
+    font-size: 18px;
+    color: #474c52;
+}
+
+.profileBody h3 {
+    color: #474c52;
+    display: inline-block;
+    border-bottom: 2px solid #474c52;
+    margin-bottom: 16px;
+}
+
+.profileGreyLinks {
+    color: #8a8c8e;
+    transition: color 0s;
+}
+
+.profileGreyLinks:hover {
+    color: #474c52;
+}
+
+.profileUserBox {
+    width: 320px;
+    height: 200px;
+}
+
+
 
 /*
 =======================================================

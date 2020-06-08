@@ -1,6 +1,4 @@
 from rest_framework import viewsets
-from django.db.models import Q
-
 from foods.models import Food
 from .serializers import FoodSerializer
 
@@ -16,6 +14,8 @@ class FoodViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return Food.objects.filter(created_by=self.request.user.username)
 
+    def get_count(self):
+        return Food.objects.filter(created_by=self.request.user.username).count()
 
 # old method
 # from rest_framework.generics import (

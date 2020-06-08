@@ -36,7 +36,8 @@ const CalorieCalcModal = (props) => {
 
     function apply() {
         props.onCalorieChange(calories);
-        props.gotoMainTab();
+        if (props.gotoMainTab) // false if it's called from the profile
+            props.gotoMainTab();
         handleCancel();
     }
 
