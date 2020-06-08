@@ -70,18 +70,17 @@
 }
 
 .condensedHeader {
-    /* 250 - 80 */
     display: flex;
-    height: 170px; 
     flex-direction: column;
-    padding: 0 0 0 20px;
 }
 
 .condensedHeaderText {
+    height: 45px;
     font-size: 17px;
     font-weight: 400;
     color: #474c52;
     text-align: left;
+    padding: 0 20px;
 }
 
 /* .logoIcon { */

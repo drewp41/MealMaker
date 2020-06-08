@@ -12,8 +12,7 @@ import { UserOutlined } from '@ant-design/icons';
 const { SubMenu } = Menu;
 
 function Header(props) {
-    const [headerHeight, setHeaderHeight] = useState('80px');
-    const [hamburger, setHamburger] = useState(false);
+    const [expandHeader, setExpandHeader] = useState(false);
     const [rotateClass, setRotateClass] = useState('logoIcon');
     const [signOutLoading, setSignOutLoading] = useState(false);
 
@@ -35,19 +34,26 @@ function Header(props) {
         } else if (event.key === '2') {
             history.push('/profile/');
         } else {
-            setSignOutLoading(true);
-            setTimeout(() => {
-                setSignOutLoading(false);
-            }, 500);
-            props.logout();
-            history.push('/');
+            signout();
         }
+    }
+
+    function signout() {
+        setSignOutLoading(true);
+        setTimeout(() => {
+            setSignOutLoading(false);
+        }, 500);
+        props.logout();
+        history.push('/');
     }
 
     return (
         <>
             <div id="topLine" />
-            <div className='header' style={{ height: headerHeight }} >
+            <div className='header' style={{
+                height: !expandHeader ? '80px' :
+                    (expandHeader && props.isAuthenticated ? '340px' : '250px')
+            }}>
                 <div className='rowHeader'>
                     <div className='headerLRSpace'></div>
                     <div className='logoIcon' style={{ padding: '8px 0 0 0' }}>
@@ -116,12 +122,11 @@ function Header(props) {
                     {/* shifted down 30px to center it vertically in the header */}
                     <div className='hamburgerMenu' style={{ padding: '30px 25px 0 0', margin: '0 0 0 auto' }}>
                         <button className=
-                            {hamburger ? 'hamburger hamburger--slider is-active'
+                            {expandHeader ? 'hamburger hamburger--slider is-active'
                                 : 'hamburger hamburger--slider'}
                             type="button"
                             onClick={e => {
-                                setHeaderHeight(prev => prev === '250px' ? '80px' : '250px');
-                                setHamburger(prev => !prev);
+                                setExpandHeader(prev => !prev);
                             }}>
                             <span className="hamburger-box">
                                 <span className="hamburger-inner"></span>
@@ -133,14 +138,38 @@ function Header(props) {
                 </div>
                 <div className='condensedHeader'>
                     <Link to='/howitworks'>
-                        <button className='condensedHeaderText' style={{ height: '45px', width: '120px' }}>How it works</button>
+                        <button className='condensedHeaderText' >
+                            How it works
+                        </button>
                     </Link>
-                    <Link to='about'>
-                        <button className='condensedHeaderText' style={{ height: '45px', width: '70px' }}>About</button>
+                    <Link to='/about'>
+                        <button className='condensedHeaderText' >
+                            About
+                        </button>
                     </Link>
-                    <Link to='signin'>
-                        <button className='condensedHeaderText' style={{ height: '45px', width: '80px' }}>Sign in</button>
-                    </Link>
+                    {props.isAuthenticated ?
+                        <>
+                            <Link to='/profile/saved'>
+                                <button className='condensedHeaderText' >
+                                    Saved meals
+                                </button>
+                            </Link>
+                            <Link to='/profile'>
+                                <button className='condensedHeaderText' >
+                                    Preferences
+                                </button>
+                            </Link>
+                            <button className='condensedHeaderText' onClick={signout}>
+                                Sign out →
+                            </button>
+                        </>
+                        :
+                        <Link to='/signin'>
+                            <button className='condensedHeaderText' >
+                                Sign in →
+                            </button>
+                        </Link>
+                    }
                 </div>
             </div>
 
