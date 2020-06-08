@@ -26,7 +26,7 @@ const Foods = (props) => {
                 pageSize: 10,
             }}
             dataSource={props.data}
-            style={{ height: '1000px' }}
+            style={{ minHeight: '800px' }}
             renderItem={item => {
                 return (
                     <FoodEntry id={item[0]} meal={item[1]} date={item[2]}

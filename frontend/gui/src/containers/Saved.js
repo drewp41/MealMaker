@@ -68,7 +68,6 @@ function Saved(props) {
             <Header {...props} />
             <div className='savedMeals' style={{ display: 'flex', justifyContent: 'center' }}>
                 <div className='savedMealsBody'>
-                    <br />
                     <div style={{ display: 'flex', fontSize: '24px', padding: '0 24px', alignItems: 'center' }}>
                         <div style={{ flex: 1 }}>
                             Saved meals
@@ -81,10 +80,6 @@ function Saved(props) {
                     </div>
                     <div className='space8' />
                     <Foods data={foods} />
-                    {/*<CustomForm
-                        requestType="post"
-                        foodID={null}
-                        btnText="Create" /> */}
                 </div>
             </div>
             <Footer />

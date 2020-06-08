@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Menu, Dropdown } from 'antd';
+import { Menu, Dropdown, Spin } from 'antd';
 import { Link, withRouter, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/auth';
@@ -15,6 +15,7 @@ function Header(props) {
     const [headerHeight, setHeaderHeight] = useState('80px');
     const [hamburger, setHamburger] = useState(false);
     const [rotateClass, setRotateClass] = useState('logoIcon');
+    const [signOutLoading, setSignOutLoading] = useState(false);
 
     const history = useHistory();
 
@@ -34,7 +35,12 @@ function Header(props) {
         } else if (event.key === '2') {
             history.push('/profile/');
         } else {
-            return props.logout();
+            setSignOutLoading(true);
+            setTimeout(() => {
+                setSignOutLoading(false);
+            }, 500);
+            props.logout();
+            history.push('/');
         }
     }
 
@@ -79,35 +85,32 @@ function Header(props) {
 
                     {/* shifted down 15px to center it vertically in the header */}
                     <div className='colHeaderR' style={{ padding: '0px 0 0 0' }}>
-                        {props.isAuthenticated ?
-                            // <button className="headerText" style={{ height: '50px', width: '110px' }} onClick={() => {
-                            //     console.log('hi');
-                            //     return props.logout();
-                            // }}>
-                            //     <span id="signInArrow">Sign out</span> <span style={{ fontFamily: 'Inter' }}> →</span>
-                            // </button>
-                            <Dropdown className='headerAccountIcon' placement="bottomRight"
-                                overlay={
-                                    <Menu onClick={onMenuClick}>
-                                        <Menu.ItemGroup title="Account">
-                                            <Menu.Item key="1">Saved meals</Menu.Item>
-                                            <Menu.Item key="2">Preferences</Menu.Item>
-                                            <Menu.Item key="3">
-                                                Sign out →
+                        <Spin size='default' spinning={signOutLoading}>
+                            {props.isAuthenticated ?
+                                <Dropdown className='headerAccountIcon' placement="bottomRight"
+                                    overlay={
+                                        <Menu onClick={onMenuClick}>
+                                            <Menu.ItemGroup title="Account">
+                                                <Menu.Item key="1">Saved meals</Menu.Item>
+                                                <Menu.Item key="2">Preferences</Menu.Item>
+                                                <Menu.Item key="3">
+                                                    Sign out →
                                             </Menu.Item>
-                                        </Menu.ItemGroup>
-                                    </Menu>
-                                }>
-                                <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                                    <UserOutlined style={{ fontSize: '18px' }} />
-                                </a>
-                            </Dropdown>
-                            :
-                            <Link to='/signin'>
-                                <button className="headerText" style={{ height: '50px', width: '110px' }}>
-                                    <span id="signInArrow">Sign in</span> <span> →</span>
-                                </button>
-                            </Link>}
+                                            </Menu.ItemGroup>
+                                        </Menu>
+                                    }>
+                                    <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                                        <UserOutlined style={{ fontSize: '18px' }} />
+                                    </a>
+                                </Dropdown>
+                                :
+                                !signOutLoading &&
+                                <Link to='/signin'>
+                                    <button className="headerText" style={{ height: '50px', width: '110px' }}>
+                                        <span id="signInArrow">Sign in</span> <span> →</span>
+                                    </button>
+                                </Link>}
+                        </Spin>
                     </div>
 
                     {/* shifted down 30px to center it vertically in the header */}

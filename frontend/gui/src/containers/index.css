@@ -1572,14 +1572,28 @@ input::-webkit-inner-spin-button {
     justify-content: center;
 }
 
+.savedMealsBody {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 600px;
+    padding-top: 24px;
+}
+
 .ant-popover-message-title {
     padding-top: 2px;
 }
+
+.ant-list-pagination {
+    margin-bottom: 72px;
+}
+
 
 .ant-pagination-item a{
     /* ugly but it fixes an ant design bug causing the list numbers to be off center with my other font */
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
 }
+
 
 .profileRemoveMeal {
     float: right;
@@ -1590,13 +1604,6 @@ input::-webkit-inner-spin-button {
 
 .profileRemoveMeal:hover {
     color: #484848;
-}
-
-.savedMealsBody {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 600px;
 }
 
 @media screen and (max-width: 600px) { 
@@ -1625,6 +1632,7 @@ input::-webkit-inner-spin-button {
     width: 700px;
     font-size: 18px;
     color: #474c52;
+    margin: 0 20px;
 }
 
 .profileBody h3 {
