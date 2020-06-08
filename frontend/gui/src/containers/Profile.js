@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
+import {
+    message
+} from 'antd';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -91,12 +94,12 @@ function Profile(props) {
                     </h3>
                     <div>
                         Username:&nbsp; {userData.username}&nbsp;&nbsp;
-                        <a className='profileGreyLinks' onClick={() => console.log('hi')}>
+                        <a className='profileGreyLinks' onClick={() => message.info('This feature is not currently supported.  Stay tuned!', 5)}>
                             - Change
                         </a>
                         <div className='space6' />
                         Email:&nbsp; {userData.email}&nbsp;&nbsp;
-                        <a className='profileGreyLinks' onClick={() => console.log('hi')}>
+                        <a className='profileGreyLinks' onClick={() => message.info('This feature is not currently supported.  Stay tuned!', 5)}>
                             - Change
                         </a>
                     </div>

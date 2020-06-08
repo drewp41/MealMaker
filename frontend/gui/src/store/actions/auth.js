@@ -81,13 +81,14 @@ export const authSignup = (username, email, password1, password2) => {
             // see what the response to this post request is
             .then(res => {
                 const token = res.data.key;
-                const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
+                // 604800 seconds in a week
+                const expirationDate = new Date(new Date().getTime() + 604800 * 1000);
                 // need to store this data in a persistant storage
                 // (not redux bc when refreshed, the data would be lost)
                 localStorage.setItem('token', token);
                 localStorage.setItem('expirationDate', expirationDate);
                 dispatch(authSuccess(token));
-                dispatch(checkAuthTimeout(3600));
+                dispatch(checkAuthTimeout(604800));
             })
             .catch(err => {
                 dispatch(authFail(err));
