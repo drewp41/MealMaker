@@ -1592,6 +1592,18 @@ input::-webkit-inner-spin-button {
     color: #484848;
 }
 
+.savedMealsBody {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 600px;
+}
+
+@media screen and (max-width: 600px) { 
+    .savedMealsBody {
+        width: 100%;
+    }
+}
 /* .savedMealsSearchBar:active, .savedMealsSearchBar:focus {
     transform: translateY(-1px);
     box-shadow: 0 7px 14px rgba(50, 50, 93, .1), 0 3px 6px rgba(0, 0, 0, .08) !important;

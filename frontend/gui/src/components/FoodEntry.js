@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { List, Avatar, Popconfirm, Button } from 'antd';
+import { List, Avatar, Popconfirm, Button, message } from 'antd';
 import axios from 'axios';
 
 import MealModal from './MealModal';
 
-import { MessageOutlined, LikeOutlined, StarOutlined, CloseCircleOutlined } from '@ant-design/icons';
+import { CloseCircleOutlined } from '@ant-design/icons';
 import groceries from '../FoodIcons/groceries.svg';
 
 const IconText = ({ icon, text }) => (
@@ -28,12 +28,13 @@ const FoodEntry = (props) => {
             headers: { 'Authorization': `Token ${localStorage.getItem('token')}` }
         })
             .then(res => {
+                setShowEntry(false);
                 console.log('success');
             })
             .catch(error => {
+                message.error('Something went wrong with the removal :(');
                 console.log(error);
             })
-        setShowEntry(false);
     }
 
     return (
@@ -55,7 +56,7 @@ const FoodEntry = (props) => {
                     />
                     <div style={{ paddingLeft: '16px', textAlign: 'right' }}>
                         <h4 className="ant-list-item-meta-title" style={{ fontWeight: 400, color: 'rgba(0, 0, 0, 0.45)' }}>
-                            6/3/2020
+                            {props.date}
                         </h4>
                         <div className="ant-list-item-meta-description">
                             <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" onConfirm={removeEntry}>

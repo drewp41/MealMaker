@@ -30,9 +30,16 @@ function Saved(props) {
             headers: { 'Authorization': `Token ${localStorage.getItem('token')}` }
         })
             .then(res => {
-                console.log(res.data);
                 const parsedFoods = res.data.map(elem => {
-                    return [elem.id, JSON.parse(elem.meal)];
+                    // converts to format '2020-06-07'
+                    const rawDate = elem.date.split('T')[0];
+                    // converts to format ['2020', '06', '07'];
+                    const splitDate = rawDate.split('-');
+                    // converts to format ['2020', '6', '7'];
+                    const newSplitDate = splitDate.map(elem => elem.replace(/^0+/, ''));
+                    // converts to format 6/7/2020 
+                    const newDate = newSplitDate[1] + '/' + newSplitDate[2] + '/' + newSplitDate[0];
+                    return [elem.id, JSON.parse(elem.meal), newDate];
                 })
                 setAllFoods(parsedFoods);
                 setFoods(parsedFoods);
@@ -60,15 +67,17 @@ function Saved(props) {
         <div style={{ display: 'flex', flexDirection: 'column' }}>
             <Header {...props} />
             <div className='savedMeals' style={{ display: 'flex', justifyContent: 'center' }}>
-                <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '600px' }}>
+                <div className='savedMealsBody'>
                     <br />
                     <div style={{ display: 'flex', fontSize: '24px', padding: '0 24px', alignItems: 'center' }}>
-                        <div style={{ width: '500px' }}>
+                        <div style={{ flex: 1 }}>
                             Saved meals
                         </div>
-                        <Search className='savedMealsSearchBar' placeholder="Search meals"
-                            onSearch={value => console.log('searched ' + value)}
-                            onChange={onChangeSearch} />
+                        <div style={{ flex: 1 }}>
+                            <Search className='savedMealsSearchBar' placeholder="Search meals"
+                                onSearch={value => console.log('searched ' + value)}
+                                onChange={onChangeSearch} />
+                        </div>
                     </div>
                     <div className='space8' />
                     <Foods data={foods} />
