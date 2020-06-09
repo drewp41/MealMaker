@@ -57,7 +57,7 @@
 
 .header {
     /* background-color: rgb(242, 242, 242); */
-    background-color: white;
+    background-color: #fff;
     /* background-color: rgb(245, 243, 240); */
     /* box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.08); */
     transition: all .25s ease;
@@ -1134,7 +1134,7 @@ input::-webkit-inner-spin-button {
 }
 
 .signupPanelInput a:hover {
-    color: white;
+    color: #fff;
 }
 
 .signupPanelFillerLR {
@@ -1224,7 +1224,7 @@ input::-webkit-inner-spin-button {
 
 /* override collape component color */
  .ant-collapse-header {
-    background-color:white !important;
+    background-color:#fff !important;
     cursor: default !important;
  }
 
@@ -1655,6 +1655,39 @@ input::-webkit-inner-spin-button {
     height: 200px;
 }
 
+/*
+=======================================================
+                    FEEDBACK MODAL
+=======================================================
+*/
+
+.feedbackModal {
+    font-size: 15px;
+    line-height: 28px;
+}
+
+.feedbackModalLabel {
+    padding: 6px 0;
+}
+
+.feedbackModalNameInput {
+    width: 200px;
+}
+
+/* the how it works link */
+.feedbackModal p a{
+    /* default */
+    color:rgba(0, 0, 0, 0.65);
+    transition: color 0s;
+    border-bottom: 1px solid rgba(0,0,0,0.30);
+}
+
+.feedbackModal p a:hover{
+    /* default */
+    color:rgba(0, 0, 0, 0.90);
+    border-bottom-color: rgba(0, 0, 0, 0.60);
+}
+
 
 
 /*
@@ -1702,6 +1735,7 @@ input::-webkit-inner-spin-button {
 
 .footerLinks a {
     padding: 10px 15px;
+    color: #fff;
 }
 
 .footerSocials {
@@ -1713,7 +1747,7 @@ input::-webkit-inner-spin-button {
 }
 
 .footerEmail {
-    color: white;
+    color: #fff;
     padding: 10px 15px;
 }
 

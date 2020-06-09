@@ -75,7 +75,7 @@ const NewLayout = (props) => {
     const [calories, setCalories] = useState(2000);
     const [macros, setMacros] = useState({ carbs: 225, protein: 150, fat: 55 });
     const [numMeals, setNumMeals] = useState(3);
-    const [availableTime, setAvailableTime] = useState(30); // 15, 30, or 45
+    const [availableTime, setAvailableTime] = useState(31); // 15, 30, or 45
 
     const [enableMacros, setEnableMacros] = useState(true);
     const [loadingMeals, setLoadingMeals] = useState(false); // used for gen button

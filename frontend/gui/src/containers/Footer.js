@@ -36,11 +36,10 @@ function Footer(props) {
         <>
             <FeedbackModal visible={showModal} closeModal={closeModal} />
             <div className='footer'>
-                {/* background: rgb(27,28,29) and dividers: rgb(50,51,52) */}
                 <div className='footerBody'>
                     <div style={{ display: 'flex' }}>
                         <img src={whiteLogo} alt="logo" style={{ width: 32, height: 32, margin: '-5px 0 0 0' }} draggable='false' />
-                        <span className='logoText' style={{ color: '#FFF', padding: '0 0 0 8px' }}>
+                        <span className='logoText' style={{ color: '#fff', padding: '0 0 0 8px' }}>
                             mealmaker.io
                     </span>
                     </div>
@@ -55,7 +54,7 @@ function Footer(props) {
                         <Link to='/about'>
                             About
                         </Link>
-                        <a onClick={() => setShowModal(true)} style={{ color: '#fff' }}>
+                        <a onClick={() => setShowModal(true)}>
                             Feedback
                         </a>
                         <a href='https://github.com/drewp41/MealMaker'>
