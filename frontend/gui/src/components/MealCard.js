@@ -112,7 +112,7 @@ const MealCard = (props) => {
                             active={props.mealObj.mainLoading || props.mealObj.sideLoading}
                             paragraph={{ rows: 3, width: ['80%', '100%', '60%'] }} >
                             <div className='mealCardBody'>
-                                <div className='mealCardMainRow'
+                                <div className='mealCardRow'
                                     onClick={() => (props.mealObj.main.name !== 'Network Error :('
                                         && props.mealObj.main.name !== 'No meals found :(') ? setShowMainModal(true) : {}}>
                                     {props.mealObj.main.name !== 'Network Error :(' && props.mealObj.main.name !== 'No meals found :(' &&
@@ -129,29 +129,28 @@ const MealCard = (props) => {
                                                 <PushpinOutlined className='pinIcon' onClick={(e) => pinMain(e)} />}
                                         </div>
                                     }
-                                    <div className='ant-card-meta-title'>
-                                        <TextTransition
-                                            text={props.mealObj.main.name}
-                                        />
-                                    </div>
-                                    <div className='space4' />
+                                    <TextTransition
+                                        className='mealCardTitleText'
+                                        text={props.mealObj.main.name}
+                                    />
+                                    <div className='space2' />
                                     {props.mealObj.main.name !== 'Network Error :(' &&
                                         (props.mealObj.main.name !== 'No meals found :(' ?
-                                            <div className='ant-card-meta-description'>
-                                                <TextTransition
-                                                    text={props.mealObj.main.servings +
-                                                        (props.mealObj.main.servings === 1 ? ' serving' : ' servings')}
-                                                />
-                                            </div>
+                                            <TextTransition
+                                                className='mealCardServingText'
+                                                text={props.mealObj.main.servings +
+                                                    (props.mealObj.main.servings === 1 ? ' serving' : ' servings')}
+                                            />
                                             :
-                                            <div className='ant-card-meta-description'>
+                                            <div className='mealCardServingText'>
                                                 Try again with different preferences
                                             </div>
                                         )
                                     }
                                 </div>
+                                <div className='space4' />
                                 {props.mealObj.side.name &&
-                                    <div className='mealCardSideRow'
+                                    <div className='mealCardRow'
                                         onClick={() => (props.mealObj.side.name !== 'Network Error :('
                                             && props.mealObj.side.name !== 'No meals found :(') ? setShowSideModal(true) : {}}>
                                         {props.mealObj.side.name !== 'Network Error :(' && props.mealObj.side.name !== 'No meals found :(' &&
@@ -168,25 +167,22 @@ const MealCard = (props) => {
                                                     <PushpinOutlined className='pinIcon' onClick={(e) => pinSide(e)} />}
                                             </div>
                                         }
-
-                                        <div className='ant-card-meta-title'>
-                                            <TextTransition
-                                                text={props.mealObj.side.name}
-                                            />
-                                        </div>
+                                        <TextTransition
+                                            className='mealCardTitleText'
+                                            text={props.mealObj.side.name}
+                                        />
                                         <div className='space2' />
                                         {props.mealObj.side.name !== 'Network Error :(' &&
                                             (props.mealObj.side.name !== 'No meals found :(' ?
-                                                <div className='ant-card-meta-description'>
-                                                    <TextTransition
-                                                        text={props.mealObj.side.servings +
-                                                            (props.mealObj.side.servings === 1 ? ' serving' : ' servings')}
-                                                    />
-                                                </div>
+                                                <TextTransition
+                                                    className='mealCardServingText'
+                                                    text={props.mealObj.side.servings +
+                                                        (props.mealObj.side.servings === 1 ? ' serving' : ' servings')}
+                                                />
                                                 :
-                                                <div className='ant-card-meta-description'>
+                                                <div className='mealCardServingText'>
                                                     Try again with different preferences
-                                                </div>
+                                        </div>
                                             )
                                         }
                                     </div>

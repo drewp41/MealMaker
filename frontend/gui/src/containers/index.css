@@ -472,6 +472,20 @@ button {
     }
 }
 
+@media screen and (max-width: 380px) { 
+    .inputBox {
+        width: 325px;
+    }
+}
+
+@media screen and (max-width: 350px) { 
+    .inputBox {
+        width: 100%;
+    }
+}
+
+
+
 /*
 =======================================================
                  CALORIE CALC MODAL
@@ -637,7 +651,7 @@ input::-webkit-inner-spin-button {
 }
 
 .nutritionCardHeader {
-    width: 420px;
+    width: 430px;
     font-size: 19px;
     font-weight: 400;
     color: #3a3c3e;
@@ -657,7 +671,7 @@ input::-webkit-inner-spin-button {
 }
 
 .nutritionCard {
-    width: 420px;
+    width: 430px;
     font-weight: 500;
 }
 
@@ -709,7 +723,7 @@ input::-webkit-inner-spin-button {
 
 
 .mealCard {
-    width: 420px;
+    width: 430px;
     /* head height: 58, body height: 150 */
     /* min-height: 208px;  */
 }
@@ -771,42 +785,31 @@ input::-webkit-inner-spin-button {
     color: transparent;
 }
 
-.ant-card-meta-title {
+.mealCardRow {
+    margin: -2px -12px;
+    padding: 6px 10px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color .2s ease;
+}
+
+.mealCardRow:hover {
+    border-color: #e0e0e0;
+}
+
+.mealCardTitleText {
     font-size: 15px;
     font-weight: 400;
     padding-top: 1px;
     color: #222426;
+    /* space for the icons */
+    margin-right: 55px;
 }
 
-.ant-card-meta-description {
+.mealCardServingText {
     font-size: 15px;
     font-weight: 400;
     color: #8a8c8e;
-}
-
-/* the only thing that varries between the rows is the margin, so the borders dont overlap */
-.mealCardMainRow {
-    margin: -2px -12px 2px -12px;
-    padding: 6px 10px;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: border-color .2s ease;
-}
-
-.mealCardSideRow {
-    margin: -2px -12px -2px -12px;
-    padding: 6px 10px;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: border-color .2s ease;
-}
-
-.mealCardMainRow:hover {
-    border-color: #e0e0e0;
-}
-
-.mealCardSideRow:hover {
-    border-color: #e0e0e0;
 }
 
 .mealCardIcons {
@@ -856,6 +859,44 @@ input::-webkit-inner-spin-button {
     .nutritionFacts {
         padding: 0 6px 0 24px;
     }
+}
+
+@media screen and (max-width: 370px) { 
+    .mealCard {
+        width: 335px;
+    }
+    .nutritionCard {
+        width: 335px;
+    }
+    .nutritionCardHeader {
+        width: 335px;
+    }
+}
+
+@media screen and (max-width: 350px) { 
+    .mealCard {
+        width: 100%;
+    }
+    .nutritionCard {
+        width: 100%;
+    }
+    .nutritionCardToggle {
+        width: 100%;
+    }
+    .nutritionCardHeader {
+        width: 100%;
+        padding: 0 10px;
+    }
+    .ant-collapse-header {
+        /* width: 100%; */
+    }
+    .ant-collapse-content-box {
+        padding: 24px 12px !important;
+    }
+    .nutritionFacts {
+        padding: 0 0px 0 24px;
+    }
+
 }
 
 
