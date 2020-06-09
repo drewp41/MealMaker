@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import {
     Card, Skeleton, message
 } from 'antd';
@@ -43,6 +43,7 @@ const MealCard = (props) => {
     const [showMainModal, setShowMainModal] = useState(false);
     const [showSideModal, setShowSideModal] = useState(false);
 
+
     function closeMainModal() {
         setShowMainModal(false);
     }
@@ -70,6 +71,14 @@ const MealCard = (props) => {
     function pinSide(e) {
         e.stopPropagation();
         props.pinSide(props.mealNum);
+    }
+
+    // the text transition component won't allow for text-overflow: ellipisis
+    function ellipsis(str) {
+        if (str.length > 39)
+            return str.substring(0, 39) + '...';
+        else
+            return str;
     }
 
     return (
@@ -121,28 +130,23 @@ const MealCard = (props) => {
                                         </div>
                                     }
                                     <div className='ant-card-meta-title'>
-                                        {/* <div className='mealCardOverflow'> */}
                                         <TextTransition
-                                            // className='mealCardOverflow'
-                                            inline
                                             text={props.mealObj.main.name}
-                                        // text={<div className='mealCardOverflow'>{props.mealObj.main.name}</div>}
                                         />
                                     </div>
-                                    {/* </div> */}
-                                    <div className='space2' />
+                                    <div className='space4' />
                                     {props.mealObj.main.name !== 'Network Error :(' &&
                                         (props.mealObj.main.name !== 'No meals found :(' ?
-                                            <p className='ant-card-meta-description'>
+                                            <div className='ant-card-meta-description'>
                                                 <TextTransition
                                                     text={props.mealObj.main.servings +
                                                         (props.mealObj.main.servings === 1 ? ' serving' : ' servings')}
                                                 />
-                                            </p>
+                                            </div>
                                             :
-                                            <p className='ant-card-meta-description'>
+                                            <div className='ant-card-meta-description'>
                                                 Try again with different preferences
-                                            </p>
+                                            </div>
                                         )
                                     }
                                 </div>
@@ -173,19 +177,20 @@ const MealCard = (props) => {
                                         <div className='space2' />
                                         {props.mealObj.side.name !== 'Network Error :(' &&
                                             (props.mealObj.side.name !== 'No meals found :(' ?
-                                                <p className='ant-card-meta-description'>
+                                                <div className='ant-card-meta-description'>
                                                     <TextTransition
                                                         text={props.mealObj.side.servings +
                                                             (props.mealObj.side.servings === 1 ? ' serving' : ' servings')}
                                                     />
-                                                </p>
+                                                </div>
                                                 :
-                                                <p className='ant-card-meta-description'>
+                                                <div className='ant-card-meta-description'>
                                                     Try again with different preferences
-                                                </p>
+                                                </div>
                                             )
                                         }
-                                    </div>}
+                                    </div>
+                                }
                             </div>
                         </Skeleton>
                     </Card >

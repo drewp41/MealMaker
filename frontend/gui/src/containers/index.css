@@ -711,7 +711,7 @@ input::-webkit-inner-spin-button {
 .mealCard {
     width: 420px;
     /* head height: 58, body height: 150 */
-    height: 208px; 
+    /* min-height: 208px;  */
 }
 
 .mealCard .ant-card-head {
@@ -727,6 +727,10 @@ input::-webkit-inner-spin-button {
     color: #57595b;
 }
 
+.ant-card-body {
+    padding: 14px 24px;
+}
+
 .mealCardSkeletonPadding .ant-card-body {
     padding: 30px 24px 24px 24px;
 }
@@ -736,37 +740,7 @@ input::-webkit-inner-spin-button {
     font-size: 15px;
     font-family: 'Alliance';
     font-weight: 300;
-    /* color: var(--mainTextColor); */
 }
-
-.mealCardOverflow {
-    /* min-width: 0; */
-    /* display: block; */
-    /* width: 100px;
-    color: #424446;
-    font-weight: 400;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important; */
-}
-
-
-/* more shadow, same hover */
-/* .cardShadow1 {
-    box-shadow:0 7px 14px 0 rgba(50, 50, 93, .1), 0 3px 6px 0 rgba(0, 0, 0, .07);
-    transition-property: color, background-color, box-shadow, transform;
-    transition-duration: .15s;
-}
-.cardShadow1:hover{
-    transform:translateY(-2px);
-    cursor: pointer;
-}
-.cardShadow1:active, .cardShadow1:hover{
-    box-shadow:0 15px 30px -6px rgba(50, 50, 93, .25), 0 9px 18px -9px rgba(0, 0, 0, .3), 0 -6px 18px -4px rgba(0, 0, 0, .025)
-}
-.cardShadow1:active {
-    transform:translateY(2px)
-} */
 
 /* less shadow, same hover.  This one is in use */
 .cardShadow2 {
@@ -810,22 +784,18 @@ input::-webkit-inner-spin-button {
     color: #8a8c8e;
 }
 
+/* the only thing that varries between the rows is the margin, so the borders dont overlap */
 .mealCardMainRow {
-    height: 64px;
-    /* bc the ant card body doesnt start at the top */
-    /* margin: -11px -10px 0 -10px; */
-    margin: -13px -12px 2px -12px;
-    padding: 5px 10px 0 10px;
+    margin: -2px -12px 2px -12px;
+    padding: 6px 10px;
     cursor: pointer;
     border: 2px solid transparent;
     transition: border-color .2s ease;
 }
 
 .mealCardSideRow {
-    height: 64px;
-    /* margin: 0 -10px 0 -10px; */
     margin: -2px -12px -2px -12px;
-    padding: 5px 10px 0 10px;
+    padding: 6px 10px;
     cursor: pointer;
     border: 2px solid transparent;
     transition: border-color .2s ease;
@@ -833,21 +803,17 @@ input::-webkit-inner-spin-button {
 
 .mealCardMainRow:hover {
     border-color: #e0e0e0;
-    /* add a -2px margin every to cancel the movement from border */
-    /* margin: -13px -12px 2px -12px; */
 }
 
 .mealCardSideRow:hover {
     border-color: #e0e0e0;
-    /* add a -2px margin every to cancel the movement from border */
-    /* margin: -2px -12px -2px -12px; */
 }
 
 .mealCardIcons {
     float: right;
     font-size: 18px;
     color: #5e6062;
-    /* margin-top: -1px; */
+    margin-top: -1px;
 }
 
 .regenIcon {
@@ -1838,3 +1804,22 @@ input::-webkit-inner-spin-button {
     }
 }
 
+
+
+/* alt meal card shadow */
+/* more shadow, same hover */
+/* .cardShadow1 {
+    box-shadow:0 7px 14px 0 rgba(50, 50, 93, .1), 0 3px 6px 0 rgba(0, 0, 0, .07);
+    transition-property: color, background-color, box-shadow, transform;
+    transition-duration: .15s;
+}
+.cardShadow1:hover{
+    transform:translateY(-2px);
+    cursor: pointer;
+}
+.cardShadow1:active, .cardShadow1:hover{
+    box-shadow:0 15px 30px -6px rgba(50, 50, 93, .25), 0 9px 18px -9px rgba(0, 0, 0, .3), 0 -6px 18px -4px rgba(0, 0, 0, .025)
+}
+.cardShadow1:active {
+    transform:translateY(2px)
+} */
