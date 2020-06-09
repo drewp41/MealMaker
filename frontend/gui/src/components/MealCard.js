@@ -6,6 +6,7 @@ import {
     SyncOutlined,
     PushpinOutlined, PushpinFilled
 } from '@ant-design/icons';
+import TextTransition, { presets } from "react-text-transition";
 
 import MealModal from './MealModal';
 
@@ -120,14 +121,23 @@ const MealCard = (props) => {
                                         </div>
                                     }
                                     <div className='ant-card-meta-title'>
-                                        {props.mealObj.main.name}
+                                        {/* <div className='mealCardOverflow'> */}
+                                        <TextTransition
+                                            // className='mealCardOverflow'
+                                            inline
+                                            text={props.mealObj.main.name}
+                                        // text={<div className='mealCardOverflow'>{props.mealObj.main.name}</div>}
+                                        />
                                     </div>
+                                    {/* </div> */}
                                     <div className='space2' />
                                     {props.mealObj.main.name !== 'Network Error :(' &&
                                         (props.mealObj.main.name !== 'No meals found :(' ?
                                             <p className='ant-card-meta-description'>
-                                                {props.mealObj.main.servings}
-                                                {props.mealObj.main.servings === 1 ? ' serving' : ' servings'}
+                                                <TextTransition
+                                                    text={props.mealObj.main.servings +
+                                                        (props.mealObj.main.servings === 1 ? ' serving' : ' servings')}
+                                                />
                                             </p>
                                             :
                                             <p className='ant-card-meta-description'>
@@ -156,14 +166,18 @@ const MealCard = (props) => {
                                         }
 
                                         <div className='ant-card-meta-title'>
-                                            {props.mealObj.side.name}
+                                            <TextTransition
+                                                text={props.mealObj.side.name}
+                                            />
                                         </div>
                                         <div className='space2' />
                                         {props.mealObj.side.name !== 'Network Error :(' &&
                                             (props.mealObj.side.name !== 'No meals found :(' ?
                                                 <p className='ant-card-meta-description'>
-                                                    {props.mealObj.side.servings}
-                                                    {props.mealObj.side.servings === 1 ? ' serving' : ' servings'}
+                                                    <TextTransition
+                                                        text={props.mealObj.side.servings +
+                                                            (props.mealObj.side.servings === 1 ? ' serving' : ' servings')}
+                                                    />
                                                 </p>
                                                 :
                                                 <p className='ant-card-meta-description'>

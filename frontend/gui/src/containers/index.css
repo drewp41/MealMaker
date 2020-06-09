@@ -739,6 +739,17 @@ input::-webkit-inner-spin-button {
     /* color: var(--mainTextColor); */
 }
 
+.mealCardOverflow {
+    /* min-width: 0; */
+    /* display: block; */
+    /* width: 100px;
+    color: #424446;
+    font-weight: 400;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important; */
+}
+
 
 /* more shadow, same hover */
 /* .cardShadow1 {
@@ -1654,6 +1665,60 @@ input::-webkit-inner-spin-button {
     width: 320px;
     height: 200px;
 }
+
+
+/*
+=======================================================
+                      ABOUT PAGE
+=======================================================
+*/
+
+.about {
+    display: flex;
+    justify-content: center;
+    padding-top: 36px;
+    color: #57596b;
+}
+
+.about h2 {
+    display: inline-block;
+    color: #57595b;
+    border-bottom: 2px solid #474c52;
+}
+
+.aboutBody {
+    width: 600px;
+    font-size: 15px;
+    line-height: 28px;
+}
+
+
+/*
+=======================================================
+                   HOW IT WORKS PAGE
+=======================================================
+*/
+
+.hiw {
+    display: flex;
+    justify-content: center;
+    padding-top: 36px;
+    color: #57596b;
+}
+
+.hiw h2 {
+    display: inline-block;
+    color: #57595b;
+    border-bottom: 2px solid #474c52;
+}
+
+.hiwBody {
+    width: 600px;
+    font-size: 15px;
+    line-height: 28px;
+}
+
+
 
 /*
 =======================================================
