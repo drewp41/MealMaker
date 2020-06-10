@@ -9,7 +9,6 @@ import {
 import axios from 'axios';
 
 import FoodIcon from './FoodIcon';
-// import other from '../FoodIcons/Other.svg';
 
 import { Pie, defaults } from 'react-chartjs-2';
 import 'chartjs-plugin-datalabels';

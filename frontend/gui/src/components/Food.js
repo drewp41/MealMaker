@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { List } from 'antd';
 
-import MealModal from './MealModal';
 import FoodEntry from './FoodEntry';
 
 // const emptyMeal = {

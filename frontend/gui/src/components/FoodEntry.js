@@ -3,16 +3,18 @@ import { List, Avatar, Popconfirm, Button, message } from 'antd';
 import axios from 'axios';
 
 import MealModal from './MealModal';
+import { getName } from './GetFoodName';
 
 import { CloseCircleOutlined } from '@ant-design/icons';
-import other from '../FoodIcons/Other.svg';
+// import other from '../FoodIcons/Other.svg';
 
-const IconText = ({ icon, text }) => (
-    <span>
-        {React.createElement(icon, { style: { marginRight: 8 } })}
-        {text}
-    </span>
-);
+function importAll(r) {
+    let images = {};
+    r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+    return images;
+}
+
+const images = importAll(require.context('../FoodIcons', false, /\.svg$/));
 
 const FoodEntry = (props) => {
 
@@ -37,6 +39,8 @@ const FoodEntry = (props) => {
             })
     }
 
+    console.log(getName(props.meal.name));
+
     return (
         <>
             <MealModal visible={showModal} meal={props.meal}
@@ -45,7 +49,7 @@ const FoodEntry = (props) => {
 
                 <List.Item style={{ display: 'flex' }}>
                     <List.Item.Meta
-                        avatar={<Avatar src={other} />}
+                        avatar={<Avatar src={images[getName(props.meal.name)]} />}
                         title={props.meal.name}
                         description={props.meal.calories + ' calories'}
                         style={{ cursor: 'pointer', paddingRight: '10px', width: '500px' }}
