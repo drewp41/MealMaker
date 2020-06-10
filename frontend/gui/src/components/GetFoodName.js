@@ -1,5 +1,5 @@
 const foodNames = ['Waffle', 'Pancake', 'Burrito', 'Sub', 'Sandwich', 'Turkey', 'Pizza', 'Salmon', 'Rice', 'Salad',
-    'Chicken', 'Sausage', 'Steak', 'Soda', 'Water', 'Fish', 'Pitcher', 'Can', 'Egg', 'Bread', 'Jelly',
+    'Chicken', 'Sausage', 'Steak', 'Soda', 'Fish', 'Pitcher', 'Can', 'Egg', 'Bread', 'Jelly',
     'Drink', 'Smoothie', 'Coffee', 'Tea', 'Peanut', 'Breakfast', 'Milk', 'Lemonade', 'Green', 'Honey',
     'Cucumber', 'Carrot', 'Corn', 'Eggplant', 'Apple', 'Pear', 'Pineapple', 'Banana', 'Chinese', 'Chips',
     'Clams', 'Octopus', 'Shrimp', 'Lobster', 'Sushi', 'Donut', 'Cake', 'Cupcake', 'Pastry', 'Pie', 'Pretzel', 'Cookie', 'Dessert',

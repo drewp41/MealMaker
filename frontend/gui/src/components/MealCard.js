@@ -73,14 +73,6 @@ const MealCard = (props) => {
         props.pinSide(props.mealNum);
     }
 
-    // the text transition component won't allow for text-overflow: ellipisis
-    function ellipsis(str) {
-        if (str.length > 39)
-            return str.substring(0, 39) + '...';
-        else
-            return str;
-    }
-
     return (
         <>
             {props.numMeals >= props.mealNum &&

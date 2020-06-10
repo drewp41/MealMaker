@@ -66,18 +66,24 @@ const { Step } = Steps;
 const MealModal = (props) => {
 
     const [favorite, setFavorite] = useState(false);
+    // Only used to display heart icon, saved meals are actaully stored on the database
+    // in the format: [id, name]
+    const [sessionFavoriteID, setSessionFavoriteID] = useState(null);
 
     // remove the heart icon on a new meal or the user is signed out
     useEffect(() => {
         setFavorite(false);
+        setSessionFavoriteID(null);
     }, [props.meal, props.isAuthenticated]);
 
     function onClickHeart() {
         if (!props.isAuthenticated) {
             message.warning('Make an account to save your favorite meals', 4);
         } else {
-            setFavorite(prev => !prev);
-            saveFood()
+            if (favorite)
+                removeFood();
+            else
+                saveFood();
         }
     }
 
@@ -86,8 +92,34 @@ const MealModal = (props) => {
             created_by: props.username,
             meal: JSON.stringify(props.meal)
         })
-            .then(res => message.success('Meal saved to favorites', 3))
-            .catch(error => console.log(error));
+            .then(res => {
+                setFavorite(true);
+                setSessionFavoriteID(res.data.id);
+                message.success('Meal saved to favorites', 3);
+            })
+            .catch(error => {
+                message.error('Something went wrong with the saving :(');
+                console.log(error);
+            })
+
+    }
+
+    async function removeFood() {
+        if (!sessionFavoriteID) {
+            message.error('Something went wrong with the removal :(');
+            return;
+        }
+        axios.delete(`http://127.0.0.1:8000/api/${sessionFavoriteID}/`, {
+            headers: { 'Authorization': `Token ${localStorage.getItem('token')}` }
+        })
+            .then(res => {
+                setFavorite(false);
+                message.success('Meal removed from favorites', 3);
+            })
+            .catch(error => {
+                message.error('Something went wrong with the removal :(');
+                console.log(error);
+            })
     }
 
     function handleCancel() {
@@ -118,7 +150,7 @@ const MealModal = (props) => {
                                     style={{ width: 100, height: 100 }} /> */}
                                 <FoodIcon name={props.meal.name} />
                             </div>
-                            <div style={{ width: '120px', textAlign: 'left', margin: '0 0 0 20px', fontSize: '15px' }}>
+                            <div style={{ width: '120px', textAlign: 'left', margin: '0 0 0 30px', fontSize: '15px' }}>
                                 <p> {'Prep: '}
                                     <span style={{ float: 'right' }}>
                                         {typeof props.meal.prepTime === 'undefined' ? 'n/a'
