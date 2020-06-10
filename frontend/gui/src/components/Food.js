@@ -4,9 +4,6 @@ import { List } from 'antd';
 import MealModal from './MealModal';
 import FoodEntry from './FoodEntry';
 
-import groceries from '../FoodIcons/groceries.svg';
-
-
 // const emptyMeal = {
 //     name: '', calories: 0, carbs: 0,
 //     protein: 0, fat: 0, ingredients: [],

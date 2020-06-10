@@ -8,7 +8,8 @@ import {
 } from '@ant-design/icons';
 import axios from 'axios';
 
-import groceries from '../FoodIcons/groceries.svg';
+import FoodIcon from './FoodIcon';
+// import other from '../FoodIcons/Other.svg';
 
 import { Pie, defaults } from 'react-chartjs-2';
 import 'chartjs-plugin-datalabels';
@@ -114,8 +115,9 @@ const MealModal = (props) => {
                     <div className='rowMM'>
                         <div className='colMMIcon'>
                             <div style={{ width: '100px' }}>
-                                <img src={groceries} alt={props.meal.name + 'image'}
-                                    style={{ width: 100, height: 100 }} />
+                                {/* <img src={other} alt={props.meal.name + 'image'}
+                                    style={{ width: 100, height: 100 }} /> */}
+                                <FoodIcon name={props.meal.name} />
                             </div>
                             <div style={{ width: '120px', textAlign: 'left', margin: '0 0 0 20px', fontSize: '15px' }}>
                                 <p> {'Prep: '}

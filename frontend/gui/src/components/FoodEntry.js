@@ -5,7 +5,7 @@ import axios from 'axios';
 import MealModal from './MealModal';
 
 import { CloseCircleOutlined } from '@ant-design/icons';
-import groceries from '../FoodIcons/groceries.svg';
+import other from '../FoodIcons/Other.svg';
 
 const IconText = ({ icon, text }) => (
     <span>
@@ -45,7 +45,7 @@ const FoodEntry = (props) => {
 
                 <List.Item style={{ display: 'flex' }}>
                     <List.Item.Meta
-                        avatar={<Avatar src={groceries} />}
+                        avatar={<Avatar src={other} />}
                         title={props.meal.name}
                         description={props.meal.calories + ' calories'}
                         style={{ cursor: 'pointer', paddingRight: '10px', width: '500px' }}

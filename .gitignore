@@ -2,6 +2,7 @@ env/
 frontend/gui/src/containers/Credentials.js
 fonts/
 secret.py
+FoodIcons/
 
 # Created by https://www.gitignore.io/api/react,django
 # Edit at https://www.gitignore.io/?templates=react,django
