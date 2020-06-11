@@ -67,7 +67,7 @@ const FeedbackModal = (props) => {
                     </div>
                     <Input.TextArea value={feedback} onChange={e => setFeedback(e.target.value)}>
                     </Input.TextArea>
-                    <div className='space12' />
+                    <div className='space20' />
 
                     <a className='genButton' onClick={sendFeedback}>
                         Submit

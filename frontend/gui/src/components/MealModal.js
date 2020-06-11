@@ -146,8 +146,6 @@ const MealModal = (props) => {
                     <div className='rowMM'>
                         <div className='colMMIcon'>
                             <div style={{ width: '100px' }}>
-                                {/* <img src={other} alt={props.meal.name + 'image'}
-                                    style={{ width: 100, height: 100 }} /> */}
                                 <FoodIcon name={props.meal.name} />
                             </div>
                             <div style={{ width: '120px', textAlign: 'left', margin: '0 0 0 30px', fontSize: '15px' }}>

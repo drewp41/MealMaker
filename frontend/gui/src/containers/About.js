@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import ImageModal from '../components/ImageModal';
 
 
 function About(props) {
+
+    const [modal1Visible, setModal1Visible] = useState(false);
+    const [modal2Visible, setModal2Visible] = useState(false);
+
     return (
         <>
             <Header {...props} />
@@ -14,20 +19,79 @@ function About(props) {
                     </h2>
                     <div className='space8' />
                     <p>
-                        On it differed repeated wandered required in. Then girl neat why yet knew rose spot. Moreover property we he kindness greatest be oh striking laughter. In me he at collecting affronting principles apartments. Has visitor law attacks pretend you calling own excited painted. Contented attending smallness it oh ye unwilling. Turned favour man two but lovers. Suffer should if waited common person little oh. Improved civility graceful sex few smallest screened settling. Likely active her warmly has.
+                        Hey! My name is Drew, and I built mealmaker.io.
                     </p>
                     <p>
-                        Yourself off its pleasant ecstatic now law. Ye their mirth seems of songs. Prospect out bed contempt separate. Her inquietude our shy yet sentiments collecting. Cottage fat beloved himself arrived old. Grave widow hours among him ﻿no you led. Power had these met least nor young. Yet match drift wrong his our.
+                        I'm currently a rising senior at the University of Maryland studying computer science.
+                    </p>
+                    <div className='space8' />
+                    <h2>
+                        Inspiration
+                    </h2>
+                    <div className='space8' />
+                    <p>
+                        The idea of creating a website started back at the end of 2019.  Web development is one of the areas of
+                        computer science that UMD doesn't focus on, so naturally I was very curious about the subject.
+                        I figured the best way to learn about it was to jump right in.  But first, I needed an idea.  I wanted to make a site
+                        that would not only solve a problem, but be interesting to me.  One of my biggiest hobbies is lifting, so naturally
+                        I thought of different ideas based around that. And then the problem I wanted to solve hit me; all I eat is
+                        chicken and rice. Like multiple meals of it every day, and trust me, I was sick of it.  Surely, there must be a better
+                        way to hit my "macro" goals in less of a soul-crushing meal than chicken and rice...
                     </p>
                     <p>
-                        Shot what able cold new the see hold. Friendly as an betrayed formerly he. Morning because as to society behaved moments. Put ladies design mrs sister was. Play on hill felt john no gate. Am passed figure to marked in. Prosperous middletons is ye inhabiting as assistance me especially. For looking two cousins regular amongst.
+                        That problem pretty much spawned the idea of Meal Maker.  I wanted to create a meal plan generator that given calorie and
+                        macronutrient information, would spit back out randomly generated meal plans (like a reverse MyFittnessPal).  But I had to
+                        source this food data from some database.  I starting by using the <a href='https://fdc.nal.usda.gov/'>USDA food database</a> which
+                        houses the hundreds the of thousands of foods that are on every nutrition label.  However, there were a lot of issues
+                        with using this database.  For one, there were a lot of "junk" entries that were difficult to filter though.  But the biggest difficulty
+                        was figuring out how to match foods together.  How would I know that chicken breast goes well with potatoes, and not, say, orange juice? This is what
+                        led me to using the <a href='https://fdc.nal.usda.gov/'>Spoonacular API</a>, which was a database full of <b>recipes</b>.
+                        I dive into the detail on how I generate these foods in my <a href='https://fdc.nal.usda.gov/'>How it works</a> page.
+                    </p>
+                    <div className='space8' />
+                    <h2>
+                        Development
+                    </h2>
+                    <div className='space8' />
+                    <p>
+                        Once I had my idea down, as well as the technologies I was going to use, I hit the ground running.  In fact, when I first started
+                        building this site, I didn't know any HTML, CSS, or even Javascript!  But hey, the best way to learn it to jump right in.  And I learned a lot.
+                        Over the course of a few months, I became obsessed with this project.  I would work on it whenever I got the chance, and it
+                        would constantly be in the back of my mind.  I loved it, and completely fell in love with web developement (as well as design/UI).
+                        The end product turned out better than I ever could have imagined.
+                        <br />
+                    </p>
+                    <div className='space8' />
+                    <h2>
+                        Original Designs
+                    </h2>
+                    <div className='space8' />
+                    {/* <p style={{ textAlign: 'center' }}>
+                        Check out some of my original designs below.
+                    </p> */}
+                    <div className='space8' />
+                    <div className='aboutImgBody'>
+                        <ImageModal number={1} />
+                        <ImageModal number={2} />
+                    </div>
+                    <div className='space32' />
+                    <h2>
+                        Closing
+                    </h2>
+                    <div className='space8' />
+                    <p>
+                        Thanks for checking out my site.  If there's something you particularly enjoyed, or noticed an aspect I could have improved, hit that feedback
+                        button at the bottom of the page.  Whether this site gives you some meal ideas, inspires you to build a website,
+                        or even entertained you for a minute, I'm glad you stopped by.
                     </p>
                     <p>
-                        Agreed joy vanity regret met may ladies oppose who. Mile fail as left as hard eyes. Meet made call in mean four year it to. Prospect so branched wondered sensible of up. For gay consisted resolving pronounce sportsman saw discovery not. Northward or household as conveying we earnestly believing. No in up contrasted discretion inhabiting excellence. Entreaties we collecting unpleasant at everything conviction.
+                        Best,
+                        <br />
+                        Drew
                     </p>
                 </div>
             </div>
-            <div style={{ height: '200px' }} />
+            <div style={{ height: '100px' }} />
             <Footer />
         </>
     )

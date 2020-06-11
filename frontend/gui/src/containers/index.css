@@ -1695,9 +1695,48 @@ input::-webkit-inner-spin-button {
 }
 
 .aboutBody {
-    width: 600px;
+    width: 640px;
     font-size: 15px;
     line-height: 28px;
+    padding: 0 20px;
+}
+
+.aboutBody p a {
+    color: #57596b;
+    border-bottom: 1px solid rgba(0,0,0,0.35);
+}
+
+.aboutBody p a:hover {
+    color: #181a1c;
+    border-bottom: 1px solid rgba(0,0,0,0.65);
+}
+
+.aboutImgBody {
+    display: flex;
+    justify-content: space-around;
+}
+
+.aboutImgBody img {
+    width: 40%;
+    height: auto;
+    cursor: pointer;
+}
+
+.imageModal {
+    max-height: 90%;
+    overflow-x:scroll;     
+    white-space: nowrap;
+}
+
+.imageModal .ant-modal-body {
+    padding: 0 0 0 0;
+}
+
+.imageModal img {
+    min-width: 700px;
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
 }
 
 
