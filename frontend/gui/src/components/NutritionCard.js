@@ -79,13 +79,11 @@ const NutritionCard = (props) => {
         <div className='nutritionCardToggle' style={{ height: props.calories === 0 ? 0 : totalHeight, opacity: props.calories === 0 ? 0 : 1 }}>
             <div className='nutritionCardHeader'>
                 Today's Meal Plan
-                {/* hide the regen icon if the preferences have changed */}
-                {props.changedPrefs ? null :
-                    <span className='nutritionCardHeaderRegen' onClick={() => props.onClickGenerateButton(true)}>
-                        {props.otherRegenLoadingMeals ? <SyncOutlined spin /> : <SyncOutlined />}&nbsp;
+                {/* originally hid the regen icon if the preferences have changed, but it was buggy so always show it */}
+                <span className='nutritionCardHeaderRegen' onClick={() => props.onClickGenerateButton(true)}>
+                    {props.otherRegenLoadingMeals ? <SyncOutlined spin /> : <SyncOutlined />}&nbsp;
                         Regenerate
-                    </span>
-                }
+                </span>
             </div>
             <div className='space8' />
             <div className='nutritionCard'>
@@ -93,7 +91,6 @@ const NutritionCard = (props) => {
                 <Collapse expandIconPosition='right' onChange={() => setTotalHeight('auto')}>
                     <Panel header={
                         <div style={{ display: 'flex' }}>
-
                             <Pie
                                 width={30}
                                 height={30}
@@ -112,7 +109,6 @@ const NutritionCard = (props) => {
                                 <div style={{ display: 'flex', alignItems: 'center' }}>
                                 {props.calories} calories
                                 </div>
-                            {/* </div> */}
                         </div>} key="1">
                         <div className='nutritionCardBody'>
                             <div className='nutritionPieBody'>
@@ -157,33 +153,7 @@ const NutritionCard = (props) => {
                 </Collapse>
             </div >
         </div >
-        //     }
-        // </>
     )
 }
 
 export default NutritionCard;
-
-{/* <div className='pieDiv' style={{ width: '240px', height: '300px', textAlign: 'center' }}>
-                        <b style={{ fontSize: '22px', fontFamily: 'Camphor', fontWeight: '300', color: mainTextColor }}>
-                            Macro Breakdown
-                        </b>
-                        <p />
-                        <Pie
-                            width={240}
-                            height={240}
-                            data={{
-                                labels: ['Carbs', 'Protein', 'Fat'],
-                                datasets:
-                                    [{
-                                        ...pieColors,
-                                        data: enableMacros ?
-                                            [Math.round(macros.carbs * 100 / (macros.carbs + macros.protein + macros.fat * (9 / 4))),
-                                            Math.round(macros.protein * 100 / (macros.carbs + macros.protein + macros.fat * (9 / 4))),
-                                            Math.round((macros.fat * (9 / 4) * 100) / (macros.carbs + macros.protein + macros.fat * (9 / 4)))]
-                                            : [33, 33, 33]
-                                    }]
-                            }}
-                            options={pieOptions}
-                        />
-                    </div> */}

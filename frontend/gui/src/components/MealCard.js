@@ -140,44 +140,46 @@ const MealCard = (props) => {
                                         )
                                     }
                                 </div>
-                                <div className='space4' />
                                 {props.mealObj.side.name &&
-                                    <div className='mealCardRow'
-                                        onClick={() => (props.mealObj.side.name !== 'Network Error :('
-                                            && props.mealObj.side.name !== 'No meals found :(') ? setShowSideModal(true) : {}}>
-                                        {props.mealObj.side.name !== 'Network Error :(' && props.mealObj.side.name !== 'No meals found :(' &&
-                                            <div className='mealCardIcons'>
-                                                {/* show regen icon if the meal isn't pinned */}
-                                                {!props.mealObj.sidePinned ?
-                                                    (props.mealObj.sideLoading ?
-                                                        <SyncOutlined spin className='regenIcon' onClick={(e) => regenSide(e)} /> :
-                                                        <SyncOutlined className='regenIcon' onClick={(e) => regenSide(e)} />)
-                                                    : <SyncOutlined className='regenIcon' style={{ opacity: 0 }} />}
+                                    <>
+                                        <div className='space4' />
+                                        <div className='mealCardRow'
+                                            onClick={() => (props.mealObj.side.name !== 'Network Error :('
+                                                && props.mealObj.side.name !== 'No meals found :(') ? setShowSideModal(true) : {}}>
+                                            {props.mealObj.side.name !== 'Network Error :(' && props.mealObj.side.name !== 'No meals found :(' &&
+                                                <div className='mealCardIcons'>
+                                                    {/* show regen icon if the meal isn't pinned */}
+                                                    {!props.mealObj.sidePinned ?
+                                                        (props.mealObj.sideLoading ?
+                                                            <SyncOutlined spin className='regenIcon' onClick={(e) => regenSide(e)} /> :
+                                                            <SyncOutlined className='regenIcon' onClick={(e) => regenSide(e)} />)
+                                                        : <SyncOutlined className='regenIcon' style={{ opacity: 0 }} />}
                                             &nbsp;&nbsp;&nbsp;
                                             {props.mealObj.sidePinned ?
-                                                    <PushpinFilled className='pinIcon' onClick={(e) => pinSide(e)} /> :
-                                                    <PushpinOutlined className='pinIcon' onClick={(e) => pinSide(e)} />}
-                                            </div>
-                                        }
-                                        <TextTransition
-                                            className='mealCardTitleText'
-                                            text={props.mealObj.side.name}
-                                        />
-                                        <div className='space2' />
-                                        {props.mealObj.side.name !== 'Network Error :(' &&
-                                            (props.mealObj.side.name !== 'No meals found :(' ?
-                                                <TextTransition
-                                                    className='mealCardServingText'
-                                                    text={props.mealObj.side.servings +
-                                                        (props.mealObj.side.servings === 1 ? ' serving' : ' servings')}
-                                                />
-                                                :
-                                                <div className='mealCardServingText'>
-                                                    Try again with different preferences
+                                                        <PushpinFilled className='pinIcon' onClick={(e) => pinSide(e)} /> :
+                                                        <PushpinOutlined className='pinIcon' onClick={(e) => pinSide(e)} />}
+                                                </div>
+                                            }
+                                            <TextTransition
+                                                className='mealCardTitleText'
+                                                text={props.mealObj.side.name}
+                                            />
+                                            <div className='space2' />
+                                            {props.mealObj.side.name !== 'Network Error :(' &&
+                                                (props.mealObj.side.name !== 'No meals found :(' ?
+                                                    <TextTransition
+                                                        className='mealCardServingText'
+                                                        text={props.mealObj.side.servings +
+                                                            (props.mealObj.side.servings === 1 ? ' serving' : ' servings')}
+                                                    />
+                                                    :
+                                                    <div className='mealCardServingText'>
+                                                        Try again with different preferences
                                         </div>
-                                            )
-                                        }
-                                    </div>
+                                                )
+                                            }
+                                        </div>
+                                    </>
                                 }
                             </div>
                         </Skeleton>
