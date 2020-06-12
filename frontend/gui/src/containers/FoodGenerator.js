@@ -284,6 +284,7 @@ export async function fetchBreakfastSide(cals, numMeals, carbs, protein, fat, av
                 return [sidesRes];
             })
     } else {
+        // if numMeals > 1
         return fetchBreakfastSideData(cals, numMeals, carbs, protein, fat)
             .then(d => {
                 return d;
@@ -319,7 +320,8 @@ async function fetchBreakfastSideData(cals, numMeals, carbs, protein, fat, avail
         // let it wait at least half a second before returning, so it's not instant
         let res = await new Promise((resolve) => {
             setTimeout(() => {
-                resolve([breakfastSides.slice(0, 6)]);
+                // return 6 random sides from the breakfast sides array
+                resolve([breakfastSides.sort(() => .5 - Math.random()).slice(0, 6)]);
             }, 500)
         })
         return res;
