@@ -1558,7 +1558,7 @@ input::-webkit-inner-spin-button {
     padding: 32px;
     position: absolute;
     bottom: 0px;
-    color: #0a0909;
+    color: #505050;
 }
 
 /* when alert goes to two lines */
@@ -1685,13 +1685,13 @@ input::-webkit-inner-spin-button {
     display: flex;
     justify-content: center;
     padding-top: 36px;
-    color: #57596b;
+    color: #555759;
 }
 
 .about h2 {
     display: inline-block;
-    color: #57595b;
-    border-bottom: 2px solid #474c52;
+    color: #555759;
+    border-bottom: 2px solid #6f7073;
 }
 
 .aboutBody {
@@ -1702,13 +1702,13 @@ input::-webkit-inner-spin-button {
 }
 
 .aboutBody p a {
-    color: #57596b;
-    border-bottom: 1px solid rgba(0,0,0,0.35);
+    color: #555759;
+    border-bottom: 1px solid rgba(0,0,0,0.40);
 }
 
 .aboutBody p a:hover {
     color: #181a1c;
-    border-bottom: 1px solid rgba(0,0,0,0.65);
+    border-bottom: 1px solid rgba(0,0,0,0.70);
 }
 
 .aboutImgBody {
@@ -1729,11 +1729,11 @@ input::-webkit-inner-spin-button {
 }
 
 .imageModal .ant-modal-body {
-    padding: 0 0 0 0;
+    padding: 0;
 }
 
 .imageModal img {
-    min-width: 700px;
+    min-width: 800px;
     max-width: 100%;
     height: auto;
     cursor: pointer;
@@ -1750,23 +1750,43 @@ input::-webkit-inner-spin-button {
     display: flex;
     justify-content: center;
     padding-top: 36px;
-    color: #57596b;
+    color: #555759;
 }
 
 .hiw h2 {
     display: inline-block;
-    color: #57595b;
-    border-bottom: 2px solid #474c52;
+    color: #555759;
+    border-bottom: 2px solid #6f7073;
 }
 
 .hiwBody {
     width: 600px;
     font-size: 15px;
     line-height: 28px;
+    margin: 0 20px;
+    overflow: hidden;
 }
 
+.hiwBody p a {
+    color: #555759;
+    border-bottom: 1px solid rgba(0,0,0,0.40);
+}
 
+.hiwBody p a:hover {
+    color: #181a1c;
+    border-bottom: 1px solid rgba(0,0,0,0.70);
+}
 
+.hiwCode {
+    width: 100%;
+    overflow-y: auto;
+    white-space: nowrap;
+}
+
+.hiwPreCode {
+    padding: 15px;
+    background-color: #f5f5f5;
+}
 /*
 =======================================================
                     FEEDBACK MODAL

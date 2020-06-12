@@ -1,29 +1,73 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 
-
 function HowItWorks(props) {
+
+    useEffect(() => {
+        // setTimeout(() => Prism.highlightAll(), 0)
+    }, [])
+
+
     return (
         <>
             <Header {...props} />
             <div className='hiw'>
                 <div className='hiwBody'>
                     <h2>
-                        How it works
+                        Technologies
                     </h2>
                     <div className='space8' />
                     <p>
-                        On it differed repeated wandered required in. Then girl neat why yet knew rose spot. Moreover property we he kindness greatest be oh striking laughter. In me he at collecting affronting principles apartments. Has visitor law attacks pretend you calling own excited painted. Contented attending smallness it oh ye unwilling. Turned favour man two but lovers. Suffer should if waited common person little oh. Improved civility graceful sex few smallest screened settling. Likely active her warmly has.
+                        This website was not just built with Javascript, HTML, and CSS.  One of the main technologies behind this site
+                        is <a href='https://reactjs.org/'>React</a>, which is Facebook's open-source JS library. One of the biggest tools that
+                        React offers is its state management.  React will efficiently rerender components when its data changes.
+                        For example, when a meal is refreshed and its calories change, the total calories counter at the top will automatically update.
+                        So long are the days of consulting the DOM or looking up an element by its ID to keep everything up to date.
                     </p>
                     <p>
-                        Yourself off its pleasant ecstatic now law. Ye their mirth seems of songs. Prospect out bed contempt separate. Her inquietude our shy yet sentiments collecting. Cottage fat beloved himself arrived old. Grave widow hours among him ﻿no you led. Power had these met least nor young. Yet match drift wrong his our.
+                        I also used <a href='https://www.djangoproject.com/'>Django</a> for the backend, mainly for user authentication and
+                        the storage of users' saved meals. In addition, I used <a href='https://ant.design/'>Ant Design</a> for various components,
+                        and <a href='https://www.chartjs.org/'>ChartJS</a> for the pie charts.
+                    </p>
+                    <div className='space8' />
+                    <h2>
+                        Food algorithm
+                    </h2>
+                    <div className='space8' />
+                    <p>
+                        All of the food data is sourced from the <a href='https://spoonacular.com/food-api'>Spoonacular API</a>. This is a database
+                        of over 365,000 recipes that allows me to randomly search recipes based on calories, macros, meal type, etc.
                     </p>
                     <p>
-                        Shot what able cold new the see hold. Friendly as an betrayed formerly he. Morning because as to society behaved moments. Put ladies design mrs sister was. Play on hill felt john no gate. Am passed figure to marked in. Prosperous middletons is ye inhabiting as assistance me especially. For looking two cousins regular amongst.
+                        Whenever the user hits the generate button, a GET request is sent to Spoonacular's API to fetch recipes based on the certain parameters.
+                    </p>
+                    <div className='hiwCode'>
+                        <pre className='hiwPreCode'>
+                            <code>
+                                {"axios.get('https://api.spoonacular.com/recipe/complexSearch', {"}<br />
+                                {"            params: {"}<br />
+                                {"              minCals: 400,"}<br />
+                                {"              maxProtein: 40,"}<br />
+                                {"              type: 'main+course',"}<br />
+                                {"              number: 6,"}<br />
+                                {"              ...otherParams"}<br />
+                                {"            }"}<br />
+                                {"        });"}<br />
+                            </code>
+                        </pre>
+                    </div>
+                    <p>
+                        Under "normal" circumstances, calories are determined by taking the total number of calories, divided by the number of
+                        meals, with breakfast being a little smaller. The same is done for the macronutrients.  This results in every meal having a
+                        similar amount of calories and macronutrient profile. There is then a random chance for a non-breakfast meal to include a side.
+                        However, if the user asks for say, 4000 calories in 3 meals, there are going to be close to zero results.  This is because most main course recipes
+                        are within 300 to 500 calories (follows a normal distribution peaking at 400 calories). To combat this, I randomize the servings the user recives if the calories per meal is too high.  For example,
+                        when the calories per meal is 900, there is a 20% chance of receiving (roughly) 2x 450 calorie meals, and an 80% chance
+                        of receiving 3x 300 calorie meals.
                     </p>
                     <p>
-                        Agreed joy vanity regret met may ladies oppose who. Mile fail as left as hard eyes. Meet made call in mean four year it to. Prospect so branched wondered sensible of up. For gay consisted resolving pronounce sportsman saw discovery not. Northward or household as conveying we earnestly believing. No in up contrasted discretion inhabiting excellence. Entreaties we collecting unpleasant at everything conviction.
+
                     </p>
                 </div>
             </div>

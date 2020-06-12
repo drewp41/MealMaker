@@ -19,7 +19,7 @@ const ImageModal = (props) => {
                 onCancel={closeModal}
                 footer={null}
                 centered
-                width='80%'
+                width='85%'
                 closable={false}
             >
                 <img src={props.number === 1 ? img1 : img2} alt='Old site design'

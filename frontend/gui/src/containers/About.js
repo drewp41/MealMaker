@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import ImageModal from '../components/ImageModal';
+import { Link } from 'react-router-dom';
 
 
 function About(props) {
@@ -30,23 +31,22 @@ function About(props) {
                     </h2>
                     <div className='space8' />
                     <p>
-                        The idea of creating a website started back at the end of 2019.  Web development is one of the areas of
+                        The idea of creating a website started at the end of 2019.  Web development is one of the areas of
                         computer science that UMD doesn't focus on, so naturally I was very curious about the subject.
                         I figured the best way to learn about it was to jump right in.  But first, I needed an idea.  I wanted to make a site
                         that would not only solve a problem, but be interesting to me.  One of my biggiest hobbies is lifting, so naturally
-                        I thought of different ideas based around that. And then the problem I wanted to solve hit me; all I eat is
+                        I thought of different ideas based around that. The problem I wanted to solve hit me; all I eat is
                         chicken and rice. Like multiple meals of it every day, and trust me, I was sick of it.  Surely, there must be a better
                         way to hit my "macro" goals in less of a soul-crushing meal than chicken and rice...
                     </p>
                     <p>
-                        That problem pretty much spawned the idea of Meal Maker.  I wanted to create a meal plan generator that given calorie and
-                        macronutrient information, would spit back out randomly generated meal plans (like a reverse MyFittnessPal).  But I had to
-                        source this food data from some database.  I starting by using the <a href='https://fdc.nal.usda.gov/'>USDA food database</a> which
-                        houses the hundreds the of thousands of foods that are on every nutrition label.  However, there were a lot of issues
-                        with using this database.  For one, there were a lot of "junk" entries that were difficult to filter though.  But the biggest difficulty
-                        was figuring out how to match foods together.  How would I know that chicken breast goes well with potatoes, and not, say, orange juice? This is what
-                        led me to using the <a href='https://fdc.nal.usda.gov/'>Spoonacular API</a>, which was a database full of <b>recipes</b>.
-                        I dive into the detail on how I generate these foods in my <a href='https://fdc.nal.usda.gov/'>How it works</a> page.
+                        That problem spawned the idea of Meal Maker.  I wanted to create a meal plan generator that, given calorie and
+                        macronutrient information, would spit back out randomly generated meal plans (think of it like a reverse MyFittnessPal).  I had to
+                        source this food data from somewhere.  I starting by using the <a href='https://fdc.nal.usda.gov/'>USDA food database</a> which
+                        houses the hundreds the of thousands of foods that are on every nutrition label. The biggest difficulty I had with this database
+                        was figuring out how to match foods together.  How would I know that chicken breast goes well with potatoes, and not, say, grape jelly? This is what
+                        led me to using the <a href='https://spoonacular.com/food-api'>Spoonacular API</a>, which was a database full of <b>recipes</b>.
+                        I dive into the detail on how I generate these foods in my <Link to='/howitworks'>How it works</Link> page.
                     </p>
                     <div className='space8' />
                     <h2>
@@ -80,9 +80,9 @@ function About(props) {
                     </h2>
                     <div className='space8' />
                     <p>
-                        Thanks for checking out my site.  If there's something you particularly enjoyed, or noticed an aspect I could have improved, hit that feedback
-                        button at the bottom of the page.  Whether this site gives you some meal ideas, inspires you to build a website,
-                        or even entertained you for a minute, I'm glad you stopped by.
+                        Thanks for checking out my site.  If there's something you particularly enjoyed, or noticed an aspect I could
+                        have improved, hit the feedback button at the bottom of the page.  Whether this site gives you some meal ideas, inspires
+                        you to build a website, or even entertained you for a minute, I'm glad you stopped by.
                     </p>
                     <p>
                         Best,

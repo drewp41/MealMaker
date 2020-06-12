@@ -76,11 +76,6 @@ const NutritionCard = (props) => {
     const [totalHeight, setTotalHeight] = useState(89);
 
     return (
-        // <>
-
-        //     {props.calories === 0 ? null
-        //         :
-        // 89 is the height for auto
         <div className='nutritionCardToggle' style={{ height: props.calories === 0 ? 0 : totalHeight, opacity: props.calories === 0 ? 0 : 1 }}>
             <div className='nutritionCardHeader'>
                 Today's Meal Plan

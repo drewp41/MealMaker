@@ -3,13 +3,6 @@ import { List } from 'antd';
 
 import FoodEntry from './FoodEntry';
 
-// const emptyMeal = {
-//     name: '', calories: 0, carbs: 0,
-//     protein: 0, fat: 0, ingredients: [],
-//     instructions: [], servings: 0, makes: 0,
-//     prepTime: 0, cookTime: 0
-// }
-
 const Foods = (props) => {
 
     return (
