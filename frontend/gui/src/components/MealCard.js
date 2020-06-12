@@ -104,42 +104,46 @@ const MealCard = (props) => {
                             active={props.mealObj.mainLoading || props.mealObj.sideLoading}
                             paragraph={{ rows: 3, width: ['80%', '100%', '60%'] }} >
                             <div className='mealCardBody'>
-                                <div className='mealCardRow'
-                                    onClick={() => (props.mealObj.main.name !== 'Network Error :('
-                                        && props.mealObj.main.name !== 'No meals found :(') ? setShowMainModal(true) : {}}>
-                                    {props.mealObj.main.name !== 'Network Error :(' && props.mealObj.main.name !== 'No meals found :(' &&
-                                        <div className='mealCardIcons'>
-                                            {/* show regen icon if the meal isn't pinned */}
-                                            {!props.mealObj.mainPinned ?
-                                                (props.mealObj.mainLoading ?
-                                                    <SyncOutlined spin className='regenIcon' onClick={(e) => regenMain(e)} /> :
-                                                    <SyncOutlined className='regenIcon' onClick={(e) => regenMain(e)} />)
-                                                : <SyncOutlined className='regenIcon' style={{ opacity: 0 }} />}
+                                {/* used for when the number of meals in increased and the new card is 'blank' */}
+                                {props.mealObj.main.name &&
+
+                                    <div className='mealCardRow'
+                                        onClick={() => (props.mealObj.main.name !== 'Network Error :('
+                                            && props.mealObj.main.name !== 'No meals found :(') ? setShowMainModal(true) : {}}>
+                                        {props.mealObj.main.name !== 'Network Error :(' && props.mealObj.main.name !== 'No meals found :(' &&
+                                            <div className='mealCardIcons'>
+                                                {/* show regen icon if the meal isn't pinned */}
+                                                {!props.mealObj.mainPinned ?
+                                                    (props.mealObj.mainLoading ?
+                                                        <SyncOutlined spin className='regenIcon' onClick={(e) => regenMain(e)} /> :
+                                                        <SyncOutlined className='regenIcon' onClick={(e) => regenMain(e)} />)
+                                                    : <SyncOutlined className='regenIcon' style={{ opacity: 0 }} />}
                                         &nbsp;&nbsp;&nbsp;
                                         {props.mealObj.mainPinned ?
-                                                <PushpinFilled className='pinIcon' onClick={(e) => pinMain(e)} /> :
-                                                <PushpinOutlined className='pinIcon' onClick={(e) => pinMain(e)} />}
-                                        </div>
-                                    }
-                                    <TextTransition
-                                        className='mealCardTitleText'
-                                        text={props.mealObj.main.name}
-                                    />
-                                    <div className='space2' />
-                                    {props.mealObj.main.name !== 'Network Error :(' &&
-                                        (props.mealObj.main.name !== 'No meals found :(' ?
-                                            <TextTransition
-                                                className='mealCardServingText'
-                                                text={props.mealObj.main.servings +
-                                                    (props.mealObj.main.servings === 1 ? ' serving' : ' servings')}
-                                            />
-                                            :
-                                            <div className='mealCardServingText'>
-                                                Try again with different preferences
+                                                    <PushpinFilled className='pinIcon' onClick={(e) => pinMain(e)} /> :
+                                                    <PushpinOutlined className='pinIcon' onClick={(e) => pinMain(e)} />}
                                             </div>
-                                        )
-                                    }
-                                </div>
+                                        }
+                                        <TextTransition
+                                            className='mealCardTitleText'
+                                            text={props.mealObj.main.name}
+                                        />
+                                        <div className='space2' />
+                                        {props.mealObj.main.name !== 'Network Error :(' &&
+                                            (props.mealObj.main.name !== 'No meals found :(' ?
+                                                <TextTransition
+                                                    className='mealCardServingText'
+                                                    text={props.mealObj.main.servings +
+                                                        (props.mealObj.main.servings === 1 ? ' serving' : ' servings')}
+                                                />
+                                                :
+                                                <div className='mealCardServingText'>
+                                                    Try again with different preferences
+                                            </div>
+                                            )
+                                        }
+                                    </div>
+                                }
                                 {props.mealObj.side.name &&
                                     <>
                                         <div className='space4' />

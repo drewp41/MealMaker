@@ -785,6 +785,11 @@ input::-webkit-inner-spin-button {
     color: transparent;
 }
 
+/* fixes bug causing the meal title to spill over to the next line, on top of the servings text */
+.text-transition_inner div{
+    width: 100% !important;
+}
+
 .mealCardRow {
     margin: -2px -12px;
     padding: 6px 10px;
@@ -804,6 +809,7 @@ input::-webkit-inner-spin-button {
     color: #222426;
     /* space for the icons */
     margin-right: 55px;
+    text-overflow: ellipsis
 }
 
 .mealCardServingText {
@@ -1714,6 +1720,7 @@ input::-webkit-inner-spin-button {
 .aboutImgBody {
     display: flex;
     justify-content: space-around;
+    align-items: flex-start;
 }
 
 .aboutImgBody img {

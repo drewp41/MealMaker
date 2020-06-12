@@ -11,6 +11,7 @@ import { Link, withRouter, useHistory, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/auth';
 import 'antd/dist/antd.css';
+import 'react-text-transition/src/components/text-transition.styl';
 import './index.css';
 import MealCard from '../components/MealCard';
 import Header from './Header';
