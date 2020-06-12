@@ -22,7 +22,7 @@ function HowItWorks(props) {
                         This website was not just built with Javascript, HTML, and CSS.  One of the main technologies behind this site
                         is <a href='https://reactjs.org/'>React</a>, which is Facebook's open-source JS library. One of the biggest tools that
                         React offers is its state management.  React will efficiently rerender components when its data changes.
-                        For example, when a meal is refreshed and its calories change, the total calories counter at the top will automatically update.
+                        For example, when a meal is regenerated and its calories change, the total calories counter at the top will automatically update.
                         So long are the days of consulting the DOM or looking up an element by its ID to keep everything up to date.
                     </p>
                     <p>
@@ -37,7 +37,7 @@ function HowItWorks(props) {
                     <div className='space8' />
                     <p>
                         All of the food data is sourced from the <a href='https://spoonacular.com/food-api'>Spoonacular API</a>. This is a database
-                        of over 365,000 recipes that allows me to randomly search recipes based on calories, macros, meal type, etc.
+                        of over 365,000 recipes that allows for randomly searching recipes based on calories, macros, meal type, etc.
                     </p>
                     <p>
                         Whenever the user hits the generate button, a GET request is sent to Spoonacular's API to fetch recipes based on the certain parameters.
@@ -58,17 +58,47 @@ function HowItWorks(props) {
                         </pre>
                     </div>
                     <p>
-                        Under "normal" circumstances, calories are determined by taking the total number of calories, divided by the number of
-                        meals, with breakfast being a little smaller. The same is done for the macronutrients.  This results in every meal having a
-                        similar amount of calories and macronutrient profile. There is then a random chance for a non-breakfast meal to include a side.
-                        However, if the user asks for say, 4000 calories in 3 meals, there are going to be close to zero results.  This is because most main course recipes
-                        are within 300 to 500 calories (follows a normal distribution peaking at 400 calories). To combat this, I randomize the servings the user recives if the calories per meal is too high.  For example,
-                        when the calories per meal is 900, there is a 20% chance of receiving (roughly) 2x 450 calorie meals, and an 80% chance
-                        of receiving 3x 300 calorie meals.
+                        For a simplified explanation, the calories per meal is determined by taking the total number of calories, divided by the number of
+                        meals. The same is done for the macronutrients. There is then a random chance for a meal to include a side.
+                        However, if the user asks for say, 3000 calories in 3 meals, there are going to be close to zero results.
+                        This is because most main course recipes are within 300 to 500 calories. To combat this, I randomize the servings the user
+                        recives if the calories per meal is too high.  Using the example above, for an individual meal, the user might recieve
+                        2 servings of a 500 calorie meal, or 3 servings of a 330 calorie meal.
                     </p>
                     <p>
-
+                        Behind the scenes, Meal Maker caches meals to minimize the amount of API calls it does to Spoonacular.  For every meal generated,
+                        an extra five is generated during the same API call.  This results in refreshing meals meals usually being instantaneous.  The
+                        orchestration of trying to maximize the use cached meals during regeneration, while fetching meals and keeping certain meals pinned, was
+                        the most difficult part of this project.
                     </p>
+                    <div className='space8' />
+                    <h2>
+                        Features to add
+                    </h2>
+                    <div className='space8' />
+                    <ul>
+                        <li>
+                            Filter by diet and intolerances
+                        </li>
+                        <li>
+                            Include certain ingredients (ones in your pantry?)
+                        </li>
+                        <li>
+                            Exclude ingredients you don't like
+                        </li>
+                        <li>
+                            A stream/feed at the bottom of the site with meals other users have saved
+                        </li>
+                        <li>
+                            Authentication with social media accounts
+                        </li>
+                        <li>
+                            Search for specific recipes and add them directly to your meal plan
+                        </li>
+                        <li>
+                            Regenerate an entire meal at a time
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div style={{ height: '200px' }} />
