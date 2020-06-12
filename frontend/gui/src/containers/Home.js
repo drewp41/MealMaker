@@ -808,10 +808,7 @@ const NewLayout = (props) => {
     };
 
     return (
-        //  242, 242, 242
-        // <div style={{ backgroundColor: 'rgb(242, 242, 242)' }}>
         <div style={{ backgroundColor: '#fff' }}>
-            {/* <div style={{ backgroundColor: 'rgb(245, 243, 240)' }}> */}
             <Header {...props} />
 
             <div className='topBody'>
