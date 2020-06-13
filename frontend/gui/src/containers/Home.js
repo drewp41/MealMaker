@@ -1,14 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
-    Slider, Select, List, Alert,
-    Switch, Collapse, Tabs, message
+    Select, Alert, Collapse, Tabs, message
 } from 'antd';
-import {
-    SyncOutlined, PushpinOutlined, PushpinFilled,
-    SettingFilled, CalculatorFilled, SlidersFilled
-} from '@ant-design/icons';
-import { Link, withRouter, useHistory, useLocation } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import * as actions from '../store/actions/auth';
 import 'antd/dist/antd.css';
 import 'react-text-transition/src/components/text-transition.styl';
@@ -28,13 +24,6 @@ import {
 } from './FoodGenerator.js';
 
 import './hamb/hamburgers.scss';
-import axios from 'axios';
-
-
-const { Option } = Select;
-const { Panel } = Collapse;
-
-const mainTextColor = '#32323c';
 
 const emptyMeal = {
     name: '', calories: 0, carbs: 0,
@@ -918,6 +907,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default withRouter(connect(null, mapDispatchToProps)(NewLayout));
-
-// input number
-// return value.toString().match(/[0-9]*/)[0] + ' calories'

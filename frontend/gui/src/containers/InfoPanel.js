@@ -1,19 +1,14 @@
 import React from 'react';
 
-import {
-} from '@ant-design/icons';
-
-// "name2" for the other color
-import calendar from '../calendar.svg';
-import save from '../save.svg';
-import wrench from '../wrench.svg';
+import calendar from '../InfoPanelSVGs/calendar.svg';
+import save from '../InfoPanelSVGs/save.svg';
+import wrench from '../InfoPanelSVGs/wrench.svg';
 
 // for icons:
 // dark green: #338A58
 // light green: #51B37E
 
 // ideal square is 45px x 45px with a 16px margin-bottom
-
 function InfoPanel(props) {
     return (
         <>

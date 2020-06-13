@@ -22,16 +22,6 @@ class NormalLoginForm extends React.Component {
         console.log('Failed:', errorInfo);
     };
 
-    /*handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.form.validateFields((err, values) => {
-            if (!err) {
-                this.props.onAuth(values.userName, values.password);
-                this.props.history.push('/');
-            }
-        });
-    }*/
-
     render() {
         // if auth_fail is dispatched
         let errorMessage = null;
@@ -108,16 +98,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NormalLoginForm)
-
-/*ReactDOM.render(<NormalLoginForm />, mountNode);
-
-#components - form - demo - normal - login.login - form {
-    max - width: 300px;
-}
-#components - form - demo - normal - login.login - form - forgot {
-    float: right;
-}
-#components - form - demo - normal - login.login - form - button {
-    width: 100 %;
-} */
+export default connect(mapStateToProps, mapDispatchToProps)(NormalLoginForm);

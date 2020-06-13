@@ -7,8 +7,6 @@ import {
     MailOutlined,
 } from '@ant-design/icons';
 
-{/* It tasts better when it's effortless. */ }
-{/* It does everything but make the sandwich. */ }
 
 function SignupPanel(props) {
 
@@ -23,6 +21,8 @@ function SignupPanel(props) {
                 <div className='signupPanelReadyText'>
                     <div style={{ color: '#40a66e' }}>
                         Ready to get your diet on track?
+                        {/* It tasts better when it's effortless. */}
+                        {/* It does everything but make the sandwich. */}
                     </div>
                     Join Meal Maker today.
                 </div>

@@ -65,11 +65,7 @@ function About(props) {
                     <h2>
                         Original Designs
                     </h2>
-                    <div className='space8' />
-                    {/* <p style={{ textAlign: 'center' }}>
-                        Check out some of my original designs below.
-                    </p> */}
-                    <div className='space8' />
+                    <div className='space16' />
                     <div className='aboutImgBody'>
                         <ImageModal number={1} />
                         <ImageModal number={2} />

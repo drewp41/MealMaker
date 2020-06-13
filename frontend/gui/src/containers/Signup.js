@@ -94,7 +94,6 @@ const SignUp = (props) => {
                     }}
                     onFinish={onFinish}
                     form={form}
-                // onFinishFailed={this.onFinishFailed}
                 >
                     {/* padding centers it a little better */}
                     <div style={{ textAlign: 'center', padding: '0 6px 0 0' }}>

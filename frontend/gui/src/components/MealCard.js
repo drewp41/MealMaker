@@ -26,18 +26,6 @@ const mainTextColor = '#32323c';
 //      mainPinned: false,
 //      sidePinned: false,
 
-// didn't use yet
-function MealCardTitle(props) {
-    return <>
-        Breakfast &nbsp;&nbsp;
-        <span style={{ color: '#606060' }}>
-            <SyncOutlined className='regenIcon' />
-            &nbsp;&nbsp;&nbsp;
-            <PushpinOutlined className='pinIcon' />
-        </span>
-    </>;
-}
-
 const MealCard = (props) => {
 
     const [showMainModal, setShowMainModal] = useState(false);
@@ -196,22 +184,3 @@ const MealCard = (props) => {
 }
 
 export default MealCard;
-
-    // setTitle() {
-    //     if (this.props.mealNum === 1) {
-    //         if (this.props.numMeals === 1)
-    //             'Feast';
-    //         else if (this.props.numMeals === 2)
-    //             'Brunch';
-    //         else
-    //             'Breakfast';
-    //     } else if (this.props.mealNum === 2) {
-    //         if (this.props.numMeals === 2)
-    //             'Dinner';
-    //         else
-    //             'Lunch';
-    //     } else if (this.props.mealNum === 3) {
-    //         'Dinner';
-    //     } else
-    //         'Snack';
-    // }

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { List, Avatar, Popconfirm, Button, message } from 'antd';
+import { List, Avatar, Popconfirm, message } from 'antd';
 import axios from 'axios';
 
 import MealModal from './MealModal';
 import { getName } from './GetFoodName';
 
 import { CloseCircleOutlined } from '@ant-design/icons';
-// import other from '../FoodIcons/Other.svg';
 
 function importAll(r) {
     let images = {};

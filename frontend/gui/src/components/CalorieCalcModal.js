@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import {
-    Modal, Form, Input, Radio, Select
+    Modal, Input, Radio, Select
 } from 'antd';
 import {
     CalculatorFilled, CheckOutlined
 } from '@ant-design/icons';
-
-import NumberFormat from 'react-number-format';
 
 const { Option } = Select;
 

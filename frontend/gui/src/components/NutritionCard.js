@@ -100,7 +100,6 @@ const NutritionCard = (props) => {
                                         data: [Math.round(props.carbs * 100 / (props.carbs + props.protein + props.fat * (9 / 4))),
                                         Math.round(props.protein * 100 / (props.carbs + props.protein + props.fat * (9 / 4))),
                                         Math.round((props.fat * (9 / 4) * 100) / (props.carbs + props.protein + props.fat * (9 / 4)))]
-                                        // data: [33, 33, 33]
                                     }]
                                 }}
                                 options={smallPieOptions}
@@ -123,7 +122,6 @@ const NutritionCard = (props) => {
                                                 data: [Math.round(props.carbs * 100 / (props.carbs + props.protein + props.fat * (9 / 4))),
                                                 Math.round(props.protein * 100 / (props.carbs + props.protein + props.fat * (9 / 4))),
                                                 Math.round((props.fat * (9 / 4) * 100) / (props.carbs + props.protein + props.fat * (9 / 4)))]
-                                                // data: [33, 33, 33]
                                             }]
                                     }}
                                     options={pieOptions}

@@ -8,9 +8,6 @@ import * as actions from '../store/actions/auth';
 import logo from '../logo.svg';
 import { UserOutlined } from '@ant-design/icons';
 
-
-const { SubMenu } = Menu;
-
 function Header(props) {
     const [expandHeader, setExpandHeader] = useState(false);
     const [rotateClass, setRotateClass] = useState('logoIcon');
@@ -19,7 +16,6 @@ function Header(props) {
     const history = useHistory();
 
     const rotateIcon = () => {
-        localStorage.clear();
         if (rotateClass === 'logoIconRotate')
             return;
         setRotateClass('logoIconRotate');
@@ -174,8 +170,6 @@ function Header(props) {
             </div>
 
             <div className='headerBorder' />
-
-            {/* {props.children} */}
 
         </>
     )

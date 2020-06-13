@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-    Modal, Input, Button, Spin, message
+    Modal, Input, Spin, message
 } from 'antd';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
