@@ -1390,10 +1390,6 @@ input::-webkit-inner-spin-button {
     all: unset;
 }
 
-.signinLogo {
-    display: flex;
-    padding: 30px 0;
-}
 
 .signinBox {
     width: 400px;
@@ -1408,10 +1404,12 @@ input::-webkit-inner-spin-button {
 
 .signinPage .logoText {
     color: #585858;
+    -webkit-text-fill-color: #585858;
 }
 
 .signinPage .logoText:hover {
     color: #404040;
+    -webkit-text-fill-color: #404040;
 }
 
 .signinField {
@@ -1421,18 +1419,22 @@ input::-webkit-inner-spin-button {
 .signinForgot {
     float: right;
     color: #40a66e;
+    -webkit-text-fill-color: #40a66e;
 }
 
 .signinForgot:hover {
     color: #404040;
+    -webkit-text-fill-color: #404040;
 }
 
 .signinTextAbove {
     color: #585858;
+    -webkit-text-fill-color: #585858;
 }
 
 .signinTextAbove:hover {
     color: #404040;
+    -webkit-text-fill-color: #404040;
 }
 
 .signinButton {
@@ -1446,6 +1448,7 @@ input::-webkit-inner-spin-button {
     background-color: #47B57A;
     border-color: #47B57A;
     color: #fff !important;
+    -webkit-text-fill-color: #fff;
     border-radius: 2px;
     font-size: 16px;
 }
@@ -1453,7 +1456,6 @@ input::-webkit-inner-spin-button {
 .signinButton:hover {
     background-color: #5DC08C;
     border-color: #5DC08C;
-
 }
 
 .signinButton:active, .signinButton:focus {
@@ -1463,6 +1465,7 @@ input::-webkit-inner-spin-button {
 
 .signinCheckbox:hover {
     color: #404040;
+    -webkit-text-fill-color: #404040;
 }
 
 .ant-checkbox-checked .ant-checkbox-inner {
@@ -1472,10 +1475,12 @@ input::-webkit-inner-spin-button {
 
 .signinBottomText {
     color: #40a66e;
+    -webkit-text-fill-color: #40a66e;
 }
 
 .signinBottomText:hover {
     color: #404040;
+    -webkit-text-fill-color: #404040;
 }
 
 .signinPage a {
@@ -1487,6 +1492,7 @@ input::-webkit-inner-spin-button {
     position: absolute;
     bottom: 0px;
     color: #505050;
+    -webkit-text-fill-color: #505050;
 }
 
 /* when alert goes to two lines */

@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { Input, Checkbox, Form, Button, Alert } from 'antd';
+import { Input, Form, Button, Alert } from 'antd';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/auth';
 
 import logo from '../logo.svg';
-import { formatCountdown } from 'antd/lib/statistic/utils';
 
 // green text: #40a66e
 

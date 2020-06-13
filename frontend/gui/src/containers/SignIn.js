@@ -55,10 +55,7 @@ const SignIn = (props) => {
     return (
 
         <div className='signinPage'>
-            <div style={{ height: '60px' }} />
-            <div className='signinLogo'>
-            </div>
-
+            <div style={{ height: '120px' }} />
             {props.error && <p>{props.error.message}</p>}
 
             <Alert className='signinAlert' style={{ opacity: invalidCreds ? 1 : 0 }}

@@ -6,7 +6,6 @@ import { Input } from 'antd';
 import Header from './Header';
 import Footer from './Footer';
 import Foods from '../components/Food';
-import CustomForm from '../components/Form';
 
 const { Search } = Input;
 

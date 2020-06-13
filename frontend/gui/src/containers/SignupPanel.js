@@ -2,12 +2,6 @@ import React, { useState } from 'react';
 import { Input } from 'antd';
 import { useHistory } from 'react-router-dom';
 
-import {
-    GithubOutlined, LinkedinFilled,
-    MailOutlined,
-} from '@ant-design/icons';
-
-
 function SignupPanel(props) {
 
     const [email, setEmail] = useState('');

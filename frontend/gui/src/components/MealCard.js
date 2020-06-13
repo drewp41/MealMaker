@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import React, { useState } from 'react';
 import {
-    Card, Skeleton, message
+    Card, Skeleton
 } from 'antd';
 import {
     SyncOutlined,
@@ -9,8 +9,6 @@ import {
 import TextTransition, { presets } from "react-text-transition";
 
 import MealModal from './MealModal';
-
-const mainTextColor = '#32323c';
 
 // meal consists of: 
 //     name: '', calories: 0, carbs: 0,
