@@ -101,7 +101,7 @@ function HowItWorks(props) {
                             Regenerate an entire meal at a time
                         </li>
                         <li>
-                            Have total calories be within ±100 of desired calories.
+                            Have total calories be within ±100 of desired calories
                         </li>
                     </ul>
                 </div>
