@@ -48,7 +48,7 @@ const FoodEntry = (props) => {
 
                 <List.Item style={{ display: 'flex' }}>
                     <List.Item.Meta
-                        avatar={<Avatar src={images[getName(props.meal.name)]} />}
+                        avatar={<Avatar className='avatarSaved' src={images[getName(props.meal.name)]} />}
                         title={props.meal.name}
                         description={props.meal.calories + ' calories'}
                         style={{ cursor: 'pointer', paddingRight: '10px', width: '500px' }}

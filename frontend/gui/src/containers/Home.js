@@ -852,7 +852,6 @@ const NewLayout = (props) => {
                         (numMeals >= 4 ? meal4.main.fat + meal4.side.fat : 0) +
                         (numMeals >= 5 ? meal5.main.fat + meal5.side.fat : 0) +
                         (numMeals >= 6 ? meal6.main.fat + meal6.side.fat : 0)} />
-                <br />
 
                 <MealCard mealNum={1} mealObj={meal1} numMeals={numMeals}
                     displayMeals={displayMeals} isAuthenticated={props.isAuthenticated}

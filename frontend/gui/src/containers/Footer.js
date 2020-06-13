@@ -81,8 +81,11 @@ function Footer(props) {
                     </div>
                     }
                     <div className='footerCopyright'>
-                        © 2020 Andrew Paul
-                </div>
+                        <span onClick={() => localStorage.clear()}>
+                            ©
+                        </span>
+                        {' '}2020 Andrew Paul
+                    </div>
                 </div>
             </div >
         </>

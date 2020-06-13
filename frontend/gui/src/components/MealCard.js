@@ -63,7 +63,6 @@ const MealCard = (props) => {
         <>
             {props.numMeals >= props.mealNum &&
                 <>
-                    {props.mealNum !== 1 && <br />}
                     <MealModal visible={showMainModal} meal={props.mealObj.main} closeModal={closeMainModal}
                         regen={regenMain} pin={pinMain} pinned={props.mealObj.mainPinned} useIcons={true}
                         loading={props.mealObj.mainLoading} isAuthenticated={props.isAuthenticated} username={props.username} />
