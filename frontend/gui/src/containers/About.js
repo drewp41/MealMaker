@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import React, { lazy, Suspense } from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import ImageModal from '../components/ImageModal';
 import { Link } from 'react-router-dom';
 
+const ImageModal = lazy(() => import('../components/ImageModal'));
 
 function About(props) {
-
-    const [modal1Visible, setModal1Visible] = useState(false);
-    const [modal2Visible, setModal2Visible] = useState(false);
 
     return (
         <>
@@ -67,8 +64,10 @@ function About(props) {
                     </h2>
                     <div className='space16' />
                     <div className='aboutImgBody'>
-                        <ImageModal number={1} />
-                        <ImageModal number={2} />
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <ImageModal number={1} />
+                            <ImageModal number={2} />
+                        </Suspense>
                     </div>
                     <div className='space32' />
                     <h2>

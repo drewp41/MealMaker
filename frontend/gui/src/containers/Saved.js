@@ -71,7 +71,7 @@ function Saved(props) {
                         <div style={{ flex: 1 }}>
                             Saved meals
                         </div>
-                        <div style={{ flex: 1 }}>
+                        <div style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
                             <Search className='savedMealsSearchBar' placeholder="Search meals"
                                 onSearch={value => console.log('searched ' + value)}
                                 onChange={onChangeSearch} />
