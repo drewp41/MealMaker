@@ -22,8 +22,10 @@ const ImageModal = (props) => {
                 width='85%'
                 closable={false}
             >
-                <img src={props.number === 1 ? img1 : img2} alt='Old site design'
-                    onClick={closeModal} />
+                <div className='imageModalDiv'>
+                    <img src={props.number === 1 ? img1 : img2} alt='Old site design'
+                        onClick={closeModal} />
+                </div>
             </Modal>
             <img src={props.number === 1 ? img1 : img2} alt='Old site design'
                 onClick={() => setVisible(true)} />

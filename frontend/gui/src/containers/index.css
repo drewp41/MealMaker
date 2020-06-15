@@ -1672,7 +1672,15 @@ input::-webkit-inner-spin-button {
 
 .imageModal {
     max-height: 90%;
-    overflow: scroll;     
+    overflow-x: scroll;    
+    -webkit-overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+}
+
+.imageModalDiv {
+    overflow-x: scroll;    
+    -webkit-overflow-x: scroll;
     -webkit-overflow-scrolling: touch;
     white-space: nowrap;
 }
@@ -1684,8 +1692,12 @@ input::-webkit-inner-spin-button {
 .imageModal img {
     min-width: 800px;
     max-width: 100%;
-    height: auto;
+    /* height: auto; */
     cursor: pointer;
+    overflow-x: scroll;    
+    -webkit-overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
 }
 
 
