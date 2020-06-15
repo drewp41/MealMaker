@@ -88,7 +88,7 @@ const MealModal = (props) => {
     }
 
     async function saveFood() {
-        return axios.post('http://127.0.0.1:8000/api/', {
+        return axios.post('/api/', {
             created_by: props.username,
             meal: JSON.stringify(props.meal)
         })
@@ -109,7 +109,7 @@ const MealModal = (props) => {
             message.error('Something went wrong with the removal :(');
             return;
         }
-        axios.delete(`http://127.0.0.1:8000/api/${sessionFavoriteID}/`, {
+        axios.delete(`/api/${sessionFavoriteID}/`, {
             headers: { 'Authorization': `Token ${localStorage.getItem('token')}` }
         })
             .then(res => {

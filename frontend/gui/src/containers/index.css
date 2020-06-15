@@ -377,6 +377,11 @@ button {
     display: none;
 }
 
+/* for antd versions higher than 4.2.4 */
+/* .ant-tabs-nav {
+    display: none !important;
+} */
+
 .inputBack {
     position: absolute;
     top: 14px;
@@ -772,7 +777,7 @@ input::-webkit-inner-spin-button {
     color: #222426;
     /* space for the icons */
     margin-right: 55px;
-    text-overflow: ellipsis
+    text-overflow: ellipsis;
 }
 
 .mealCardServingText {
@@ -1667,7 +1672,8 @@ input::-webkit-inner-spin-button {
 
 .imageModal {
     max-height: 90%;
-    overflow-x:scroll;     
+    overflow: scroll;     
+    -webkit-overflow-scrolling: touch;
     white-space: nowrap;
 }
 

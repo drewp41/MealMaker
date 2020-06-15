@@ -24,7 +24,7 @@ function Profile(props) {
         if (!props.isAuthenticated)
             history.push('/');
         else if (props.isAuthenticated) {
-            axios.get('http://127.0.0.1:8000/rest-auth/user/', {
+            axios.get('/rest-auth/user/', {
                 headers: { 'Authorization': `Token ${localStorage.getItem('token')}` }
             })
                 .then(res => {
@@ -34,7 +34,7 @@ function Profile(props) {
                     console.log(error);
                 })
         }
-        axios.get('http://127.0.0.1:8000/api/', {
+        axios.get('/api/', {
             headers: { 'Authorization': `Token ${localStorage.getItem('token')}` }
         })
             .then(res => {

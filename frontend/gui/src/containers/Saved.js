@@ -25,7 +25,7 @@ function Saved(props) {
             history.push('/');
             return;
         }
-        axios.get('http://127.0.0.1:8000/api/', {
+        axios.get('/api/', {
             headers: { 'Authorization': `Token ${localStorage.getItem('token')}` }
         })
             .then(res => {

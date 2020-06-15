@@ -7,9 +7,16 @@ import 'antd/dist/antd.css';
 import ScrollToTop from './components/ScrollToTop';
 import * as actions from './store/actions/auth';
 
-// Create history object.
 import createHistory from 'history/createBrowserHistory';
+import axios from 'axios';
+
+// Create history object.
 const history = createHistory();
+
+// if testing
+axios.defaults.baseURL = 'http://127.0.0.1:8000';
+// if deployed
+// axios.defaults.baseURL = 'https://www.mealmaker.io';
 
 class App extends Component {
 

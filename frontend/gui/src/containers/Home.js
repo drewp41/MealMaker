@@ -105,7 +105,7 @@ const NewLayout = (props) => {
         console.log('on render');
         // get the username to be sent with the GET request when saving a meal
         if (props.isAuthenticated) {
-            axios.get('http://127.0.0.1:8000/rest-auth/user/', {
+            axios.get('/rest-auth/user/', {
                 headers: { 'Authorization': `Token ${localStorage.getItem('token')}` }
             })
                 .then(res => {
