@@ -9,6 +9,8 @@ import * as actions from './store/actions/auth';
 
 import createHistory from 'history/createBrowserHistory';
 import axios from 'axios';
+import Favicon from 'react-favicon';
+import logo from './logo.svg'
 
 // Create history object.
 const history = createHistory();
@@ -28,6 +30,7 @@ class App extends Component {
 
     return (
       <div>
+        <Favicon url={logo} />
         <Router history={history}>
           <ScrollToTop />
           <BaseRouter {...this.props} />

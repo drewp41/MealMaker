@@ -23,8 +23,8 @@ const pieOptions = {
             },
             color: 'white',
             font: {
-                family: 'Camphor',
-                size: 14
+                family: 'Alliance',
+                size: 13
             }
         }
     },
