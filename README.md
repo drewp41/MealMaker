@@ -5,14 +5,14 @@
   <img src="https://img.shields.io/badge/django-3.03-blue" />
 </div>
 
-<h3>
-  Website to generate personalized meal plans based on the user's food preferences and schedule.
-</h3>
 
+Website to generate personalized meal plans based on the user's food preferences and schedule.
+
+## Usage
 <p>
   Enter the number of calories and number of meals you want to eat today.
 </p>
-<img src="https://imgur.com/jZO72TQ.png" width="500" height="auto" />
+<img src="https://imgur.com/jZO72TQ.png" width="600" height="auto" />
 
 <p>
   Click "Generate", and <b>voila! </b>
@@ -29,6 +29,19 @@
 <img src="https://imgur.com/WmxK8rB.png" width=500 height="auto" />
 
 <p>
-  In your account, you are able to view all the meals you have previously <b> saved </b>.
+  In your account, you are able to view and search all the meals you have previously <b> saved </b>.
 </p>
-<img src="https://imgur.com/BhhUp6R.png" width=500 height="auto" />
+<img src="https://imgur.com/Yo2trnW.png" width=500 height="auto" />
+
+## Built with
+- [React](https://reactjs.org)
+- [Redux](https://redux.js.org)
+- [Ant Design](https://ant.design)
+- [Django](https://www.djangoproject.com)
+- [Spoonacular API](https://spoonacular.com)
+- [Heroku](https://www.heroku.com)
+
+## Additional info
+To learn more about the food algorithm and how I generate the meals, check out the [how it works](https://www.mealmaker.io/howitworks) page.
+<br />
+To learn more about me and inspiration behind this project, check out the [about](https://www.mealmaker.io/about) page.
